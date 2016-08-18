@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -13,16 +13,18 @@
 
 package de.sciss.synth
 
-import scala.math.{max, pow, cos, sin, abs, sqrt, Pi}
+import de.sciss.serial.{DataInput, DataOutput, ImmutableSerializer}
+
 import scala.annotation.switch
-import de.sciss.serial.{DataOutput, ImmutableSerializer, DataInput}
+import scala.language.implicitConversions
+import scala.math.{Pi, abs, cos, max, pow, sin, sqrt}
 
 object Curve {
   case object step extends Curve {
     final val id = 0
 
-    override def productPrefix = "Curve$step$"  // compatible with SoundProcesses serialization
-    override def toString = "step"
+    override def productPrefix  = "Curve$step$"  // compatible with SoundProcesses serialization
+    override def toString       = "step"
   
     def levelAt(pos: Float, y1: Float, y2: Float) = if (pos < 1f) y1 else y2
   }
@@ -30,8 +32,8 @@ object Curve {
   case object linear extends Curve {
     final val id = 1
 
-    override def productPrefix = "Curve$linear$"
-    override def toString = "linear"
+    override def productPrefix  = "Curve$linear$"
+    override def toString       = "linear"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = pos * (y2 - y1) + y1
   }
@@ -40,8 +42,8 @@ object Curve {
   case object exponential extends Curve {
     final val id = 2
 
-    override def productPrefix = "Curve$exponential$"
-    override def toString = "exponential"
+    override def productPrefix  = "Curve$exponential$"
+    override def toString       = "exponential"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = {
       val y1Lim = max(0.0001f, y1)
@@ -53,8 +55,8 @@ object Curve {
   case object sine extends Curve {
     final val id = 3
 
-    override def productPrefix = "Curve$sine$"
-    override def toString = "sine"
+    override def productPrefix  = "Curve$sine$"
+    override def toString       = "sine"
 
     def levelAt(pos: Float, y1: Float, y2: Float) =
       (y1 + (y2 - y1) * (-cos(Pi * pos) * 0.5 + 0.5)).toFloat
@@ -63,8 +65,8 @@ object Curve {
   case object welch extends Curve {
     final val id = 4
 
-    override def productPrefix = "Curve$welch$"
-    override def toString = "welch"
+    override def productPrefix  = "Curve$welch$"
+    override def toString       = "welch"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = if (y1 < y2) {
       (y1 + (y2 - y1) * sin(Pi * 0.5 * pos)).toFloat
@@ -73,15 +75,16 @@ object Curve {
     }
   }
 
+  implicit def fromDouble(d: Double): Curve = parametric(d.toFloat)
+
   object parametric {
     final val id = 5
   }
-
   final case class parametric(/*override val */ curvature: Float) extends Curve {
     def id = parametric.id
 
-    override def productPrefix = "Curve$parametric"
-    override def toString = s"parametric($curvature)"
+    override def productPrefix  = "Curve$parametric"
+    override def toString       = s"parametric($curvature)"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = if (abs(curvature) < 0.0001f) {
       pos * (y2 - y1) + y1
@@ -95,8 +98,8 @@ object Curve {
   case object squared extends Curve {
     final val id = 6
 
-    override def productPrefix = "Curve$squared$"
-    override def toString = "squared"
+    override def productPrefix  = "Curve$squared$"
+    override def toString       = "squared"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = {
       val y1Pow2  = sqrt(y1)
@@ -109,8 +112,8 @@ object Curve {
   case object cubed extends Curve {
     final val id = 7
 
-    override def productPrefix = "Curve$cubed$"
-    override def toString = "cubed"
+    override def productPrefix  = "Curve$cubed$"
+    override def toString       = "cubed"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = {
       val y1Pow3  = pow(y1, 0.3333333)
@@ -129,7 +132,7 @@ object Curve {
       }
     }
 
-    def read(in: DataInput): Curve = {
+    def read(in: DataInput): Curve =
       (in.readInt(): @switch) match {
         case step       .id => step
         case linear     .id => linear
@@ -141,7 +144,6 @@ object Curve {
         case cubed      .id => cubed
         case other          => sys.error(s"Unexpected envelope shape ID $other")
       }
-    }
   }
 }
 sealed trait Curve {

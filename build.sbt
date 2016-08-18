@@ -1,9 +1,6 @@
 name               := "ScalaCollider"
-
-version            := "1.18.1"
-
+version            := "1.19.0"
 organization       := "de.sciss"
-
 scalaVersion       := "2.11.8"
 
 // sbt 0.13.6 starts to upgrade Scala version!
@@ -16,19 +13,26 @@ crossScalaVersions := Seq("2.11.8", "2.10.0")
 
 description        := "A sound synthesis library for the SuperCollider server"
 homepage           := Some(url(s"https://github.com/Sciss/${name.value}"))
-licenses           := Seq("GPL v2+" -> url("http://www.gnu.org/licenses/gpl-2.0.txt"))
+licenses           := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt"))
 
-lazy val ugensVersion     = "1.14.0"
+// ---- main dependencies ----
+
+lazy val ugensVersion     = "1.15.0"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.5"
 lazy val processorVersion = "0.4.0"
-lazy val scalaTestVersion = "2.2.6"
+lazy val optionalVersion  = "1.0.0"
+
+// ---- test-only dependencies ----
+
+lazy val scalaTestVersion = "3.0.0"
 
 libraryDependencies ++= Seq(
   "de.sciss"      %% "scalaosc"                % oscVersion,
   "de.sciss"      %% "scalaaudiofile"          % audioFileVersion,
-  "de.sciss"      %% "processor"               % processorVersion,
   "de.sciss"      %% "scalacolliderugens-core" % ugensVersion,
+  "de.sciss"      %% "processor"               % processorVersion,
+  "de.sciss"      %% "optional"                % optionalVersion,
   "org.scalatest" %% "scalatest"               % scalaTestVersion % "test"
 )
 

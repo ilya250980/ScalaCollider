@@ -2,6 +2,11 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v1.19.0
+
+* changes license from GPL to LGPL
+* uses `Optional` library
+
 ## changes in v1.14.0
 
 * `LocalBuf` arguments are reversed, allowing to leave out the number of channels

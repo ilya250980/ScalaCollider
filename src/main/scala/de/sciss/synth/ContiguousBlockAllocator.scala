@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -13,25 +13,24 @@
 
 package de.sciss.synth
 
-private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) /* extends BlockAllocator */ {
-  private val array = new Array[Block](size)
-  private var freed = Map[Int, Set[Block]]()
-  private var top   = pos
-  private val sync  = new AnyRef
+private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) {
+  private[this] val array = new Array[Block](size)
+  private[this] var freed = Map[Int, Set[Block]]()
+  private[this] var top   = pos
+  private[this] val sync  = new AnyRef
 
   // constructor
   array(pos) = new Block(pos, size - pos)
 
   def alloc: Int = alloc(1)
 
-  def alloc(n: Int): Int = {
+  def alloc(n: Int): Int =
     sync.synchronized {
       val b = findAvailable(n)
       if (b != null) reserve(b.start, n, b, null).start else -1
     }
-  }
 
-  def free(address: Int): Unit = {
+  def free(address: Int): Unit =
     sync.synchronized {
       var b = array(address)
       if ((b != null) && b.used) {
@@ -77,15 +76,12 @@ private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) /* 
         }
       }
     }
-  }
-
-  //   def allocatedBlocks : ISeq[ Block ] = array.filter( b => (b != null) && b.used )
 
   private def findAvailable(n: Int): Block = {
-    freed.get(n).foreach(set => if (!set.isEmpty) return set.head)
+    freed.get(n).foreach(set => if (set.nonEmpty) return set.head)
     freed.foreach {
       entry =>
-        if ((entry._1 >= n) && !entry._2.isEmpty) return entry._2.head
+        if ((entry._1 >= n) && entry._2.nonEmpty) return entry._2.head
     }
 
     if ((top + n > size) || array(top).used) return null
@@ -142,10 +138,10 @@ private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) /* 
   }
 
   private def split(availBlock: Block, n: Int, used: Boolean): (Block, Block) = {
-    val result = availBlock.split(n)
-    val newB = result._1
-    val leftOver = result._2
-    newB.used = used
+    val result    = availBlock.split(n)
+    val newB      = result._1
+    val leftOver  = result._2
+    newB.used     = used
     removeFromFreed(availBlock)
     if (!used) addToFreed(newB)
 
@@ -165,18 +161,17 @@ private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) /* 
     var used = false
 
     def adjoins(b: Block): Boolean =
-      ((start < b.start) && (start + size >= b.start)) ||
-        ((start > b.start) && (b.start + b.size >= start))
+      ((start < b.start) && (start   + size   >= b.start)) ||
+      ((start > b.start) && (b.start + b.size >= start  ))
 
-    def join(b: Block): Block = {
+    def join(b: Block): Block =
       if (adjoins(b)) {
         val newStart = math.min(start, b.start)
         val newSize = math.max(start + size, b.start + b.size) - newStart
         new Block(newStart, newSize)
       } else null
-    }
 
-    def split(len: Int): (Block, Block) = {
+    def split(len: Int): (Block, Block) =
       if (len < size) {
         (new Block(start, len), new Block(start + len, size - len))
       } else if (len == size) {
@@ -184,6 +179,5 @@ private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) /* 
       } else {
         (null, null)
       }
-    }
   }
 }

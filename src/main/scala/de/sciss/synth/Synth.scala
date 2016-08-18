@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -19,11 +19,7 @@ object Synth {
 final case class Synth(server: Server, id: Int)
   extends Node {
 
-  private var defNameVar = ""
-
-//  def this(server: Server) = this(server, server.nextNodeID())
-//
-//  def this() = this(Server.default)
+  private[this] var defNameVar = ""
 
   def newMsg(defName: String, target: Node = server.defaultGroup, args: Seq[ControlSet] = Nil,
              addAction: AddAction = addToHead) = {
@@ -31,8 +27,10 @@ final case class Synth(server: Server, id: Int)
     message.SynthNew(defName, id, addAction.id, target.id, args: _*)
   }
 
-  def defName = defNameVar
+  def defName: String = defNameVar
 
-  override def toString = "Synth(" + server + "," + id +
-    (if (defNameVar != "") ") : <" + defNameVar + ">" else ")")
+  override def toString: String = {
+    val df = if (defNameVar != "") s") : <$defNameVar>" else ")"
+    s"Synth($server,$id$df"
+  }
 }

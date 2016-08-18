@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -13,13 +13,15 @@
 
 package de.sciss.synth
 
-import language.implicitConversions
+import de.sciss.optional.Optional
 import de.sciss.osc
-import scala.concurrent.{Promise, Future}
-import scala.collection.immutable.{IndexedSeq => Vec}
 import de.sciss.osc.Packet
-import scala.util.Success
+
 import scala.collection.breakOut
+import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.concurrent.{Future, Promise}
+import scala.language.implicitConversions
+import scala.util.Success
 
 /** Importing the contents of this object adds imperative (side-effect) functions to resources such as
   * synths, buses, buffers. In general these reflect the OSC messages defined for each object, and send
@@ -83,7 +85,7 @@ object Ops {
   // cannot occur inside value class at the moment
   private[this] def sendWithAction[A](res: A, server: Server, msgFun: Option[Packet] => osc.Message,
                                            completion: Completion[A], name: String): Unit = {
-    completion.action map { action =>
+    completion.action.map { action =>
       val syncMsg = server.syncMsg()
       val syncID  = syncMsg.id
       val compPacket: Packet = completion.message match {
@@ -128,6 +130,16 @@ object Ops {
     }
 
     def free(server: Server = Server.default): Unit = server ! freeMsg
+  }
+
+  final implicit class SynthOps(val `this`: Synth) extends AnyVal { me =>
+    import me.{`this` => n}
+    import n._
+
+    def play(defName: String, target: Node = server.defaultGroup, args: Seq[ControlSet] = Nil,
+               addAction: AddAction = addToHead): Unit = {
+      server ! newMsg(defName = defName, target = target, args = args, addAction = addAction)
+    }
   }
 
   final implicit class NodeOps(val `this`: Node) extends AnyVal { me =>
@@ -514,7 +526,6 @@ object Ops {
     //    def play: Synth = play()
 
     def play(loop: Boolean = false, amp: Double = 1.0, out: Int = 0): Synth = {
-      import de.sciss.synth
       import ugen._
       Ops.play(server, out) {
         // working around nasty compiler bug

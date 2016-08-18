@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -13,7 +13,8 @@
 
 package de.sciss.synth
 
-import de.sciss.synth.ugen.{Wrap, Fold, Clip, UnaryOpUGen, BinaryOpUGen, ChannelProxy, Flatten, Poll, Impulse, LinExp, LinLin, MulAdd, Constant}
+import de.sciss.optional.Optional
+import de.sciss.synth.ugen.{BinaryOpUGen, ChannelProxy, Clip, Constant, Flatten, Fold, Impulse, LinExp, LinLin, MulAdd, Poll, UnaryOpUGen, Wrap}
 
 object GEOps {
   private def getRate(g: GE, name: String): Rate =

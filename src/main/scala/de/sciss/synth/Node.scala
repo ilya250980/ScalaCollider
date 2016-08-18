@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -15,6 +15,7 @@ package de.sciss.synth
 
 import de.sciss.model.impl.ModelImpl
 import de.sciss.model.Model
+import de.sciss.optional.Optional
 
 /**
  * A representation for a node on the server's tree. A `Node` is either a `Synth` or a `Group`.

@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU General Public License v2+
+ *  This software is published under the GNU Lesser General Public License v2.1+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -13,9 +13,11 @@
 
 package de.sciss.synth
 
-import java.io.{BufferedInputStream, DataInputStream, FileInputStream, ByteArrayOutputStream, BufferedOutputStream, DataOutputStream, File, FileOutputStream}
+import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream}
 import java.nio.ByteBuffer
 import File.{separator => sep}
+
+import de.sciss.optional.Optional
 import de.sciss.osc.Packet
 import de.sciss.synth
 

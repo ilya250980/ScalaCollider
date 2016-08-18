@@ -7,7 +7,7 @@
 
 ## statement
 
-ScalaCollider is a [SuperCollider](http://supercollider.sf.net) client for the Scala programming language. It is (C)opyright 2008&ndash;2016 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under the [GNU General Public License](http://github.com/Sciss/ScalaCollider/blob/master/LICENSE) and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
+ScalaCollider is a [SuperCollider](http://supercollider.sf.net) client for the Scala programming language. It is (C)opyright 2008&ndash;2016 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under the [GNU Lesser General Public License](http://github.com/Sciss/ScalaCollider/blob/master/LICENSE) v2.1+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language 'SCLang' that controls the sound synthesis processes on a server, 'scsynth'. ScalaCollider is an alternative to 'SCLang', giving you the (perhaps) familiar Scala language to express these sound synthesis processes, and letting you hook up any other Scala, Java or JVM-based libraries. ScalaCollider's function is more reduced than 'SCLang', focusing on UGen graphs and server-side resources such as buses and buffers. Other functionality is part of the standard Scala library, e.g. collections and GUI. Other functionality, such as plotting, MIDI, client-side sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries (see section 'packages' below).
 

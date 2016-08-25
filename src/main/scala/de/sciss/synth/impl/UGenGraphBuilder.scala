@@ -27,7 +27,8 @@ object DefaultUGenGraphBuilderFactory extends UGenGraph.BuilderFactory {
   def build(graph: SynthGraph): UGenGraph = {
     val b = new DefaultUGenGraphBuilder
     UGenGraph.use(b) {
-      buildWith(graph, b)
+      val proxies = buildWith(graph, b)
+      b.build(proxies)
     }
   }
 
@@ -35,11 +36,13 @@ object DefaultUGenGraphBuilderFactory extends UGenGraph.BuilderFactory {
     * The caller should in most cases make sure that the builder is
     * actually installed as the current one, wrapping the call in
     * `UGenGraph.use(builder)`!
+    * The method returns the control proxies for further processing
+    * in the builder.
     *
     * @param g0       the graph to expand
     * @param builder  the builder that will assembly the ugens
     */
-  def buildWith(g0: SynthGraph, builder: UGenGraphBuilderLike): UGenGraph = {
+  def buildWith(g0: SynthGraph, builder: UGenGraph.Builder): ISet[ControlProxyLike] = {
     var g = g0
     var controlProxies = ISet.empty[ControlProxyLike]
     while (g.nonEmpty) {
@@ -47,7 +50,7 @@ object DefaultUGenGraphBuilderFactory extends UGenGraph.BuilderFactory {
       controlProxies ++= g.controlProxies
       g = SynthGraph(g.sources.foreach(_.force(builder))) // allow for further graphs being created
     }
-    builder.build(controlProxies)
+    controlProxies
   }
 }
 

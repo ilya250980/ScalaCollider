@@ -24,27 +24,37 @@ import scala.collection.immutable.{IndexedSeq => Vec, Set => ISet}
 import scala.collection.mutable.{Buffer => MBuffer, Map => MMap, Stack => MStack}
 
 object DefaultUGenGraphBuilderFactory extends UGenGraph.BuilderFactory {
-  def build(graph: SynthGraph) = {
-    val b = new Impl(graph)
-    UGenGraph.use(b)(b.build)
-  }
-
-  private final class Impl(graph: SynthGraph) extends BasicUGenGraphBuilder {
-    builder =>
-
-    override def toString = s"UGenGraph.Builder@${hashCode.toHexString}"
-
-    def build: UGenGraph = {
-      var g = graph
-      var controlProxies = ISet.empty[ControlProxyLike]
-      while (g.nonEmpty) {
-        // XXX these two lines could be more efficient eventually -- using a 'clearable' SynthGraph
-        controlProxies ++= g.controlProxies
-        g = SynthGraph(g.sources.foreach(_.force(builder))) // allow for further graphs being created
-      }
-      build(controlProxies)
+  def build(graph: SynthGraph): UGenGraph = {
+    val b = new DefaultUGenGraphBuilder
+    UGenGraph.use(b) {
+      buildWith(graph, b)
     }
   }
+
+  /** Recursively expands the synth graph until no elements are left.
+    * The caller should in most cases make sure that the builder is
+    * actually installed as the current one, wrapping the call in
+    * `UGenGraph.use(builder)`!
+    *
+    * @param g0       the graph to expand
+    * @param builder  the builder that will assembly the ugens
+    */
+  def buildWith(g0: SynthGraph, builder: UGenGraphBuilderLike): UGenGraph = {
+    var g = g0
+    var controlProxies = ISet.empty[ControlProxyLike]
+    while (g.nonEmpty) {
+      // XXX these two lines could be more efficient eventually -- using a 'clearable' SynthGraph
+      controlProxies ++= g.controlProxies
+      g = SynthGraph(g.sources.foreach(_.force(builder))) // allow for further graphs being created
+    }
+    builder.build(controlProxies)
+  }
+}
+
+final class DefaultUGenGraphBuilder extends BasicUGenGraphBuilder {
+  builder =>
+
+  override def toString = s"UGenGraph.Builder@${hashCode.toHexString}"
 }
 
 object UGenGraphBuilderLike {
@@ -59,7 +69,7 @@ object UGenGraphBuilderLike {
   }
 
   private trait UGenInIndex {
-    def create: (Int, Int)
+    def create: (Int, Int)  // XXX TODO --- replace with specialized tuple to avoid boxing?
     def makeEffective(): Int
   }
 
@@ -71,9 +81,9 @@ object UGenGraphBuilderLike {
   }
 
   private final class UGenProxyIndex(iu: IndexedUGenBuilder, outIdx: Int) extends UGenInIndex {
-    def create = (iu.index, outIdx)
+    def create: (Int, Int) = (iu.index, outIdx)
 
-    def makeEffective() = {
+    def makeEffective(): Int = {
       if (!iu.effective) {
         iu.effective = true
         var numEff   = 1
@@ -102,15 +112,52 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
 
   import UGenGraphBuilderLike._
 
+  // ---- abstract ----
+
   // updated during build
   protected var ugens         : Vec[UGen]
   protected var controlValues : Vec[Float]
   protected var controlNames  : Vec[(String, Int)]
   protected var sourceMap     : Map[AnyRef, Any]
 
+  // ---- impl: public ----
+
+  var showLog = false
+
+  final def addUGen(ugen: UGen): Unit = {
+    ugens :+= ugen
+    log(s"addUGen ${ugen.name} @ ${ugen.hashCode.toHexString} ${if (ugen.isIndividual) "indiv" else ""}")
+  }
+
+  final def prependUGen(ugen: UGen): Unit = {
+    ugens +:= ugen
+    log(s"prependUGen ${ugen.name} @ ${ugen.hashCode.toHexString} ${if (ugen.isIndividual) "indiv" else ""}")
+  }
+
+  final def addControl(values: Vec[Float], name: Option[String]): Int = {
+    val specialIndex = controlValues.size
+    controlValues  ++= values
+    name.foreach(n => controlNames :+= n -> specialIndex)
+    log(s"addControl ${name.getOrElse("<unnamed>")} num = ${values.size}, idx = $specialIndex")
+    specialIndex
+  }
+
+  def visit[U](ref: AnyRef, init: => U): U = {
+    log(s"visit  ${ref.hashCode.toHexString}")
+    sourceMap.getOrElse(ref, {
+      log(s"expand ${ref.hashCode.toHexString}...")
+      val exp    = init
+      log(s"...${ref.hashCode.toHexString} -> ${exp.hashCode.toHexString} ${printSmart(exp)}")
+      sourceMap += ref -> exp
+      exp
+    }).asInstanceOf[U] // not so pretty...
+  }
+
+  // ---- impl: protected ----
+
   // this proxy function is useful because `elem.force` is package private.
   // so other projects implementing `UGenGraphBuilderLike` can use this function
-  final protected def force(elem: Lazy): Unit = elem.force(this)
+  protected def force(elem: Lazy): Unit = elem.force(this)
 
   /** Finalizes the build process. It is assumed that the graph elements have been expanded at this
     * stage, having called into `addUGen` and `addControl`. The caller must collect all the control
@@ -120,7 +167,7 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     *
     * @return  the completed `UGenGraph` build
     */
-  final protected def build(controlProxies: Iterable[ControlProxyLike]): UGenGraph = {
+  def build(controlProxies: Iterable[ControlProxyLike]): UGenGraph = {
     val ctrlProxyMap        = buildControls(controlProxies)
     val (iUGens, constants) = indexUGens(ctrlProxyMap)
     val indexedUGens        = sortUGens(iUGens)
@@ -128,6 +175,8 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
       indexedUGens.map(iu => new IndexedUGen(iu.ugen, iu.inputIndices.map(_.create)))(breakOut)
     UGenGraph(constants, controlValues, controlNames, richUGens)
   }
+
+  // ---- impl: private ----
 
   private def indexUGens(ctrlProxyMap: Map[ControlProxyLike, (UGen, Int)]): (Vec[IndexedUGenBuilder], Vec[Float]) = {
     val constantMap     = MMap.empty[Float, ConstantIndex]
@@ -198,9 +247,10 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     indexedUGens.foreach(iu => iu.children = iu.children.sortWith((a, b) => a.index > b.index))
     val sorted = new Array[IndexedUGenBuilder](indexedUGens.size)
     //      val avail   = MStack( indexedUGens.filter( _.parents.isEmpty ) : _* )
-    val avail: MStack[IndexedUGenBuilder] = indexedUGens.collect({
+    val avail: MStack[IndexedUGenBuilder] = indexedUGens.collect {
       case iu if iu.parents.isEmpty => iu
-    })(breakOut)
+    } (breakOut)
+
     var cnt = 0
     while (avail.nonEmpty) {
       val iu      = avail.pop()
@@ -220,43 +270,11 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     case _        => x.toString
   }
 
-  final def visit[U](ref: AnyRef, init: => U): U = {
-    log(s"visit  ${ref.hashCode.toHexString}")
-    sourceMap.getOrElse(ref, {
-      log(s"expand ${ref.hashCode.toHexString}...")
-      val exp    = init
-      log(s"...${ref.hashCode.toHexString} -> ${exp.hashCode.toHexString} ${printSmart(exp)}")
-      sourceMap += ref -> exp
-      exp
-    }).asInstanceOf[U] // not so pretty...
-  }
-
-  var showLog = false
-
   @elidable(elidable.CONFIG) private def log(what: => String): Unit =
     if (showLog) println(s"ScalaCollider <ugen-graph> $what")
 
-  final def addUGen(ugen: UGen): Unit = {
-    ugens :+= ugen
-    log(s"addUGen ${ugen.name} @ ${ugen.hashCode.toHexString} ${if (ugen.isIndividual) "indiv" else ""}")
-  }
-
-  final def prependUGen(ugen: UGen): Unit = {
-    ugens +:= ugen
-    log(s"prependUGen ${ugen.name} @ ${ugen.hashCode.toHexString} ${if (ugen.isIndividual) "indiv" else ""}")
-  }
-
-  final def addControl(values: Vec[Float], name: Option[String]): Int = {
-    val specialIndex = controlValues.size
-    controlValues  ++= values
-    name.foreach(n => controlNames :+= n -> specialIndex)
-    log(s"addControl ${name.getOrElse("<unnamed>")} num = ${values.size}, idx = $specialIndex")
-    specialIndex
-  }
-
-  private def buildControls(p: Iterable[ControlProxyLike]): Map[ControlProxyLike, (UGen, Int)] = {
+  private def buildControls(p: Iterable[ControlProxyLike]): Map[ControlProxyLike, (UGen, Int)] =
     p.groupBy(_.factory).flatMap { case (factory, proxies) =>
       factory.build(builder, proxies.toIndexedSeq)
     } (breakOut)
-  }
 }

@@ -76,7 +76,7 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
 
   // unary ops
   def unary_-   : GE  = unOp(Neg       )
-  // def bitNot: GE = ...
+  def unary_!   : GE  = unOp(Not       )
   def abs       : GE  = unOp(Abs       )
   // def toFloat: GE = ...
   // def toInteger: GE = ...
@@ -155,8 +155,8 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
   def &       (b: GE): GE = binOp(BitAnd  , b)
   def |       (b: GE): GE = binOp(BitOr   , b)
   def ^       (b: GE): GE = binOp(BitXor  , b)
-  // def lcm(b: GE): GE = ...
-  // def gcd(b: GE): GE = ...
+  def lcm     (b: GE): GE = binOp(Lcm     , b)
+  def gcd     (b: GE): GE = binOp(Gcd     , b)
 
   def roundTo (b: GE): GE = binOp(RoundTo , b)
   def roundUpTo (b: GE): GE = binOp(RoundUpTo, b)
@@ -173,8 +173,9 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
     */
   def pow     (b: GE): GE = binOp(Pow     , b)
 
-  // def <<(b: GE): GE = ...
-  // def >>(b: GE): GE = ...
+  def <<      (b: GE): GE = binOp(LeftShift , b)
+  def >>      (b: GE): GE = binOp(RightShift, b)
+
   // def unsgnRghtShift(b: GE): GE = ...
   // def fill(b: GE): GE = ...
 

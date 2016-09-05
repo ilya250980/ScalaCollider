@@ -1,9 +1,9 @@
 package de.sciss.synth
 
+import de.sciss.synth.ugen.{BinaryOpUGen, Constant}
 import org.scalatest.FunSpec
-import ugen.{BinaryOpUGen, Constant}
-import language.implicitConversions
-import de.sciss.numbers.Implicits._
+
+import scala.language.implicitConversions
 
 /** To run only this test:
   *
@@ -68,6 +68,10 @@ class RichNumberSuite extends FunSpec {
       //         assert( doubleGE === binOp )
       assert(doubleGE != binOp)
       //         assert( doubleGE.isInstanceOf[ Constant ], "found " + doubleGE.getClass )
+
+      4 min c4  // should compile
+      4 +   c4  // should compile
+      4 <<  c4  // should compile
     }
   }
 }

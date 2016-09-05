@@ -324,50 +324,55 @@ object Server {
     }
 
     private[Server] def addCommonArgs(o: ConfigLike, b: mutable.Builder[String, Any]): Unit = {
-      if (o.controlBusChannels != 4096) {
+      // some dude is going around changing scsynth
+      // defaults without thinking about the consequences.
+      // we now pessimistically pass all options and do
+      // not assume any longer defaults.
+
+      // if (o.controlBusChannels != 4096) {
         b += "-c"
         b += o.controlBusChannels.toString
-      }
-      if (o.audioBusChannels != 128) {
+      // }
+      // if (o.audioBusChannels != 128) {
         b += "-a"
         b += o.audioBusChannels.toString
-      }
-      if (o.inputBusChannels != 8) {
+      // }
+      // if (o.inputBusChannels != 8) {
         b += "-i"
         b += o.inputBusChannels.toString
-      }
-      if (o.outputBusChannels != 8) {
+      // }
+      // if (o.outputBusChannels != 8) {
         b += "-o"
         b += o.outputBusChannels.toString
-      }
-      if (o.blockSize != 64) {
+      // }
+      // if (o.blockSize != 64) {
         b += "-z"
         b += o.blockSize.toString
-      }
-      if (o.audioBuffers != 1024) {
+      // }
+      // if (o.audioBuffers != 1024) {
         b += "-b"
         b += o.audioBuffers.toString
-      }
-      if (o.maxNodes != 1024) {
+      // }
+      // if (o.maxNodes != 1024) {
         b += "-n"
         b += o.maxNodes.toString
-      }
-      if (o.maxSynthDefs != 1024) {
+      // }
+      // if (o.maxSynthDefs != 1024) {
         b += "-d"
         b += o.maxSynthDefs.toString
-      }
-      if (o.memorySize != 8192) {
+      // }
+      // if (o.memorySize != 8192) {
         b += "-m"
         b += o.memorySize.toString
-      }
-      if (o.wireBuffers != 64) {
+      // }
+      // if (o.wireBuffers != 64) {
         b += "-w"
         b += o.wireBuffers.toString
-      }
-      if (o.randomSeeds != 64) {
+      // }
+      // if (o.randomSeeds != 64) {
         b += "-r"
         b += o.randomSeeds.toString
-      }
+      // }
       if (!o.loadSynthDefs) {
         b += "-D"
         b += "0"

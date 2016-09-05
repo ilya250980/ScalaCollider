@@ -2,6 +2,13 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v1.20.0
+
+* some rich number ops are in the Numbers library now
+* `stringControl` implicit for `"name".kr` must now be imported with `Ops._`.
+  This is so we can use that syntax differently in SoundProcesses.
+* server command line opts are pessimistic about defaults
+ 
 ## changes in v1.19.0
 
 * changes license from GPL to LGPL

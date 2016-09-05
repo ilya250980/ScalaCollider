@@ -23,6 +23,7 @@ object RichNumber {
     protected def cn: Constant
 
     // binary ops
+    def +       (b: GE): GE = cn.+        (b)
     def -       (b: GE): GE = cn.-        (b)
     def *       (b: GE): GE = cn.*        (b)
     def /       (b: GE): GE = cn./        (b)
@@ -33,6 +34,8 @@ object RichNumber {
     def >       (b: GE): GE = cn.>        (b)
     def <=      (b: GE): GE = cn.<=       (b)
     def >=      (b: GE): GE = cn.>=       (b)
+    def min     (b: GE): GE = cn.min      (b)
+    def max     (b: GE): GE = cn.max      (b)
     def &       (b: GE): GE = cn.&        (b)
     def |       (b: GE): GE = cn.|        (b)
     def ^       (b: GE): GE = cn.^        (b)
@@ -43,6 +46,8 @@ object RichNumber {
     def hypot   (b: GE): GE = cn.hypot    (b)
     def hypotx  (b: GE): GE = cn.hypotx   (b)
     def pow     (b: GE): GE = cn.pow      (b)
+    def <<      (b: GE): GE = cn.<<       (b)
+    def >>      (b: GE): GE = cn.>>       (b)
     def ring1   (b: GE): GE = cn.ring1    (b)
     def ring2   (b: GE): GE = cn.ring2    (b)
     def ring3   (b: GE): GE = cn.ring3    (b)
@@ -91,8 +96,6 @@ final class RichInt private[synth](val `this`: Int)
   protected def f   = i.toFloat
   protected def d   = i.toDouble
   protected def cn  = Constant(i.toFloat)
-
-  def reciprocal: Float = 1.0f / i
 }
 
 // ---------------------------- Float ----------------------------
@@ -104,8 +107,6 @@ final class RichFloat private[synth](val `this`: Float)
 
   protected def d  = f.toDouble
   protected def cn = Constant(f)
-
-  def reciprocal: Float = 1.0f / f
 }
 
 // ---------------------------- Double ----------------------------
@@ -116,6 +117,4 @@ final class RichDouble private[synth](val `this`: Double)
   import me.{`this` => d}
 
   protected def cn = Constant(d.toFloat)
-
-  def reciprocal: Double = 1.0 / d
 }

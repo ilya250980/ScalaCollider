@@ -11,10 +11,11 @@ class SynthDefSuite extends FunSpec {
   describe("Synth definitions") {
     it("should compile various standard examples") {
       import ugen._
+      import Ops._
 
       SynthDef("AnalogBubbles") {
         val f1  = "freq1"   kr 0.4
-        val f2  = "freq2"   kr 8
+        val f2  = "freq2"   kr 8.0
         val d   = "detune"  kr 0.90375
         val f   = LFSaw.ar(f1).madd(24, LFSaw.ar(Seq(f2, f2 * d)).madd(3, 80)).midicps // glissando function
         val res = CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4) // echoing sine wave
@@ -177,7 +178,7 @@ class SynthDefSuite extends FunSpec {
       SynthDef("Trig") {
         val trig  = "trig".tr // trigger control
         // val freq = "freq".kr(440 -> 4.0) // lag control (lag time 4 seconds)
-        val freq  = "freq".kr(440) // lag control not yet implemented :-(
+        val freq  = "freq".kr(440.0) // lag control not yet implemented :-(
         val res   = SinOsc.ar(freq + Seq(0, 1)) * Decay2.kr(trig, 0.005, 1.0)
         WrapOut(res)
       }
@@ -201,7 +202,7 @@ class SynthDefSuite extends FunSpec {
         val fft   = FFT("buf".kr, in)
         val flt   = PV_MagAbove(fft, MouseX.kr(0, 10))
         val ifft  = IFFT.ar(flt) * Seq(0.5, 0.5)
-        Out.ar("out".kr(0), ifft)
+        Out.ar("out".kr(0.0), ifft)
       }
 
       //////////////////////////////////////////////////////////////////////////
@@ -236,8 +237,8 @@ class SynthDefSuite extends FunSpec {
         val harm  = "harm"  ir Seq(1,    2,    3,    4   )  // harmonics
         val amp   = "amp"   ir Seq(0.05, 0.05, 0.05, 0.05)  // amplitudes
         val ring  = "ring"  ir Seq(1,    1,    1,    1   )  // ring times
-        val klank = Klank.ar(Zip(harm, amp, ring), ClipNoise.ar(Seq(0.01, 0.01)), "freq".ir(300))
-        Out.ar("out".kr(0), klank)
+        val klank = Klank.ar(Zip(harm, amp, ring), ClipNoise.ar(Seq(0.01, 0.01)), "freq".ir(300.0))
+        Out.ar("out".kr(0.0), klank)
       }
 
       //////////////////////////////////////////////////////////////////////////

@@ -45,10 +45,6 @@ package object synth {
   /** Provides operators for graph elements, such as `.abs`, `.linlin` or `.poll`. */
   implicit def geOps(g: GE): GEOps = new GEOps(g)
 
-  // XXX TODO: ControlProxyFactory could be implicit class?
-  /** Allows the construction or named controls, for example via `"freq".kr`. */
-  implicit def stringToControlProxyFactory(name: String): ugen.ControlProxyFactory = new ugen.ControlProxyFactory(name)
-
   implicit class rangeOps(val `this`: Range) extends AnyVal { me =>
     import me.{`this` => r}
 

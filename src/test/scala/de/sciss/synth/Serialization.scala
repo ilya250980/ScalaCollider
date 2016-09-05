@@ -2,8 +2,8 @@ package de.sciss.synth
 
 object Serialization extends App {
   import java.io._
-
   import ugen._
+  import Ops._
 
   println("Start")
   val in = SynthGraph {

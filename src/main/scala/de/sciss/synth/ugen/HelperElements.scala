@@ -14,9 +14,11 @@
 package de.sciss.synth
 package ugen
 
-import collection.breakOut
-import collection.immutable.{IndexedSeq => Vec}
-import scala.annotation.{tailrec, switch}
+import de.sciss.synth.Ops.stringToControl
+
+import scala.annotation.{switch, tailrec}
+import scala.collection.breakOut
+import scala.collection.immutable.{IndexedSeq => Vec}
 
 /** A graph element that flattens the channels from a nested multi-channel structure.
   *
@@ -162,7 +164,7 @@ final case class Zip(elems: GE*) extends GE.Lazy {
 }
 
 object Reduce {
-  import BinaryOpUGen.{Plus, Times, Min, Max, BitAnd, BitOr, BitXor}
+  import BinaryOpUGen.{BitAnd, BitOr, BitXor, Max, Min, Plus, Times}
   /** Same result as `Mix( _ )` */
   def +  (elem: GE) = apply(elem, Plus  )
   def *  (elem: GE) = apply(elem, Times )
@@ -327,6 +329,15 @@ final case class Silent(numChannels: Int) extends GE.Lazy with AudioRated {
 /** A graph element which reads from a connected sound driver input. This is a convenience
   * element for accessing physical input signals, e.g. from a microphone connected to your
   * audio interface. It expands to a regular `In` UGen offset by `NumOutputBuses.ir`.
+  *
+  * For example, consider an audio interface with channels 1 to 8 being analog line inputs,
+  * channels 9 and 10 being AES/EBU and channels 11 to 18 being ADAT inputs. To read a combination
+  * of the analog and ADAT inputs, either of the following statement can be used:
+  *
+  * {{{
+  * PhysicalIn(Seq(0, 8), Seq(8, 8))
+  * PhysicalIn(Seq(0, 8), Seq(8))      // numChannels wraps!
+  * }}}
   */
 object PhysicalIn {
   /** Short cut for reading a mono signal from the first physical input. */
@@ -373,9 +384,9 @@ object PhysicalIn {
 final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy with AudioRated {
 
   protected def makeUGens: UGenInLike = {
-    val offset = NumOutputBuses.ir
-    val _indices = indices.expand.outputs
-    val iNumCh = numChannels.toIndexedSeq
+    val offset       = NumOutputBuses.ir
+    val _indices     = indices.expand.outputs
+    val iNumCh       = numChannels.toIndexedSeq
     val _numChannels = if (_indices.size <= iNumCh.size) iNumCh
     else {
       Vector.tabulate(_indices.size)(ch => iNumCh(ch % iNumCh.size))

@@ -59,6 +59,10 @@ object Ops {
     fun.play(target, outBus, fadeTime, addAction)
   }
 
+  /** Allows the construction or named controls, for example via `"freq".kr`. */
+  implicit def stringToControl(name: String): ugen.ControlProxyFactory =
+    new ugen.ControlProxyFactory(name)
+
   /** This allows conversions to Group so that something like Server.default.freeAll becomes possible. */
   implicit def groupOps[G](g: G)(implicit view: G => Group): GroupOps = new GroupOps(g)
 
@@ -84,8 +88,10 @@ object Ops {
 
   // cannot occur inside value class at the moment
   private[this] def sendWithAction[A](res: A, server: Server, msgFun: Option[Packet] => osc.Message,
-                                           completion: Completion[A], name: String): Unit = {
-    completion.action.map { action =>
+                                           completion: Completion[A], name: String): Unit =
+    completion.action.fold {
+      server ! msgFun(completion.message.map(_.apply(res)))
+    } { action =>
       val syncMsg = server.syncMsg()
       val syncID  = syncMsg.id
       val compPacket: Packet = completion.message match {
@@ -102,11 +108,7 @@ object Ops {
       fut.onFailure {
         case message.Timeout() => println(s"ERROR: $name : timeout!")
       }
-
-    } getOrElse {
-      server ! msgFun(completion.message.map(_.apply(res)))
     }
-  }
 
   final implicit class SynthDefOps(val `this`: SynthDef) extends AnyVal { me =>
     import SynthDef.defaultDir

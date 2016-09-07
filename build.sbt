@@ -1,5 +1,5 @@
 name               := "ScalaCollider"
-version            := "1.20.0"
+version            := "1.20.1-SNAPSHOT"
 organization       := "de.sciss"
 scalaVersion       := "2.11.8"
 

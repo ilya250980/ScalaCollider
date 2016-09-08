@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Sqrdif - de.sciss.synth.ugen.BinaryOpUGen.Sqrdif</title>
-          <meta name="description" content="Sqrdif - de.sciss.synth.ugen.BinaryOpUGen.Sqrdif" />
-          <meta name="keywords" content="Sqrdif de.sciss.synth.ugen.BinaryOpUGen.Sqrdif" />
+          <title>NumChannels - de.sciss.synth.ugen.NumChannels</title>
+          <meta name="description" content="NumChannels - de.sciss.synth.ugen.NumChannels" />
+          <meta name="keywords" content="NumChannels de.sciss.synth.ugen.NumChannels" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -16,7 +16,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$';
+            var hash = 'de.sciss.synth.ugen.NumChannels';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,14 +26,14 @@
    	  </script>
     
         </head>
-        <body class="value">
+        <body class="type">
       <div id="definition">
-        <img alt="Object" src="../../../../lib/object_big.png" />
-        <p id="owner"><a href="../../../package.html" class="extype" name="de">de</a>.<a href="../../package.html" class="extype" name="de.sciss">sciss</a>.<a href="../package.html" class="extype" name="de.sciss.synth">synth</a>.<a href="package.html" class="extype" name="de.sciss.synth.ugen">ugen</a>.<a href="BinaryOpUGen$.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">BinaryOpUGen</a></p>
-        <h1>Sqrdif</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="BinaryOpUGen$.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">package BinaryOpUGen</a>
+        <img alt="Class" src="../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="de">de</a>.<a href="../../package.html" class="extype" name="de.sciss">sciss</a>.<a href="../package.html" class="extype" name="de.sciss.synth">synth</a>.<a href="package.html" class="extype" name="de.sciss.synth.ugen">ugen</a></p>
+        <h1>NumChannels</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="de.sciss.synth.ugen">package ugen</a>
           </div></span></h3><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -41,17 +41,18 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Sqrdif</span><span class="result"> extends <a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">NumChannels</span><span class="params">(<span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A graph element that produces an integer with number-of-channels of the input element.
+</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the element whose number-of-channels to produce</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a>, <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -69,7 +70,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="de.sciss.synth.ugen.BinaryOpUGen.Sqrdif"><span>Sqrdif</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="de.sciss.synth.ugen.BinaryOpUGen.Op"><span>Op</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="de.sciss.synth.ugen.NumChannels"><span>NumChannels</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="de.sciss.synth.ScalarRated"><span>ScalarRated</span></li><li class="in" name="de.sciss.synth.UGenSource.SingleOut"><span>SingleOut</span></li><li class="in" name="de.sciss.synth.UGenSource.SomeOut"><span>SomeOut</span></li><li class="in" name="de.sciss.synth.GE.Lazy"><span>Lazy</span></li><li class="in" name="de.sciss.synth.GE"><span>GE</span></li><li class="in" name="de.sciss.synth.UGenSource"><span>UGenSource</span></li><li class="in" name="de.sciss.synth.Lazy.Expander"><span>Expander</span></li><li class="in" name="de.sciss.synth.Lazy"><span>Lazy</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -86,7 +87,27 @@
 
       <div id="template">
         <div id="allMembers">
-        
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="de.sciss.synth.ugen.NumChannels#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(in:de.sciss.synth.GE):de.sciss.synth.ugen.NumChannels"></a>
+      <a id="&lt;init&gt;:NumChannels"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">NumChannels</span><span class="params">(<span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@&lt;init&gt;(in:de.sciss.synth.GE):de.sciss.synth.ugen.NumChannels" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the element whose number-of-channels to produce</p></dd></dl></div>
+    </li></ol>
+            </div>
 
         
 
@@ -106,7 +127,7 @@
         <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@!=(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -123,7 +144,7 @@
         <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@##():Int" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@##():Int" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -140,7 +161,7 @@
         <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@==(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@==(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -157,7 +178,7 @@
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@asInstanceOf[T0]:T0" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -174,7 +195,7 @@
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@clone():Object" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@clone():Object" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -197,28 +218,11 @@
         <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -231,7 +235,7 @@
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@finalize():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@finalize():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -254,45 +258,28 @@
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@getClass():Class[_]" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@getClass():Class[_]" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Sqrdif#id" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="id:Int(37)"></a>
-      <a id="id:Int(37)"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">id</span><span class="result">: Int(37)</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@id:Int(37)" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Sqrdif">Sqrdif</a> → <a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#infix" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="infix:Boolean"></a>
-      <a id="infix:Boolean"></a>
+    </li><li name="de.sciss.synth.ugen.NumChannels#in" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="in:de.sciss.synth.GE"></a>
+      <a id="in:GE"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">infix</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">in</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@infix:Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@in:de.sciss.synth.GE" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
+      <p class="shortcomment cmt">the element whose number-of-channels to produce</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -305,79 +292,66 @@
         <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#make" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="make(a:de.sciss.synth.GE,b:de.sciss.synth.GE):de.sciss.synth.GE"></a>
-      <a id="make(GE,GE):GE"></a>
+    </li><li name="de.sciss.synth.ugen.NumChannels#makeUGen" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="makeUGen(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenIn]):de.sciss.synth.UGenInLike"></a>
+      <a id="makeUGen(IndexedSeq[UGenIn]):UGenInLike"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make</span><span class="params">(<span name="a">a: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="b">b: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
+        <span class="name">makeUGen</span><span class="params">(<span name="args">args: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="../UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a>]</span>)</span><span class="result">: <a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@make(a:de.sciss.synth.GE,b:de.sciss.synth.GE):de.sciss.synth.GE" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@makeUGen(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenIn]):de.sciss.synth.UGenInLike" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Sqrdif#make1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="make1(a:Float,b:Float):Float"></a>
-      <a id="make1(Float,Float):Float"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.NumChannels">NumChannels</a> → <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a></dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.NumChannels#makeUGens" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="makeUGens:de.sciss.synth.UGenInLike"></a>
+      <a id="makeUGens:UGenInLike"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make1</span><span class="params">(<span name="a">a: <span class="extype" name="scala.Float">Float</span></span>, <span name="b">b: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+        <span class="name">makeUGens</span><span class="result">: <a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@make1(a:Float,b:Float):Float" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@makeUGens:de.sciss.synth.UGenInLike" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Sqrdif">Sqrdif</a> → <a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#make1" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="make1(a:de.sciss.synth.UGenIn,b:de.sciss.synth.UGenIn):de.sciss.synth.UGenIn"></a>
-      <a id="make1(UGenIn,UGenIn):UGenIn"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">make1</span><span class="params">(<span name="a">a: <a href="../UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a></span>, <span name="b">b: <a href="../UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a></span>)</span><span class="result">: <a href="../UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@make1(a:de.sciss.synth.UGenIn,b:de.sciss.synth.UGenIn):de.sciss.synth.UGenIn" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="de.sciss.synth">de.sciss.synth</a>] </dd><dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Abstract method which must be implemented by creating the actual <code>UGen</code>s
+during expansion.</p><div class="fullcomment"><div class="comment cmt"><p>Abstract method which must be implemented by creating the actual <code>UGen</code>s
+during expansion. This method is at most called once during graph
+expansion
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the expanded object (depending on the type parameter <code>U</code>)</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.NumChannels">NumChannels</a> → <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a></dd></dl></div>
+    </li><li name="de.sciss.synth.UGenSource#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="name:String"></a>
       <a id="name:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">name</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@name:String" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@name:String" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -390,7 +364,7 @@
         <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -407,7 +381,7 @@
         <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@notify():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@notify():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -424,62 +398,45 @@
         <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@notifyAll():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@notifyAll():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#productArity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="productArity:Int"></a>
-      <a id="productArity:Int"></a>
+    </li><li name="de.sciss.synth.ScalarRated#rate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rate:de.sciss.synth.Rate"></a>
+      <a id="rate:Rate"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">productArity</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">rate</span><span class="result">: <a href="../Rate.html" class="extype" name="de.sciss.synth.Rate">Rate</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@productArity:Int" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@rate:de.sciss.synth.Rate" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a> → Product</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#productElement" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="productElement(n:Int):Any"></a>
-      <a id="productElement(Int):Any"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a></dd></dl></div>
+    </li><li name="de.sciss.synth.UGenSource.SomeOut#rewrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rewrap(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenInLike],exp:Int):de.sciss.synth.UGenInLike"></a>
+      <a id="rewrap(IndexedSeq[UGenInLike],Int):UGenInLike"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">productElement</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+        <span class="name">rewrap</span><span class="params">(<span name="args">args: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>]</span>, <span name="exp">exp: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@productElement(n:Int):Any" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@rewrap(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenInLike],exp:Int):de.sciss.synth.UGenInLike" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a> → Product</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.BinaryOpUGen.Op#productPrefix" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="productPrefix:String"></a>
-      <a id="productPrefix:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">productPrefix</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@productPrefix:String" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a> → Product</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a> → <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -492,11 +449,28 @@
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="de.sciss.synth.UGenSource#unwrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unwrap(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenInLike]):U"></a>
+      <a id="unwrap(IndexedSeq[UGenInLike]):UGenInLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unwrap</span><span class="params">(<span name="args">args: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>]</span>)</span><span class="result">: <a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@unwrap(args:scala.collection.immutable.IndexedSeq[de.sciss.synth.UGenInLike]):U" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -509,7 +483,7 @@
         <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@wait():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@wait():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -532,7 +506,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -555,7 +529,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.ugen.BinaryOpUGen$$Sqrdif$@wait(x$1:Long):Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.ugen.NumChannels@wait(x$1:Long):Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -579,8 +553,22 @@
               <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="de.sciss.synth.ugen.BinaryOpUGen.Op">
-              <h3>Inherited from <a href="BinaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen.Op">Op</a></h3>
+            </div><div class="parent" name="de.sciss.synth.ScalarRated">
+              <h3>Inherited from <a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a></h3>
+            </div><div class="parent" name="de.sciss.synth.UGenSource.SingleOut">
+              <h3>Inherited from <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a></h3>
+            </div><div class="parent" name="de.sciss.synth.UGenSource.SomeOut">
+              <h3>Inherited from <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a></h3>
+            </div><div class="parent" name="de.sciss.synth.GE.Lazy">
+              <h3>Inherited from <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a></h3>
+            </div><div class="parent" name="de.sciss.synth.GE">
+              <h3>Inherited from <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></h3>
+            </div><div class="parent" name="de.sciss.synth.UGenSource">
+              <h3>Inherited from <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>]</h3>
+            </div><div class="parent" name="de.sciss.synth.Lazy.Expander">
+              <h3>Inherited from <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>]</h3>
+            </div><div class="parent" name="de.sciss.synth.Lazy">
+              <h3>Inherited from <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a></h3>
             </div><div class="parent" name="scala.Product">
               <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
             </div><div class="parent" name="scala.Equals">

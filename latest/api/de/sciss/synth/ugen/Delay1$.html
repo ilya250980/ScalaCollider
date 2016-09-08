@@ -52,7 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen that delays the input by 1 audio frame or control period.</p><p>For audio-rate signals the delay is 1 audio frame, and for control-rate signals
-the delay is 1 control period.</p><h5>Examples</h5><pre><span class="cmt">// analog to HPZ1</span>
+the delay is 1 control period.</p><p><i>Note:</i> The first value output is not zero but the same as the first input
+value! In this respect the UGen behaves different than <code>DelayN</code> .</p><h5>Examples</h5><pre><span class="cmt">// analog to HPZ1</span>
 play {
   <span class="kw">val</span> z = PinkNoise.ar
   <span class="kw">val</span> x = z - Delay1.ar(z)

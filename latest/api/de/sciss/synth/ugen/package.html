@@ -1300,6 +1300,26 @@ done-action.
       </a>
     </span>
       
+    </li><li name="de.sciss.synth.ugen.ChannelIndices" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ChannelIndicesextendsUGenSource.SingleOutwithScalarRatedwithProductwithSerializable"></a>
+      <a id="ChannelIndices:ChannelIndices"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ChannelIndices.html"><span class="name">ChannelIndices</span></a><span class="params">(<span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.package@ChannelIndicesextendsUGenSource.SingleOutwithScalarRatedwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A graph element that produces an integer sequence
+from zero until the number-of-channels of the input element.</p><div class="fullcomment"><div class="comment cmt"><p>A graph element that produces an integer sequence
+from zero until the number-of-channels of the input element.
+</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the element whose indices to produce</p></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.ChannelProxy" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ChannelProxyextendsGE.LazywithProductwithSerializable"></a>
       <a id="ChannelProxy:ChannelProxy"></a>
@@ -2193,7 +2213,8 @@ table and shift octaves as they do.
       </a>
     </span>
       <p class="shortcomment cmt">A UGen that delays the input by 1 audio frame or control period.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen that delays the input by 1 audio frame or control period.</p><p>For audio-rate signals the delay is 1 audio frame, and for control-rate signals
-the delay is 1 control period.
+the delay is 1 control period.</p><p><i>Note:</i> The first value output is not zero but the same as the first input
+value! In this respect the UGen behaves different than <code>DelayN</code> .
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>input to be delayed</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="DelayN$.html" class="extype" name="de.sciss.synth.ugen.DelayN">DelayN</a></p></span><span class="cmt"><p><a href="Delay2$.html" class="extype" name="de.sciss.synth.ugen.Delay2">Delay2</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.Delay2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Delay2extendsUGenSource.SingleOutwithProductwithSerializable"></a>
@@ -2212,7 +2233,9 @@ the delay is 1 control period.
       </a>
     </span>
       <p class="shortcomment cmt">A UGen that delays the input by 2 audio frames or control periods.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen that delays the input by 2 audio frames or control periods.</p><p>For audio-rate signals the delay is 2 audio frames, and for control-rate
-signals the delay is 2 control periods.
+signals the delay is 2 control periods.</p><p><i>Warning:</i> the The first value output is zero, while both the second and the
+third value output equal the first input value! In this respect the UGen behaves
+different than <code>DelayN</code> .
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>input to be delayed</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="DelayN$.html" class="extype" name="de.sciss.synth.ugen.DelayN">DelayN</a></p></span><span class="cmt"><p><a href="Delay1$.html" class="extype" name="de.sciss.synth.ugen.Delay1">Delay1</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.DelayC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="DelayCextendsUGenSource.SingleOutwithProductwithSerializable"></a>
@@ -2268,7 +2291,7 @@ signals the delay is 2 control periods.
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Simple delay line with no interpolation.</p><div class="fullcomment"><div class="comment cmt"><p>Simple delay line with no interpolation.
+      <p class="shortcomment cmt">Simple delay line with no interpolation.</p><div class="fullcomment"><div class="comment cmt"><p>Simple delay line with no interpolation. The initial buffer contents is zero.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>The input signal.</p></dd><dt class="param">maxDelayTime</dt><dd class="cmt"><p>The maximum delay time in seconds. used to initialize
                         the delay buffer size. <i>(init-time only)</i></p></dd><dt class="param">delayTime</dt><dd class="cmt"><p>Delay time in seconds.</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="DelayC$.html" class="extype" name="de.sciss.synth.ugen.DelayC">DelayC</a></p></span><span class="cmt"><p><a href="DelayL$.html" class="extype" name="de.sciss.synth.ugen.DelayL">DelayL</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.Demand" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -3410,7 +3433,7 @@ server if <code>roomSize</code> becomes larger than <code>maxRoomSize</code> .
       </a>
     </span>
       <p class="shortcomment cmt">A gate or hold UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A gate or hold UGen. It allows the input signal value to pass when the <code>gate</code>
-argument is positive, otherwise it holds last value.
+argument is positive, otherwise it holds last value.</p><p>Before the first high gate value is registered, this UGen outputs zero.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the input signal to gate</p></dd><dt class="param">gate</dt><dd class="cmt"><p>the signal specifying whether to pass the input signal
                         (when greater than zero) or whether to close the gate
                         and hold the last value (when less than or equal to
@@ -3649,7 +3672,9 @@ emphasized towards lower frequencies.
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">A two point difference filter UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A two point difference filter UGen. Implements the formula :</p><pre>out(i) = <span class="num">0.5</span> * (in(i) - in(i-<span class="num">1</span>))</pre></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>input signal to be filtered</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Delay1$.html" class="extype" name="de.sciss.synth.ugen.Delay1">Delay1</a></p></span><span class="cmt"><p><a href="LPZ1$.html" class="extype" name="de.sciss.synth.ugen.LPZ1">LPZ1</a></p></span><span class="cmt"><p><a href="OneZero$.html" class="extype" name="de.sciss.synth.ugen.OneZero">OneZero</a></p></span></dd></dl></div>
+      <p class="shortcomment cmt">A two point difference filter UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A two point difference filter UGen. Implements the formula :</p><pre>out(i) = <span class="num">0.5</span> * (in(i) - in(i-<span class="num">1</span>))</pre><p><code><code> Note: </code></code> the filter's memory is initialized with the first input sample, so
+for <code>HPZ1.ar(DC.ar(x))</code> the output will be zero, even at the beginning.
+</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>input signal to be filtered</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Delay1$.html" class="extype" name="de.sciss.synth.ugen.Delay1">Delay1</a></p></span><span class="cmt"><p><a href="LPZ1$.html" class="extype" name="de.sciss.synth.ugen.LPZ1">LPZ1</a></p></span><span class="cmt"><p><a href="OneZero$.html" class="extype" name="de.sciss.synth.ugen.OneZero">OneZero</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.HPZ2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="HPZ2extendsUGenSource.SingleOutwithProductwithSerializable"></a>
       <a id="HPZ2:HPZ2"></a>
@@ -4814,7 +4839,7 @@ input signal.
       </a>
     </span>
       <p class="shortcomment cmt">A sample-and-hold UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A sample-and-hold UGen. When triggered, a new value is taken from the input and
-hold until the next trigger occurs.
+hold until the next trigger occurs.</p><p>Before the first trigger is registered, this UGen outputs zero.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the input signal</p></dd><dt class="param">trig</dt><dd class="cmt"><p>the trigger. The can be any signal. A trigger happens
                         when the signal changes from non-positive to positive.</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Demand$.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a></p></span><span class="cmt"><p><a href="Gate$.html" class="extype" name="de.sciss.synth.ugen.Gate">Gate</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.LatoocarfianC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -5758,6 +5783,24 @@ twice the value of the <code>dur</code> parameter (the buffer internally used).
     </span>
       <p class="shortcomment cmt">Maximum number of audio buffers.</p><div class="fullcomment"><div class="comment cmt"><p>Maximum number of audio buffers.
 </p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="NumRunningSynths$.html" class="extype" name="de.sciss.synth.ugen.NumRunningSynths">NumRunningSynths</a></p></span><span class="cmt"><p><a href="NumOutputBuses$.html" class="extype" name="de.sciss.synth.ugen.NumOutputBuses">NumOutputBuses</a></p></span><span class="cmt"><p><a href="NumInputBuses$.html" class="extype" name="de.sciss.synth.ugen.NumInputBuses">NumInputBuses</a></p></span><span class="cmt"><p><a href="NumControlBuses$.html" class="extype" name="de.sciss.synth.ugen.NumControlBuses">NumControlBuses</a></p></span><span class="cmt"><p><a href="NumAudioBuses$.html" class="extype" name="de.sciss.synth.ugen.NumAudioBuses">NumAudioBuses</a></p></span></dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.NumChannels" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="NumChannelsextendsUGenSource.SingleOutwithScalarRatedwithProductwithSerializable"></a>
+      <a id="NumChannels:NumChannels"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NumChannels.html"><span class="name">NumChannels</span></a><span class="params">(<span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <a href="../ScalarRated.html" class="extype" name="de.sciss.synth.ScalarRated">ScalarRated</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.package@NumChannelsextendsUGenSource.SingleOutwithScalarRatedwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A graph element that produces an integer with number-of-channels of the input element.</p><div class="fullcomment"><div class="comment cmt"><p>A graph element that produces an integer with number-of-channels of the input element.
+</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the element whose number-of-channels to produce</p></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.NumControlBuses" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="NumControlBusesextendsUGenSource.SingleOutwithScalarRatedwithProductwithSerializable"></a>
       <a id="NumControlBuses:NumControlBuses"></a>
@@ -6827,6 +6870,29 @@ ready for transforming it back into time-domain audio using IFFT.
                         phase1, mag2, phase2, ... magN, phaseN]. This input is
                         typically demand-rate.</p></dd><dt class="param">from</dt><dd class="cmt"><p>index of lower bin</p></dd><dt class="param">to</dt><dd class="cmt"><p>index of upper bin (inclusive)</p></dd><dt class="param">clear</dt><dd class="cmt"><p>if <code>1</code> , clears the buffer before packing the values,
                         setting its contents to zero.</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="SetBuf$.html" class="extype" name="de.sciss.synth.ugen.SetBuf">SetBuf</a></p></span><span class="cmt"><p><a href="IFFT$.html" class="extype" name="de.sciss.synth.ugen.IFFT">IFFT</a></p></span><span class="cmt"><p><a href="FFT$.html" class="extype" name="de.sciss.synth.ugen.FFT">FFT</a></p></span><span class="cmt"><p><a href="Unpack1FFT$.html" class="extype" name="de.sciss.synth.ugen.Unpack1FFT">Unpack1FFT</a></p></span></dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.Pad" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PadextendsUGenSource.SingleOutwithProductwithSerializable"></a>
+      <a id="Pad:Pad"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Pad.html"><span class="name">Pad</span></a><span class="params">(<span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="to">to: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.package@PadextendsUGenSource.SingleOutwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A graph element that controls the multi-channel expansion of
+its <code>in</code> argument to match the <code>to</code> argument by padding (extending
+and wrapping) it.</p><div class="fullcomment"><div class="comment cmt"><p>A graph element that controls the multi-channel expansion of
+its <code>in</code> argument to match the <code>to</code> argument by padding (extending
+and wrapping) it.
+</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the element to replicate</p></dd><dt class="param">to</dt><dd class="cmt"><p>the reference element that controls the multi-channel expansion.
+          the signal itself is not used or output by <code>Pad</code>.</p></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.Pan2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Pan2extendsUGenSource.MultiOutwithProductwithSerializable"></a>
       <a id="Pan2:Pan2"></a>
@@ -8901,7 +8967,9 @@ trigger arrives.
 triggered.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen which holds and outputs an input value for a given duration when
 triggered.</p><p>When a trigger occurs at the input, the input value is sampled and output for
 the specified duration, otherwise zero is output. When a new trigger occurs
-while this ugens outputs 1, the hold-time is reset to the duration.
+while this ugens outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the trigger. This can be any signal. A trigger happens
                         when the signal changes from non-positive to positive.</p></dd><dt class="param">dur</dt><dd class="cmt"><p>the duration for which the ugens holds the value of the
                         input signal when triggered</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig1$.html" class="extype" name="de.sciss.synth.ugen.Trig1">Trig1</a></p></span></dd></dl></div>
@@ -8923,7 +8991,9 @@ while this ugens outputs 1, the hold-time is reset to the duration.
     </span>
       <p class="shortcomment cmt">A UGen which outputs a value of 1 for a given duration when triggered.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen which outputs a value of 1 for a given duration when triggered.</p><p>When a trigger occurs at the input, a value of 1 is output for the specified
 duration, otherwise zero is output. When a new trigger occurs while this ugens
-outputs 1, the hold-time is reset to the duration.
+outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the trigger. This can be any signal. A trigger happens
                         when the signal changes from non-positive to positive.</p></dd><dt class="param">dur</dt><dd class="cmt"><p>the duration for which the ugens holds the value of 1
                         when triggered</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig$.html" class="extype" name="de.sciss.synth.ugen.Trig">Trig</a></p></span></dd></dl></div>
@@ -11681,7 +11751,8 @@ play {
       </a>
     </span>
       <p class="shortcomment cmt">A UGen that delays the input by 1 audio frame or control period.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen that delays the input by 1 audio frame or control period.</p><p>For audio-rate signals the delay is 1 audio frame, and for control-rate signals
-the delay is 1 control period.</p><h5>Examples</h5><pre><span class="cmt">// analog to HPZ1</span>
+the delay is 1 control period.</p><p><i>Note:</i> The first value output is not zero but the same as the first input
+value! In this respect the UGen behaves different than <code>DelayN</code> .</p><h5>Examples</h5><pre><span class="cmt">// analog to HPZ1</span>
 play {
   <span class="kw">val</span> z = PinkNoise.ar
   <span class="kw">val</span> x = z - Delay1.ar(z)
@@ -11705,7 +11776,9 @@ play {
       </a>
     </span>
       <p class="shortcomment cmt">A UGen that delays the input by 2 audio frames or control periods.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen that delays the input by 2 audio frames or control periods.</p><p>For audio-rate signals the delay is 2 audio frames, and for control-rate
-signals the delay is 2 control periods.</p><h5>Examples</h5><pre><span class="cmt">// high-frequency comb filter</span>
+signals the delay is 2 control periods.</p><p><i>Warning:</i> the The first value output is zero, while both the second and the
+third value output equal the first input value! In this respect the UGen behaves
+different than <code>DelayN</code> .</p><h5>Examples</h5><pre><span class="cmt">// high-frequency comb filter</span>
 play {
   <span class="kw">val</span> z = PinkNoise.ar
   <span class="kw">val</span> x = z - Delay2.ar(z)
@@ -11764,7 +11837,7 @@ play {
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Simple delay line with no interpolation.</p><div class="fullcomment"><div class="comment cmt"><p>Simple delay line with no interpolation.</p><h5>Examples</h5><pre><span class="cmt">// Delayed random pulses</span>
+      <p class="shortcomment cmt">Simple delay line with no interpolation.</p><div class="fullcomment"><div class="comment cmt"><p>Simple delay line with no interpolation. The initial buffer contents is zero.</p><h5>Examples</h5><pre><span class="cmt">// Delayed random pulses</span>
 play {
   <span class="cmt">// Dust randomly triggers Decay to create an exponential</span>
   <span class="cmt">// decay envelope for the WhiteNoise input source</span>
@@ -12915,7 +12988,7 @@ play {
       </a>
     </span>
       <p class="shortcomment cmt">A gate or hold UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A gate or hold UGen. It allows the input signal value to pass when the <code>gate</code>
-argument is positive, otherwise it holds last value.
+argument is positive, otherwise it holds last value.</p><p>Before the first high gate value is registered, this UGen outputs zero.
 </p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Latch$.html" class="extype" name="de.sciss.synth.ugen.Latch">Latch</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.GbmanL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GbmanL"></a>
@@ -13162,7 +13235,8 @@ play {
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">A two point difference filter UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A two point difference filter UGen. Implements the formula :</p><pre>out(i) = <span class="num">0.5</span> * (in(i) - in(i-<span class="num">1</span>))</pre><h5>Examples</h5><pre><span class="cmt">// engage with mouse button</span>
+      <p class="shortcomment cmt">A two point difference filter UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A two point difference filter UGen. Implements the formula :</p><pre>out(i) = <span class="num">0.5</span> * (in(i) - in(i-<span class="num">1</span>))</pre><p><code><code> Note: </code></code> the filter's memory is initialized with the first input sample, so
+for <code>HPZ1.ar(DC.ar(x))</code> the output will be zero, even at the beginning.</p><h5>Examples</h5><pre><span class="cmt">// engage with mouse button</span>
 play {
   <span class="kw">val</span> sig = PinkNoise.ar
   <span class="kw">val</span> flt = HPZ1.ar(sig)
@@ -14502,7 +14576,7 @@ play {
       </a>
     </span>
       <p class="shortcomment cmt">A sample-and-hold UGen.</p><div class="fullcomment"><div class="comment cmt"><p>A sample-and-hold UGen. When triggered, a new value is taken from the input and
-hold until the next trigger occurs.
+hold until the next trigger occurs.</p><p>Before the first trigger is registered, this UGen outputs zero.
 </p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Demand$.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a></p></span><span class="cmt"><p><a href="Gate$.html" class="extype" name="de.sciss.synth.ugen.Gate">Gate</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.LatoocarfianC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="LatoocarfianC"></a>
@@ -16599,6 +16673,23 @@ play {
   <span class="kw">val</span> sig = IFFT.ar(chain)
   Pan2.ar(sig)
 }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="SetBuf$.html" class="extype" name="de.sciss.synth.ugen.SetBuf">SetBuf</a></p></span><span class="cmt"><p><a href="IFFT$.html" class="extype" name="de.sciss.synth.ugen.IFFT">IFFT</a></p></span><span class="cmt"><p><a href="FFT$.html" class="extype" name="de.sciss.synth.ugen.FFT">FFT</a></p></span><span class="cmt"><p><a href="Unpack1FFT$.html" class="extype" name="de.sciss.synth.ugen.Unpack1FFT">Unpack1FFT</a></p></span></dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.Pad" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Pad"></a>
+      <a id="Pad:Pad"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Pad$.html"><span class="name">Pad</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.package@Pad" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="de.sciss.synth.ugen.Pan2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Pan2"></a>
       <a id="Pan2:Pan2"></a>
@@ -18008,6 +18099,17 @@ play {
   <span class="kw">val</span> reset = Impulse.kr(<span class="num">1</span>)
   <span class="kw">val</span> ff    = SetResetFF.kr(set, reset)
   SinOsc.ar(ff.madd(<span class="num">400</span>, <span class="num">800</span>)) * <span class="num">0.1</span>
+}</pre><pre><span class="cmt">// limit trigger rate</span>
+play {
+  <span class="cmt">// with a combination of TDelay and SetResetFF</span>
+  <span class="cmt">// we can build a filter that lets triggers</span>
+  <span class="cmt">// pass at a maximum rate.</span>
+  <span class="kw">val</span> dur   = <span class="num">1.0</span>  <span class="cmt">// minimum spacing between triggers</span>
+  <span class="kw">val</span> in    = Dust.ar(<span class="num">10</span>)  <span class="cmt">// high frequency trigger</span>
+  <span class="kw">val</span> lim   = SetResetFF.ar(in, TDelay.ar(in, dur))
+  <span class="kw">val</span> time  = Timer.ar(lim)
+  time.poll(lim, <span class="lit">"bang"</span>)
+  ()
 }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="ToggleFF$.html" class="extype" name="de.sciss.synth.ugen.ToggleFF">ToggleFF</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.Shaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Shaper"></a>
@@ -18736,7 +18838,9 @@ play {
 triggered.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen which holds and outputs an input value for a given duration when
 triggered.</p><p>When a trigger occurs at the input, the input value is sampled and output for
 the specified duration, otherwise zero is output. When a new trigger occurs
-while this ugens outputs 1, the hold-time is reset to the duration.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
+while this ugens outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
 play { Trig.ar(Dust.ar(<span class="num">1</span>), <span class="num">0.2</span>) * SinOsc.ar(<span class="num">800</span>) * <span class="num">0.2</span> }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig1$.html" class="extype" name="de.sciss.synth.ugen.Trig1">Trig1</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.Trig1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Trig1"></a>
@@ -18756,7 +18860,9 @@ play { Trig.ar(Dust.ar(<span class="num">1</span>), <span class="num">0.2</span>
     </span>
       <p class="shortcomment cmt">A UGen which outputs a value of 1 for a given duration when triggered.</p><div class="fullcomment"><div class="comment cmt"><p>A UGen which outputs a value of 1 for a given duration when triggered.</p><p>When a trigger occurs at the input, a value of 1 is output for the specified
 duration, otherwise zero is output. When a new trigger occurs while this ugens
-outputs 1, the hold-time is reset to the duration.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
+outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
 play { Trig1.ar(Dust.ar(<span class="num">1</span>), <span class="num">0.2</span>) * SinOsc.ar(<span class="num">800</span>) * <span class="num">0.2</span> }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig$.html" class="extype" name="de.sciss.synth.ugen.Trig">Trig</a></p></span></dd></dl></div>
     </li><li name="de.sciss.synth.ugen.TrigControl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TrigControl"></a>

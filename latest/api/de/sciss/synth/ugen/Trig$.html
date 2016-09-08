@@ -54,7 +54,9 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen which holds and outputs an input value for a given duration when
 triggered.</p><p>When a trigger occurs at the input, the input value is sampled and output for
 the specified duration, otherwise zero is output. When a new trigger occurs
-while this ugens outputs 1, the hold-time is reset to the duration.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
+while this ugens outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.</p><h5>Examples</h5><pre><span class="cmt">// hold dust spikes</span>
 play { Trig.ar(Dust.ar(<span class="num">1</span>), <span class="num">0.2</span>) * SinOsc.ar(<span class="num">800</span>) * <span class="num">0.2</span> }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig1$.html" class="extype" name="de.sciss.synth.ugen.Trig1">Trig1</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

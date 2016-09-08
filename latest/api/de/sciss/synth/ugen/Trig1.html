@@ -53,7 +53,9 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen which outputs a value of 1 for a given duration when triggered.</p><p>When a trigger occurs at the input, a value of 1 is output for the specified
 duration, otherwise zero is output. When a new trigger occurs while this ugens
-outputs 1, the hold-time is reset to the duration.
+outputs 1, the hold-time is reset to the duration.</p><p><i>Warning:</i> The hold-time is subject to a bug that depends on the input
+signal. For example with <code>Trig1.ar(Impulse.ar(0), 4 * SampleDur.ir)</code> one
+actually gets a high signal for five sample frames instead of four.
 </p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the trigger. This can be any signal. A trigger happens
                         when the signal changes from non-positive to positive.</p></dd><dt class="param">dur</dt><dd class="cmt"><p>the duration for which the ugens holds the value of 1
                         when triggered</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Trig$.html" class="extype" name="de.sciss.synth.ugen.Trig">Trig</a></p></span></dd></dl><div class="toggleContainer block">

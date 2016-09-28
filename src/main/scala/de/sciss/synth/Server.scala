@@ -27,6 +27,7 @@ import scala.collection.mutable
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.language.implicitConversions
+import scala.util.Try
 
 object Server {
   def default: Server = ServerImpl.default
@@ -771,6 +772,22 @@ object Server {
         TCP.Client(serverAddr, cfg)
     }
     client
+  }
+
+  def version: Try[(String, String)] = version()
+
+  def version(config: Config = Config().build): Try[(String, String)] = Try {
+    import scala.sys.process._
+    val output  = Seq(config.program, "-v").!!
+    val i       = output.indexOf(' ') + 1
+    val j0      = output.indexOf(' ', i)
+    val j1      = if (j0 > i) j0 else output.indexOf('\n', i)
+    val j       = if (j1 > i) j1 else output.length
+    val k       = output.indexOf('(', j) + 1
+    val m       = output.indexOf(')', k)
+    val version = output.substring(i, j)
+    val build   = if (m > k) output.substring(k, m) else ""
+    (version, build)
   }
 }
 

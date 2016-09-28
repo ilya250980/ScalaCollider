@@ -18,36 +18,19 @@ import de.sciss.synth.Ops.stringToControl
 
 import scala.annotation.{switch, tailrec}
 import scala.collection.breakOut
-import scala.collection.immutable.{IndexedSeq => Vec}
+import UGenSource._
 
 /** A graph element that flattens the channels from a nested multi-channel structure.
   *
   * @param elem the element to flatten
   */
 final case class Flatten(elem: GE) extends GE.Lazy {
+  def rate: MaybeRate = elem.rate
 
-  def rate              = elem.rate
   override def toString = s"$elem.flatten"
 
-  def makeUGens: UGenInLike = UGenInGroup(elem.expand.flatOutputs)
+  protected def makeUGens: UGenInLike = UGenInGroup(elem.expand.flatOutputs)
 }
-
-///** A simple graph element that takes a function and upon UGen expansion
-//  * applies the multi-channel expanded version of the input argument to that function.
-//  *
-//  * Note: This may cause problems in future projects involving serialization of
-//  * synth graphs, due to the generic nature of the `fun` argument.
-//  */
-//final case class MapExpanded(in: GE)(fun: Vec[GE] => GE) extends GE.Lazy {
-//
-//  def rate        = UndefinedRate
-//
-//  protected def makeUGens: UGenInLike = {
-//    val _in = in.expand
-//    val res = fun(_in.outputs)
-//    res.expand
-//  }
-//}
 
 /** Contains several helper methods to produce mixed (summed) signals. */
 object Mix {
@@ -83,12 +66,12 @@ object Mix {
 
   final case class Mono(elem: GE) extends GE.Lazy {
     def numOutputs  = 1
-    def rate        = elem.rate
+    def rate: MaybeRate = elem.rate
     override def productPrefix = "Mix$Mono"
 
     override def toString = s"$productPrefix($elem)"
 
-    def makeUGens: UGenInLike = {
+    protected def makeUGens: UGenInLike = {
       val flat = elem.expand.flatOutputs
       Mix.makeUGen(flat)
     }
@@ -139,11 +122,11 @@ object Mix {
   */
 final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: should not be UGenSource
 
-  def rate = elem.rate
+  def rate: MaybeRate = elem.rate
 
-  protected def makeUGens: UGenInLike = unwrap(elem.expand.outputs)
+  protected def makeUGens: UGenInLike = unwrap(this, elem.expand.outputs)
 
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Mix.makeUGen(args)
+  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = Mix.makeUGen(args)
 
   override def toString: String = elem match {
     case GESeq(elems) => elems.mkString(s"$productPrefix.seq(", ", ", ")")
@@ -152,10 +135,9 @@ final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: shou
 }
 
 final case class Zip(elems: GE*) extends GE.Lazy {
-  //def numOutputs = elems.minBy( _.numOutputs ).numOutputs
-  def rate = MaybeRate.reduce(elems.map(_.rate): _*)
+  def rate: MaybeRate = MaybeRate.reduce(elems.map(_.rate): _*)
 
-  def makeUGens: UGenInLike = {
+  protected def makeUGens: UGenInLike = {
     val exp: Vec[UGenInLike] = elems.map(_.expand)(breakOut)
     val sz    = exp.map(_.outputs.size) // exp.view.map ?
     val minSz = sz.min
@@ -179,13 +161,14 @@ object Reduce {
 
 final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.SingleOut {
   // XXX TODO: should not be UGenSource
-  def rate = elem.rate
 
-  protected def makeUGens: UGenInLike = unwrap(elem.expand.outputs)
+  def rate: MaybeRate = elem.rate
 
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args match {
+  protected def makeUGens: UGenInLike = unwrap(this, elem.expand.outputs)
+
+  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args match {
     case head +: tail => (head /: tail)(op.make1)
-    case _ => UGenInGroup.empty
+    case _            => UGenInGroup.empty
   }
 }
 
@@ -196,24 +179,11 @@ final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.Single
   */
 object WrapOut {
   private def makeFadeEnv(fadeTime: Float): UGenIn = {
-    //    val cFadeTime = new Control.UGen(control, 1, UGenGraph.builder.addControl(Vec(fadeTime), Some("fadeTime"))).outputs(0)
-    //    val cGate     = new Control.UGen(control, 1, UGenGraph.builder.addControl(Vec(1), Some("gate"))).outputs(0)
     val cFadeTime = "fadeTime".kr(fadeTime)
     val cGate     = "gate".kr(1f)
-    // val startVal  = BinaryOpUGen.Leq.make1(cFadeTime, 0)
     val startVal  = cFadeTime <= 0
-
-    // Env( startVal, List( Env.Seg( 1, 1, curveShape( -4 )), Env.Seg( 1, 0, sinShape )), 1 )
-    // val env = Vec[UGenIn](startVal, 2, 1, -99, 1, 1, 5, -4, 0, 1, 3, 0)
-    val env = Env(startVal, List(Env.Segment(1, 1, Curve.parametric(-4)), Env.Segment(1, 0, Curve.sine)), 1)
-
-    // this is slightly more costly than what sclang does
-    // (using non-linear shape plus an extra unary op),
-    // but it fadeout is much smoother this way...
-    //EnvGen.kr( env, gate, timeScale = dt, doneAction = freeSelf ).squared
-
-    // new UGen.SingleOut("EnvGen", control, Vec[UGenIn](cGate, 1, 0, cFadeTime, freeSelf) ++ env)
-    val res = EnvGen.kr(env, gate = cGate, timeScale = cFadeTime, doneAction = freeSelf)
+    val env       = Env(startVal, List(Env.Segment(1, 1, Curve.parametric(-4)), Env.Segment(1, 0, Curve.sine)), 1)
+    val res       = EnvGen.kr(env, gate = cGate, timeScale = cFadeTime, doneAction = freeSelf)
     res.expand.flatOutputs.head
   }
 }
@@ -227,9 +197,9 @@ object WrapOut {
 final case class WrapOut(in: GE, fadeTime: Option[Float] = Some(0.02f)) extends UGenSource.ZeroOut with WritesBus {
   import WrapOut._
 
-  protected def makeUGens: Unit = unwrap(in.expand.outputs)
+  protected def makeUGens: Unit = unwrap(this, in.expand.outputs)
 
-  protected def makeUGen(ins: Vec[UGenIn]): Unit = {
+  private[synth] def makeUGen(ins: Vec[UGenIn]): Unit = {
     if (ins.isEmpty) return
     val rate = ins.map(_.rate).max
     if ((rate == audio) || (rate == control)) {
@@ -437,7 +407,7 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
     }
   }
 
-  protected def makeUGen(args: Vec[UGenIn]) = () // XXX not used, ugly
+  private[synth] def makeUGen(args: Vec[UGenIn]) = () // XXX not used, ugly
 }
 
 /** A graph element that produces an integer sequence
@@ -446,8 +416,9 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   * @param in the element whose indices to produce
   */
 final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with ScalarRated {
-  protected def makeUGens                  : UGenInLike = unwrap(in.expand.outputs)
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args.indices: GE
+  protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
+
+  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args.indices: GE
 }
 
 /** A graph element that produces an integer with number-of-channels of the input element.
@@ -455,8 +426,9 @@ final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with Scalar
   * @param in the element whose number-of-channels to produce
   */
 final case class NumChannels(in: GE) extends UGenSource.SingleOut with ScalarRated {
-  protected def makeUGens                  : UGenInLike = unwrap(in.expand.outputs)
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
+  protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
+
+  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
 }
 
 object Pad {
@@ -493,6 +465,7 @@ object Pad {
 final case class Pad(in: GE, to: GE) extends UGenSource.SingleOut {
   def rate: MaybeRate = in.rate
 
-  protected def makeUGens                  : UGenInLike = unwrap(Vector(in.expand, to.expand))
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args.head
+  protected def makeUGens: UGenInLike = unwrap(this, Vector(in.expand, to.expand))
+
+  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args.head
 }

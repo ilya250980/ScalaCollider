@@ -13,50 +13,55 @@
 
 package de.sciss.synth
 
-import ugen.WrapOut
 import de.sciss.osc.{Bundle, Message}
+import de.sciss.synth.ugen.WrapOut
 
 object GraphFunction {
-  private var uniqueIDCnt = 0
-  private final val uniqueSync = new AnyRef
+  private[this] final var uniqueIDCnt = 0
+  private[this] final val uniqueSync  = new AnyRef
 
-  private def uniqueID(): Int = uniqueSync.synchronized {
+  private[this] def uniqueID(): Int = uniqueSync.synchronized {
     uniqueIDCnt += 1
     val result = uniqueIDCnt
     result
   }
 
   object Result {
-    implicit def in[T](implicit view: T => GE): In[T] = In(view)
-    implicit case object Out  extends Result[UGenSource.ZeroOut]
-    implicit case object Unit extends Result[scala.Unit]
-    /* implicit */ final case class In[T](view: T => GE) extends Result[T]  // Scala doesn't allow case class and implicit
+    implicit def in[A](implicit view: A => GE): In[A] = In(view)
+    implicit case object Out  extends Result[UGenSource.ZeroOut] {
+      def close(in: UGenSource.ZeroOut, fadeTime: Double): Unit = ()
+    }
+    implicit case object Unit extends Result[scala.Unit] {
+      def close(in: scala.Unit, fadeTime: Double): Unit = ()
+    }
+    final case class In[A](view: A => GE) extends Result[A] {
+      def close(in: A, fadeTime: Double): Unit = WrapOut(view(in), fadeTime)
+    }
   }
-  sealed trait Result[-T]
+  sealed trait Result[-A] {
+    def close(in: A, fadeTime: Double): Unit
+  }
+
+  def mkSynthDef[A](fun: GraphFunction[A], fadeTime: Double = -1): SynthDef = {
+    val defName = s"temp_${uniqueID()}"   // more clear than using hashCode
+    SynthDef(defName) {
+      fun.result.close(fun.peer(), fadeTime)
+    }
+  }
 }
 
-private[synth] final class GraphFunction[T](thunk: => T)(implicit res: GraphFunction.Result[T]) {
-  import GraphFunction._
+final class GraphFunction[A](val peer: () => A)(implicit val result: GraphFunction.Result[A]) {
 
   def play(target: Node = Server.default.defaultGroup, outBus: Int = 0,
-           fadeTime: Option[Float] = Some(0.02f),
-           addAction: AddAction = addToHead): Synth = {
+           fadeTime: Double = 0.02, addAction: AddAction = addToHead): Synth = {
 
-    val server    = target.server
-    val defName   = s"temp_${uniqueID()}"   // more clear than using hashCode
-    val synthDef  = SynthDef(defName) {
-      val r = thunk
-      res match {
-        case Result.In(view) => WrapOut(view(r), fadeTime)
-        case _ =>
-      }
-    }
+    val server      = target.server
+    val synthDef    = GraphFunction.mkSynthDef(this, fadeTime = fadeTime)
     val synth       = Synth(server)
     val bytes       = synthDef.toBytes()
     val synthMsg    = synth.newMsg(synthDef.name, target, Seq("i_out" -> outBus, "out" -> outBus), addAction)
     val defFreeMsg  = synthDef.freeMsg
     val completion  = Bundle.now(synthMsg, defFreeMsg)
-    // synth.onEnd { server ! synthDef.freeMsg } // why would we want to accumulate the defs?
     if (bytes.remaining > (65535 / 4)) {
       // "preliminary fix until full size works" (?)
       if (server.isLocal) {

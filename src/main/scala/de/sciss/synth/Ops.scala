@@ -40,7 +40,11 @@ object Ops {
     * @param  thunk   the thunk which produces the UGens to play
     * @return         a reference to the spawned Synth
     */
-  def play[T: GraphFunction.Result](thunk: => T): Synth = play()(thunk)
+  def play[A: GraphFunction.Result](thunk: => A): Synth = play()(thunk)
+
+  /** Constructs a `GraphFunction`, on which then for example `play` can be called. */
+  def graph[A](thunk: => A)(implicit result: GraphFunction.Result[A]): GraphFunction[A] =
+    new GraphFunction(() => thunk)(result)
 
   /** Wraps the body of the thunk argument in a `SynthGraph`, adds an output UGen, and plays the graph
     * in a synth attached to a given target.
@@ -48,15 +52,17 @@ object Ops {
     * @param  target      the target with respect to which to place the synth
     * @param  addAction   the relation between the new synth and the target
     * @param  outBus      audio bus index which is used for the synthetically generated `Out` UGen.
-    * @param  fadeTime    if defined, specifies the fade-in time for a synthetically added amplitude envelope.
+    * @param  fadeTime    if `&gt;= 0`, specifies the fade-in time for a synthetically added amplitude envelope.
+    *                     if negative, avoids building an envelope.
     * @param  thunk       the thunk which produces the UGens to play
     * @return             a reference to the spawned Synth
     */
-  def play[T: GraphFunction.Result](target: Node = Server.default, outBus: Int = 0,
-                                    fadeTime: Optional[Float] = Some(0.02f),
-                                    addAction: AddAction = addToHead)(thunk: => T): Synth = {
-    val fun = new GraphFunction[T](thunk)
-    fun.play(target, outBus, fadeTime, addAction)
+  def play[A](target: Node = Server.default, outBus: Int = 0,
+              fadeTime: Double = 0.02,
+              addAction: AddAction = addToHead)(thunk: => A)
+             (implicit result: GraphFunction.Result[A]): Synth = {
+    val fun = new GraphFunction(() => thunk)(result)
+    fun.play(target = target, outBus = outBus, fadeTime = fadeTime, addAction = addAction)
   }
 
   /** Allows the construction or named controls, for example via `"freq".kr`. */
@@ -162,7 +168,7 @@ object Ops {
 
     def trace(): Unit = server ! traceMsg
 
-    def release(releaseTime: Optional[Double] = None): Unit = server ! releaseMsg(releaseTime)
+    def release(releaseTime: Double = -1.0): Unit = server ! releaseMsg(releaseTime)
 
     def map(pairs: ControlKBusMap.Single*): Unit = server ! mapMsg(pairs: _*)
 

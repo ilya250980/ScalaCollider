@@ -1,5 +1,5 @@
 name               := "ScalaCollider"
-version            := "1.21.0-SNAPSHOT"
+version            := "1.21.0"
 organization       := "de.sciss"
 scalaVersion       := "2.11.8"
 
@@ -17,7 +17,7 @@ licenses           := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.0-SNAPSHOT"
+lazy val ugensVersion     = "1.16.0"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.5"
 lazy val processorVersion = "0.4.0"

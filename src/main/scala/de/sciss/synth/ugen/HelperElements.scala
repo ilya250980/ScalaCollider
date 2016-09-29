@@ -178,7 +178,7 @@ final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.Single
   * the synth. The bus is given by a control named `"out"` and defaults to zero.
   */
 object WrapOut {
-  private def makeFadeEnv(fadeTime: Float): UGenIn = {
+  private def makeFadeEnv(fadeTime: Double): UGenIn = {
     val cFadeTime = "fadeTime".kr(fadeTime)
     val cGate     = "gate".kr(1f)
     val startVal  = cFadeTime <= 0
@@ -193,8 +193,11 @@ object WrapOut {
   * This is automatically added when using the `play { ... }` syntax. If the fade time is
   * given, an envelope is added with a control named `"gate"` which can be used to release
   * the synth. The bus is given by a control named `"out"` and defaults to zero.
+  *
+  * @param  in        the signal to play to the default output
+  * @param  fadeTime  the fade in time; use a negative number for no fading
   */
-final case class WrapOut(in: GE, fadeTime: Option[Float] = Some(0.02f)) extends UGenSource.ZeroOut with WritesBus {
+final case class WrapOut(in: GE, fadeTime: Double = 0.02) extends UGenSource.ZeroOut with WritesBus {
   import WrapOut._
 
   protected def makeUGens: Unit = unwrap(this, in.expand.outputs)
@@ -203,11 +206,11 @@ final case class WrapOut(in: GE, fadeTime: Option[Float] = Some(0.02f)) extends 
     if (ins.isEmpty) return
     val rate = ins.map(_.rate).max
     if ((rate == audio) || (rate == control)) {
-      val ins3 = fadeTime match {
-        case Some(fdt) =>
-          val env = makeFadeEnv(fdt)
-          ins.map(BinaryOpUGen.Times.make1(_, env))
-        case None => ins
+      val ins3 = if (fadeTime >= 0) {
+        val env = makeFadeEnv(fadeTime)
+        ins.map(BinaryOpUGen.Times.make1(_, env))
+      } else {
+        ins
       }
       val cOut = "out".kr(0f)
       Out.ar(cOut, ins3)

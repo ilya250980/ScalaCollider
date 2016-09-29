@@ -8,6 +8,10 @@ This document only highlights major changes which probably require some adjustme
   changed from `numChannels: Int` to `init: GE`, whereby the number
   of channels in `init` determine the number of outputs of `LocalIn`.
 - added `NodeID` UGen.
+- added `graph` op that will be used by ScalaCollider-Swing
+- removed a few occurrences of `Optional`, where other special values
+  for `None` make sense
+- added `Server.version`
 
 ## changes in v1.20.0
 

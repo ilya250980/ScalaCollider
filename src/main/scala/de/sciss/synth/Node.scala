@@ -13,9 +13,8 @@
 
 package de.sciss.synth
 
-import de.sciss.model.impl.ModelImpl
 import de.sciss.model.Model
-import de.sciss.optional.Optional
+import de.sciss.model.impl.ModelImpl
 
 /**
  * A representation for a node on the server's tree. A `Node` is either a `Synth` or a `Group`.
@@ -89,15 +88,16 @@ abstract class Node extends ModelImpl[NodeManager.NodeChange] {
     * an `EnvGen` UGen. This is the case for synths created with the package method `play`.
     *
     * @param   releaseTime the optional release time in seconds within which the synth should fade out,
-    *                      or `None` if the envelope should be released at its nominal release time. If the `EnvGen`
-    *                      has a `doneAction` of `freeSelf`, the synth will be freed after the release phase.
+    *                      or `-1` (default) if the envelope should be released at its nominal release time.
+    *                      If the `EnvGen` has a `doneAction` of `freeSelf`, the synth will be freed after
+    *                      the release phase.
     *
     * @see  [[de.sciss.synth.ugen.EnvGen]]
     * @see  [[de.sciss.synth.message.NodeSet]]
     */
-  def releaseMsg(releaseTime: Optional[Double]) = {
-    val value = releaseTime.map(-1.0 - _).getOrElse(0.0)
-    setMsg("gate" -> value)
+  def releaseMsg(releaseTime: Double = -1.0): message.NodeSet = {
+    val gate = if (releaseTime < 0) 0.0 else -1.0 - releaseTime
+    setMsg("gate" -> gate)
   }
 
   def mapMsg(pairs: ControlKBusMap.Single*) = message.NodeMap(id, pairs: _*)

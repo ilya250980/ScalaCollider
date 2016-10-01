@@ -424,7 +424,7 @@ object UGenGraph {
       private def buildControls( p: Traversable[ ControlProxyLike[ _ ]]): Map[ ControlProxyLike[ _ ], (UGen, Int) ] = {
          p.groupBy( _.factory ).flatMap( tuple => {
             val (factory, proxies) = tuple
-            factory.build( builder, proxies.toSeq: _* )
+            factory.build( builder, (proxies.toSeq.asInstanceOf[Seq[factory.Proxy]]): _* )
 //            res.valuesIterator.foreach( tup => addUGen( tup._1 ))
 //            res
          })( breakOut )

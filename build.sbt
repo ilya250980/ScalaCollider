@@ -1,26 +1,19 @@
-name := "scalacollider"
-
-version := "0.34"
-
+name         := "scalacollider"
+version      := "0.34"
 organization := "de.sciss"
-
-scalaVersion := "2.9.2"
-
-description := "A sound synthesis library for the SuperCollider server"
-
-homepage := Some( url( "https://github.com/Sciss/ScalaCollider" ))
-
-licenses := Seq( "GPL v2+" -> url( "http://www.gnu.org/licenses/gpl-2.0.txt" ))
+scalaVersion := "2.11.8"
+description  := "A sound synthesis library for the SuperCollider server"
+homepage     := Some(url("https://github.com/Sciss/ScalaCollider"))
+licenses     := Seq("GPL v2+" -> url("http://www.gnu.org/licenses/gpl-2.0.txt"))
 
 libraryDependencies ++= Seq(
-   "de.sciss" %% "scalaosc" % "0.33",
-   "de.sciss" %% "scalaaudiofile" % "0.20",
-   "org.scalatest" %% "scalatest" % "1.7.2" % "test"
+   "de.sciss"       %% "scalaosc"       % "0.33",
+   "de.sciss"       %% "scalaaudiofile" % "0.20",
+   "org.scala-lang" % "scala-actors"    % scalaVersion.value,
+   "org.scalatest"  %% "scalatest"      % "2.1.3" % "test"
 )
 
-retrieveManaged := true
-
-scalacOptions ++= Seq( "-deprecation", "-unchecked" )
+scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 // ---- console ----
 
@@ -30,13 +23,12 @@ initialCommands in console := """import de.sciss.osc; import de.sciss.synth.{ os
 
 publishMavenStyle := true
 
-publishTo <<= version { (v: String) =>
-   Some( if( v.endsWith( "-SNAPSHOT" ))
+publishTo :=
+   Some(if (isSnapshot.value)
       "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
    else
       "Sonatype Releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2"
    )
-}
 
 publishArtifact in Test := false
 
@@ -55,19 +47,3 @@ pomExtra :=
    </developer>
 </developers>
 
-// ---- disable scaladoc generation during development phase ----
-
-// publishArtifact in (Compile, packageDoc) := false
-
-// ---- ls.implicit.ly ----
-
-seq( lsSettings :_* )
-
-(LsKeys.tags in LsKeys.lsync) := Seq( "sound-synthesis", "sound", "music", "supercollider" )
-
-(LsKeys.ghUser in LsKeys.lsync) := Some( "Sciss" )
-
-(LsKeys.ghRepo in LsKeys.lsync) := Some( "ScalaCollider" )
-
-// bug in ls -- doesn't find the licenses from global scope
-(licenses in LsKeys.lsync) := Seq( "GPL v2+" -> url( "http://www.gnu.org/licenses/gpl-2.0.txt" ))

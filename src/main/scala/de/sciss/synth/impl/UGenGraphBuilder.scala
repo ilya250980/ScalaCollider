@@ -18,8 +18,8 @@ package impl
 import de.sciss.synth.UGenGraph.IndexedUGen
 import de.sciss.synth.ugen.{Constant, ControlProxyLike, ControlUGenOutProxy, UGenProxy}
 
-import scala.annotation.elidable
-import scala.collection.breakOut
+import scala.annotation.{elidable, tailrec}
+import scala.collection.{breakOut, mutable}
 import scala.collection.immutable.{IndexedSeq => Vec, Set => ISet}
 import scala.collection.mutable.{Buffer => MBuffer, Map => MMap, Stack => MStack}
 
@@ -61,6 +61,7 @@ final class DefaultUGenGraphBuilder extends BasicUGenGraphBuilder {
 }
 
 object UGenGraphBuilderLike {
+  var DEBUG = false
 
   // ---- IndexedUGen ----
   private final class IndexedUGenBuilder(val ugen: UGen, var index: Int, var effective: Boolean) {
@@ -191,12 +192,63 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
       if (eff) numIneffective -= 1
       new IndexedUGenBuilder(ugen, idx, eff)
     }
-    //indexedUGens.foreach( iu => println( iu.ugen.ref ))
-    //val a0 = indexedUGens(1).ugen
-    //val a1 = indexedUGens(3).ugen
-    //val ee = a0.equals(a1)
 
-    val ugenMap: Map[AnyRef, IndexedUGenBuilder] = indexedUGens.map(iu => (iu.ugen /* .ref */ , iu))(breakOut)
+    import UGenGraphBuilderLike.DEBUG
+    if (DEBUG) {
+      log(s"indexUGens. size = ${indexedUGens.size}")
+      indexedUGens.foreach { iu =>
+        println(s"${iu.ugen.name} @ ${iu.ugen.hashCode.toHexString}")
+      }
+    }
+
+    val ugenMap: collection.Map[UGen, IndexedUGenBuilder] =
+      if (DEBUG) {
+        val ugenSeen = mutable.Set.empty[UGen]
+        val ugenMapB = mutable.Map.newBuilder[UGen, IndexedUGenBuilder]
+        ugenMapB.sizeHint(indexedUGens.size)
+        indexedUGens.foreach { iu =>
+          val ugen = iu.ugen
+          if (ugenSeen.contains(ugen)) {
+            def calcDepth(x: UGen, res: Int): Int = {
+              var res1 = res
+              x.inputs.foreach {
+                case up: UGenProxy =>
+                  val res2 = calcDepth(up.source, res + 1)
+                  if (res2 > res1) res1 = res2
+                case _ =>
+              }
+              res1
+            }
+            println(s"---- duplicate UGen: ${ugen.name} @ ${ugen.hashCode.toHexString} - depth = ${calcDepth(ugen, 0)}")
+//            println(ugen.toString)
+          } else {
+            ugenSeen += ugen
+            val tup = (ugen, iu)
+            ugenMapB += tup
+          }
+        }
+        ugenMapB.result()
+
+//        val ugenSeen = mutable.Set.empty[UGen]
+//        val ugenMapB = new java.util.HashMap[UGen, IndexedUGenBuilder](indexedUGens.size)
+//        indexedUGens.foreach { iu =>
+//          val ugen = iu.ugen
+//          if (ugenSeen.contains(ugen)) {
+//            println(s"\n---- duplicate UGen: ${ugen.name} @ ${ugen.hashCode.toHexString}")
+//            println(ugen.toString)
+//          }
+//          ugenMapB.put(ugen, iu)
+//        }
+//        import collection.JavaConverters._
+//        ugenMapB.asScala
+
+      } else {
+        indexedUGens.map { iu =>
+          val tup = (iu.ugen, iu)
+          tup
+        } (breakOut)
+      }
+
     indexedUGens.foreach { iu =>
       // XXX Warning: match not exhaustive -- "missing combination UGenOutProxy"
       // this is clearly a nasty scala bug, as UGenProxy does catch UGenOutProxy;

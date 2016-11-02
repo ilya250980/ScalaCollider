@@ -67,8 +67,8 @@ object Env extends EnvFactory[Env] {
       }
     }
 
-    def apply(id: GE, curvature: GE = 0): Curve = new Apply(id, curvature)
-    def unapply(s: Curve): Option[(GE, GE)] = Some(s.id, s.curvature)
+    def apply(id: GE, curvature: GE = 0): Curve = Apply(id, curvature)
+    def unapply(s: Curve): Option[(GE, GE)] = Some((s.id, s.curvature))
 
     private final case class Apply(id: GE, curvature: GE) extends Curve {
       override def productPrefix = "Env$Curve$Apply"
@@ -90,7 +90,7 @@ object Env extends EnvFactory[Env] {
       Segment(tup._1, tup._2, linear)
   }
   final case class Segment(dur: GE, targetLevel: GE, curve: Curve = linear) {
-    override def productPrefix = "Env$Segment"
+    override def productPrefix = s"Env$$Segment"
 
     override def toString = s"Env.Segment($dur, $targetLevel, $curve)"
   }

@@ -13,7 +13,7 @@
 
 package de.sciss.synth
 
-import de.sciss.synth.ugen.{BinaryOpUGen, ChannelProxy, Clip, Constant, Flatten, Fold, Impulse, LinExp, LinLin, MulAdd, Poll, UnaryOpUGen, Wrap}
+import de.sciss.synth.ugen.{BinaryOpUGen, ChannelProxy, ChannelRangeProxy, Clip, Constant, Flatten, Fold, Impulse, LinExp, LinLin, MulAdd, Poll, UnaryOpUGen, Wrap}
 
 object GEOps {
   private def getRate(g: GE, name: String): Rate =
@@ -31,6 +31,11 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
     * @return a monophonic element that represents the given channel of the receiver
     */
   def `\\`(index: Int)      : GE = ChannelProxy(g, index)
+
+  def `\\`(range: Range)    : GE = {
+    val until = if (range.isInclusive) range.end + range.step else range.end
+    ChannelRangeProxy(g, from = range.start, until = until, step = range.step)
+  }
 
   def madd(mul: GE, add: GE): GE = MulAdd(g, mul, add)
 

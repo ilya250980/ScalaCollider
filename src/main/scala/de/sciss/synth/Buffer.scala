@@ -176,24 +176,69 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
 
   def genMsg(command: message.BufferGen.Command) = message.BufferGen(id, command)
 
-  //  private[sciss] def makePacket(completion: Buffer.Completion, forceQuery: Boolean = false): Option[Packet] = {
-  //    val a = completion.action
-  //    if (forceQuery || a.isDefined) {
-  //      register()
-  //      a.foreach { action =>
-  //        lazy val l: Buffer.Listener = {
-  //          case BufferManager.BufferInfo(_, _) =>
-  //            removeListener(l)
-  //            action(this)
-  //        }
-  //        addListener(l)
-  //      }
-  //    }
-  //    (completion.message, a) match {
-  //      case (None     , None     ) => if (forceQuery) Some(queryMsg) else None
-  //      case (Some(msg), None     ) => Some(if (forceQuery) Bundle.now(msg(this), queryMsg) else msg(this))
-  //      case (None     , Some(act)) => Some(queryMsg)
-  //      case (Some(msg), Some(act)) => Some(Bundle.now(msg(this), queryMsg))
-  //    }
-  //  }
+  /** OSC message for filling this buffer with a series of sine wave harmonics using specified amplitudes.
+    *
+    * @param partials   amplitudes for the harmonics. The first value specifies the amplitude of the first
+    *                   partial, the second float value specifies the amplitude of the second partial, and so on.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  def sine1Msg(partials: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true, clear: Boolean = true) =
+    genMsg(message.BufferGen.Sine1(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+  /** OSC message for filling this buffer with a series of sine waves using specified frequencies and amplitudes.
+    *
+    * @param partials   pairs of frequencies and amplitudes for the partials.
+    *                   Frequencies are given as in cycles per buffer.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  def sine2Msg(partials: Seq[(Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
+               clear: Boolean = true) =
+    genMsg(message.BufferGen.Sine2(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+  /** OSC message for filling this buffer with a series of sine waves using specified frequencies, amplitudes,
+    * and phases.
+    *
+    * @param partials   triplets of frequencies, amplitudes and initial phases for the partials.
+    *                   Frequencies are given as in cycles per buffer. Phases are given in radians.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  def sine3Msg(partials: Seq[(Float, Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
+               clear: Boolean = true) =
+    genMsg(message.BufferGen.Sine3(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+  /** OSC message for filling this buffer with a series of Chebyshev polynomials.
+    * The formula of these polynomials is
+    * {{{
+    * cheby(n) = amplitude  * cos(n * acos(x))
+    * }}}
+    * To eliminate a DC offset when used as a wave-shaper, the wavetable is offset so that the center value is zero.
+    *
+    * @param amps       amplitudes for the harmonics. amplitudes for the harmonics. The first value specifies
+    *                   the amplitude for n = 1, the second float value specifies the amplitude for n = 2, and so on.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by specific UGens
+    *                   such as such as [[de.sciss.synth.ugen.Shaper Shaper]] or
+    *                   [[de.sciss.synth.ugen.Osc Osc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  def chebyMsg(amps: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true,
+               clear: Boolean = true) =
+    genMsg(message.BufferGen.Cheby(
+      amps = amps, normalize = normalize, wavetable = wavetable, clear = clear))
 }

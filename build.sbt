@@ -1,7 +1,12 @@
-name               := "ScalaCollider"
-version            := "1.21.0"
-organization       := "de.sciss"
-scalaVersion       := "2.11.8"
+lazy val baseName       = "ScalaCollider"
+lazy val baseNameL      = baseName.toLowerCase
+lazy val projectVersion = "1.22.0"
+lazy val mimaVersion    = "1.21.0"   // for compatibility testing
+
+name                 := baseName
+version              := projectVersion
+organization         := "de.sciss"
+scalaVersion         := "2.11.8"
 
 // sbt 0.13.6 starts to upgrade Scala version!
 // we must ensure 2.10.0 is used not 2.10.4
@@ -9,15 +14,17 @@ ivyScala := ivyScala.value map { _.copy(overrideScalaVersion = true) }
 
 // note SI-7436! Affects Scala throughout 2.10.x except for 2.10.0; might be fixed in 2.10.5
 // https://issues.scala-lang.org/browse/SI-7436
-crossScalaVersions := Seq("2.11.8", "2.10.0")
+crossScalaVersions   := Seq("2.11.8", "2.10.0")
 
-description        := "A sound synthesis library for the SuperCollider server"
-homepage           := Some(url(s"https://github.com/Sciss/${name.value}"))
-licenses           := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt"))
+description          := "A sound synthesis library for the SuperCollider server"
+homepage             := Some(url(s"https://github.com/Sciss/${name.value}"))
+licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt"))
+
+mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.0"
+lazy val ugensVersion     = "1.16.1"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.5"
 lazy val processorVersion = "0.4.0"
@@ -36,10 +43,10 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest"               % scalaTestVersion % "test"
 )
 
-scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture")
-
 scalacOptions ++= {
-  if (isSnapshot.value) Nil else Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+  val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture")
+  val ys = if (scalaVersion.value.startsWith("2.10")) xs else xs :+ "-Xlint:-stars-align,_"  // syntax not supported in Scala 2.10
+  if (isSnapshot.value) ys else ys ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
 }
 
 // ---- console ----

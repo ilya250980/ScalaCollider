@@ -507,65 +507,105 @@ final case class BufferFill(id: Int, ranges: FillRange*)
   with SyncCmd
 
 object BufferGen {
-  /* sealed */ trait Command {
+  trait Command {
     def name: String
     def args: Seq[Any]
-    def isSynchronous: Boolean
   }
 
-  object WaveFill {
-    /** @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
-      * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
-      *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
-      * @param clear      if set, the previous content is erased, otherwise the new waveform is added
-      *                   to the existing content
-      */
-    final case class Flags(normalize: Boolean, wavetable: Boolean, clear: Boolean) {
-      def toInt: Int = (if (normalize) 1 else 0) | (if (wavetable) 2 else 0) | (if (clear) 4 else 0)
-    }
-  }
   sealed trait WaveFill extends Command {
-    final def isSynchronous = true
+    def normalize : Boolean
+    def wavetable : Boolean
+    def clear     : Boolean
+
+    protected final def flags: Int = (if (normalize) 1 else 0) | (if (wavetable) 2 else 0) | (if (clear) 4 else 0)
   }
 
-  /** @param partials frequencies */
-  final case class Sine1(flags: WaveFill.Flags, partials: Float*)
+  /** OSC message for filling a buffer with a series of sine wave harmonics using specified amplitudes.
+    *
+    * @param partials   amplitudes for the harmonics. The first value specifies the amplitude of the first
+    *                   partial, the second float value specifies the amplitude of the second partial, and so on.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  final case class Sine1(partials: Seq[Float], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
+
+    override def productPrefix = s"BufferGen$$Sine1"
 
     def name = "sine1"
-    def args: Seq[Any] = flags.toInt +: partials
+    def args: Seq[Any] = flags +: partials
   }
 
-  /** @param partials pair of (freq, amp) */
-  final case class Sine2(flags: WaveFill.Flags, partials: (Float, Float)*)
+  /** OSC message for filling a buffer with a series of sine waves using specified frequencies and amplitudes.
+    *
+    * @param partials   pairs of frequencies and amplitudes for the partials.
+    *                   Frequencies are given as in cycles per buffer.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  final case class Sine2(partials: Seq[(Float, Float)], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
+
+      override def productPrefix = s"BufferGen$$Sine2"
+
       def name = "sine2"
-      def args: Seq[Any] = flags.toInt +: partials.flatMap(tup => tup._1 :: tup._2 :: Nil)
+      def args: Seq[Any] = flags +: partials.flatMap(tup => tup._1 :: tup._2 :: Nil)
   }
 
   object Sine3 {
     final case class Data(freq: Float, amp: Float, phase: Float)
+    implicit def data(tup: (Float,  Float, Float)): Data = Data(tup._1, tup._2, tup._3)
   }
-  final case class Sine3(flags: WaveFill.Flags, partials: Sine3.Data*)
+
+  /** OSC message for filling a buffer with a series of sine waves using specified frequencies, amplitudes,
+    * and phases.
+    *
+    * @param partials   triplets of frequencies, amplitudes and initial phases for the partials.
+    *                   Frequencies are given as in cycles per buffer. Phases are given in radians.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+    *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
+    */
+  final case class Sine3(partials: Seq[(Float, Float, Float)], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
+
+    override def productPrefix = s"BufferGen$$Sine3"
 
     def name = "sine3"
-    def args: Seq[Any] = flags.toInt +: partials.flatMap(d => d.freq :: d.amp :: d.phase :: Nil)
+    def args: Seq[Any] = flags +: partials.flatMap(d => d._1 :: d._2 :: d._3 :: Nil)
   }
 
-  /** Fills a buffer with a series of chebyshev polynomials, which can be defined as:
+  /** OSC message for filling a buffer with a series of Chebyshev polynomials.
+    * The formula of these polynomials is
     * {{{
-    * cheby(n) = amplitude * cos(n * acos(x))
+    * cheby(n) = amplitude  * cos(n * acos(x))
     * }}}
-    * The first float value specifies the amplitude for n = 1, the second float value specifies the amplitude
-    * for n = 2, and so on. To eliminate a DC offset when used as a waveshaper, the wavetable is offset so that
-    * the center value is zero.
+    * To eliminate a DC offset when used as a wave-shaper, the wavetable is offset so that the center value is zero.
+    *
+    * @param amps       amplitudes for the harmonics. amplitudes for the harmonics. The first value specifies
+    *                   the amplitude for n = 1, the second float value specifies the amplitude for n = 2, and so on.
+    * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+    * @param wavetable  if set, the format of the waveform is chosen to be usable by specific UGens
+    *                   such as such as [[de.sciss.synth.ugen.Shaper Shaper]] or
+    *                   [[de.sciss.synth.ugen.Osc Osc]]
+    * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+    *                   to the existing content
     */
-  final case class Cheby(flags: WaveFill.Flags, amps: Float*)
+  final case class Cheby(amps: Seq[Float], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
 
+    override def productPrefix = s"BufferGen$$Cheby"
+
     def name = "cheby"
-    def args: Seq[Any] = flags.toInt +: amps
+    def args: Seq[Any] = flags +: amps
   }
 
   /** Copies samples from the source buffer to the destination buffer specified in the `b_gen` message.
@@ -573,6 +613,8 @@ object BufferGen {
     */
   final case class Copy(targetOffset: Int, source: Int, sourceOffset: Int, num: Int)
     extends Command {
+
+    override def productPrefix = s"BufferGen$$Copy"
 
     def name = "copy"
     def args: Seq[Any] = List(targetOffset, source, sourceOffset, num)
@@ -593,9 +635,9 @@ object BufferGen {
   */
 final case class BufferGen(id: Int, command: BufferGen.Command)
   extends Message("/b_gen", id +: command.name +: command.args: _*)
-  with Send {
+  with AsyncSend {
 
-  def isSynchronous: Boolean = command.isSynchronous
+  // def isSynchronous: Boolean = command.isSynchronous
 }
 
 /** The `/b_get` message.

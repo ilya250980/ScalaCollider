@@ -16,6 +16,7 @@ package de.sciss.synth
 import de.sciss.optional.Optional
 import de.sciss.osc
 import de.sciss.osc.Packet
+import de.sciss.synth.message.BufferGen
 
 import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec}
@@ -518,15 +519,78 @@ object Ops {
     /** Gets ranges of the buffer content and returns them as a future flattened collection. */
     def getn(pairs: Range*): Future[Vec[Float]] = buf_getn(b)(pairs: _*)
 
-    def gen(command: message.BufferGen.Command): Future[Unit] = {
+    def gen(command: BufferGen.Command): Future[Unit] = {
       val m = genMsg(command)
-      if (command.isSynchronous) {
-        server ! m
-        Future.successful(())
-      } else {
+//      if (command.isSynchronous) {
+//        server ! m
+//        Future.successful(())
+//      } else {
         sendSyncBundle(m)
-      }
+//      }
     }
+
+    /** Fills the buffer with a series of sine wave harmonics using specified amplitudes.
+      *
+      * @param partials   amplitudes for the harmonics. The first value specifies the amplitude of the first
+      *                   partial, the second float value specifies the amplitude of the second partial, and so on.
+      * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+      * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+      *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+      * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+      *                   to the existing content
+      */
+    def sine1(partials: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true,
+              clear: Boolean = true): Future[Unit] = sendSyncBundle(sine1Msg(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+    /** Fills the buffer with a series of sine waves using specified frequencies and amplitudes.
+      *
+      * @param partials   pairs of frequencies and amplitudes for the partials.
+      *                   Frequencies are given as in cycles per buffer.
+      * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+      * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+      *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+      * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+      *                   to the existing content
+      */
+    def sine2(partials: Seq[(Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
+              clear: Boolean = true): Future[Unit] = sendSyncBundle(sine2Msg(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+    /** Fills the buffer with a series of sine waves using specified frequencies, amplitudes,
+      * and phases.
+      *
+      * @param partials   triplets of frequencies, amplitudes and initial phases for the partials.
+      *                   Frequencies are given as in cycles per buffer. Phases are given in radians.
+      * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+      * @param wavetable  if set, the format of the waveform is chosen to be usable by interpolating
+      *                   oscillators such as [[de.sciss.synth.ugen.Osc Osc]] or [[de.sciss.synth.ugen.VOsc VOsc]]
+      * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+      *                   to the existing content
+      */
+    def sine3(partials: Seq[(Float, Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
+              clear: Boolean = true): Future[Unit] = sendSyncBundle(sine3Msg(
+      partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
+
+    /** Fills the buffer with a series of Chebyshev polynomials.
+      * The formula of these polynomials is
+      * {{{
+      * cheby(n) = amplitude  * cos(n * acos(x))
+      * }}}
+      * To eliminate a DC offset when used as a wave-shaper, the wavetable is offset so that the center value is zero.
+      *
+      * @param amps       amplitudes for the harmonics. amplitudes for the harmonics. The first value specifies
+      *                   the amplitude for n = 1, the second float value specifies the amplitude for n = 2, and so on.
+      * @param normalize  if set, the peak amplitude of the generated waveform is normalized to `1.0`
+      * @param wavetable  if set, the format of the waveform is chosen to be usable by specific UGens
+      *                   such as such as [[de.sciss.synth.ugen.Shaper Shaper]] or
+      *                   [[de.sciss.synth.ugen.Osc Osc]]
+      * @param clear      if set, the previous content is erased, otherwise the new waveform is added
+      *                   to the existing content
+      */
+    def cheby(amps: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true,
+              clear: Boolean = true): Future[Unit] = sendSyncBundle(chebyMsg(
+      amps = amps, normalize = normalize, wavetable = wavetable, clear = clear))
 
     @inline private def sendSyncBundle(m: osc.Message): Future[Unit] = buf_sendSyncBundle(b)(m)
 

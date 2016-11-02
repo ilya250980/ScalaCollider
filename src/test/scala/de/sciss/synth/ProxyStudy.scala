@@ -4,9 +4,9 @@ import collection.immutable.{IndexedSeq => Vec}
 import language.implicitConversions
 
 object ProxyStudy2 extends App {
-  trait ControlBuilder[Proxy] {
-    def +=(p: Proxy): Unit
-    def result: Seq[Proxy]
+  trait ControlBuilder[P] {
+    def +=(p: P): Unit
+    def result: Seq[P]
   }
 
   trait ControlType {
@@ -76,9 +76,9 @@ object ProxyStudy2 extends App {
 }
 
 object ProxyStudy {
-  trait ControlFactory[Proxy] {
-    def make(): Proxy
-    def result: Seq[Proxy]
+  trait ControlFactory[P] {
+    def make(): P
+    def result: Seq[P]
   }
 
   trait ControlType {

@@ -2,6 +2,14 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v1.22.0
+
+- fixes a bug with `b_gen` marking as synchronous or asynchronous message.
+- adds `ChannelRangeProxy` and corresponding backslash in `GEOps`
+- adds `RepeatChannels`
+- adds `b_gen` OSC message methods to `Buffer` and corresponding
+  commands to `BufferOps`.
+
 ## changes in v1.21.0
 
 - fixes `LocalIn` for SuperCollider 3.6.x. Beware that the argument

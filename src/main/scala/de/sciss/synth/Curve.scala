@@ -83,7 +83,7 @@ object Curve {
   final case class parametric(/*override val */ curvature: Float) extends Curve {
     def id = parametric.id
 
-    override def productPrefix  = "Curve$parametric"
+    override def productPrefix  = s"Curve$$parametric"
     override def toString       = s"parametric($curvature)"
 
     def levelAt(pos: Float, y1: Float, y2: Float) = if (abs(curvature) < 0.0001f) {

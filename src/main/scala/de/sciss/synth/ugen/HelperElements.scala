@@ -67,7 +67,7 @@ object Mix {
   final case class Mono(elem: GE) extends GE.Lazy {
     def numOutputs  = 1
     def rate: MaybeRate = elem.rate
-    override def productPrefix = "Mix$Mono"
+    override def productPrefix = s"Mix$$Mono"
 
     override def toString = s"$productPrefix($elem)"
 
@@ -413,7 +413,94 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   private[synth] def makeUGen(args: Vec[UGenIn]) = () // XXX not used, ugly
 }
 
-/** A graph element that produces an integer sequence
+/** An auxiliary graph element that repeats
+  * the channels of an input signal, allowing
+  * for example for an exhaustive element-wise
+  * combination with another signal.
+  *
+  * Normally, the way multi-channel expansion
+  * works is that when two signals are combined,
+  * the output signal has a number of channels
+  * that is the ''maximum'' of the individual number
+  * of channels, and channels will be automatically
+  * wrapped around.
+  *
+  * For example, in `x * y` if `x` has three and
+  * `y` has five channels, the result expands to
+  *
+  * {{{
+  * Seq[GE](
+  *   x\0 * y\0, x\1 * y\1, x\2 * y\2, x\0 * y\3, x\1 * y\4
+  * }}}
+  *
+  * Using this element, we can enforce the appearance
+  * of all combinations of channels, resulting in a signal
+  * whose number of channels is the ''sum'' of the individual
+  * number of channels.
+  *
+  * For example, `RepeatChannels(x, 5)` expands to
+  *
+  * {{{
+  * Seq[GE](
+  *   x \ 0, x \ 0, x \ 0, x \ 0, x \ 0,
+  *   x \ 1, x \ 1, x \ 1, x \ 1, x \ 1,
+  *   x \ 2, x \ 2, x \ 2, x \ 2, x \ 2
+  * )
+  * }}}
+  *
+  * And `RepeatChannels(x, 5) * y` accordingly expands to
+  * the fifteen-channels signal
+  *
+  * {{{
+  * Seq[GE](
+  *   (x\0) * (y\0), (x\0) * (y\1), (x\0) * (y\2), (x\0) * (y\3), (x\0) * (y\4),
+  *   (x\1) * (y\0), (x\1) * (y\1), (x\1) * (y\2), (x\1) * (y\3), (x\1) * (y\4),
+  *   (x\2) * (y\0), (x\2) * (y\1), (x\2) * (y\2), (x\2) * (y\3), (x\2) * (y\4)
+  * )
+  * }}}
+  *
+  * @see  [[ChannelRangeProxy]]
+  */
+final case class RepeatChannels(a: GE, num: Int) extends GE.Lazy {
+  def rate: MaybeRate = a.rate
+
+  protected def makeUGens: UGenInLike = {
+    val out = a.expand.outputs
+    val seq = Seq.fill(num)(out).transpose.flatten
+    seq: GE
+  }
+}
+
+/** Maps a range of output indices to channel proxies.
+  * Thus, `ChannelRangeProxy(x, a, b)` is the same as
+  * `(a until b).map(ChannelProxy(x, _)): GE`.
+  *
+  * @param  elem  the multi-channel element to index
+  * @param  from  the starting index (inclusive)
+  * @param  until the stopping index (exclusive)
+  * @param  step  the step size from index to index
+  *
+  * @see  [[RepeatChannels]]
+  */
+final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) extends GE.Lazy {
+  def rate  = elem.rate
+
+  def range: Range = Range(from, until, step)
+
+  override def toString =
+    if (step == 1) s"$elem.\\($from until $until)" else s"$elem.\\($from until $until by $step)"
+
+  def makeUGens: UGenInLike = {
+    val r = range
+    if (r.isEmpty) UGenInGroup.empty
+    else {
+      val _elem = elem.expand
+      UGenInGroup(r.map(_elem.unwrap))
+    }
+  }
+}
+
+/** A graph element tGhat produces an integer sequence
   * from zero until the number-of-channels of the input element.
   *
   * @param in the element whose indices to produce

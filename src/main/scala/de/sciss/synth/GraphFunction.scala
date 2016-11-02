@@ -59,7 +59,7 @@ final class GraphFunction[A](val peer: () => A)(implicit val result: GraphFuncti
     val synthDef    = GraphFunction.mkSynthDef(this, fadeTime = fadeTime)
     val synth       = Synth(server)
     val bytes       = synthDef.toBytes()
-    val synthMsg    = synth.newMsg(synthDef.name, target, Seq("i_out" -> outBus, "out" -> outBus), addAction)
+    val synthMsg    = synth.newMsg(synthDef.name, target, ("out" -> outBus) :: Nil, addAction)
     val defFreeMsg  = synthDef.freeMsg
     val completion  = Bundle.now(synthMsg, defFreeMsg)
     if (bytes.remaining > (65535 / 4)) {

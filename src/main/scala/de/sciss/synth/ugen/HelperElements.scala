@@ -492,11 +492,12 @@ final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) e
 
   def makeUGens: UGenInLike = {
     val r = range
-    if (r.isEmpty) UGenInGroup.empty
-    else {
-      val _elem = elem.expand
-      UGenInGroup(r.map(_elem.unwrap))
-    }
+    if (r.isEmpty) return UGenInGroup.empty
+
+    //    val _elem = elem.expand
+    //    UGenInGroup(r.map(_elem.unwrap))
+
+    GESeq(range.map(index => ChannelProxy(elem, index).expand))
   }
 }
 

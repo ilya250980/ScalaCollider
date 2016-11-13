@@ -4,6 +4,15 @@ scala:
   - 2.11.8
   - 2.10.0
 
-jdk:
-  - openjdk7
-  - openjdk6
+env:
+  - JDK=oraclejdk8
+  - JDK=openjdk6
+
+before_script:
+  - jdk_switcher use $JDK
+
+matrix:
+  # scalac 2.10.0 fails with java 8
+  exclude:
+    - scala: 2.10.0
+      env: JDK=oraclejdk8

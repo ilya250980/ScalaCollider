@@ -1,6 +1,6 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.22.1"
+lazy val projectVersion = "1.22.2"
 lazy val mimaVersion    = "1.22.0"   // for compatibility testing
 
 name                 := baseName
@@ -24,7 +24,7 @@ mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.2"
+lazy val ugensVersion     = "1.16.3"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.5"
 lazy val processorVersion = "0.4.0"
@@ -32,7 +32,7 @@ lazy val optionalVersion  = "1.0.0"
 
 // ---- test-only dependencies ----
 
-lazy val scalaTestVersion = "3.0.0"
+lazy val scalaTestVersion = "3.0.1"
 //lazy val dotVersion       = "0.4.0"
 
 libraryDependencies ++= Seq(

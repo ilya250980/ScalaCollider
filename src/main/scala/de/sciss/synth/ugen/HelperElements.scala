@@ -32,7 +32,111 @@ final case class Flatten(elem: GE) extends GE.Lazy {
   protected def makeUGens: UGenInLike = UGenInGroup(elem.expand.flatOutputs)
 }
 
-/** Contains several helper methods to produce mixed (summed) signals. */
+/** A graph element that mixes the channels of a signal together.
+  * It works like the sclang counterpart.
+  *
+  * The `Mix` companion object contains various useful mixing idioms:
+  *
+  * - `Mix.tabulate(n: Int)(fun: Int => GE)`: corresponds to `Seq.tabulate`
+  *   and to `Array.fill` in sclang.
+  * - `Mix.fill(n: Int)(thunk: => GE)`: corresponds to `Seq.fill`.
+  * - `Mix.seq(elems: GE*)`: A shortcut for `Mix(GESeq(elems: _*))`.
+  *
+  * A separate graph element is `Mix.mono`.
+  * `Mix.mono(elem: GE)` flattens all channels of
+  * the input element before summing them, guaranteeing that the result is monophonic.
+  *
+  * Finally, `Mix.fold` is an idiom that not actually adds elements,
+  * but recursively folds them. Thus,
+  * `Mix.fold(elem: GE, n: Int)(fun: GE => GE)` is equivalent to
+  * {{{
+  * (1 to n).foldLeft(elem) { (res, _) => fun(res) }
+  * }}}
+  *
+  * `Mix.fold` is often used in the SuperCollider examples to apply a filtering
+  * process such as reverberation several times. For cases where the iteration
+  * index is needed, the full form as shown above can be used instead.
+  *
+  * ===Examples===
+  *
+  * {{{
+  * // non-nested multi-channel signal reduced to mono (1)
+  * play {
+  *   Mix(SinOsc.ar(440 :: 660 :: Nil)) * 0.2 // --> SinOsc.ar(440) + SinOsc.ar(660)
+  * }
+  * }}}
+  *
+  * {{{
+  * // non-nested multi-channel signal reduced to mono (2)
+  * play {
+  *   Mix(Pan2.ar(SinOsc.ar)) * 0.2 // --> left + right
+  * }
+  * }}}
+  *
+  * {{{
+  * // mix inner channels
+  * play {
+  *   // --> [left(440) + left(660), right(440) + right(660)]
+  *   Mix(Pan2.ar(SinOsc.ar(440 :: 660 :: Nil))) * 0.2
+  * }
+  * }}}
+  *
+  * {{{
+  * // enforce monophonic mix
+  * play {
+  *   // --> left(440) + left(660) + right(440) + right(660)
+  *   Mix.mono(Pan2.ar(SinOsc.ar(440 :: 660 :: Nil))) * 0.2
+  * }
+  * }}}
+  *
+  * {{{
+  * // combine Mix(), Mix.fill(), Mix.fold()
+  * // from original SC examples: reverberated sine percussion
+  * play {
+  *   val d = 6    // number of percolators
+  *   val c = 5    // number of comb delays
+  *   val a = 4    // number of allpass delays
+  *
+  *   // sine percolation sound :
+  *   val s = Mix.fill(d) { Resonz.ar(Dust.ar(2.0 / d) * 50, Rand(200, 3200), 0.003) }
+  *
+  *   // reverb pre-delay time :
+  *   val z = DelayN.ar(s, 0.048)
+  *
+  *   // 'c' length modulated comb delays in parallel :
+  *   val y = Mix(CombL.ar(z, 0.1, LFNoise1.kr(Seq.fill(c)(Rand(0, 0.1))).madd(0.04, 0.05), 15))
+  *
+  *   // chain of 'a' allpass delays on each of two channels (2 times 'a' total) :
+  *   val x = Mix.fold(y, a) { in =>
+  *     AllpassN.ar(in, 0.050, Seq(Rand(0, 0.050), Rand(0, 0.050)), 1)
+  *   }
+  *
+  *   // add original sound to reverb and play it :
+  *   s + 0.2 * x
+  * }
+  * }}}
+  *
+  * {{{
+  * // Mix.tabulate usage
+  * // from original SC examples: harmonic swimming
+  * play {
+  *   val f = 50       // fundamental frequency
+  *   val p = 20       // number of partials per channel
+  *   val offset = Line.kr(0, -0.02, 60, doneAction = freeSelf) // causes sound to separate and fade
+  *   Mix.tabulate(p) { i =>
+  *     FSinOsc.ar(f * (i+1)) * // freq of partial
+  *       LFNoise1.kr(Seq(Rand(2, 10), Rand(2, 10)))  // amplitude rate
+  *       .madd(
+  *         0.02,     // amplitude scale
+  *         offset    // amplitude offset
+  *       ).max(0)    // clip negative amplitudes to zero
+  *   }
+  * }
+  * }}}
+  *
+  * @see [[de.sciss.synth.ugen.Reduce$ Reduce]]
+  * @see [[de.sciss.synth.ugen.BinaryOpUGen$ BinaryOpUGen]]
+  */
 object Mix {
   /** A mixing idiom that corresponds to `Seq.tabulate` and to `Array.fill` in sclang. */
   def tabulate(n: Int)(fun: Int => GE): GE = Mix(GESeq(Vector.tabulate(n)(i => fun(i))))
@@ -40,10 +144,11 @@ object Mix {
   /** A mixing idiom that corresponds to `Seq.fill`. */
   def fill(n: Int)(thunk: => GE): GE = Mix(GESeq(Vector.fill(n)(thunk)))
 
+  /** A shortcut for `Mix(GESeq(elems: _*))`. */
   def seq(elems: GE*): GE = Mix(GESeq(elems.toIndexedSeq))
 
-  /** A special mix that flattens all input elements before summing them,
-    * guaranteeing that result is monophonic.
+  /** A special mix that flattens all channels of
+    * the input element before summing them, guaranteeing that result is monophonic.
     */
   def mono(elem: GE): GE = Mono(elem)
 
@@ -109,16 +214,35 @@ object Mix {
   }
 }
 
-/** Mixes the channels of a signal together. Works exactly like the sclang counterpart.
+/** A graph element that mixes the channels of a signal together.
+  * It works like the sclang counterpart.
   *
-  * Here are some examples:
+  * The `Mix` companion object contains various useful mixing idioms:
   *
+  * - `Mix.tabulate(n: Int)(fun: Int => GE)`: corresponds to `Seq.tabulate`
+  *   and to `Array.fill` in sclang.
+  * - `Mix.fill(n: Int)(thunk: => GE)`: corresponds to `Seq.fill`.
+  * - `Mix.seq(elems: GE*)`: A shortcut for `Mix(GESeq(elems: _*))`.
+  *
+  * A separate graph element is `Mix.mono`.
+  * `Mix.mono(elem: GE)` flattens all channels of
+  * the input element before summing them, guaranteeing that the result is monophonic.
+  *
+  * Finally, `Mix.fold` is an idiom that not actually adds elements,
+  * but recursively folds them. Thus,
+  * `Mix.fold(elem: GE, n: Int)(fun: GE => GE)` is equivalent to
   * {{{
-  * Mix(SinOsc.ar(440 :: 660 :: Nil)) --> SinOsc.ar(440) + SinOsc.ar(660)
-  * Mix(SinOsc.ar(440)) --> SinOsc.ar(440)
-  * Mix(Pan2.ar(SinOsc.ar)) --> left + right
-  * Mix(Pan2.ar(SinOsc.ar(440 :: 660 :: Nil))) --> [left(440) + left(660), right(440) + right(660)]
+  * (1 to n).foldLeft(elem) { (res, _) => fun(res) }
   * }}}
+  *
+  * `Mix.fold` is often used in the SuperCollider examples to apply a filtering
+  * process such as reverberation several times. For cases where the iteration
+  * index is needed, the full form as shown above can be used instead.
+  *
+  * @param  elem  the graph element whose channels to mix together
+  *
+  * @see [[de.sciss.synth.ugen.Reduce$ Reduce]]
+  * @see [[de.sciss.synth.ugen.BinaryOpUGen$ BinaryOpUGen]]
   */
 final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: should not be UGenSource
 
@@ -134,6 +258,32 @@ final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: shou
   }
 }
 
+/** A graph element that interleaves a number of (multi-channel) input signals.
+  * For example, if two stereo-signals `a` and `b` are zipped, the output will be a four-channel
+  * signal corresponding to `[ a \ 0, b \ 0, a \ 1, b \ 1 ]`. If the input signals
+  * have different numbers of channels, the minimum number of channels is used.
+  *
+  * ===Examples===
+  *
+  * {{{
+  * // peak and RMS metering
+  * val x = play {
+  *   val sig   = PhysicalIn.ar(0 to 1)  // stereo input
+  *   val tr    = Impulse.kr(5)
+  *   val peak  = Peak.kr(sig, tr)
+  *   val rms   = A2K.kr(Lag.ar(sig.squared, 0.1))
+  *   SendReply.kr(tr, Zip(peak, rms), "/meter")
+  * }
+  *
+  * val r = message.Responder.add(x.server) {
+  *   case osc.Message("/meter", x.id, _, peakL: Float, rmsL: Float, peakR: Float, rmsR: Float) =>
+  *     println(f"peak-left $peakL%g, rms-left $rmsL%g, peak-right $peakR%g, rms-right $rmsR%g")
+  *
+  * x.free(); r.remove()
+  * }}}
+  *
+  * @param elems  the signals to interleave in a multi-channel output signal
+  */
 final case class Zip(elems: GE*) extends GE.Lazy {
   def rate: MaybeRate = MaybeRate.reduce(elems.map(_.rate): _*)
 
@@ -181,7 +331,7 @@ object WrapOut {
   private def makeFadeEnv(fadeTime: Double): UGenIn = {
     val cFadeTime = "fadeTime".kr(fadeTime)
     val cGate     = "gate".kr(1f)
-    val startVal  = cFadeTime <= 0
+    val startVal  = cFadeTime <= 0f
     val env       = Env(startVal, List(Env.Segment(1, 1, Curve.parametric(-4)), Env.Segment(1, 0, Curve.sine)), 1)
     val res       = EnvGen.kr(env, gate = cGate, timeScale = cFadeTime, doneAction = freeSelf)
     res.expand.flatOutputs.head
@@ -224,9 +374,11 @@ final case class WrapOut(in: GE, fadeTime: Double = 0.02) extends UGenSource.Zer
   *
   * The panning position of each input channel with index `ch` is calculated by the formula:
   * {{{
-  * val pf = 2.0 / (number-of-input-channels - 1) * (number-of-output-channels - 1) / number-of-output-channels
+  * val pf = 2.0 / (num-in-channels - 1) * (num-out-channels - 1) / num-out-channels
   * ch * pf + center
   * }}}
+  *
+  * @see  [[de.sciss.synth.ugen.PanAz$ PanAz]]
   */
 object SplayAz {
   /** @param numChannels  the number of output channels
@@ -236,12 +388,30 @@ object SplayAz {
     * @param level        a global gain factor (see `PanAz`)
     * @param width        the `width` parameter for each `PanAz`
     * @param orient       the `orient` parameter for each `PanAz`
-    *
-    * @see  [[de.sciss.synth.ugen.PanAz]]
     */
   def ar(numChannels: Int, in: GE, spread: GE = 1f, center: GE = 0f, level: GE = 1f, width: GE = 2f, orient: GE = 0f) =
     apply(audio, numChannels, in, spread, center, level, width, orient)
 }
+/** A graph element that spreads a sequence of input channels across a ring of output channels.
+  * This works by feeding each input channel through a dedicated `PanAz` UGen, and mixing the
+  * results together.
+  *
+  * The panning position of each input channel with index `ch` is calculated by the formula:
+  * {{{
+  * val pf = 2.0 / (num-in-channels - 1) * (num-out-channels - 1) / num-out-channels
+  * ch * pf + center
+  * }}}
+  *
+  * @param numChannels  the number of output channels
+  * @param in           the input signal
+  * @param spread       the spacing between input channels with respect to the output panning
+  * @param center       the position of the first channel (see `PanAz`)
+  * @param level        a global gain factor (see `PanAz`)
+  * @param width        the `width` parameter for each `PanAz`
+  * @param orient       the `orient` parameter for each `PanAz`
+  *
+  * @see  [[de.sciss.synth.ugen.PanAz$ PanAz]]
+  */
 final case class SplayAz(rate: Rate, numChannels: Int, in: GE, spread: GE, center: GE, level: GE, width: GE, orient: GE)
   extends GE.Lazy {
 
@@ -261,7 +431,18 @@ final case class SplayAz(rate: Rate, numChannels: Int, in: GE, spread: GE, cente
 /** A graph element which maps a linear range to another linear range.
   * The equivalent formula is `(in - srcLo) / (srcHi - srcLo) * (dstHi - dstLo) + dstLo`.
   *
-  * '''Note''': No clipping is performed. If the input signal exceeds the input range, the output will also exceed its range.
+  * '''Note''': No clipping is performed. If the input signal exceeds the input range,
+  * the output will also exceed its range.
+  *
+  * ===Examples===
+  *
+  * {{{
+  * // oscillator to frequency range
+  * play {
+  *   val mod = SinOsc.kr(Line.kr(1, 10, 10))
+  *   SinOsc.ar(LinLin(mod, -1, 1, 100, 900)) * 0.1
+  * }
+  * }}}
   *
   * @param in              The input signal to convert.
   * @param srcLo           The lower limit of input range.
@@ -269,8 +450,9 @@ final case class SplayAz(rate: Rate, numChannels: Int, in: GE, spread: GE, cente
   * @param dstLo           The lower limit of output range.
   * @param dstHi           The upper limit of output range.
   *
-  * @see [[de.sciss.synth.ugen.LinExp]]
-  * @see [[de.sciss.synth.ugen.Clip]]
+  * @see [[de.sciss.synth.ugen.LinExp$ LinExp]]
+  * @see [[de.sciss.synth.ugen.Clip$ Clip]]
+  * @see [[de.sciss.synth.ugen.MulAdd MulAdd]]
   */
 final case class LinLin(/* rate: MaybeRate, */ in: GE, srcLo: GE = 0f, srcHi: GE = 1f, dstLo: GE = 0f, dstHi: GE = 1f)
   extends GE.Lazy {
@@ -284,12 +466,23 @@ final case class LinLin(/* rate: MaybeRate, */ in: GE, srcLo: GE = 0f, srcHi: GE
   }
 }
 
+/** A graph element that produces a constant silent
+  * (zero) audio-rate output signal.
+  *
+  * @see [[de.sciss.synth.ugen.DC$ DC]]
+  */
 object Silent {
   def ar: Silent = ar()
 
-  def ar(numChannels: Int = 1) = apply(numChannels)
+  def ar(numChannels: Int = 1): Silent = apply(numChannels)
 }
-
+/** A graph element that produces a constant silent
+  * (zero) audio-rate output signal.
+  *
+  * @param numChannels  the number of output channels
+  *
+  * @see [[de.sciss.synth.ugen.DC$ DC]]
+  */
 final case class Silent(numChannels: Int) extends GE.Lazy with AudioRated {
 
   protected def makeUGens: UGenInLike = {
@@ -365,9 +558,10 @@ final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy 
       Vector.tabulate(_indices.size)(ch => iNumCh(ch % iNumCh.size))
     }
 
-    Flatten((_indices zip _numChannels).map {
+    val ins  = (_indices zip _numChannels).map {
       case (index, num) => In.ar(index + offset, num)
-    })
+    }
+    Flatten(ins)
   }
 }
 
@@ -376,11 +570,16 @@ final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy 
   * corresponding channels of the input signal are mapped, whereas multichannel expansion
   * with respect to the index argument of `Out` typically do not achieve what you expect.
   *
-  * For example, to flip left and right when writing a stereo signal:
+  * ===Examples===
   *
   * {{{
-  * // sine appears on the right channel, and noise on the left
-  * play { PhysicalOut( Seq( 1, 0 ), Seq( SinOsc.ar * LFPulse.ar(4), WhiteNoise.ar ) * 0.2 )}
+  * // flip left and right when writing a stereo signal
+  * play {
+  *   val indices = Seq(1, 0)
+  *   val in:GE   = Seq(SinOsc.ar * LFPulse.ar(4), WhiteNoise.ar)
+  *   // sine appears on the right channel, and noise on the left
+  *   PhysicalOut(indices, in * 0.2)
+  * }
   * }}}
   */
 object PhysicalOut {
@@ -393,6 +592,17 @@ object PhysicalOut {
   def ar(indices: GE = 0, in: GE): PhysicalOut = apply(indices, in)
 }
 
+/** A graph element which writes to a connected sound driver output. This is a convenience
+  * element for `Out` with the ability to provide a set of discrete indices to which
+  * corresponding channels of the input signal are mapped, whereas multichannel expansion
+  * with respect to the index argument of `Out` typically do not achieve what you expect.
+  *
+  * @param indices       the physical index to write to (beginning at zero which corresponds to
+  *                      the first channel of the audio interface or sound driver). may be a
+  *                      multichannel argument to specify discrete channels. In this case, any
+  *                      remaining channels in `in` are associated with the last bus index offset.
+  * @param in            the signal to write
+  */
 final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut with AudioRated {
   // XXX TODO: should not be UGenSource
 
@@ -431,6 +641,7 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   * {{{
   * Seq[GE](
   *   x\0 * y\0, x\1 * y\1, x\2 * y\2, x\0 * y\3, x\1 * y\4
+  * )
   * }}}
   *
   * Using this element, we can enforce the appearance
@@ -459,6 +670,9 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   * )
   * }}}
   *
+  * @param  a   the signal whose channels to repeat
+  * @param  num the number of repetitions for each input channel
+  *
   * @see  [[ChannelRangeProxy]]
   */
 final case class RepeatChannels(a: GE, num: Int) extends GE.Lazy {
@@ -471,16 +685,37 @@ final case class RepeatChannels(a: GE, num: Int) extends GE.Lazy {
   }
 }
 
-/** Maps a range of output indices to channel proxies.
-  * Thus, `ChannelRangeProxy(x, a, b)` is the same as
+/** A helper graph element that selects a particular range of
+  * output channel of another element. The range is specified with
+  * integers and thus cannot be determined at graph expansion time.
+  * If this is desired, the `Select` UGen can be used.
+  *
+  * Usually the graph element operator `\` (backlash) along with
+  * a standard Scala `Range` argument can be used
+  * instead of explicitly writing `ChannelRangeProxy`. Thus
+  * `elem \ (0 until 4)` selects the first four channels and is
+  * equivalent to `ChannelRangeProxy(elem, from = 0, until = 4, step = 1)`.
+  *
+  * Behind the scene, `ChannelProxy` instances are created, thus
+  * `ChannelRangeProxy(x, a, b)` is the same as
   * `(a until b).map(ChannelProxy(x, _)): GE`.
   *
-  * @param  elem  the multi-channel element to index
-  * @param  from  the starting index (inclusive)
-  * @param  until the stopping index (exclusive)
-  * @param  step  the step size from index to index
+  * Because ScalaCollider allows late-expanding
+  * graph elements, we have no direct way to get some
+  * array of a UGen's outputs.
   *
-  * @see  [[RepeatChannels]]
+  * @param  elem  a multi-channel element from which to select channels.
+  * @param  from  the first index (inclusive) of the channel range, counting from zero.
+  * @param  until the end index (exclusive) of the channel range, counting from zero.
+  * @param  step  the increment from index to index in the range. A value of one
+  *               means all channels from `from` until `until` will be selected. A
+  *               value of two means, every second channel will be skipped. A negative
+  *               value can be used to count down from high to low indices.
+  *
+  * @see [[de.sciss.synth.ugen.NumChannels NumChannels]]
+  * @see [[de.sciss.synth.ugen.Select$ Select]]
+  * @see [[de.sciss.synth.ugen.ChannelProxy ChannelProxy]]
+  * @see [[de.sciss.synth.ugen.RepeatChannels RepeatChannels]]
   */
 final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) extends GE.Lazy {
   def rate  = elem.rate
@@ -501,10 +736,27 @@ final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) e
   }
 }
 
-/** A graph element tGhat produces an integer sequence
+/** A graph element that produces an integer sequence
   * from zero until the number-of-channels of the input element.
   *
+  * ===Examples===
+  *
+  * {{{
+  * // cross-faded select
+  * play {
+  *   val sines: GE = Seq.fill(4)(SinOsc.ar(ExpRand(200, 2000)))
+  *   val index   = MouseX.kr(lo = 0, hi = NumChannels(sines) - 1)
+  *   val indices = ChannelIndices(sines)
+  *   indices.poll(0, "indices")
+  *   val select  = 1 - (indices absdif index).min(1)
+  *   val sig     = Mix(sines * select)
+  *   sig * 0.2
+  * }
+  * }}}
+  *
   * @param in the element whose indices to produce
+  *
+  * @see [[de.sciss.synth.ugen.NumChannels NumChannels]]
   */
 final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with ScalarRated {
   protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
@@ -514,7 +766,26 @@ final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with Scalar
 
 /** A graph element that produces an integer with number-of-channels of the input element.
   *
+  * Because ScalaCollider allows late-expanding
+  * graph elements, we have no direct way to get an integer of some
+  * array-size of a UGen's outputs. On the other hand, there may be
+  * sound synthesis definitions that can abstract over the number of
+  * channels at definition time.
+  *
+  * ===Examples===
+  *
+  * {{{
+  * // amplitude compensation
+  * play {
+  *   val sines: GE = Seq.fill(8)(SinOsc.ar(ExpRand(200, 2000)))
+  *   val norm = Mix(sines) / NumChannels(sines)   // guarantee that they don't clip
+  *   norm * 0.2
+  * }
+  * }}}
+  *
   * @param in the element whose number-of-channels to produce
+  *
+  * @see [[de.sciss.synth.ugen.ChannelIndices ChannelIndices]]
   */
 final case class NumChannels(in: GE) extends UGenSource.SingleOut with ScalarRated {
   protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
@@ -522,23 +793,11 @@ final case class NumChannels(in: GE) extends UGenSource.SingleOut with ScalarRat
   private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
 }
 
+/** A graph element that controls the multi-channel expansion of
+  * its `in` argument to match the `to` argument by padding (extending
+  * and wrapping) it.
+  */
 object Pad {
-// Note: this is not needed any longer, because now LocalIn takes a GE argument
-// Before: `Pad.LocalIn(ref)`. Now: `LocalIn(Pad(0, ref))`.
-//
-//  object LocalIn {
-//    def ar(ref: GE): LocalIn = apply(audio  , ref)
-//    def kr(ref: GE): LocalIn = apply(control, ref)
-//  }
-//  final case class LocalIn(rate: Rate, ref: GE) extends GE.Lazy {
-//    override def productPrefix = "Pad$LocalIn"
-//
-//    protected def makeUGens: UGenInLike = {
-//      val numChannels = ref.expand.flatOutputs.size
-//      ugen.LocalIn(rate, init = GESeq(Vector.fill(numChannels)(Constant.C0)))
-//    }
-//  }
-
   /** Enforces multi-channel expansion for the input argument
     * even if it is passed into a vararg input of another UGen.
     * This is done by wrapping it in a `GESeq`.

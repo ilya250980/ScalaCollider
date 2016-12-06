@@ -73,7 +73,7 @@ final case class StatusReply(numUGens: Int, numSynths: Int, numGroups: Int, numD
 
   override def toString(): String = {
     val s1 = f"numUGens = $numUGens, numSynths = $numSynths, numGroups = $numGroups"
-    val s2 = f"cpu = ${avgCPU*100}%1.1f%%/${peakCPU*100}%1.1f%%, sampleRate = $sampleRate%1.0f/$actualSampleRate%1.2f"
+    val s2 = f"cpu = $avgCPU%1.1f%%/$peakCPU%1.1f%%, sampleRate = $sampleRate%1.0f/$actualSampleRate%1.2f"
     s"$productPrefix($s1, $s2)"
   }
 }

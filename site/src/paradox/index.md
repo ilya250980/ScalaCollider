@@ -1,13 +1,27 @@
 # ScalaCollider
 
 ScalaCollider is a real-time sound synthesis and signal processing system, based on [SuperCollider](http://supercollider.sf.net) and the [Scala programming language](http://scala-lang.org/). It can be used as a _library_ in a Scala application, but there is also a small stand-alone _prototyping environment_ called ScalaCollider-Swing.
-ScalaCollider is [open source software](https://github.com/Sciss/ScalaCollider), released under the GNU Lesser General Public License.
 
-SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language 'SCLang' that controls the sound synthesis processes on a server, 'scsynth'. ScalaCollider is an alternative to 'SCLang', giving you the (perhaps) familiar Scala language to express these sound synthesis processes, and letting you hook up any other Scala, Java or JVM-based libraries. ScalaCollider's function is more reduced than 'SCLang', focusing on UGen graphs and server-side resources such as buses and buffers. Other functionality is part of the standard Scala library, e.g. collections and GUI. Other functionality, such as plotting, MIDI, client-side sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries. The documentation on this site assumes some familiarity with SuperCollider, and will do its best to help users coming from SuperCollider to understand the basic concepts of Scala and ScalaCollider.
+SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language, sclang, that controls the sound synthesis processes on a server, scsynth. ScalaCollider is an alternative to sclang, giving you the (perhaps) familiar Scala language to express these sound synthesis processes, and letting you hook up any other Scala, Java or JVM-based libraries.
 
-## download and resources
+ScalaCollider
+:   @@snip [Comparison.scala](/../../snippets/src/main/scala/Comparison.scala) { #comparison }
 
-The current version of ScalaCollider (the library) can be downloaded from [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
+sclang
+:   @@snip [Comparison.scd](/../../snippets/src/main/supercollider/Comparison.scd) { #comparison }
+
+ScalaCollider's function is more reduced than sclang's, focusing on UGen graphs and server-side resources such as buses and buffers. Other functionality is part of the standard Scala library, e.g. collections and GUI. Other functionality, such as plotting, MIDI, client-side sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries. The documentation on this site assumes some familiarity with SuperCollider, and will do its best to help users coming from SuperCollider to understand the basic concepts of Scala and ScalaCollider.
+
+## download
+
+To start hacking straight away, download the latest version @var[swingversion] of ScalaCollider-Swing:
+
+- [All Platforms](https://github.com/Sciss/ScalaColliderSwing/releases/download/v@var:[scalacollider-swing.version]/scalacolliderswing-1.31.0-universal.zip)
+- [Debian Package](https://github.com/Sciss/ScalaColliderSwing/releases/download/v1.31.0/ScalaCollider_1.31.0_all.deb)
+
+If you want to build from the source code, go to [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
+
+## resources
 
 The best way to ask questions, no matter if newbie or expert, is to use the mailing list at [groups.google.com/group/scalacollider](http://groups.google.com/group/scalacollider). To subscribe, simply send a mail to `ScalaCollider+subscribe@googlegroups.com` (you will receive a mail asking for confirmation).
 
@@ -42,28 +56,6 @@ Server.run(cfg) { s =>
   }
 }    
 ```
-
-### Specifying SC_HOME
-
-__Note__: This section is mostly irrelevant on Linux, where `scsynth` is normally found on `$PATH`, and thus no further customisation is needed.
-
-You might omit to set the `program` of the server's configuration, as ScalaCollider will by default read the system property `SC_HOME`, and if that is not set, the environment variable `SC_HOME`. Environment variables are stored depending on your operating system. On OS X, if you use the app-bundle of ScalaCollider-Swing, you can access them from the terminal:
-
-    $ mkdir ~/.MacOSX
-    $ touch ~/.MacOSX/environment.plist
-    $ open ~/.MacOSX/environment.plist
-
-Here, `open` should launch the PropertyEditor. Otherwise you can edit this file using a text editor. The content will be like this:
-
-    {
-      "SC_HOME" = "/Applications/SuperCollider_3.6.5/SuperCollider.app/Contents/Resources/";
-    }
-
-On the other hand, if you run ScalaCollider from a Bash terminal, you edit `~/.bash_profile` instead. The entry is something like:
-
-    export SC_HOME=/path/to/folder-of-scsynth
-
-On linux, the environment variables probably go in `~/.profile`.
 
 For more sound examples, see `ExampleCmd.sc`. There is also an introductory video for the [Swing frontend](http://github.com/Sciss/ScalaColliderSwing) at [www.screencast.com/t/YjUwNDZjMT](http://www.screencast.com/t/YjUwNDZjMT).
 

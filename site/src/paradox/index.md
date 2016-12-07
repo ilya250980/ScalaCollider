@@ -14,48 +14,23 @@ ScalaCollider's function is more reduced than sclang's, focusing on UGen graphs 
 
 ## download
 
-To start hacking straight away, download the latest version @var[swingversion] of ScalaCollider-Swing:
+To start hacking straight away, download the [latest version](https://github.com/Sciss/ScalaColliderSwing/releases/latest) of ScalaCollider-Swing:
 
-- [All Platforms](https://github.com/Sciss/ScalaColliderSwing/releases/download/v@var:[scalacollider-swing.version]/scalacolliderswing-1.31.0-universal.zip)
-- [Debian Package](https://github.com/Sciss/ScalaColliderSwing/releases/download/v1.31.0/ScalaCollider_1.31.0_all.deb)
+- @extref[All Platforms](swingdl:_universal.zip)
+- @extref[Debian Package](swingdl:_all.deb)
 
 If you want to build from the source code, go to [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
 
+In order to run ScalaCollider, you also need to have installed on your computer:
+
+- [Java](https://www.java.com/download/) (Java 8 is recommended, but Java 6 should suffice) 
+- [SuperCollider](https://supercollider.github.io/download) (version 3.7.2 is recommended, but 3.6.x nd 3.8.0 should work, too)
+
 ## resources
 
-The best way to ask questions, no matter if newbie or expert, is to use the mailing list at [groups.google.com/group/scalacollider](http://groups.google.com/group/scalacollider). To subscribe, simply send a mail to `ScalaCollider+subscribe@googlegroups.com` (you will receive a mail asking for confirmation).
+The best way to ask questions, no matter if newbie or expert, is to use one of the following channels:
 
-The early architectural design of ScalaCollider is documented in the SuperCollider 2010 symposium proceedings: [H.H.Rutz, Rethinking the SuperCollider Client...](http://cmr.soc.plymouth.ac.uk/publications/Rutz_SuperCollider2010.pdf). However, many design decisions have been revised or refined in the meantime.
+- the mailing list at [groups.google.com/group/scalacollider](http://groups.google.com/group/scalacollider). To subscribe, simply send a mail to `ScalaCollider+subscribe@googlegroups.com` (you will receive a mail asking for confirmation).
+- the chat channel at [gitter.im/Sciss/ScalaCollider](https://gitter.im/Sciss/ScalaCollider). You need a GitHub or Twitter account to sign in.
 
-The file [ExampleCmd.sc](https://raw.githubusercontent.com/Sciss/ScalaCollider/master/ExampleCmd.sc) is a good starting point for understanding how UGen graphs are written in ScalaCollider. You can directly copy and paste these examples into the ScalaCollider-Swing application's interpreter window.
-
-See the section 'starting a SuperCollider server' below, for another simple example of running a server (possibly from your own application code).
-
-## starting a SuperCollider server
-
-The following short example illustrates how a server can be launched and a synth played:
-
-```scala
-import de.sciss.synth._
-import ugen._
-import Ops._
-
-val cfg = Server.Config()
-cfg.program = "/path/to/scsynth"
-// runs a server and executes the function
-// when the server is booted, with the
-// server as its argument 
-Server.run(cfg) { s =>
-  // play is imported from package de.sciss.synth.
-  // it provides a convenience method for wrapping
-  // a synth graph function in an `Out` element
-  // and playing it back.
-  play {
-    val f = LFSaw.kr(0.4).madd(24, LFSaw.kr(Seq(8, 7.23)).madd(3, 80)).midicps
-    CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4)
-  }
-}    
-```
-
-For more sound examples, see `ExampleCmd.sc`. There is also an introductory video for the [Swing frontend](http://github.com/Sciss/ScalaColliderSwing) at [www.screencast.com/t/YjUwNDZjMT](http://www.screencast.com/t/YjUwNDZjMT).
-
+The file [ExampleCmd.sc](https://raw.githubusercontent.com/Sciss/ScalaCollider/master/ExampleCmd.sc) is a good starting point for understanding how UGen graphs are written in ScalaCollider. You can directly copy and paste these examples into the ScalaCollider-Swing prototyping environment. If you start it for the first time, you may have to adjust the location of the `scsynth` or `scsynth.exe` program in the preferences. Press the boot button to fire up the SuperCollider server. Then, select an example and press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute. Hover over a UGen name (e.g. `Mix` or `SinOsc`) and press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open its help file.

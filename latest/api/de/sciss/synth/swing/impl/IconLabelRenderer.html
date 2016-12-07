@@ -1,0 +1,1685 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>IconLabelRenderer - ScalaCollider 1.22.2 API - de.sciss.synth.swing.impl.IconLabelRenderer</title>
+          <meta name="description" content="IconLabelRenderer - ScalaCollider 1.22.2 API - de.sciss.synth.swing.impl.IconLabelRenderer" />
+          <meta name="keywords" content="IconLabelRenderer ScalaCollider 1.22.2 API de.sciss.synth.swing.impl.IconLabelRenderer" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'de.sciss.synth.swing.impl.IconLabelRenderer';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Class" src="../../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="de">de</a>.<a href="../../../package.html" class="extype" name="de.sciss">sciss</a>.<a href="../../package.html" class="extype" name="de.sciss.synth">synth</a>.<a href="../package.html" class="extype" name="de.sciss.synth.swing">swing</a>.<a href="package.html" class="extype" name="de.sciss.synth.swing.impl">impl</a></p>
+        <h1>IconLabelRenderer</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="de.sciss.synth.swing.impl">package impl</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IconLabelRenderer</span><span class="result"> extends <span class="extype" name="prefuse.render.AbstractShapeRenderer">AbstractShapeRenderer</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Renderer that draws a label, which consists of a text string,
+an icon, or both. This is based on the prefuse <code>LabelRenderer</code>
+class, but changes image for icon. It was converted from Java to Scala,
+so the code looks a bit ugly.</p><p>When created using the default constructor, the renderer attempts
+to use text from the &quot;label&quot; field. To use a different field, use the
+appropriate constructor or use the <code>setTextField</code> method.
+To perform custom String selection, subclass this Renderer and override the
+<code>getText</code> method. When the text field is
+<code>null</code>, no text label will be shown. Labels can span multiple
+lines of text, determined by the presence of newline characters ('\n')
+within the text string.</p><p>By default, no icon is shown. To show an icon, the icon field needs
+to be set, either using the appropriate constructor or the
+<code>setIconField</code> method. The value of the icon field should
+be an <code>Icon</code> instance to use.</p><p>The position of the icon relative to text can be set using the
+<code>setIconPosition</code> method. Images can be placed to the
+left, right, above, or below the text. The horizontal and vertical
+alignments of either the text or the icon can be set explicitly
+using the appropriate methods of this class (e.g.,
+<code>setHorizontalTextAlignment</code>). By default, both the
+text and icon are centered along both the horizontal and
+vertical directions.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="prefuse.render.AbstractShapeRenderer">AbstractShapeRenderer</span>, <span class="extype" name="prefuse.render.Renderer">Renderer</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="de.sciss.synth.swing.impl.IconLabelRenderer"><span>IconLabelRenderer</span></li><li class="in" name="prefuse.render.AbstractShapeRenderer"><span>AbstractShapeRenderer</span></li><li class="in" name="prefuse.render.Renderer"><span>Renderer</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="de.sciss.synth.swing.impl.IconLabelRenderer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(textField:String,iconField:String):de.sciss.synth.swing.impl.IconLabelRenderer"></a>
+      <a id="&lt;init&gt;:IconLabelRenderer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IconLabelRenderer</span><span class="params">(<span name="textField">textField: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="iconField">iconField: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@&lt;init&gt;(textField:String,iconField:String):de.sciss.synth.swing.impl.IconLabelRenderer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a new LabelRenderer.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new LabelRenderer. Draws a text label using the given text
+data field, and draws the icon at the location reported by the
+given icon data field.</p></div><dl class="paramcmts block"><dt class="param">textField</dt><dd class="cmt"><p>the data field for the text label</p></dd><dt class="param">iconField</dt><dd class="cmt"><p>the data field for the icon location. This value
+                 in the data field should be an <code>Icon</code>, or null for no icon. If the
+                 <code>iconField</code> parameter is null, no icon at all will be drawn.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(textField:String):de.sciss.synth.swing.impl.IconLabelRenderer"></a>
+      <a id="&lt;init&gt;:IconLabelRenderer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IconLabelRenderer</span><span class="params">(<span name="textField">textField: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@&lt;init&gt;(textField:String):de.sciss.synth.swing.impl.IconLabelRenderer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a new LabelRenderer.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new LabelRenderer. Draws a text label using the given
+text data field and does not draw an icon.</p></div><dl class="paramcmts block"><dt class="param">textField</dt><dd class="cmt"><p>the data field for the text label.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():de.sciss.synth.swing.impl.IconLabelRenderer"></a>
+      <a id="&lt;init&gt;:IconLabelRenderer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IconLabelRenderer</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@&lt;init&gt;():de.sciss.synth.swing.impl.IconLabelRenderer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@##():Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#drawShape" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drawShape(x$1:java.awt.Graphics2D,x$2:prefuse.visual.VisualItem,x$3:java.awt.Shape):Unit"></a>
+      <a id="drawShape(Graphics2D,VisualItem,Shape):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">drawShape</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.awt.Graphics2D">Graphics2D</span></span>, <span name="arg1">arg1: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="arg2">arg2: <span class="extype" name="java.awt.Shape">Shape</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@drawShape(x$1:java.awt.Graphics2D,x$2:prefuse.visual.VisualItem,x$3:java.awt.Shape):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$render.html" class="extype" name="prefuse.render">prefuse.render</a>] </dd><dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#getIcon" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getIcon(item:prefuse.visual.VisualItem):javax.swing.Icon"></a>
+      <a id="getIcon(VisualItem):Icon"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getIcon</span><span class="params">(<span name="item">item: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="javax.swing.Icon">Icon</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getIcon(item:prefuse.visual.VisualItem):javax.swing.Icon" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the icon to draw.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the icon to draw. Subclasses can override
+this class to perform custom icon selection beyond looking up the value
+from a data field.</p></div><dl class="paramcmts block"><dt class="param">item</dt><dd class="cmt"><p>the item for which to select an icon to draw</p></dd><dt>returns</dt><dd class="cmt"><p>the icon to use, or null for no icon</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#getRawShape" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getRawShape(item:prefuse.visual.VisualItem):java.awt.Shape"></a>
+      <a id="getRawShape(VisualItem):Shape"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getRawShape</span><span class="params">(<span name="item">item: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="java.awt.Shape">Shape</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getRawShape(item:prefuse.visual.VisualItem):java.awt.Shape" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.swing.impl.IconLabelRenderer">IconLabelRenderer</a> → AbstractShapeRenderer</dd><dt>See also</dt><dd><span class="cmt"><p>prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem)</p></span></dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#getRenderType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getRenderType(x$1:prefuse.visual.VisualItem):Int"></a>
+      <a id="getRenderType(VisualItem):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getRenderType</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getRenderType(x$1:prefuse.visual.VisualItem):Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#getShape" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getShape(x$1:prefuse.visual.VisualItem):java.awt.Shape"></a>
+      <a id="getShape(VisualItem):Shape"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getShape</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="java.awt.Shape">Shape</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getShape(x$1:prefuse.visual.VisualItem):java.awt.Shape" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#getStroke" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStroke(x$1:prefuse.visual.VisualItem):java.awt.BasicStroke"></a>
+      <a id="getStroke(VisualItem):BasicStroke"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStroke</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="java.awt.BasicStroke">BasicStroke</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getStroke(x$1:prefuse.visual.VisualItem):java.awt.BasicStroke" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$render.html" class="extype" name="prefuse.render">prefuse.render</a>] </dd><dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#getText" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getText(item:prefuse.visual.VisualItem):String"></a>
+      <a id="getText(VisualItem):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getText</span><span class="params">(<span name="item">item: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getText(item:prefuse.visual.VisualItem):String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the text to draw.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the text to draw. Subclasses can override this class to
+perform custom text selection.</p></div><dl class="paramcmts block"><dt class="param">item</dt><dd class="cmt"><p>the item to represent as a <code>String</code></p></dd><dt>returns</dt><dd class="cmt"><p>a <code>String</code> to draw</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#getTransform" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTransform(x$1:prefuse.visual.VisualItem):java.awt.geom.AffineTransform"></a>
+      <a id="getTransform(VisualItem):AffineTransform"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTransform</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="java.awt.geom.AffineTransform">AffineTransform</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@getTransform(x$1:prefuse.visual.VisualItem):java.awt.geom.AffineTransform" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$render.html" class="extype" name="prefuse.render">prefuse.render</a>] </dd><dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalAlignment:Int"></a>
+      <a id="horizontalAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">horizontalAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the horizontal alignment of this node with respect to its
+x, y coordinates.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the horizontal alignment of this node with respect to its
+x, y coordinates.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the horizontal alignment, one of
+        { @link prefuse.Constants#LEFT}, { @link prefuse.Constants#RIGHT}, or
+        { @link prefuse.Constants#CENTER}.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalAlignment_=(value:Int):Unit"></a>
+      <a id="horizontalAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: horizontalAlignment_$eq" class="name">horizontalAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the horizontal alignment of this node with respect to its
+x, y coordinates.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the horizontal alignment of this node with respect to its
+x, y coordinates.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the horizontal alignment, one of
+             { @link prefuse.Constants#LEFT}, { @link prefuse.Constants#RIGHT}, or
+             { @link prefuse.Constants#CENTER}.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalIconAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalIconAlignment:Int"></a>
+      <a id="horizontalIconAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">horizontalIconAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalIconAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the horizontal icon alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the horizontal icon alignment within the layout. One of
+<code>Constants.LEFT</code>, <code>Constants.RIGHT</code>, or
+<code>Constants.CENTER</code>. The default is a centered icon.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the horizontal icon alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalIconAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalIconAlignment_=(value:Int):Unit"></a>
+      <a id="horizontalIconAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: horizontalIconAlignment_$eq" class="name">horizontalIconAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalIconAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the horizontal icon alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the horizontal icon alignment within the layout. One of
+<code>Constants.LEFT</code>, <code>Constants.RIGHT</code>, or
+<code>Constants.CENTER</code>. The default is a centered icon.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the desired horizontal icon alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalPadding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalPadding:Int"></a>
+      <a id="horizontalPadding:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">horizontalPadding</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalPadding:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the amount of padding in pixels between the content
+and the border of this item along the horizontal dimension.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the amount of padding in pixels between the content
+and the border of this item along the horizontal dimension.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the horizontal padding</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalPadding_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalPadding_=(value:Int):Unit"></a>
+      <a id="horizontalPadding_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: horizontalPadding_$eq" class="name">horizontalPadding_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalPadding_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the amount of padding in pixels between the content
+and the border of this item along the horizontal dimension.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the amount of padding in pixels between the content
+and the border of this item along the horizontal dimension.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the horizontal padding to set</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalTextAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalTextAlignment:Int"></a>
+      <a id="horizontalTextAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">horizontalTextAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalTextAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the horizontal text alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the horizontal text alignment within the layout. One of
+<code>Constants.LEFT</code>, <code>Constants.RIGHT</code>, or
+<code>Constants.CENTER</code>. The default is centered text.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the horizontal text alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#horizontalTextAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="horizontalTextAlignment_=(value:Int):Unit"></a>
+      <a id="horizontalTextAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: horizontalTextAlignment_$eq" class="name">horizontalTextAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@horizontalTextAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the horizontal text alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the horizontal text alignment within the layout. One of
+<code>Constants.LEFT</code>, <code>Constants.RIGHT</code>, or
+<code>Constants.CENTER</code>. The default is centered text.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the desired horizontal text alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconField" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconField:String"></a>
+      <a id="iconField:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">iconField</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconField:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the data field for icon locations.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the data field for icon locations. The value stored
+in the data field should be an <code>Icon</code>, or null for no icon.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the data field for icon locations, or null for no icon</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconField_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconField_=(value:String):Unit"></a>
+      <a id="iconField_=(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: iconField_$eq" class="name">iconField_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconField_=(value:String):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the data field for icon locations.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the data field for icon locations. The value stored
+in the data field should be an <code>Icon</code>, or null for no icon. If the
+<code>iconField</code> parameter is null, no icons at all will be
+drawn.
+</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the data field for icon locations, or null for
+             no icons</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconPosition" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconPosition:Int"></a>
+      <a id="iconPosition:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">iconPosition</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconPosition:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the icon position, determining where the icon is placed with
+respect to the text.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the icon position, determining where the icon is placed with
+respect to the text. One of <code>Constants.LEFT</code>,
+<code>Constants.RIGHT</code>, <code>Constants.TOP</code>, or
+<code>Constants.BOTTOM</code>.  The default is left.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the icon position</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconPosition_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconPosition_=(value:Int):Unit"></a>
+      <a id="iconPosition_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: iconPosition_$eq" class="name">iconPosition_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconPosition_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the icon position, determining where the icon is placed with
+respect to the text.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the icon position, determining where the icon is placed with
+respect to the text. One of <code>Constants.LEFT</code>,
+<code>Constants.RIGHT</code>, <code>Constants.TOP</code>, or
+<code>Constants.BOTTOM</code>.  The default is left.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the desired icon position</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconTextPadding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconTextPadding:Int"></a>
+      <a id="iconTextPadding:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">iconTextPadding</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconTextPadding:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the padding, in pixels, between an icon and text.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the padding, in pixels, between an icon and text.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the padding between an icon and text</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#iconTextPadding_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iconTextPadding_=(value:Int):Unit"></a>
+      <a id="iconTextPadding_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: iconTextPadding_$eq" class="name">iconTextPadding_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@iconTextPadding_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the padding, in pixels, between an icon and text.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the padding, in pixels, between an icon and text.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the padding to use between an icon and text</p></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#locatePoint" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="locatePoint(x$1:java.awt.geom.Point2D,x$2:prefuse.visual.VisualItem):Boolean"></a>
+      <a id="locatePoint(Point2D,VisualItem):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">locatePoint</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.awt.geom.Point2D">Point2D</span></span>, <span name="arg1">arg1: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@locatePoint(x$1:java.awt.geom.Point2D,x$2:prefuse.visual.VisualItem):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer → Renderer</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_arcHeight" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_arcHeight:Int"></a>
+      <a id="m_arcHeight:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_arcHeight</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_arcHeight:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_arcWidth" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_arcWidth:Int"></a>
+      <a id="m_arcWidth:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_arcWidth</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_arcWidth:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_bBox" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_bBox:java.awt.geom.RectangularShape"></a>
+      <a id="m_bBox:RectangularShape"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_bBox</span><span class="result">: <span class="extype" name="java.awt.geom.RectangularShape">RectangularShape</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_bBox:java.awt.geom.RectangularShape" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The holder for the currently computed bounding box</p><div class="fullcomment"><div class="comment cmt"><p>The holder for the currently computed bounding box</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_delim" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_delim:String"></a>
+      <a id="m_delim:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_delim</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_delim:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_font" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_font:java.awt.Font"></a>
+      <a id="m_font:Font"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_font</span><span class="result">: <span class="extype" name="java.awt.Font">Font</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_font:java.awt.Font" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_hIconAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_hIconAlign:Int"></a>
+      <a id="m_hIconAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_hIconAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_hIconAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_hTextAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_hTextAlign:Int"></a>
+      <a id="m_hTextAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_hTextAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_hTextAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_horizBorder" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_horizBorder:Int"></a>
+      <a id="m_horizBorder:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_horizBorder</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_horizBorder:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_iconMargin" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_iconMargin:Int"></a>
+      <a id="m_iconMargin:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_iconMargin</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_iconMargin:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_iconName" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_iconName:String"></a>
+      <a id="m_iconName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_iconName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_iconName:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_iconPos" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_iconPos:Int"></a>
+      <a id="m_iconPos:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_iconPos</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_iconPos:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_labelName" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_labelName:String"></a>
+      <a id="m_labelName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_labelName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_labelName:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_maxTextWidth" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_maxTextWidth:Int"></a>
+      <a id="m_maxTextWidth:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_maxTextWidth</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_maxTextWidth:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_pt" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_pt:java.awt.geom.Point2D"></a>
+      <a id="m_pt:Point2D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_pt</span><span class="result">: <span class="extype" name="java.awt.geom.Point2D">Point2D</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_pt:java.awt.geom.Point2D" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_text" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_text:String"></a>
+      <a id="m_text:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_text</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_text:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_textDim" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_textDim:java.awt.Dimension"></a>
+      <a id="m_textDim:Dimension"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_textDim</span><span class="result">: <span class="extype" name="java.awt.Dimension">Dimension</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_textDim:java.awt.Dimension" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_vIconAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_vIconAlign:Int"></a>
+      <a id="m_vIconAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_vIconAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_vIconAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_vTextAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_vTextAlign:Int"></a>
+      <a id="m_vTextAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_vTextAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_vTextAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_vertBorder" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_vertBorder:Int"></a>
+      <a id="m_vertBorder:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_vertBorder</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_vertBorder:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_xAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_xAlign:Int"></a>
+      <a id="m_xAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_xAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_xAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#m_yAlign" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="m_yAlign:Int"></a>
+      <a id="m_yAlign:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">m_yAlign</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@m_yAlign:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#maximumTextWidth" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="maximumTextWidth:Int"></a>
+      <a id="maximumTextWidth:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">maximumTextWidth</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@maximumTextWidth:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#maximumTextWidth_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="maximumTextWidth_=(value:Int):Unit"></a>
+      <a id="maximumTextWidth_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: maximumTextWidth_$eq" class="name">maximumTextWidth_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@maximumTextWidth_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the maximum width that should be allowed of the text label.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the maximum width that should be allowed of the text label.
+A value of -1 specifies no limit (this is the default).</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the maximum width of the text or -1 for no limit</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#mkAlignedPoint" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkAlignedPoint(p:java.awt.geom.Point2D,item:prefuse.visual.VisualItem,w:Double,h:Double,xAlign:Int,yAlign:Int):Unit"></a>
+      <a id="mkAlignedPoint(Point2D,VisualItem,Double,Double,Int,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkAlignedPoint</span><span class="params">(<span name="p">p: <span class="extype" name="java.awt.geom.Point2D">Point2D</span></span>, <span name="item">item: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="w">w: <span class="extype" name="scala.Double">Double</span></span>, <span name="h">h: <span class="extype" name="scala.Double">Double</span></span>, <span name="xAlign">xAlign: <span class="extype" name="scala.Int">Int</span></span>, <span name="yAlign">yAlign: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@mkAlignedPoint(p:java.awt.geom.Point2D,item:prefuse.visual.VisualItem,w:Double,h:Double,xAlign:Int,yAlign:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Helper method, which calculates the top-left co-ordinate of an item
+given the item's alignment.</p><div class="fullcomment"><div class="comment cmt"><p>Helper method, which calculates the top-left co-ordinate of an item
+given the item's alignment.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#render" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="render(g:java.awt.Graphics2D,item:prefuse.visual.VisualItem):Unit"></a>
+      <a id="render(Graphics2D,VisualItem):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">render</span><span class="params">(<span name="g">g: <span class="extype" name="java.awt.Graphics2D">Graphics2D</span></span>, <span name="item">item: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@render(g:java.awt.Graphics2D,item:prefuse.visual.VisualItem):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.swing.impl.IconLabelRenderer">IconLabelRenderer</a> → AbstractShapeRenderer → Renderer</dd><dt>See also</dt><dd><span class="cmt"><p>prefuse.render.Renderer#render(java.awt.Graphics2D, prefuse.visual.VisualItem)</p></span></dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#setBounds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setBounds(x$1:prefuse.visual.VisualItem):Unit"></a>
+      <a id="setBounds(VisualItem):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setBounds</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@setBounds(x$1:prefuse.visual.VisualItem):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer → Renderer</dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#setManageBounds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setManageBounds(x$1:Boolean):Unit"></a>
+      <a id="setManageBounds(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setManageBounds</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@setManageBounds(x$1:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="prefuse.render.AbstractShapeRenderer#setRenderType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setRenderType(x$1:Int):Unit"></a>
+      <a id="setRenderType(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setRenderType</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@setRenderType(x$1:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractShapeRenderer</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#setRoundedCorner" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setRoundedCorner(arcWidth:Int,arcHeight:Int):Unit"></a>
+      <a id="setRoundedCorner(Int,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setRoundedCorner</span><span class="params">(<span name="arcWidth">arcWidth: <span class="extype" name="scala.Int">Int</span></span>, <span name="arcHeight">arcHeight: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@setRoundedCorner(arcWidth:Int,arcHeight:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Rounds the corners of the bounding rectangle in which the text
+string is rendered.</p><div class="fullcomment"><div class="comment cmt"><p>Rounds the corners of the bounding rectangle in which the text
+string is rendered. This will only be seen if either the stroke
+or fill color is non-transparent.</p></div><dl class="paramcmts block"><dt class="param">arcWidth</dt><dd class="cmt"><p>the width of the curved corner</p></dd><dt class="param">arcHeight</dt><dd class="cmt"><p>the height of the curved corner</p></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#textField" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="textField:String"></a>
+      <a id="textField:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">textField</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@textField:String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the field name to use for text labels.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the field name to use for text labels.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the data field for text labels, or null for no text</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#textField_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="textField_=(value:String):Unit"></a>
+      <a id="textField_=(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: textField_$eq" class="name">textField_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@textField_=(value:String):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the field name to use for text labels.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the field name to use for text labels.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the data field for text labels, or null for no text</p></dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@toString():String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalAlignment:Int"></a>
+      <a id="verticalAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">verticalAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the vertical alignment of this node with respect to its
+x, y coordinates.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the vertical alignment of this node with respect to its
+x, y coordinates.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the vertical alignment, one of
+        { @link prefuse.Constants#TOP}, { @link prefuse.Constants#BOTTOM}, or
+        { @link prefuse.Constants#CENTER}.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalAlignment_=(value:Int):Unit"></a>
+      <a id="verticalAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: verticalAlignment_$eq" class="name">verticalAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the vertical alignment of this node with respect to its
+x, y coordinates.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the vertical alignment of this node with respect to its
+x, y coordinates.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the vertical alignment, one of
+             { @link prefuse.Constants#TOP}, { @link prefuse.Constants#BOTTOM}, or
+             { @link prefuse.Constants#CENTER}.</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalIconAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalIconAlignment:Int"></a>
+      <a id="verticalIconAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">verticalIconAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalIconAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the vertical icon alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the vertical icon alignment within the layout. One of
+<code>Constants.TOP</code>, <code>Constants.BOTTOM</code>, or
+<code>Constants.CENTER</code>. The default is a centered icon.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the vertical icon alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalIconAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalIconAlignment_=(value:Int):Unit"></a>
+      <a id="verticalIconAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: verticalIconAlignment_$eq" class="name">verticalIconAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalIconAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the vertical icon alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the vertical icon alignment within the layout. One of
+<code>Constants.TOP</code>, <code>Constants.BOTTOM</code>, or
+<code>Constants.CENTER</code>. The default is a centered icon.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the desired vertical icon alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalPadding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalPadding:Int"></a>
+      <a id="verticalPadding:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">verticalPadding</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalPadding:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the amount of padding in pixels between the content
+and the border of this item along the vertical dimension.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the amount of padding in pixels between the content
+and the border of this item along the vertical dimension.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the vertical padding</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalPadding_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalPadding_=(value:Int):Unit"></a>
+      <a id="verticalPadding_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: verticalPadding_$eq" class="name">verticalPadding_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalPadding_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the amount of padding in pixels between the content
+and the border of this item along the vertical dimension.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the amount of padding in pixels between the content
+and the border of this item along the vertical dimension.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the vertical padding</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalTextAlignment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalTextAlignment:Int"></a>
+      <a id="verticalTextAlignment:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">verticalTextAlignment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalTextAlignment:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gets the vertical text alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the vertical text alignment within the layout. One of
+<code>Constants.TOP</code>, <code>Constants.BOTTOM</code>, or
+<code>Constants.CENTER</code>. The default is centered text.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the vertical text alignment</p></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.IconLabelRenderer#verticalTextAlignment_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="verticalTextAlignment_=(value:Int):Unit"></a>
+      <a id="verticalTextAlignment_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: verticalTextAlignment_$eq" class="name">verticalTextAlignment_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@verticalTextAlignment_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the vertical text alignment within the layout.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the vertical text alignment within the layout. One of
+<code>Constants.TOP</code>, <code>Constants.BOTTOM</code>, or
+<code>Constants.CENTER</code>. The default is centered text.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the desired vertical text alignment</p></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.IconLabelRenderer@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="prefuse.render.AbstractShapeRenderer">
+              <h3>Inherited from <span class="extype" name="prefuse.render.AbstractShapeRenderer">AbstractShapeRenderer</span></h3>
+            </div><div class="parent" name="prefuse.render.Renderer">
+              <h3>Inherited from <span class="extype" name="prefuse.render.Renderer">Renderer</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Zip - de.sciss.synth.ugen.Zip</title>
-          <meta name="description" content="Zip - de.sciss.synth.ugen.Zip" />
-          <meta name="keywords" content="Zip de.sciss.synth.ugen.Zip" />
+          <title>Zip - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Zip</title>
+          <meta name="description" content="Zip - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Zip" />
+          <meta name="keywords" content="Zip ScalaCollider 1.22.2 API de.sciss.synth.ugen.Zip" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -49,9 +49,25 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A graph element that interleaves a number of (multi-channel) input signals.
+For example, if two stereo-signals <code>a</code> and <code>b</code> are zipped, the output will be a four-channel
+signal corresponding to <code>[ a \ 0, b \ 0, a \ 1, b \ 1 ]</code>. If the input signals
+have different numbers of channels, the minimum number of channels is used.</p><h5>Examples</h5><pre><span class="cmt">// peak and RMS metering</span>
+<span class="kw">val</span> x = play {
+  <span class="kw">val</span> sig   = PhysicalIn.ar(<span class="num">0</span> to <span class="num">1</span>)  <span class="cmt">// stereo input</span>
+  <span class="kw">val</span> tr    = Impulse.kr(<span class="num">5</span>)
+  <span class="kw">val</span> peak  = Peak.kr(sig, tr)
+  <span class="kw">val</span> rms   = A2K.kr(Lag.ar(sig.squared, <span class="num">0.1</span>))
+  SendReply.kr(tr, Zip(peak, rms), <span class="lit">"/meter"</span>)
+}
+
+<span class="kw">val</span> r = message.Responder.add(x.server) {
+  <span class="kw">case</span> osc.Message(<span class="lit">"/meter"</span>, x.id, _, peakL: <span class="std">Float</span>, rmsL: <span class="std">Float</span>, peakR: <span class="std">Float</span>, rmsR: <span class="std">Float</span>) <span class="kw">=&gt;</span>
+    println(f<span class="lit">"peak-left $peakL%g, rms-left $rmsL%g, peak-right $peakR%g, rms-right $rmsR%g"</span>)
+
+x.free(); r.remove()</pre></div><dl class="paramcmts block"><dt class="param">elems</dt><dd class="cmt"><p>the signals to interleave in a multi-channel output signal</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -88,7 +104,7 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="de.sciss.synth.ugen.Zip#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="de.sciss.synth.ugen.Zip#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="&lt;init&gt;(elems:de.sciss.synth.GE*):de.sciss.synth.ugen.Zip"></a>
       <a id="&lt;init&gt;:Zip"></a>
       <h4 class="signature">
@@ -104,7 +120,7 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">elems</dt><dd class="cmt"><p>the signals to interleave in a multi-channel output signal</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -191,7 +207,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Zip@clone():Object" title="Permalink" target="_top">
@@ -221,7 +237,7 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">the signals to interleave in a multi-channel output signal</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -231,7 +247,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Zip@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -326,7 +342,7 @@ expansion
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Zip@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -497,7 +513,7 @@ expansion
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

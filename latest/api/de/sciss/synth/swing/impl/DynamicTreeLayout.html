@@ -1,0 +1,1328 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>DynamicTreeLayout - ScalaCollider 1.22.2 API - de.sciss.synth.swing.impl.DynamicTreeLayout</title>
+          <meta name="description" content="DynamicTreeLayout - ScalaCollider 1.22.2 API - de.sciss.synth.swing.impl.DynamicTreeLayout" />
+          <meta name="keywords" content="DynamicTreeLayout ScalaCollider 1.22.2 API de.sciss.synth.swing.impl.DynamicTreeLayout" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'de.sciss.synth.swing.impl.DynamicTreeLayout';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="DynamicTreeLayout$.html" title="See companion object"><img alt="Class/Object" src="../../../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../../../package.html" class="extype" name="de">de</a>.<a href="../../../package.html" class="extype" name="de.sciss">sciss</a>.<a href="../../package.html" class="extype" name="de.sciss.synth">synth</a>.<a href="../package.html" class="extype" name="de.sciss.synth.swing">swing</a>.<a href="package.html" class="extype" name="de.sciss.synth.swing.impl">impl</a></p>
+        <h1><a href="DynamicTreeLayout$.html" title="See companion object">DynamicTreeLayout</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="DynamicTreeLayout$.html" title="See companion object">object DynamicTreeLayout</a>
+            | <a href="package.html" class="extype" name="de.sciss.synth.swing.impl">package impl</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DynamicTreeLayout</span><span class="result"> extends <span class="extype" name="prefuse.action.layout.Layout">Layout</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="prefuse.action.layout.Layout">Layout</span>, <span class="extype" name="prefuse.action.GroupAction">GroupAction</span>, <span class="extype" name="prefuse.action.Action">Action</span>, <span class="extype" name="prefuse.activity.Activity">Activity</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="de.sciss.synth.swing.impl.DynamicTreeLayout"><span>DynamicTreeLayout</span></li><li class="in" name="prefuse.action.layout.Layout"><span>Layout</span></li><li class="in" name="prefuse.action.GroupAction"><span>GroupAction</span></li><li class="in" name="prefuse.action.Action"><span>Action</span></li><li class="in" name="prefuse.activity.Activity"><span>Activity</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@##():Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#addActivityListener" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addActivityListener(x$1:prefuse.activity.ActivityListener):Unit"></a>
+      <a id="addActivityListener(ActivityListener):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addActivityListener</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.activity.ActivityListener">ActivityListener</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@addActivityListener(x$1:prefuse.activity.ActivityListener):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#alwaysRunAfter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="alwaysRunAfter(x$1:prefuse.activity.Activity):Unit"></a>
+      <a id="alwaysRunAfter(Activity):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">alwaysRunAfter</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.activity.Activity">Activity</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@alwaysRunAfter(x$1:prefuse.activity.Activity):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#breadthSpacing" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="breadthSpacing:Double"></a>
+      <a id="breadthSpacing:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">breadthSpacing</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@breadthSpacing:Double" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="prefuse.activity.Activity#cancel" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="cancel():Unit"></a>
+      <a id="cancel():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cancel</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@cancel():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#depthSpacing" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="depthSpacing:Double"></a>
+      <a id="depthSpacing:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">depthSpacing</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@depthSpacing:Double" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="prefuse.activity.Activity#fireActivityCancelled" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fireActivityCancelled():Unit"></a>
+      <a id="fireActivityCancelled():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fireActivityCancelled</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@fireActivityCancelled():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$activity.html" class="extype" name="prefuse.activity">prefuse.activity</a>] </dd><dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#fireActivityFinished" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fireActivityFinished():Unit"></a>
+      <a id="fireActivityFinished():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fireActivityFinished</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@fireActivityFinished():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$activity.html" class="extype" name="prefuse.activity">prefuse.activity</a>] </dd><dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#fireActivityScheduled" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fireActivityScheduled():Unit"></a>
+      <a id="fireActivityScheduled():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fireActivityScheduled</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@fireActivityScheduled():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$activity.html" class="extype" name="prefuse.activity">prefuse.activity</a>] </dd><dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#fireActivityStarted" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fireActivityStarted():Unit"></a>
+      <a id="fireActivityStarted():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fireActivityStarted</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@fireActivityStarted():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$activity.html" class="extype" name="prefuse.activity">prefuse.activity</a>] </dd><dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#fireActivityStepped" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fireActivityStepped():Unit"></a>
+      <a id="fireActivityStepped():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fireActivityStepped</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@fireActivityStepped():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$activity.html" class="extype" name="prefuse.activity">prefuse.activity</a>] </dd><dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getDuration" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDuration():Long"></a>
+      <a id="getDuration():Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDuration</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getDuration():Long" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.action.GroupAction#getGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getGroup():String"></a>
+      <a id="getGroup():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getGroup</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getGroup():String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>GroupAction</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#getLayoutAnchor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getLayoutAnchor():java.awt.geom.Point2D"></a>
+      <a id="getLayoutAnchor():Point2D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getLayoutAnchor</span><span class="params">()</span><span class="result">: <span class="extype" name="java.awt.geom.Point2D">Point2D</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getLayoutAnchor():java.awt.geom.Point2D" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.swing.impl.DynamicTreeLayout">DynamicTreeLayout</a> → Layout</dd><dt>See also</dt><dd><span class="cmt"><p>prefuse.action.layout.Layout#getLayoutAnchor()</p></span></dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#getLayoutBounds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getLayoutBounds():java.awt.geom.Rectangle2D"></a>
+      <a id="getLayoutBounds():Rectangle2D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getLayoutBounds</span><span class="params">()</span><span class="result">: <span class="extype" name="java.awt.geom.Rectangle2D">Rectangle2D</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getLayoutBounds():java.awt.geom.Rectangle2D" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getNextTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getNextTime():Long"></a>
+      <a id="getNextTime():Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getNextTime</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getNextTime():Long" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getPace" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPace(x$1:Long):Double"></a>
+      <a id="getPace(Long):Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPace</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getPace(x$1:Long):Double" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getPacingFunction" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPacingFunction():prefuse.activity.Pacer"></a>
+      <a id="getPacingFunction():Pacer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPacingFunction</span><span class="params">()</span><span class="result">: <span class="extype" name="prefuse.activity.Pacer">Pacer</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getPacingFunction():prefuse.activity.Pacer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getStartTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStartTime():Long"></a>
+      <a id="getStartTime():Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStartTime</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getStartTime():Long" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getStepTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStepTime():Long"></a>
+      <a id="getStepTime():Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStepTime</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getStepTime():Long" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#getStopTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStopTime():Long"></a>
+      <a id="getStopTime():Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStopTime</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getStopTime():Long" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.action.Action#getVisualization" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getVisualization():prefuse.Visualization"></a>
+      <a id="getVisualization():Visualization"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getVisualization</span><span class="params">()</span><span class="result">: <span class="extype" name="prefuse.Visualization">Visualization</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@getVisualization():prefuse.Visualization" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Action</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#initSchema" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="initSchema(ts:prefuse.data.tuple.TupleSet):Unit"></a>
+      <a id="initSchema(TupleSet):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">initSchema</span><span class="params">(<span name="ts">ts: <span class="extype" name="prefuse.data.tuple.TupleSet">TupleSet</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@initSchema(ts:prefuse.data.tuple.TupleSet):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="prefuse.activity.Activity#isEnabled" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isEnabled():Boolean"></a>
+      <a id="isEnabled():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isEnabled</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@isEnabled():Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#isRunning" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isRunning():Boolean"></a>
+      <a id="isRunning():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isRunning</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@isRunning():Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#isScheduled" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isScheduled():Boolean"></a>
+      <a id="isScheduled():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isScheduled</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@isScheduled():Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#layoutRoot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="layoutRoot:prefuse.visual.NodeItem"></a>
+      <a id="layoutRoot:NodeItem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">layoutRoot</span><span class="result">: <span class="extype" name="prefuse.visual.NodeItem">NodeItem</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@layoutRoot:prefuse.visual.NodeItem" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"> Returns the NodeItem to use as the root for this tree layout.</p><div class="fullcomment"><div class="comment cmt"><p> Returns the NodeItem to use as the root for this tree layout.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the root node to use for this tree layout.</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalStateException"><code>IllegalStateException</code></span> if the action's data group does not
+                              resolve to a <code>prefuse.data.Graph</code> instance.</p></span></dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#layoutRoot_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="layoutRoot_=(value:prefuse.visual.NodeItem):Unit"></a>
+      <a id="layoutRoot_=(NodeItem):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: layoutRoot_$eq" class="name">layoutRoot_=</span><span class="params">(<span name="value">value: <span class="extype" name="prefuse.visual.NodeItem">NodeItem</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@layoutRoot_=(value:prefuse.visual.NodeItem):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Explicitly sets the node to use as the layout root.</p><div class="fullcomment"><div class="comment cmt"><p>Explicitly sets the node to use as the layout root.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the node to use as the root. If the node is not a member of this layout's
+data group, an exception will be thrown.</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if the provided root is not a member of
+this layout's data group.</p></span></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#orientation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="orientation:Int"></a>
+      <a id="orientation:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">orientation</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@orientation:Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#orientation_=" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="orientation_=(value:Int):Unit"></a>
+      <a id="orientation_=(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: orientation_$eq" class="name">orientation_=</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@orientation_=(value:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="prefuse.activity.Activity#removeActivityListener" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="removeActivityListener(x$1:prefuse.activity.ActivityListener):Unit"></a>
+      <a id="removeActivityListener(ActivityListener):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">removeActivityListener</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.activity.ActivityListener">ActivityListener</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@removeActivityListener(x$1:prefuse.activity.ActivityListener):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#rootNodeOffset" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="rootNodeOffset:Double"></a>
+      <a id="rootNodeOffset:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rootNodeOffset</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@rootNodeOffset:Double" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run(frac:Double):Unit"></a>
+      <a id="run(Double):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">(<span name="frac">frac: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@run(frac:Double):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.swing.impl.DynamicTreeLayout">DynamicTreeLayout</a> → GroupAction → Action</dd><dt>See also</dt><dd><span class="cmt"><p>prefuse.action.Action#run(double)</p></span></dd></dl></div>
+    </li><li name="prefuse.action.Action#run" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run(x$1:Long):Unit"></a>
+      <a id="run(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@run(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../prefuse$action.html" class="extype" name="prefuse.action">prefuse.action</a>] </dd><dt>Definition Classes</dt><dd>Action → Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run():Unit"></a>
+      <a id="run():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@run():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#runAfter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="runAfter(x$1:prefuse.activity.Activity):Unit"></a>
+      <a id="runAfter(Activity):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runAfter</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.activity.Activity">Activity</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@runAfter(x$1:prefuse.activity.Activity):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#runAt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="runAt(x$1:Long):Unit"></a>
+      <a id="runAt(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runAt</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@runAt(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#setDuration" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setDuration(x$1:Long):Unit"></a>
+      <a id="setDuration(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setDuration</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setDuration(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#setEnabled" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setEnabled(x$1:Boolean):Unit"></a>
+      <a id="setEnabled(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setEnabled</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setEnabled(x$1:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.action.GroupAction#setGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setGroup(x$1:String):Unit"></a>
+      <a id="setGroup(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setGroup</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setGroup(x$1:String):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>GroupAction</dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#setLayoutAnchor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setLayoutAnchor(x$1:java.awt.geom.Point2D):Unit"></a>
+      <a id="setLayoutAnchor(Point2D):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setLayoutAnchor</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.awt.geom.Point2D">Point2D</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setLayoutAnchor(x$1:java.awt.geom.Point2D):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#setLayoutBounds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setLayoutBounds(x$1:java.awt.geom.Rectangle2D):Unit"></a>
+      <a id="setLayoutBounds(Rectangle2D):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setLayoutBounds</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.awt.geom.Rectangle2D">Rectangle2D</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setLayoutBounds(x$1:java.awt.geom.Rectangle2D):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#setMargin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setMargin(x$1:Int,x$2:Int,x$3:Int,x$4:Int):Unit"></a>
+      <a id="setMargin(Int,Int,Int,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setMargin</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setMargin(x$1:Int,x$2:Int,x$3:Int,x$4:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#setPacingFunction" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setPacingFunction(x$1:prefuse.activity.Pacer):Unit"></a>
+      <a id="setPacingFunction(Pacer):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setPacingFunction</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.activity.Pacer">Pacer</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setPacingFunction(x$1:prefuse.activity.Pacer):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#setStartTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setStartTime(x$1:Long):Unit"></a>
+      <a id="setStartTime(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setStartTime</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setStartTime(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.activity.Activity#setStepTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setStepTime(x$1:Long):Unit"></a>
+      <a id="setStepTime(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setStepTime</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setStepTime(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Activity</dd></dl></div>
+    </li><li name="prefuse.action.Action#setVisualization" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setVisualization(x$1:prefuse.Visualization):Unit"></a>
+      <a id="setVisualization(Visualization):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setVisualization</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.Visualization">Visualization</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setVisualization(x$1:prefuse.Visualization):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Action</dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#setX" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setX(x$1:prefuse.visual.VisualItem,x$2:prefuse.visual.VisualItem,x$3:Double):Unit"></a>
+      <a id="setX(VisualItem,VisualItem,Double):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setX</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="arg1">arg1: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setX(x$1:prefuse.visual.VisualItem,x$2:prefuse.visual.VisualItem,x$3:Double):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="prefuse.action.layout.Layout#setY" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setY(x$1:prefuse.visual.VisualItem,x$2:prefuse.visual.VisualItem,x$3:Double):Unit"></a>
+      <a id="setY(VisualItem,VisualItem,Double):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setY</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="arg1">arg1: <span class="extype" name="prefuse.visual.VisualItem">VisualItem</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@setY(x$1:prefuse.visual.VisualItem,x$2:prefuse.visual.VisualItem,x$3:Double):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Layout</dd></dl></div>
+    </li><li name="de.sciss.synth.swing.impl.DynamicTreeLayout#subtreeSpacing" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="subtreeSpacing:Double"></a>
+      <a id="subtreeSpacing:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">subtreeSpacing</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@subtreeSpacing:Double" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@toString():String" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#de.sciss.synth.swing.impl.DynamicTreeLayout@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="prefuse.action.layout.Layout">
+              <h3>Inherited from <span class="extype" name="prefuse.action.layout.Layout">Layout</span></h3>
+            </div><div class="parent" name="prefuse.action.GroupAction">
+              <h3>Inherited from <span class="extype" name="prefuse.action.GroupAction">GroupAction</span></h3>
+            </div><div class="parent" name="prefuse.action.Action">
+              <h3>Inherited from <span class="extype" name="prefuse.action.Action">Action</span></h3>
+            </div><div class="parent" name="prefuse.activity.Activity">
+              <h3>Inherited from <span class="extype" name="prefuse.activity.Activity">Activity</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

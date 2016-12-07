@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Mix - de.sciss.synth.ugen.Mix</title>
-          <meta name="description" content="Mix - de.sciss.synth.ugen.Mix" />
-          <meta name="keywords" content="Mix de.sciss.synth.ugen.Mix" />
+          <title>Mix - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Mix</title>
+          <meta name="description" content="Mix - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Mix" />
+          <meta name="keywords" content="Mix ScalaCollider 1.22.2 API de.sciss.synth.ugen.Mix" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,70 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Contains several helper methods to produce mixed (summed) signals.</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A graph element that mixes the channels of a signal together.
+It works like the sclang counterpart.</p><p>The <code>Mix</code> companion object contains various useful mixing idioms:</p><p>- <code>Mix.tabulate(n: Int)(fun: Int =&gt; GE)</code>: corresponds to <code>Seq.tabulate</code>
+  and to <code>Array.fill</code> in sclang.
+- <code>Mix.fill(n: Int)(thunk: =&gt; GE)</code>: corresponds to <code>Seq.fill</code>.
+- <code>Mix.seq(elems: GE*)</code>: A shortcut for <code>Mix(GESeq(elems: _*))</code>.</p><p>A separate graph element is <code>Mix.mono</code>.
+<code>Mix.mono(elem: GE)</code> flattens all channels of
+the input element before summing them, guaranteeing that the result is monophonic.</p><p>Finally, <code>Mix.fold</code> is an idiom that not actually adds elements,
+but recursively folds them. Thus,
+<code>Mix.fold(elem: GE, n: Int)(fun: GE =&gt; GE)</code> is equivalent to</p><pre>(<span class="num">1</span> to n).foldLeft(elem) { (res, _) <span class="kw">=&gt;</span> fun(res) }</pre><p><code>Mix.fold</code> is often used in the SuperCollider examples to apply a filtering
+process such as reverberation several times. For cases where the iteration
+index is needed, the full form as shown above can be used instead.</p><h5>Examples</h5><pre><span class="cmt">// non-nested multi-channel signal reduced to mono (1)</span>
+play {
+  Mix(SinOsc.ar(<span class="num">440</span> :: <span class="num">660</span> :: Nil)) * <span class="num">0.2</span> <span class="cmt">// --> SinOsc.ar(440) + SinOsc.ar(660)</span>
+}</pre><pre><span class="cmt">// non-nested multi-channel signal reduced to mono (2)</span>
+play {
+  Mix(Pan2.ar(SinOsc.ar)) * <span class="num">0.2</span> <span class="cmt">// --> left + right</span>
+}</pre><pre><span class="cmt">// mix inner channels</span>
+play {
+  <span class="cmt">// --> [left(440) + left(660), right(440) + right(660)]</span>
+  Mix(Pan2.ar(SinOsc.ar(<span class="num">440</span> :: <span class="num">660</span> :: Nil))) * <span class="num">0.2</span>
+}</pre><pre><span class="cmt">// enforce monophonic mix</span>
+play {
+  <span class="cmt">// --> left(440) + left(660) + right(440) + right(660)</span>
+  Mix.mono(Pan2.ar(SinOsc.ar(<span class="num">440</span> :: <span class="num">660</span> :: Nil))) * <span class="num">0.2</span>
+}</pre><pre><span class="cmt">// combine Mix(), Mix.fill(), Mix.fold()</span>
+<span class="cmt">// from original SC examples: reverberated sine percussion</span>
+play {
+  <span class="kw">val</span> d = <span class="num">6</span>    <span class="cmt">// number of percolators</span>
+  <span class="kw">val</span> c = <span class="num">5</span>    <span class="cmt">// number of comb delays</span>
+  <span class="kw">val</span> a = <span class="num">4</span>    <span class="cmt">// number of allpass delays</span>
+
+  <span class="cmt">// sine percolation sound :</span>
+  <span class="kw">val</span> s = Mix.fill(d) { Resonz.ar(Dust.ar(<span class="num">2.0</span> / d) * <span class="num">50</span>, Rand(<span class="num">200</span>, <span class="num">3200</span>), <span class="num">0.003</span>) }
+
+  <span class="cmt">// reverb pre-delay time :</span>
+  <span class="kw">val</span> z = DelayN.ar(s, <span class="num">0.048</span>)
+
+  <span class="cmt">// 'c' length modulated comb delays in parallel :</span>
+  <span class="kw">val</span> y = Mix(CombL.ar(z, <span class="num">0.1</span>, LFNoise1.kr(<span class="std">Seq</span>.fill(c)(Rand(<span class="num">0</span>, <span class="num">0.1</span>))).madd(<span class="num">0.04</span>, <span class="num">0.05</span>), <span class="num">15</span>))
+
+  <span class="cmt">// chain of 'a' allpass delays on each of two channels (2 times 'a' total) :</span>
+  <span class="kw">val</span> x = Mix.fold(y, a) { in <span class="kw">=&gt;</span>
+    AllpassN.ar(in, <span class="num">0.050</span>, <span class="std">Seq</span>(Rand(<span class="num">0</span>, <span class="num">0.050</span>), Rand(<span class="num">0</span>, <span class="num">0.050</span>)), <span class="num">1</span>)
+  }
+
+  <span class="cmt">// add original sound to reverb and play it :</span>
+  s + <span class="num">0.2</span> * x
+}</pre><pre><span class="cmt">// Mix.tabulate usage</span>
+<span class="cmt">// from original SC examples: harmonic swimming</span>
+play {
+  <span class="kw">val</span> f = <span class="num">50</span>       <span class="cmt">// fundamental frequency</span>
+  <span class="kw">val</span> p = <span class="num">20</span>       <span class="cmt">// number of partials per channel</span>
+  <span class="kw">val</span> offset = Line.kr(<span class="num">0</span>, -<span class="num">0.02</span>, <span class="num">60</span>, doneAction = freeSelf) <span class="cmt">// causes sound to separate and fade</span>
+  Mix.tabulate(p) { i <span class="kw">=&gt;</span>
+    FSinOsc.ar(f * (i+<span class="num">1</span>)) * <span class="cmt">// freq of partial</span>
+      LFNoise1.kr(<span class="std">Seq</span>(Rand(<span class="num">2</span>, <span class="num">10</span>), Rand(<span class="num">2</span>, <span class="num">10</span>)))  <span class="cmt">// amplitude rate</span>
+      .madd(
+        <span class="num">0.02</span>,     <span class="cmt">// amplitude scale</span>
+        offset    <span class="cmt">// amplitude offset</span>
+      ).max(<span class="num">0</span>)    <span class="cmt">// clip negative amplitudes to zero</span>
+  }
+}</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="BinaryOpUGen$.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">BinaryOpUGen</a></p></span><span class="cmt"><p><a href="Reduce$.html" class="extype" name="de.sciss.synth.ugen.Reduce">Reduce</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -193,7 +254,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Mix$@clone():Object" title="Permalink" target="_top">
@@ -216,7 +277,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Mix$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -368,8 +429,8 @@ can be used instead.
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">A special mix that flattens all input elements before summing them,
-guaranteeing that result is monophonic.</p>
+      <p class="shortcomment cmt">A special mix that flattens all channels of
+the input element before summing them, guaranteeing that result is monophonic.</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -379,7 +440,7 @@ guaranteeing that result is monophonic.</p>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Mix$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -437,7 +498,7 @@ guaranteeing that result is monophonic.</p>
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">A shortcut for <code>Mix(GESeq(elems: _*))</code>.</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -572,7 +633,7 @@ guaranteeing that result is monophonic.</p>
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

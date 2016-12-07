@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Dwhite - de.sciss.synth.ugen.Dwhite</title>
-          <meta name="description" content="Dwhite - de.sciss.synth.ugen.Dwhite" />
-          <meta name="keywords" content="Dwhite de.sciss.synth.ugen.Dwhite" />
+          <title>Dwhite - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Dwhite</title>
+          <meta name="description" content="Dwhite - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Dwhite" />
+          <meta name="keywords" content="Dwhite ScalaCollider 1.22.2 API de.sciss.synth.ugen.Dwhite" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,18 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A demand-rate UGen that produces random decimal numbers with a constant
+spectral density, equivalent to <code>WhiteNoise</code> for audio- or control-rate.</p><h5>Examples</h5><pre><span class="cmt">// random frequency</span>
+play {
+  <span class="kw">val</span> in = Dwhite(lo = <span class="num">0</span>, hi = <span class="num">15</span>)
+  <span class="kw">val</span> tr = Impulse.kr(<span class="num">5</span>)
+  <span class="kw">val</span> v  = Demand.kr(tr, in)
+  v.poll(tr)
+  <span class="kw">val</span> f  = v * <span class="num">30</span> + <span class="num">300</span>
+  SinOsc.ar(f) * <span class="num">0.1</span>
+}</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Demand$.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a></p></span><span class="cmt"><p><a href="WhiteNoise$.html" class="extype" name="de.sciss.synth.ugen.WhiteNoise">WhiteNoise</a></p></span><span class="cmt"><p><a href="Dbrown$.html" class="extype" name="de.sciss.synth.ugen.Dbrown">Dbrown</a></p></span><span class="cmt"><p><a href="Diwhite$.html" class="extype" name="de.sciss.synth.ugen.Diwhite">Diwhite</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -173,7 +182,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Dwhite$@clone():Object" title="Permalink" target="_top">
@@ -196,7 +205,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Dwhite$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -304,7 +313,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Dwhite$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -463,7 +472,7 @@
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

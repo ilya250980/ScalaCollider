@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Sine1 - de.sciss.synth.message.BufferGen.Sine1</title>
-          <meta name="description" content="Sine1 - de.sciss.synth.message.BufferGen.Sine1" />
-          <meta name="keywords" content="Sine1 de.sciss.synth.message.BufferGen.Sine1" />
+          <title>Sine1 - ScalaCollider 1.22.2 API - de.sciss.synth.message.BufferGen.Sine1</title>
+          <meta name="description" content="Sine1 - ScalaCollider 1.22.2 API - de.sciss.synth.message.BufferGen.Sine1" />
+          <meta name="keywords" content="Sine1 ScalaCollider 1.22.2 API de.sciss.synth.message.BufferGen.Sine1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -45,13 +45,17 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Sine1</span><span class="params">(<span name="flags">flags: <a href="BufferGen$$WaveFill$$Flags.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill.Flags">Flags</a></span>, <span name="partials">partials: <span class="extype" name="scala.Float">Float</span>*</span>)</span><span class="result"> extends <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Sine1</span><span class="params">(<span name="partials">partials: <a href="../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Float">Float</span>]</span>, <span name="normalize">normalize: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="wavetable">wavetable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="clear">clear: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">partials</dt><dd class="cmt"><p>frequencies</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>OSC message for filling a buffer with a series of sine wave harmonics using specified amplitudes.
+</p></div><dl class="paramcmts block"><dt class="param">partials</dt><dd class="cmt"><p>amplitudes for the harmonics. The first value specifies the amplitude of the first
+                  partial, the second float value specifies the amplitude of the second partial, and so on.</p></dd><dt class="param">normalize</dt><dd class="cmt"><p>if set, the peak amplitude of the generated waveform is normalized to <code>1.0</code></p></dd><dt class="param">wavetable</dt><dd class="cmt"><p>if set, the format of the waveform is chosen to be usable by interpolating
+                  oscillators such as <a href="../ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a> or <a href="../ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a></p></dd><dt class="param">clear</dt><dd class="cmt"><p>if set, the previous content is erased, otherwise the new waveform is added
+                  to the existing content</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a>, <a href="BufferGen$$Command.html" class="extype" name="de.sciss.synth.message.BufferGen.Command">Command</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a>, <a href="BufferGen$$Command.html" class="extype" name="de.sciss.synth.message.BufferGen.Command">Command</a>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -89,7 +93,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="de.sciss.synth.message.BufferGen.Sine1#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(flags:de.sciss.synth.message.BufferGen.WaveFill.Flags,partials:Float*):de.sciss.synth.message.BufferGen.Sine1"></a>
+      <a id="&lt;init&gt;(partials:Seq[Float],normalize:Boolean,wavetable:Boolean,clear:Boolean):de.sciss.synth.message.BufferGen.Sine1"></a>
       <a id="&lt;init&gt;:Sine1"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -97,14 +101,17 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Sine1</span><span class="params">(<span name="flags">flags: <a href="BufferGen$$WaveFill$$Flags.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill.Flags">Flags</a></span>, <span name="partials">partials: <span class="extype" name="scala.Float">Float</span>*</span>)</span>
+        <span class="name">Sine1</span><span class="params">(<span name="partials">partials: <a href="../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Float">Float</span>]</span>, <span name="normalize">normalize: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="wavetable">wavetable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="clear">clear: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@&lt;init&gt;(flags:de.sciss.synth.message.BufferGen.WaveFill.Flags,partials:Float*):de.sciss.synth.message.BufferGen.Sine1" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@&lt;init&gt;(partials:Seq[Float],normalize:Boolean,wavetable:Boolean,clear:Boolean):de.sciss.synth.message.BufferGen.Sine1" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">partials</dt><dd class="cmt"><p>frequencies</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">partials</dt><dd class="cmt"><p>amplitudes for the harmonics. The first value specifies the amplitude of the first
+                  partial, the second float value specifies the amplitude of the second partial, and so on.</p></dd><dt class="param">normalize</dt><dd class="cmt"><p>if set, the peak amplitude of the generated waveform is normalized to <code>1.0</code></p></dd><dt class="param">wavetable</dt><dd class="cmt"><p>if set, the format of the waveform is chosen to be usable by interpolating
+                  oscillators such as <a href="../ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a> or <a href="../ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a></p></dd><dt class="param">clear</dt><dd class="cmt"><p>if set, the previous content is erased, otherwise the new waveform is added
+                  to the existing content</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -174,7 +181,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">args</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>
+        <span class="name">args</span><span class="result">: <a href="../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@args:Seq[Any]" title="Permalink" target="_top">
@@ -199,6 +206,25 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="de.sciss.synth.message.BufferGen.Sine1#clear" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clear:Boolean"></a>
+      <a id="clear:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clear</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@clear:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">if set, the previous content is erased, otherwise the new waveform is added
+                  to the existing content</p><div class="fullcomment"><div class="comment cmt"><p>if set, the previous content is erased, otherwise the new waveform is added
+                  to the existing content</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.message.BufferGen.Sine1">Sine1</a> → <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -208,7 +234,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@clone():Object" title="Permalink" target="_top">
@@ -231,7 +257,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -262,23 +288,23 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="de.sciss.synth.message.BufferGen.Sine1#flags" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="flags:de.sciss.synth.message.BufferGen.WaveFill.Flags"></a>
-      <a id="flags:Flags"></a>
+    </li><li name="de.sciss.synth.message.BufferGen.WaveFill#flags" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flags:Int"></a>
+      <a id="flags:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">flags</span><span class="result">: <a href="BufferGen$$WaveFill$$Flags.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill.Flags">Flags</a></span>
+        <span class="name">flags</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@flags:de.sciss.synth.message.BufferGen.WaveFill.Flags" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@flags:Int" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -313,23 +339,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="de.sciss.synth.message.BufferGen.WaveFill#isSynchronous" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isSynchronous:Boolean"></a>
-      <a id="isSynchronous:Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">isSynchronous</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@isSynchronous:Boolean" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a> → <a href="BufferGen$$Command.html" class="extype" name="de.sciss.synth.message.BufferGen.Command">Command</a></dd></dl></div>
     </li><li name="de.sciss.synth.message.BufferGen.Sine1#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="name:String"></a>
       <a id="name:String"></a>
@@ -356,7 +365,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -364,6 +373,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="de.sciss.synth.message.BufferGen.Sine1#normalize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="normalize:Boolean"></a>
+      <a id="normalize:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">normalize</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@normalize:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">if set, the peak amplitude of the generated waveform is normalized to <code>1.0</code></p><div class="fullcomment"><div class="comment cmt"><p>if set, the peak amplitude of the generated waveform is normalized to <code>1.0</code></p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.message.BufferGen.Sine1">Sine1</a> → <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a></dd></dl></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <a id="notify():Unit"></a>
@@ -398,23 +424,41 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="de.sciss.synth.message.BufferGen.Sine1#partials" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="partials:Float*"></a>
-      <a id="partials:Float*"></a>
+    </li><li name="de.sciss.synth.message.BufferGen.Sine1#partials" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="partials:Seq[Float]"></a>
+      <a id="partials:Seq[Float]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">partials</span><span class="result">: <span class="extype" name="scala.Float">Float</span>*</span>
+        <span class="name">partials</span><span class="result">: <a href="../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@partials:Float*" title="Permalink" target="_top">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@partials:Seq[Float]" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">frequencies</p>
+      <p class="shortcomment cmt">amplitudes for the harmonics.</p><div class="fullcomment"><div class="comment cmt"><p>amplitudes for the harmonics. The first value specifies the amplitude of the first
+                  partial, the second float value specifies the amplitude of the second partial, and so on.</p></div></div>
+    </li><li name="de.sciss.synth.message.BufferGen.Sine1#productPrefix" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="productPrefix:String"></a>
+      <a id="productPrefix:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">productPrefix</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@productPrefix:String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.message.BufferGen.Sine1">Sine1</a> → Product</dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -501,6 +545,25 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="de.sciss.synth.message.BufferGen.Sine1#wavetable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wavetable:Boolean"></a>
+      <a id="wavetable:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wavetable</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.message.BufferGen$$Sine1@wavetable:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">if set, the format of the waveform is chosen to be usable by interpolating
+                  oscillators such as <a href="../ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a> or <a href="../ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a></p><div class="fullcomment"><div class="comment cmt"><p>if set, the format of the waveform is chosen to be usable by interpolating
+                  oscillators such as <a href="../ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a> or <a href="../ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a></p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.message.BufferGen.Sine1">Sine1</a> → <a href="BufferGen$$WaveFill.html" class="extype" name="de.sciss.synth.message.BufferGen.WaveFill">WaveFill</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -523,7 +586,7 @@
             </div><div class="parent" name="de.sciss.synth.message.BufferGen.Command">
               <h3>Inherited from <a href="BufferGen$$Command.html" class="extype" name="de.sciss.synth.message.BufferGen.Command">Command</a></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

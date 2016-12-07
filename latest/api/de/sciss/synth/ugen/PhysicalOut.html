@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PhysicalOut - de.sciss.synth.ugen.PhysicalOut</title>
-          <meta name="description" content="PhysicalOut - de.sciss.synth.ugen.PhysicalOut" />
-          <meta name="keywords" content="PhysicalOut de.sciss.synth.ugen.PhysicalOut" />
+          <title>PhysicalOut - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.PhysicalOut</title>
+          <meta name="description" content="PhysicalOut - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.PhysicalOut" />
+          <meta name="keywords" content="PhysicalOut ScalaCollider 1.22.2 API de.sciss.synth.ugen.PhysicalOut" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,16 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A graph element which writes to a connected sound driver output. This is a convenience
+element for <code>Out</code> with the ability to provide a set of discrete indices to which
+corresponding channels of the input signal are mapped, whereas multichannel expansion
+with respect to the index argument of <code>Out</code> typically do not achieve what you expect.
+</p></div><dl class="paramcmts block"><dt class="param">indices</dt><dd class="cmt"><p>the physical index to write to (beginning at zero which corresponds to
+                     the first channel of the audio interface or sound driver). may be a
+                     multichannel argument to specify discrete channels. In this case, any
+                     remaining channels in <code>in</code> are associated with the last bus index offset.</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal to write</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../AudioRated.html" class="extype" name="de.sciss.synth.AudioRated">AudioRated</a>, <a href="../UGenSource$$ZeroOut.html" class="extype" name="de.sciss.synth.UGenSource.ZeroOut">ZeroOut</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<span class="extype" name="scala.Unit">Unit</span>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<span class="extype" name="scala.Unit">Unit</span>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../AudioRated.html" class="extype" name="de.sciss.synth.AudioRated">AudioRated</a>, <a href="../UGenSource$$ZeroOut.html" class="extype" name="de.sciss.synth.UGenSource.ZeroOut">ZeroOut</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<span class="extype" name="scala.Unit">Unit</span>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<span class="extype" name="scala.Unit">Unit</span>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -90,7 +97,7 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="de.sciss.synth.ugen.PhysicalOut#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="de.sciss.synth.ugen.PhysicalOut#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="&lt;init&gt;(indices:de.sciss.synth.GE,in:de.sciss.synth.GE):de.sciss.synth.ugen.PhysicalOut"></a>
       <a id="&lt;init&gt;:PhysicalOut"></a>
       <h4 class="signature">
@@ -106,7 +113,10 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">indices</dt><dd class="cmt"><p>the physical index to write to (beginning at zero which corresponds to
+                     the first channel of the audio interface or sound driver). may be a
+                     multichannel argument to specify discrete channels. In this case, any
+                     remaining channels in <code>in</code> are associated with the last bus index offset.</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal to write</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -193,7 +203,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.PhysicalOut@clone():Object" title="Permalink" target="_top">
@@ -216,7 +226,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.PhysicalOut@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -264,6 +274,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.UGenSource#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode:Int"></a>
+      <a id="hashCode:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.PhysicalOut@hashCode:Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a> → AnyRef → Any</dd></dl></div>
     </li><li name="de.sciss.synth.ugen.PhysicalOut#in" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="in:de.sciss.synth.GE"></a>
       <a id="in:GE"></a>
@@ -280,8 +307,8 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="de.sciss.synth.ugen.PhysicalOut#indices" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">the signal to write</p>
+    </li><li name="de.sciss.synth.ugen.PhysicalOut#indices" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="indices:de.sciss.synth.GE"></a>
       <a id="indices:GE"></a>
       <h4 class="signature">
@@ -297,7 +324,11 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">the physical index to write to (beginning at zero which corresponds to
+                     the first channel of the audio interface or sound driver).</p><div class="fullcomment"><div class="comment cmt"><p>the physical index to write to (beginning at zero which corresponds to
+                     the first channel of the audio interface or sound driver). may be a
+                     multichannel argument to specify discrete channels. In this case, any
+                     remaining channels in <code>in</code> are associated with the last bus index offset.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -362,7 +393,7 @@ expansion
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.PhysicalOut@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -535,7 +566,7 @@ expansion
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

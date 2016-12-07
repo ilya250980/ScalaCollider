@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MulAdd - de.sciss.synth.ugen.MulAdd</title>
-          <meta name="description" content="MulAdd - de.sciss.synth.ugen.MulAdd" />
-          <meta name="keywords" content="MulAdd de.sciss.synth.ugen.MulAdd" />
+          <title>MulAdd - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.MulAdd</title>
+          <meta name="description" content="MulAdd - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.MulAdd" />
+          <meta name="keywords" content="MulAdd ScalaCollider 1.22.2 API de.sciss.synth.ugen.MulAdd" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -49,9 +49,20 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen that multiplies an input with another signal
+and then adds a third signal. This can be used to translate
+an element into a different value range.</p><p>Usually the graph element operator <code>madd</code> is used
+instead of explicitly writing <code>MulAdd</code>.</p><pre>MulAdd(in, mul, add) == in.madd(mul, add) == in * mul + add</pre><h5>Examples</h5><pre><span class="cmt">// scale value range</span>
+play {
+  <span class="cmt">// input range -1 to +1,</span>
+  <span class="cmt">// output range ((-1 * 100) + 300) = 200</span>
+  <span class="cmt">// to           ((+1 * 100) + 300) = 400</span>
+  <span class="kw">val</span> freq = SinOsc.kr(<span class="num">1</span>).madd(<span class="num">100</span>, <span class="num">300</span>) <span class="cmt">// or MulAdd(..., 100, 300)</span>
+  freq.poll(label = <span class="lit">"freq"</span>)
+  SinOsc.ar(freq) * <span class="num">0.1</span>
+}</pre></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the input signal to scale and offset</p></dd><dt class="param">mul</dt><dd class="cmt"><p>the scaling factor, applied first to the input</p></dd><dt class="param">add</dt><dd class="cmt"><p>the offset, added after applying the multiplication</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Sum4$.html" class="extype" name="de.sciss.synth.ugen.Sum4">Sum4</a></p></span><span class="cmt"><p><a href="Sum3$.html" class="extype" name="de.sciss.synth.ugen.Sum3">Sum3</a></p></span><span class="cmt"><p><a href="BinaryOpUGen$.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">BinaryOpUGen</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -88,7 +99,7 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="de.sciss.synth.ugen.MulAdd#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="de.sciss.synth.ugen.MulAdd#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="&lt;init&gt;(in:de.sciss.synth.GE,mul:de.sciss.synth.GE,add:de.sciss.synth.GE):de.sciss.synth.ugen.MulAdd"></a>
       <a id="&lt;init&gt;:MulAdd"></a>
       <h4 class="signature">
@@ -104,7 +115,7 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>the input signal to scale and offset</p></dd><dt class="param">mul</dt><dd class="cmt"><p>the scaling factor, applied first to the input</p></dd><dt class="param">add</dt><dd class="cmt"><p>the offset, added after applying the multiplication</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -181,7 +192,7 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">the offset, added after applying the multiplication</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -208,7 +219,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.MulAdd@clone():Object" title="Permalink" target="_top">
@@ -231,7 +242,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.MulAdd@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -279,6 +290,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.UGenSource#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode:Int"></a>
+      <a id="hashCode:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#de.sciss.synth.ugen.MulAdd@hashCode:Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a> → AnyRef → Any</dd></dl></div>
     </li><li name="de.sciss.synth.ugen.MulAdd#in" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="in:de.sciss.synth.GE"></a>
       <a id="in:GE"></a>
@@ -295,7 +323,7 @@
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">the input signal to scale and offset</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -350,7 +378,7 @@ expansion
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">the scaling factor, applied first to the input</p>
     </li><li name="de.sciss.synth.UGenSource#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="name:String"></a>
       <a id="name:String"></a>
@@ -377,7 +405,7 @@ expansion
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.MulAdd@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -571,7 +599,7 @@ expansion
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

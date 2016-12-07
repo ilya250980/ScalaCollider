@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SplayAz - de.sciss.synth.ugen.SplayAz</title>
-          <meta name="description" content="SplayAz - de.sciss.synth.ugen.SplayAz" />
-          <meta name="keywords" content="SplayAz de.sciss.synth.ugen.SplayAz" />
+          <title>SplayAz - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.SplayAz</title>
+          <meta name="description" content="SplayAz - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.SplayAz" />
+          <meta name="keywords" content="SplayAz ScalaCollider 1.22.2 API de.sciss.synth.ugen.SplayAz" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -53,10 +53,10 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A graph element that spreads a sequence of input channels across a ring of output channels.
 This works by feeding each input channel through a dedicated <code>PanAz</code> UGen, and mixing the
-results together.</p><p>The panning position of each input channel with index <code>ch</code> is calculated by the formula:</p><pre><span class="kw">val</span> pf = <span class="num">2.0</span> / (number-of-input-channels - <span class="num">1</span>) * (number-of-output-channels - <span class="num">1</span>) / number-of-output-channels
-ch * pf + center</pre></div><div class="toggleContainer block">
+results together.</p><p>The panning position of each input channel with index <code>ch</code> is calculated by the formula:</p><pre><span class="kw">val</span> pf = <span class="num">2.0</span> / (num-in-channels - <span class="num">1</span>) * (num-out-channels - <span class="num">1</span>) / num-out-channels
+ch * pf + center</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="PanAz$.html" class="extype" name="de.sciss.synth.ugen.PanAz">PanAz</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -166,7 +166,7 @@ ch * pf + center</pre></div><div class="toggleContainer block">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">numChannels</dt><dd class="cmt"><p>the number of output channels</p></dd><dt class="param">in</dt><dd class="cmt"><p>the input signal</p></dd><dt class="param">spread</dt><dd class="cmt"><p>the spacing between input channels with respect to the output panning</p></dd><dt class="param">center</dt><dd class="cmt"><p>the position of the first channel (see <code>PanAz</code>)</p></dd><dt class="param">level</dt><dd class="cmt"><p>a global gain factor (see <code>PanAz</code>)</p></dd><dt class="param">width</dt><dd class="cmt"><p>the <code>width</code> parameter for each <code>PanAz</code></p></dd><dt class="param">orient</dt><dd class="cmt"><p>the <code>orient</code> parameter for each <code>PanAz</code></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="PanAz.html" class="extype" name="de.sciss.synth.ugen.PanAz">de.sciss.synth.ugen.PanAz</a></p></span></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">numChannels</dt><dd class="cmt"><p>the number of output channels</p></dd><dt class="param">in</dt><dd class="cmt"><p>the input signal</p></dd><dt class="param">spread</dt><dd class="cmt"><p>the spacing between input channels with respect to the output panning</p></dd><dt class="param">center</dt><dd class="cmt"><p>the position of the first channel (see <code>PanAz</code>)</p></dd><dt class="param">level</dt><dd class="cmt"><p>a global gain factor (see <code>PanAz</code>)</p></dd><dt class="param">width</dt><dd class="cmt"><p>the <code>width</code> parameter for each <code>PanAz</code></p></dd><dt class="param">orient</dt><dd class="cmt"><p>the <code>orient</code> parameter for each <code>PanAz</code></p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -193,7 +193,7 @@ ch * pf + center</pre></div><div class="toggleContainer block">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SplayAz$@clone():Object" title="Permalink" target="_top">
@@ -216,7 +216,7 @@ ch * pf + center</pre></div><div class="toggleContainer block">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SplayAz$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -324,7 +324,7 @@ ch * pf + center</pre></div><div class="toggleContainer block">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SplayAz$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -483,7 +483,7 @@ ch * pf + center</pre></div><div class="toggleContainer block">
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

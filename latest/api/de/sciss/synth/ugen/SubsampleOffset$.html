@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SubsampleOffset - de.sciss.synth.ugen.SubsampleOffset</title>
-          <meta name="description" content="SubsampleOffset - de.sciss.synth.ugen.SubsampleOffset" />
-          <meta name="keywords" content="SubsampleOffset de.sciss.synth.ugen.SubsampleOffset" />
+          <title>SubsampleOffset - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.SubsampleOffset</title>
+          <meta name="description" content="SubsampleOffset - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.SubsampleOffset" />
+          <meta name="keywords" content="SubsampleOffset ScalaCollider 1.22.2 API de.sciss.synth.ugen.SubsampleOffset" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -57,10 +57,31 @@ at the next possible block (normally 64 samples). Using an <code>OffsetOut</code
 can delay the audio so that it matches sample accurately.</p><p>For some synthesis methods, one even needs subsample accuracy.
 <code>SubsampleOffset</code> provides the information where, within the current sample, the
 synth was scheduled. It can be used to offset envelopes or resample the audio
-output.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="OffsetOut$.html" class="extype" name="de.sciss.synth.ugen.OffsetOut">OffsetOut</a></p></span><span class="cmt"><p><a href="SampleDur$.html" class="extype" name="de.sciss.synth.ugen.SampleDur">SampleDur</a></p></span><span class="cmt"><p><a href="ControlRate$.html" class="extype" name="de.sciss.synth.ugen.ControlRate">ControlRate</a></p></span></dd></dl><div class="toggleContainer block">
+output.</p><h5>Examples</h5><pre><span class="cmt">// print offset</span>
+SynthDef.recv(<span class="lit">"SubsampleOffset"</span>) {
+  SubsampleOffset.ir.poll(<span class="num">0</span>, <span class="lit">"offset"</span>)
+}
+
+<span class="cmt">// create 2 pulse trains 1 sample apart, move one relatively to the other.</span>
+<span class="cmt">// when cursor is at the left, the impulses are adjacent, on the right, they are</span>
+<span class="cmt">// exactly 1 sample apart.</span>
+
+<span class="kw">val</span> dt = s.sampleRate.reciprocal <span class="cmt">// 1 sample delay</span>
+
+<span class="kw">val</span> x1, x2 = Synth(s)
+
+<span class="cmt">// needed to use System.currentTimeMillis with osc.Bundle.secs</span>
+<span class="kw">val</span> SECONDS_FROM_1900_TO_1970 = <span class="num">2208988800</span>L
+
+<span class="cmt">// We create two identical synths with a delay of half a sample,</span>
+<span class="cmt">// they should thus report offsets 0.5 apart (plus some floating point noise).</span>
+
+<span class="cmt">// execute the following three lines together!</span>
+<span class="kw">val</span> t0 = System.currentTimeMillis * <span class="num">0.001</span> + SECONDS_FROM_1900_TO_1970
+s ! osc.Bundle.secs(t0 + <span class="num">0.2</span>        , x1.newMsg(<span class="lit">"SubsampleOffset"</span>))
+s ! osc.Bundle.secs(t0 + <span class="num">0.2</span> + dt/<span class="num">2</span> , x2.newMsg(<span class="lit">"SubsampleOffset"</span>))</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="OffsetOut$.html" class="extype" name="de.sciss.synth.ugen.OffsetOut">OffsetOut</a></p></span><span class="cmt"><p><a href="SampleDur$.html" class="extype" name="de.sciss.synth.ugen.SampleDur">SampleDur</a></p></span><span class="cmt"><p><a href="ControlRate$.html" class="extype" name="de.sciss.synth.ugen.ControlRate">ControlRate</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -180,7 +201,7 @@ output.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SubsampleOffset$@clone():Object" title="Permalink" target="_top">
@@ -203,7 +224,7 @@ output.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SubsampleOffset$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -328,7 +349,7 @@ output.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.SubsampleOffset$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -487,7 +508,7 @@ output.
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

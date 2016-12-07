@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Drand - de.sciss.synth.ugen.Drand</title>
-          <meta name="description" content="Drand - de.sciss.synth.ugen.Drand" />
-          <meta name="keywords" content="Drand de.sciss.synth.ugen.Drand" />
+          <title>Drand - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Drand</title>
+          <meta name="description" content="Drand - ScalaCollider 1.22.2 API - de.sciss.synth.ugen.Drand" />
+          <meta name="keywords" content="Drand ScalaCollider 1.22.2 API de.sciss.synth.ugen.Drand" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,18 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A demand-rate UGen which outputs random elements from a sequence. <code>Drand</code>
+allows duplicate elements to appear, whereas <code>Dxrand</code> forbids repetitions.</p><h5>Examples</h5><pre><span class="cmt">// sequence of constants</span>
+play {
+  <span class="kw">val</span> in = Drand(<span class="std">Seq</span>(<span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">8</span>, <span class="num">11</span>), inf)
+  <span class="kw">val</span> tr = Impulse.kr(<span class="num">5</span>)
+  <span class="kw">val</span> v  = Demand.kr(tr, in)
+  v.poll(tr)
+  <span class="kw">val</span> f  = (v + <span class="num">62</span>).midicps
+  SinOsc.ar(f) * <span class="num">0.1</span>
+}</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Diwhite$.html" class="extype" name="de.sciss.synth.ugen.Diwhite">Diwhite</a></p></span><span class="cmt"><p><a href="Dxrand$.html" class="extype" name="de.sciss.synth.ugen.Dxrand">Dxrand</a></p></span><span class="cmt"><p><a href="Dser$.html" class="extype" name="de.sciss.synth.ugen.Dser">Dser</a></p></span><span class="cmt"><p><a href="Demand$.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -173,7 +182,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Drand$@clone():Object" title="Permalink" target="_top">
@@ -196,7 +205,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Drand$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -304,7 +313,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#de.sciss.synth.ugen.Drand$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -463,7 +472,7 @@
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>

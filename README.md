@@ -7,7 +7,7 @@
 
 ## statement
 
-ScalaCollider is a [SuperCollider](http://supercollider.sf.net) client for the Scala programming language. It is (C)opyright 2008&ndash;2016 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under the [GNU Lesser General Public License](http://github.com/Sciss/ScalaCollider/blob/master/LICENSE) v2.1+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
+ScalaCollider is a [SuperCollider](http://supercollider.sf.net) client for the Scala programming language. It is (C)opyright 2008&ndash;2017 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under the [GNU Lesser General Public License](http://github.com/Sciss/ScalaCollider/blob/master/LICENSE) v2.1+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language 'SCLang' that controls the sound synthesis processes on a server, 'scsynth'. ScalaCollider is an alternative to 'SCLang', giving you the (perhaps) familiar Scala language to express these sound synthesis processes, and letting you hook up any other Scala, Java or JVM-based libraries. ScalaCollider's function is more reduced than 'SCLang', focusing on UGen graphs and server-side resources such as buses and buffers. Other functionality is part of the standard Scala library, e.g. collections and GUI. Other functionality, such as plotting, MIDI, client-side sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries (see section 'packages' below).
 
@@ -31,7 +31,7 @@ See the section 'starting a SuperCollider server' below, for another simple exam
 
 ## building
 
-ScalaCollider currently builds with sbt 0.13 against Scala 2.11, 2.10. It requires SuperCollider 3.5 or higher. Note that the UGens are provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
+ScalaCollider currently builds with sbt 0.13 against Scala 2.12, 2.11, 2.10. It requires SuperCollider 3.5 or higher. Note that the UGens are provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
 
 Targets for sbt:
 
@@ -41,7 +41,7 @@ Targets for sbt:
 * `package` &ndash; packages jar in target/scala-version
 * `console` &ndash; opens a Scala REPL with ScalaCollider on the classpath
 
-__Note__: Due to [SI-7436](https://issues.scala-lang.org/browse/SI-7436), the project must be currently compiled against Scala 2.10.0 and not 2.10.1 through 2.10.4. It can be used, however, with any Scala 2.10 version. Another implication is that you cannot build against 2.10.0 using JDK 8, because is sbt is broken here. To build for 2.10.0, you must use JDK 6 or JDK 7.
+__Note__: Due to [SI-7436](https://issues.scala-lang.org/browse/SI-7436), the project must be currently compiled against Scala 2.10.0 and not 2.10.1 through 2.10.4. It can be used, however, with any Scala 2.10 version. Another implication is that you cannot build against 2.10.0 using JDK 8, because is sbt is broken here. To build for 2.10.0, you must use JDK 6 or JDK 7. For this reason, `crossScalaVersions` does not include Scala 2.12, but you can easily build for Scala 2.12 by running `sbt ++2.12.1 compile`.
 
 ## linking
 
@@ -49,7 +49,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.22.2"`
+The current version `v` is `"1.22.3"`
 
 ## contributing
 
@@ -101,7 +101,7 @@ On the other hand, if you run ScalaCollider from a Bash terminal, you edit `~/.b
 
     export SC_HOME=/path/to/folder-of-scsynth
 
-On linux, the environment variables probably go in `~/.profile`.
+On linux, the environment variables probably go in `~/.profile` or `~/.bashrc`.
 
 For more sound examples, see `ExampleCmd.sc`. There is also an introductory video for the [Swing frontend](http://github.com/Sciss/ScalaColliderSwing) at [www.screencast.com/t/YjUwNDZjMT](http://www.screencast.com/t/YjUwNDZjMT).
 

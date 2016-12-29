@@ -1,6 +1,6 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.22.2"
+lazy val projectVersion = "1.22.3"
 lazy val mimaVersion    = "1.22.0"   // for compatibility testing
 
 name                 := baseName
@@ -14,6 +14,9 @@ ivyScala := ivyScala.value map { _.copy(overrideScalaVersion = true) }
 
 // note SI-7436! Affects Scala throughout 2.10.x except for 2.10.0; might be fixed in 2.10.5
 // https://issues.scala-lang.org/browse/SI-7436
+// this implies that the Scala 2.10 version is compiled using Java 6,
+// and the reason we do not add 2.12 here. One can simply build each
+// cross version instead using `sbt ++2.12.1 test` etc.
 crossScalaVersions   := Seq("2.11.8", "2.10.0")
 
 description          := "A sound synthesis library for the SuperCollider server"
@@ -24,10 +27,10 @@ mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.3"
+lazy val ugensVersion     = "1.16.4"
 lazy val oscVersion       = "1.1.5"
-lazy val audioFileVersion = "1.4.5"
-lazy val processorVersion = "0.4.0"
+lazy val audioFileVersion = "1.4.6"
+lazy val processorVersion = "0.4.1"
 lazy val optionalVersion  = "1.0.0"
 
 // ---- test-only dependencies ----

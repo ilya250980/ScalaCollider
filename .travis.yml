@@ -1,6 +1,7 @@
 language: scala
 
 scala:
+  - 2.12.1
   - 2.11.8
   - 2.10.0
 
@@ -13,6 +14,9 @@ before_script:
 
 matrix:
   # scalac 2.10.0 fails with java 8
+  # scalac 2.12.1 requires java 8
   exclude:
     - scala: 2.10.0
       env: JDK=oraclejdk8
+    - scala: 2.12.1
+      env: JDK=openjdk6

@@ -1,8 +1,8 @@
 language: scala
 
 scala:
-  - 2.12.1
-  - 2.11.8
+  - 2.12.2
+  - 2.11.11
   - 2.10.0
 
 env:
@@ -18,5 +18,5 @@ matrix:
   exclude:
     - scala: 2.10.0
       env: JDK=oraclejdk8
-    - scala: 2.12.1
+    - scala: 2.12.2
       env: JDK=openjdk6

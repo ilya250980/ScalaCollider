@@ -93,10 +93,10 @@ final case class DumpOSC(mode: osc.Dump) extends Message("/dumpOSC", mode.id) wi
 case object ClearSched extends Message("/clearSched") with SyncCmd
 
 object Error {
-  val Off       = apply(0)
-  val On        = apply(1)
-  val BundleOff = apply(-1)
-  val BundleOn  = apply(-2)
+  val Off      : Error = apply(0)
+  val On       : Error = apply(1)
+  val BundleOff: Error = apply(-1)
+  val BundleOn : Error = apply(-2)
 }
 /** Produces an `/error` message that selects how the server will report errors to the console. */
 final case class Error(mode: Int) extends Message("/error", mode) with SyncCmd
@@ -271,7 +271,7 @@ final case class BufferFree(id: Int, completion: Option[Packet])
   extends Message("/b_free", id :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferFree = copy(completion = completion)
 }
 
 /** The `/b_close` message ensures that a buffer closes an associated audio-file.
@@ -286,7 +286,7 @@ final case class BufferClose(id: Int, completion: Option[Packet])
   extends Message("/b_close", id :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferClose = copy(completion = completion)
 }
 
 /** The `/b_alloc` message tells the server to allocate memory for a buffer associated
@@ -301,7 +301,7 @@ final case class BufferAlloc(id: Int, numFrames: Int, numChannels: Int, completi
   extends Message("/b_alloc", id :: numFrames :: numChannels :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferAlloc = copy(completion = completion)
 }
 
 /** The `/b_allocRead` message tells the server to allocate memory for a buffer and read
@@ -328,7 +328,7 @@ final case class BufferAllocRead(id: Int, path: String, startFrame: Int, numFram
   extends Message("/b_allocRead", id :: path :: startFrame :: numFrames :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferAllocRead = copy(completion = completion)
 }
 
 /** The `/b_allocReadChannel` message tells the server to allocate memory for a buffer and read
@@ -358,7 +358,7 @@ final case class BufferAllocReadChannel(id: Int, path: String, startFrame: Int, 
   extends Message("/b_allocReadChannel", id :: path :: startFrame :: numFrames :: channels ::: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferAllocReadChannel = copy(completion = completion)
 }
 
 /** The `/b_read` message tells the server to read a portion of an audio-file into an existing buffer.
@@ -383,7 +383,7 @@ final case class BufferRead(id: Int, path: String, fileStartFrame: Int, numFrame
     id :: path :: fileStartFrame :: numFrames :: bufStartFrame :: leaveOpen :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferRead = copy(completion = completion)
 }
 
 /** The `/b_readChannel` message tells the server to read a portion of an audio-file into an existing buffer,
@@ -411,7 +411,7 @@ final case class BufferReadChannel(id: Int, path: String, fileStartFrame: Int, n
     id :: path :: fileStartFrame :: numFrames :: bufStartFrame :: leaveOpen :: channels ::: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferReadChannel = copy(completion = completion)
 }
 
 /** The `/b_zero` message clears the contents of a buffer (all samples will be zero).
@@ -426,7 +426,7 @@ final case class BufferZero(id: Int, completion: Option[Packet])
   extends Message("/b_zero", id :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferZero = copy(completion = completion)
 }
 
 /** The `/b_write` message writes a portion of the buffer contents to an audio-file.
@@ -452,7 +452,7 @@ final case class BufferWrite(id: Int, path: String, fileType: io.AudioFileType, 
     id :: path :: fileType.id :: sampleFormat.id :: numFrames :: startFrame :: leaveOpen :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): BufferWrite = copy(completion = completion)
 }
 
 /** The `/b_set` message sets individual samples of the buffer to given values.
@@ -887,7 +887,7 @@ final case class SynthDefRecv(bytes: ByteBuffer, completion: Option[Packet])
   extends Message("/d_recv", bytes :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): SynthDefRecv = copy(completion = completion)
 }
 
 /** The `/d_free` message. */
@@ -906,7 +906,7 @@ final case class SynthDefLoad(path: String, completion: Option[Packet])
   extends Message("/d_load", path :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): SynthDefLoad = copy(completion = completion)
 }
 
 /** The `/d_loadDir` message tells the server to load all synth definitions within a directory.
@@ -917,7 +917,7 @@ final case class SynthDefLoadDir(path: String, completion: Option[Packet])
   extends Message("/d_loadDir", path :: completion.toList: _*)
   with HasCompletion {
 
-  def updateCompletion(completion: Option[Packet]) = copy(completion = completion)
+  def updateCompletion(completion: Option[Packet]): SynthDefLoadDir = copy(completion = completion)
 }
 
 /** The `/u_cmd` message allows one to send UGen specific commands. */

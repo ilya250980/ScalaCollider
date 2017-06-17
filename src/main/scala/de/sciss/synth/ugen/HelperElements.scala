@@ -298,15 +298,15 @@ final case class Zip(elems: GE*) extends GE.Lazy {
 object Reduce {
   import BinaryOpUGen.{BitAnd, BitOr, BitXor, Max, Min, Plus, Times}
   /** Same result as `Mix( _ )` */
-  def +  (elem: GE) = apply(elem, Plus  )
-  def *  (elem: GE) = apply(elem, Times )
+  def +  (elem: GE): Reduce = apply(elem, Plus  )
+  def *  (elem: GE): Reduce = apply(elem, Times )
   //   def all_sig_==( elem: GE ) = ...
   //   def all_sig_!=( elem: GE ) = ...
-  def min(elem: GE) = apply(elem, Min   )
-  def max(elem: GE) = apply(elem, Max   )
-  def &  (elem: GE) = apply(elem, BitAnd)
-  def |  (elem: GE) = apply(elem, BitOr )
-  def ^  (elem: GE) = apply(elem, BitXor)
+  def min(elem: GE): Reduce = apply(elem, Min   )
+  def max(elem: GE): Reduce = apply(elem, Max   )
+  def &  (elem: GE): Reduce = apply(elem, BitAnd)
+  def |  (elem: GE): Reduce = apply(elem, BitOr )
+  def ^  (elem: GE): Reduce = apply(elem, BitXor)
 }
 
 final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.SingleOut {
@@ -389,7 +389,8 @@ object SplayAz {
     * @param width        the `width` parameter for each `PanAz`
     * @param orient       the `orient` parameter for each `PanAz`
     */
-  def ar(numChannels: Int, in: GE, spread: GE = 1f, center: GE = 0f, level: GE = 1f, width: GE = 2f, orient: GE = 0f) =
+  def ar(numChannels: Int, in: GE, spread: GE = 1f, center: GE = 0f, level: GE = 1f,
+         width: GE = 2f, orient: GE = 0f): SplayAz =
     apply(audio, numChannels, in, spread, center, level, width, orient)
 }
 /** A graph element that spreads a sequence of input channels across a ring of output channels.
@@ -415,7 +416,7 @@ object SplayAz {
 final case class SplayAz(rate: Rate, numChannels: Int, in: GE, spread: GE, center: GE, level: GE, width: GE, orient: GE)
   extends GE.Lazy {
 
-  def numOutputs = numChannels
+  def numOutputs: Int = numChannels
 
   protected def makeUGens: UGenInLike = {
     val _in     = in.expand
@@ -504,13 +505,16 @@ final case class Silent(numChannels: Int) extends GE.Lazy with AudioRated {
   * PhysicalIn(Seq(0, 8), Seq(8, 8))
   * PhysicalIn(Seq(0, 8), Seq(8))      // numChannels wraps!
   * }}}
+  *
+  * If SuperCollider runs with less physical inputs than requested by this UGen,
+  * invalid channels are muted.
   */
 object PhysicalIn {
   /** Short cut for reading a mono signal from the first physical input. */
   def ar: PhysicalIn = ar()
 
   /** @param indices       the physical index to read from (beginning at zero which corresponds to
-    *                      the first channel of the audio interface or sound driver). Maybe be a
+    *                      the first channel of the audio interface or sound driver). It may be a
     *                      multichannel element to specify discrete indices.
     * @param numChannels   the number of consecutive channels to read. For discrete indices this
     *                      applies to each index!
@@ -518,7 +522,7 @@ object PhysicalIn {
   def ar(indices: GE = 0, numChannels: Int = 1): PhysicalIn = apply(indices, Seq(numChannels))
 
   /** @param indices       the physical index to read from (beginning at zero which corresponds to
-    *                      the first channel of the audio interface or sound driver). Maybe be a
+    *                      the first channel of the audio interface or sound driver). It may be a
     *                      multichannel element to specify discrete indices.
     * @param numChannels   the number of consecutive channels to read for each index. Wraps around
     *                      if the sequence has less elements than indices has channels.
@@ -541,8 +545,11 @@ object PhysicalIn {
   * PhysicalIn(Seq(0, 8), Seq(8))      // numChannels wraps!
   * }}}
   *
+  * If SuperCollider runs with less physical inputs than requested by this UGen,
+  * invalid channels are muted.
+  *
   * @param indices       the physical index to read from (beginning at zero which corresponds to
-  *                      the first channel of the audio interface or sound driver). Maybe be a
+  *                      the first channel of the audio interface or sound driver). It may be a
   *                      multichannel element to specify discrete indices.
   * @param numChannels   the number of consecutive channels to read for each index. Wraps around
   *                      if the sequence has less elements than indices has channels.
@@ -550,7 +557,9 @@ object PhysicalIn {
 final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy with AudioRated {
 
   protected def makeUGens: UGenInLike = {
-    val offset       = NumOutputBuses.ir
+    val numIn        = NumInputBuses .ir
+    val numOut       = NumOutputBuses.ir
+
     val _indices     = indices.expand.outputs
     val iNumCh       = numChannels.toIndexedSeq
     val _numChannels = if (_indices.size <= iNumCh.size) iNumCh
@@ -558,8 +567,11 @@ final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy 
       Vector.tabulate(_indices.size)(ch => iNumCh(ch % iNumCh.size))
     }
 
-    val ins  = (_indices zip _numChannels).map {
-      case (index, num) => In.ar(index + offset, num)
+    val ins = (_indices zip _numChannels).map {
+      case (index, num) =>
+        val in = In.ar(index + numOut, num)
+        val ok = (0 until num).map(off => index + off < numIn)
+        in * ok
     }
     Flatten(ins)
   }
@@ -569,6 +581,9 @@ final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy 
   * element for `Out` with the ability to provide a set of discrete indices to which
   * corresponding channels of the input signal are mapped, whereas multichannel expansion
   * with respect to the index argument of `Out` typically do not achieve what you expect.
+  *
+  * If SuperCollider runs with less physical outputs than requested by this UGen,
+  * the output is muted.
   *
   * ===Examples===
   *
@@ -597,6 +612,9 @@ object PhysicalOut {
   * corresponding channels of the input signal are mapped, whereas multichannel expansion
   * with respect to the index argument of `Out` typically do not achieve what you expect.
   *
+  * If SuperCollider runs with less physical outputs than requested by this UGen,
+  * the output is muted.
+  *
   * @param indices       the physical index to write to (beginning at zero which corresponds to
   *                      the first channel of the audio interface or sound driver). may be a
   *                      multichannel argument to specify discrete channels. In this case, any
@@ -607,15 +625,20 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   // XXX TODO: should not be UGenSource
 
   protected def makeUGens: Unit = {
-    val _in = in.expand.outputs
-    val _indices = indices.expand.outputs
+    val numOut    = NumOutputBuses.ir
+    val _in       = in.expand.outputs
+    val _indices  = indices.expand.outputs
     _indices.dropRight(1).zip(_in).foreach {
       case (index, sig) =>
-        Out.ar(index, sig)
+        val ok = index + NumChannels(sig) <= numOut
+//        Out.ar(index, sig)
+      XOut.ar(index, in = sig, xfade = ok)
     }
     (_indices.lastOption, _in.drop(_indices.size - 1)) match {
       case (Some(index), sig) if sig.nonEmpty =>
-        Out.ar(index, sig)
+        val ok = index + NumChannels(sig) <= numOut
+//        Out.ar(index, sig)
+        XOut.ar(index, in = sig, xfade = ok)
       case _ =>
     }
   }
@@ -718,11 +741,11 @@ final case class RepeatChannels(a: GE, num: Int) extends GE.Lazy {
   * @see [[de.sciss.synth.ugen.RepeatChannels RepeatChannels]]
   */
 final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) extends GE.Lazy {
-  def rate  = elem.rate
+  def rate: MaybeRate = elem.rate
 
   def range: Range = Range(from, until, step)
 
-  override def toString =
+  override def toString: String =
     if (step == 1) s"$elem.\\($from until $until)" else s"$elem.\\($from until $until by $step)"
 
   def makeUGens: UGenInLike = {

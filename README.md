@@ -31,7 +31,7 @@ See the section 'starting a SuperCollider server' below, for another simple exam
 
 ## building
 
-ScalaCollider currently builds with sbt 0.13 against Scala 2.12, 2.11, 2.10. It requires SuperCollider 3.5 or higher. Note that the UGens are provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
+ScalaCollider currently builds with sbt 0.13 against Scala 2.12, 2.11. The last version to support Scala 2.10 is 1.22.3. ScalaCollider requires SuperCollider 3.5 or higher. Note that the UGens are provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
 
 Targets for sbt:
 
@@ -41,15 +41,13 @@ Targets for sbt:
 * `package` &ndash; packages jar in target/scala-version
 * `console` &ndash; opens a Scala REPL with ScalaCollider on the classpath
 
-__Note__: Due to [SI-7436](https://issues.scala-lang.org/browse/SI-7436), the project must be currently compiled against Scala 2.10.0 and not 2.10.1 through 2.10.4. It can be used, however, with any Scala 2.10 version. Another implication is that you cannot build against 2.10.0 using JDK 8, because is sbt is broken here. To build for 2.10.0, you must use JDK 6 or JDK 7. For this reason, `crossScalaVersions` does not include Scala 2.12, but you can easily build for Scala 2.12 by running `sbt ++2.12.1 compile`.
-
 ## linking
 
 To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.22.3"`
+The current version `v` is `"1.22.4"`
 
 ## contributing
 

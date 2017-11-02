@@ -1,13 +1,13 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.22.4"
+lazy val projectVersion = "1.22.5-SNAPSHOT"
 lazy val mimaVersion    = "1.22.0"   // for compatibility testing
 
 name                 := baseName
 version              := projectVersion
 organization         := "de.sciss"
-scalaVersion         := "2.12.2"
-crossScalaVersions   := Seq("2.12.2", "2.11.11")
+scalaVersion         := "2.12.4"
+crossScalaVersions   := Seq("2.12.4", "2.11.11")
 
 description          := "A sound synthesis library for the SuperCollider server"
 homepage             := Some(url(s"https://github.com/Sciss/${name.value}"))
@@ -17,7 +17,7 @@ mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.4"
+lazy val ugensVersion     = "1.16.7-SNAPSHOT"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.6"
 lazy val processorVersion = "0.4.1"
@@ -25,7 +25,7 @@ lazy val optionalVersion  = "1.0.0"
 
 // ---- test-only dependencies ----
 
-lazy val scalaTestVersion = "3.0.3"
+lazy val scalaTestVersion = "3.0.4"
 //lazy val dotVersion       = "0.4.0"
 
 libraryDependencies ++= Seq(

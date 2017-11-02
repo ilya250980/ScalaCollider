@@ -1,7 +1,7 @@
 language: scala
 
 scala:
-  - 2.12.2
+  - 2.12.4
   - 2.11.11
 
 env:
@@ -15,5 +15,5 @@ matrix:
   # scalac 2.10.0 fails with java 8
   # scalac 2.12.1 requires java 8
   exclude:
-    - scala: 2.12.2
+    - scala: 2.12.4
       env: JDK=openjdk6

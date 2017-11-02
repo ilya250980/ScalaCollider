@@ -17,7 +17,7 @@ mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
 // ---- main dependencies ----
 
-lazy val ugensVersion     = "1.16.7-SNAPSHOT"
+lazy val ugensVersion     = "1.16.7"
 lazy val oscVersion       = "1.1.5"
 lazy val audioFileVersion = "1.4.6"
 lazy val processorVersion = "0.4.1"

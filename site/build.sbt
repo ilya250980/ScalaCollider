@@ -6,9 +6,9 @@ val ugensVersion              = "1.17.1"
 val audioFileVersion          = "1.4.6"
 val oscVersion                = "1.1.5"
 
-val lOSC                = RootProject(uri( "git://github.com/Sciss/ScalaOSC.git#v$oscVersion"))
-val lAudioFile          = RootProject(uri( "git://github.com/Sciss/ScalaAudioFile.git#v$audioFileVersion"))
-val lUGens              = RootProject(uri( "git://github.com/Sciss/ScalaColliderUGens.git#v$ugensVersion"))
+val lOSC                = RootProject(uri(s"git://github.com/Sciss/ScalaOSC.git#v$oscVersion"))
+val lAudioFile          = RootProject(uri(s"git://github.com/Sciss/ScalaAudioFile.git#v$audioFileVersion"))
+val lUGens              = RootProject(uri(s"git://github.com/Sciss/ScalaColliderUGens.git#v$ugensVersion"))
 val lScalaCollider      = RootProject(uri(s"git://github.com/Sciss/$baseName.git#v${PROJECT_VERSION}"))
 val lScalaColliderSwing = RootProject(uri(s"git://github.com/Sciss/ScalaColliderSwing.git#v$scalaColliderSwingVersion"))
 

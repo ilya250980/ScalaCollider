@@ -17,6 +17,7 @@ import de.sciss.optional.Optional
 import de.sciss.osc
 import de.sciss.osc.Packet
 import de.sciss.synth.message.BufferGen
+import de.sciss.synth.ugen.Env
 
 import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec}
@@ -76,7 +77,7 @@ object Ops {
   //   implicit def bufferOps( b: Buffer ) : BufferOps = new BufferOps( b )
   //   implicit def controlBusOps( b: ControlBus ) : ControlBusOps = new ControlBusOps( b )
 
-  final implicit class SynthDefConstructors(val `this`: SynthDef.type) extends AnyVal {
+  final implicit class SynthDefConstructors(private val `this`: SynthDef.type) extends AnyVal {
     import SynthDef.{Completion => _, _}
 
     def recv(name: String, server: Server = Server.default, completion: SynthDef.Completion = Completion.None)
@@ -117,9 +118,8 @@ object Ops {
       }
     }
 
-  final implicit class SynthDefOps(val `this`: SynthDef) extends AnyVal { me =>
+  final implicit class SynthDefOps(private val d: SynthDef) extends AnyVal {
     import SynthDef.defaultDir
-    import me.{`this` => d}
     import d._
 
     def recv(server: Server = Server.default, completion: SynthDef.Completion = Completion.None): Unit =
@@ -141,8 +141,7 @@ object Ops {
     def free(server: Server = Server.default): Unit = server ! freeMsg
   }
 
-  final implicit class SynthOps(val `this`: Synth) extends AnyVal { me =>
-    import me.{`this` => n}
+  final implicit class SynthOps(private val n: Synth) extends AnyVal {
     import n._
 
     def play(defName: String, target: Node = server.defaultGroup, args: Seq[ControlSet] = Nil,
@@ -151,8 +150,7 @@ object Ops {
     }
   }
 
-  final implicit class NodeOps(val `this`: Node) extends AnyVal { me =>
-    import me.{`this` => n}
+  final implicit class NodeOps(private val n: Node) extends AnyVal {
     import n._
 
     def free(): Unit = server ! freeMsg
@@ -232,7 +230,7 @@ object Ops {
     def moveToTail(group: Group): Unit = server ! moveToTailMsg(group)
   }
 
-  implicit final class GroupConstructors(val `this`: Group.type) extends AnyVal {
+  implicit final class GroupConstructors(private val `this`: Group.type) extends AnyVal {
     import Group._
 
     def play(): Group = head(Server.default.defaultGroup)
@@ -250,8 +248,7 @@ object Ops {
     def replace(target: Node ): Group = play(target, addReplace)
   }
 
-  final class GroupOps(val `this`: Group) extends AnyVal { me =>
-    import me.{`this` => g}
+  final class GroupOps(private val g: Group) extends AnyVal {
     import g._
 
     def freeAll (): Unit = server ! freeAllMsg
@@ -261,7 +258,7 @@ object Ops {
     def queryTree(postControls: Boolean = false): Unit = server ! queryTreeMsg(postControls)
   }
 
-  implicit final class SynthConstructors(val `this`: Synth.type) extends AnyVal {
+  implicit final class SynthConstructors(private val `this`: Synth.type) extends AnyVal {
     import Synth._
 
     def play(defName: String, args: Seq[ControlSet] = Nil, target: Node = Server.default.defaultGroup,
@@ -287,7 +284,7 @@ object Ops {
       play(defName, args, target, addReplace)
   }
 
-  implicit final class BufferConstructors(val `this`: Buffer.type) extends AnyVal {
+  implicit final class BufferConstructors(private val `this`: Buffer.type) extends AnyVal {
     import Buffer._
 
     private def createAsync(server: Server, allocFun: Buffer => Optional[Packet] => Future[Unit],
@@ -372,8 +369,7 @@ object Ops {
     }
   }
 
-  implicit final class BufferOps(val `this`: Buffer) extends AnyVal { me =>
-    import me.{`this` => b}
+  implicit final class BufferOps(private val b: Buffer) extends AnyVal {
     import b._
 
     //    def alloc(numFrames: Int, numChannels: Int = 1, completion: Buffer.Completion = Completion.None): Unit =
@@ -663,8 +659,7 @@ object Ops {
     }
   }
 
-  implicit final class ControlBusOps(val `this`: ControlBus) extends AnyVal { me =>
-    import me.{`this` => b}
+  implicit final class ControlBusOps(private val b: ControlBus) extends AnyVal {
     import b._
 
     /** Convenience method that sets a single bus value.
@@ -693,5 +688,17 @@ object Ops {
     def fill(value: Float): Unit = server ! b.fillMsg(value)
 
     def fill(data: FillRange*): Unit = server ! b.fillMsg(data: _*)
+  }
+
+  implicit final class EnvOps(private val env: Env) extends AnyVal {
+    def test(releaseTime: Double = 3.0): Synth =
+      play {
+        import ugen._
+        val gate0 = "gate".kr(1f)
+        val gate  = if (!env.isSustained) gate0 else {
+          EnvGen.kr(Env.step(Seq(1.0f, 0.0f), Seq(releaseTime, 0f))) * gate0
+        }
+        SinOsc.ar(800, math.Pi/2) * EnvGen.ar(env, gate = gate, levelScale = 0.3, doneAction = freeSelf)
+      }
   }
 }

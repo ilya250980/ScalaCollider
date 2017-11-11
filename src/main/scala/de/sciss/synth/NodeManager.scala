@@ -52,16 +52,16 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
   def nodeChange(e: message.NodeChange): Unit =
     e match {
       case message.NodeGo(nodeID, info) =>
-        val node = nodes.get(nodeID) getOrElse {
+        val node = nodes.getOrElse(nodeID, {
           if ( /* autoAdd && */ nodes.contains(info.parentID)) {
             val created = info match {
-              case ee: message.NodeInfo.SynthData => Synth(server, nodeID)
-              case ee: message.NodeInfo.GroupData => Group(server, nodeID)
+              case _: message.NodeInfo.SynthData => Synth(server, nodeID)
+              case _: message.NodeInfo.GroupData => Group(server, nodeID)
             }
             register(created)
             created
           } else return
-        }
+        })
         dispatchBoth(NodeGo(node, info))
 
       case message.NodeEnd(nodeID, info) =>
@@ -72,17 +72,17 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
         }
 
       case message.NodeOff(nodeID, info) =>
-        nodes.get(e.nodeID).foreach { node =>
+        nodes.get(nodeID).foreach { node =>
           dispatchBoth(NodeOff(node, info))
         }
 
       case message.NodeOn(nodeID, info) =>
-        nodes.get(e.nodeID).foreach { node =>
+        nodes.get(nodeID).foreach { node =>
           dispatchBoth(NodeOn(node, info))
         }
 
       case message.NodeMove(nodeID, info) =>
-        nodes.get(e.nodeID).foreach { node =>
+        nodes.get(nodeID).foreach { node =>
           dispatchBoth(NodeMove(node, info))
         }
 

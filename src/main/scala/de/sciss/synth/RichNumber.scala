@@ -72,16 +72,16 @@ object RichNumber {
     def fold(low: GE, high: GE): GE = cn.fold(low, high)
     def wrap(low: GE, high: GE): GE = cn.wrap(low, high)
 
-    def linlin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE) =
+    def linlin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
       cn.linlin(inLow, inHigh, outLow, outHigh)
 
-    def linexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE) =
+    def linexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
       cn.linexp(inLow, inHigh, outLow, outHigh)
 
-    def explin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE) =
+    def explin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
       cn.explin(inLow, inHigh, outLow, outHigh)
 
-    def expexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE) =
+    def expexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
       cn.expexp(inLow, inHigh, outLow, outHigh)
   }
 }
@@ -93,9 +93,9 @@ final class RichInt private[synth](val `this`: Int)
 
   import me.{`this` => i}
 
-  protected def f   = i.toFloat
-  protected def d   = i.toDouble
-  protected def cn  = Constant(i.toFloat)
+  protected def f : Float     = i.toFloat
+  protected def d : Double    = i.toDouble
+  protected def cn: Constant  = Constant(i.toFloat)
 }
 
 // ---------------------------- Float ----------------------------
@@ -105,8 +105,8 @@ final class RichFloat private[synth](val `this`: Float)
 
   import me.{`this` => f}
 
-  protected def d  = f.toDouble
-  protected def cn = Constant(f)
+  protected def d : Double    = f.toDouble
+  protected def cn: Constant  = Constant(f)
 }
 
 // ---------------------------- Double ----------------------------

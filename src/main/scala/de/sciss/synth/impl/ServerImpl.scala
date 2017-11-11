@@ -22,6 +22,7 @@ import de.sciss.model.impl.ModelImpl
 import de.sciss.osc
 import de.sciss.processor.Processor
 import de.sciss.processor.impl.ProcessorImpl
+import de.sciss.synth.message.StatusReply
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future, Promise, TimeoutException}
@@ -29,7 +30,7 @@ import scala.sys.process.{Process, ProcessLogger}
 import scala.util.control.NonFatal
 
 private[synth] object ServerImpl {
-  @volatile private var _default: Server = null
+  @volatile private var _default: Server = _
 
   def default: Server = {
     val res = _default
@@ -88,19 +89,21 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
 
   import clientConfig.executionContext
 
-  private val condSync = new AnyRef
-  @volatile private var _condition: Server.Condition = Server.Running
-  private var pendingCondition    : Server.Condition = Server.NoPending
-  private var aliveThread: Option[StatusWatcher] = None
+  private[this] val condSync = new AnyRef
+
+  @volatile
+  private[this] var _condition      : Server.Condition = Server.Running
+  private[this] var pendingCondition: Server.Condition = Server.NoPending
+  private[this] var aliveThread     : Option[StatusWatcher] = None
 
   // ---- constructor ----
   //   OSCReceiverActor.start()
   c.action = OSCReceiverActor ! _
   ServerImpl.add(server)
 
-  def isConnected = c.isConnected
+  def isConnected: Boolean = c.isConnected
 
-  def condition = _condition
+  def condition: Server.Condition = _condition
 
   def !(p: osc.Packet): Unit = c ! p
 
@@ -126,7 +129,7 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
       condition_=(Server.Offline)
     }
 
-  def counts = countsVar
+  def counts: StatusReply = countsVar
 
   private[synth] def counts_=(newCounts: message.StatusReply): Unit = {
     countsVar = newCounts
@@ -135,7 +138,7 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
 
   def dumpInOSC(mode: osc.Dump, filter: osc.Packet => Boolean): Unit =
     c.dumpIn(mode, filter = {
-      case m: message.StatusReply => false
+      case _: message.StatusReply => false
       case p => filter(p)
     })
 
@@ -158,8 +161,8 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     }
   }
 
-  def isRunning   = _condition == Server.Running
-  def isOffline   = _condition == Server.Offline
+  def isRunning: Boolean = _condition == Server.Running
+  def isOffline: Boolean = _condition == Server.Offline
 
   def addResponder   (resp: message.Responder): Unit = OSCReceiverActor.addHandler   (resp)
   def removeResponder(resp: message.Responder): Unit = OSCReceiverActor.removeHandler(resp)
@@ -294,7 +297,7 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
       handled
     }
 
-    def removed() = ()
+    def removed(): Unit = ()
   }
 
   // -------- internal class StatusWatcher --------
@@ -445,5 +448,5 @@ private[synth] abstract class ServerImpl
   }
 
   def syncMsg(): message.Sync = message.Sync(nextSyncID())
-  def quitMsg = message.ServerQuit
+  def quitMsg: message.ServerQuit.type = message.ServerQuit
 }

@@ -2,8 +2,6 @@ package de.sciss.synth
 
 import org.scalatest.FunSpec
 
-import scala.language.implicitConversions
-
 /*
   To run only this test:
 

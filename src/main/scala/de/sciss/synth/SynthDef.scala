@@ -13,7 +13,7 @@
 
 package de.sciss.synth
 
-import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream}
+import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream, InputStream}
 import java.nio.ByteBuffer
 import File.{separator => sep}
 
@@ -73,19 +73,23 @@ object SynthDef {
 
   /** Reads all synth-definitions contained in a file with standard binary format. */
   def read(path: String): List[SynthDef] = {
-    val is  = new FileInputStream(path)
-    val dis = new DataInputStream(new BufferedInputStream(is))
+    val is = new FileInputStream(path)
     try {
-      val cookie  = dis.readInt()
-      require (cookie == COOKIE, s"File $path must begin with cookie word 0x${COOKIE.toHexString}")
-      val version = dis.readInt()
-      require (version == 1 || version == 2, s"File $path has unsupported version $version, required 1 or 2")
-      val numDefs = dis.readShort()
-      List.fill(numDefs)(read(dis, version = version))
-
+      read(is)
     } finally {
-      dis.close()
+      is.close()
     }
+  }
+
+  /** Reads all synth-definitions from an input stream with standard binary format. */
+  def read(is: InputStream): List[SynthDef] = {
+    val dis = new DataInputStream(new BufferedInputStream(is))
+    val cookie  = dis.readInt()
+    require (cookie == COOKIE, s"SynthDef must begin with cookie word 0x${COOKIE.toHexString}")
+    val version = dis.readInt()
+    require (version == 1 || version == 2, s"SynthDef has unsupported version $version, required 1 or 2")
+    val numDefs = dis.readShort()
+    List.fill(numDefs)(read(dis, version = version))
   }
 
   @inline private[this] def readPascalString(dis: DataInputStream): String = {

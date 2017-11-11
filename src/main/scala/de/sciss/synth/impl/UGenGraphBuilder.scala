@@ -21,7 +21,7 @@ import de.sciss.synth.ugen.{Constant, ControlProxyLike, ControlUGenOutProxy, UGe
 import scala.annotation.elidable
 import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec, Set => ISet}
-import scala.collection.mutable.{Buffer => MBuffer, Map => MMap, Stack => MStack}
+import scala.collection.mutable.{Buffer => MBuffer, Map => MMap}
 
 object DefaultUGenGraphBuilderFactory extends UGenGraph.BuilderFactory {
   def build(graph: SynthGraph): UGenGraph = {
@@ -64,9 +64,9 @@ object UGenGraphBuilderLike {
 
   // ---- IndexedUGen ----
   private final class IndexedUGenBuilder(val ugen: UGen, var index: Int, var effective: Boolean) {
-    val parents       = MBuffer.empty[IndexedUGenBuilder]
-    var children      = MBuffer.empty[IndexedUGenBuilder]
-    var inputIndices  = List   .empty[UGenInIndex]
+    val parents     : MBuffer[IndexedUGenBuilder] = MBuffer.empty
+    var children    : MBuffer[IndexedUGenBuilder] = MBuffer.empty
+    var inputIndices: List[UGenInIndex]           = Nil
 
     override def toString = s"IndexedUGen($ugen, $index, $effective) : richInputs = $inputIndices"
   }
@@ -77,8 +77,8 @@ object UGenGraphBuilderLike {
   }
 
   private final class ConstantIndex(constIdx: Int) extends UGenInIndex {
-    def create          = (-1, constIdx)
-    def makeEffective() = 0
+    def create: (Int, Int)  = (-1, constIdx)
+    def makeEffective()     = 0
 
     override def toString = s"ConstantIndex($constIdx)"
   }
@@ -100,10 +100,10 @@ object UGenGraphBuilderLike {
 }
 
 trait BasicUGenGraphBuilder extends UGenGraphBuilderLike {
-  protected var ugens         = Vector.empty: Vec[UGen]
-  protected var controlValues = Vector.empty: Vec[Float]
-  protected var controlNames  = Vector.empty: Vec[(String, Int)]
-  protected var sourceMap     = Map.empty[AnyRef, Any]
+  protected var ugens        : Vec[UGen]          = Vector.empty
+  protected var controlValues: Vec[Float]         = Vector.empty
+  protected var controlNames : Vec[(String, Int)] = Vector.empty
+  protected var sourceMap    : Map[AnyRef, Any]   = Map   .empty
 }
 
 /** Complete implementation of a ugen graph builder, except for the actual code that
@@ -249,20 +249,20 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
   private def sortUGens(indexedUGens: Vec[IndexedUGenBuilder]): Array[IndexedUGenBuilder] = {
     indexedUGens.foreach(iu => iu.children = iu.children.sortWith((a, b) => a.index > b.index))
     val sorted = new Array[IndexedUGenBuilder](indexedUGens.size)
-    //      val avail   = MStack( indexedUGens.filter( _.parents.isEmpty ) : _* )
-    val avail: MStack[IndexedUGenBuilder] = indexedUGens.collect {
+    var avail: List[IndexedUGenBuilder] = indexedUGens.collect {
       case iu if iu.parents.isEmpty => iu
     } (breakOut)
 
     var cnt = 0
     while (avail.nonEmpty) {
-      val iu      = avail.pop()
+      val iu      = avail.head
+      avail       = avail.tail
       iu.index    = cnt
       sorted(cnt) = iu
       cnt        += 1
       iu.children foreach { iuc =>
         iuc.parents.remove(iuc.parents.indexOf(iu))
-        if (iuc.parents.isEmpty) /* avail =*/ avail.push(iuc)
+        if (iuc.parents.isEmpty) avail = iuc :: avail
       }
     }
     sorted

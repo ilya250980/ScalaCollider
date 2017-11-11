@@ -30,7 +30,11 @@ See the section 'starting a SuperCollider server' below, for another simple exam
 
 ## building
 
-ScalaCollider currently builds with sbt 0.13 against Scala 2.12, 2.11. The last version to support Scala 2.10 is 1.22.3. ScalaCollider requires SuperCollider 3.5 or higher. Note that the UGens are provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
+ScalaCollider currently builds with [sbt](http://scala-sbt.org/) against 
+Scala 2.12, 2.11. The last version to support Scala 2.10 is 1.22.3. 
+ScalaCollider requires SuperCollider 3.5 or higher. The recommended version as of
+this writing is 3.8. Note that the UGens are 
+provided by the separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
 
 Targets for sbt:
 
@@ -46,7 +50,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.22.4"`
+The current version `v` is `"1.23.0"`
 
 ## contributing
 
@@ -67,6 +71,7 @@ cfg.program = "/path/to/scsynth"
 // when the server is booted, with the
 // server as its argument 
 Server.run(cfg) { s =>
+  s.dumpOSC()
   // play is imported from package de.sciss.synth.
   // it provides a convenience method for wrapping
   // a synth graph function in an `Out` element
@@ -76,6 +81,17 @@ Server.run(cfg) { s =>
     CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4)
   }
 }    
+```
+
+__Troubleshooting:__ If the above boots the server, but on Linux you do not 
+hear any sound, probably the Jack audio server does not establish connections between
+SuperCollider and your sound card. The easiest is to use a program such as QJackCtl
+to automatically wire them up. Alternatively, you can set environment variables
+`SC_JACK_DEFAULT_INPUTS` and `SC_JACK_DEFAULT_OUTPUTS` before starting Scala, e.g.
+
+```bash
+export SC_JACK_DEFAULT_INPUTS="system:capture_1,system:capture_2"
+export SC_JACK_DEFAULT_OUTPUTS="system:playback_1,system:playback_2"
 ```
 
 ### Specifying SC_HOME

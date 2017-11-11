@@ -13,14 +13,22 @@
 
 package de.sciss.synth
 
+import de.sciss.synth
+
 object Bus {
+  def apply(rate: Rate.Bus, server: Server = Server.default, numChannels: Int = 1): Bus =
+    rate match {
+      case synth.control => control(server, numChannels = numChannels)
+      case synth.audio   => audio  (server, numChannels = numChannels)
+    }
+
   /** Allocates a new control bus.
     * If there are no more available buses, an [[AllocatorExhausted]] exception is thrown.
     *
     * @param server       the server on which the bus resides
     * @param numChannels  the number of channels to allocate
     */
-  def control(server: Server = Server.default, numChannels: Int = 1) = {
+  def control(server: Server = Server.default, numChannels: Int = 1): ControlBus = {
     val id = server.allocControlBus(numChannels)
     if (id == -1) {
       throw AllocatorExhausted("Bus.control: failed to get a bus allocated (" +
@@ -35,7 +43,7 @@ object Bus {
     * @param server       the server on which the bus resides
     * @param numChannels  the number of channels to allocate
     */
-  def audio(server: Server = Server.default, numChannels: Int = 1) = {
+  def audio(server: Server = Server.default, numChannels: Int = 1): AudioBus = {
     val id = server.allocAudioBus(numChannels)
     if (id == -1) {
       throw AllocatorExhausted("Bus.audio: failed to get a bus allocated (" +
@@ -80,7 +88,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @param value  the value to set the bus to
     */
-  def setMsg(value: Float) = {
+  def setMsg(value: Float): message.ControlBusSet = {
     require(numChannels == 1)
     message.ControlBusSet((index, value))
   }
@@ -93,7 +101,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusSet` message with absolute indices
     */
-  def setMsg(pairs: FillValue*) = {
+  def setMsg(pairs: FillValue*): message.ControlBusSet = {
     require(pairs.forall(tup => tup.index >= 0 && tup.index < numChannels))
     message.ControlBusSet(pairs.map(tup => tup.copy(index = tup.index + index)): _*)
   }
@@ -104,7 +112,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @param values  the vector of values to set the bus to
     */
-  def setnMsg(values: IndexedSeq[Float]) = {
+  def setnMsg(values: IndexedSeq[Float]): message.ControlBusSetn = {
     require(values.size == numChannels)
     message.ControlBusSetn((index, values))
   }
@@ -117,17 +125,17 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusSetn` message with absolute indices
     */
-  def setnMsg(pairs: (Int, IndexedSeq[Float])*) = {
+  def setnMsg(pairs: (Int, IndexedSeq[Float])*): message.ControlBusSetn = {
     require(pairs.forall(tup => tup._1 >= 0 && (tup._1 + tup._2.size) <= numChannels))
-    val ipairs = pairs.map(tup => (tup._1 + index, tup._2))
-    message.ControlBusSetn(ipairs: _*)
+    val iPairs = pairs.map(tup => (tup._1 + index, tup._2))
+    message.ControlBusSetn(iPairs: _*)
   }
 
   /** A convenience method that gets the control bus value.
     * It requires that the bus has exactly one channel, otherwise
     * an exception is thrown.
     */
-  def getMsg = {
+  def getMsg: message.ControlBusGet = {
     require(numChannels == 1)
     message.ControlBusGet(index)
   }
@@ -140,7 +148,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusGet` message with absolute indices
     */
-  def getMsg(offsets: Int*) = {
+  def getMsg(offsets: Int*): message.ControlBusGet = {
     require(offsets.forall(o => o >= 0 && o < numChannels))
     message.ControlBusGet(offsets.map(_ + index): _*)
   }
@@ -157,13 +165,13 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusGetn` message with absolute indices
     */
-  def getnMsg(ranges: Range*) = {
+  def getnMsg(ranges: Range*): message.ControlBusGetn = {
     require(ranges.forall(r => r.start >= 0 && r.last <= numChannels))
     message.ControlBusGetn(ranges.map(_.shift(index)): _*)
   }
 
   /** A convenience method that fills all channels of the control bus with one value. */
-  def fillMsg(value: Float) = {
+  def fillMsg(value: Float): message.ControlBusFill = {
     val data = FillRange(index = index, num = numChannels, value = value)
     message.ControlBusFill(data)
   }
@@ -177,7 +185,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusFill` message with absolute indices
     */
-  def fillMsg(data: FillRange*) = {
+  def fillMsg(data: FillRange*): message.ControlBusFill = {
     require(data.forall(d => d.index >= 0 && (d.index + d.num) < numChannels))
     message.ControlBusFill(data.map(d => d.copy(index = d.index + index)): _*)
   }

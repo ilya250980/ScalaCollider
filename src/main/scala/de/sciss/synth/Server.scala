@@ -634,7 +634,7 @@ object Server {
     sc
   }
 
-  private def initBoot(name: String = "localhost", config: Config = Config().build,
+  private def initBoot(name: String = "localhost", config: Config,
                        clientConfig: Client.Config = Client.Config().build) = {
     val (addr, c) = prepareConnection(config, clientConfig)
     new impl.Booting(name, c, addr, config, clientConfig, true)

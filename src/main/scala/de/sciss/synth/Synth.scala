@@ -22,7 +22,7 @@ final case class Synth(server: Server, id: Int)
   private[this] var defNameVar = ""
 
   def newMsg(defName: String, target: Node = server.defaultGroup, args: Seq[ControlSet] = Nil,
-             addAction: AddAction = addToHead) = {
+             addAction: AddAction = addToHead): message.SynthNew = {
     defNameVar = defName
     message.SynthNew(defName, id, addAction.id, target.id, args: _*)
   }

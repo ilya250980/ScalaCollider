@@ -250,7 +250,7 @@ final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: shou
 
   protected def makeUGens: UGenInLike = unwrap(this, elem.expand.outputs)
 
-  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = Mix.makeUGen(args)
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Mix.makeUGen(args)
 
   override def toString: String = elem match {
     case GESeq(elems) => elems.mkString(s"$productPrefix.seq(", ", ", ")")
@@ -316,7 +316,7 @@ final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.Single
 
   protected def makeUGens: UGenInLike = unwrap(this, elem.expand.outputs)
 
-  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args match {
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args match {
     case head +: tail => (head /: tail)(op.make1)
     case _            => UGenInGroup.empty
   }
@@ -352,7 +352,7 @@ final case class WrapOut(in: GE, fadeTime: Double = 0.02) extends UGenSource.Zer
 
   protected def makeUGens: Unit = unwrap(this, in.expand.outputs)
 
-  private[synth] def makeUGen(ins: Vec[UGenIn]): Unit = {
+  protected def makeUGen(ins: Vec[UGenIn]): Unit = {
     if (ins.isEmpty) return
     val rate = ins.map(_.rate).max
     if ((rate == audio) || (rate == control)) {
@@ -567,13 +567,16 @@ final case class PhysicalIn(indices: GE, numChannels: Seq[Int]) extends GE.Lazy 
       Vector.tabulate(_indices.size)(ch => iNumCh(ch % iNumCh.size))
     }
 
-    val ins = (_indices zip _numChannels).map {
+    val ins: GE = (_indices zip _numChannels).map {
       case (index, num) =>
         val in = In.ar(index + numOut, num)
         val ok = (0 until num).map(off => index + off < numIn)
         in * ok
     }
-    Flatten(ins)
+
+    // fix for #72
+    val out = ins.expand.flatOutputs
+    if (out.size == 1) out.head else out: GE
   }
 }
 
@@ -643,7 +646,7 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
     }
   }
 
-  private[synth] def makeUGen(args: Vec[UGenIn]) = () // XXX not used, ugly
+  protected def makeUGen(args: Vec[UGenIn]): Unit = () // XXX not used, ugly
 }
 
 /** An auxiliary graph element that repeats
@@ -784,7 +787,7 @@ final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) e
 final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with ScalarRated {
   protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
 
-  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args.indices: GE
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args.indices: GE
 }
 
 /** A graph element that produces an integer with number-of-channels of the input element.
@@ -813,7 +816,7 @@ final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with Scalar
 final case class NumChannels(in: GE) extends UGenSource.SingleOut with ScalarRated {
   protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
 
-  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
 }
 
 /** A graph element that controls the multi-channel expansion of
@@ -840,5 +843,5 @@ final case class Pad(in: GE, to: GE) extends UGenSource.SingleOut {
 
   protected def makeUGens: UGenInLike = unwrap(this, Vector(in.expand, to.expand))
 
-  private[synth] def makeUGen(args: Vec[UGenIn]): UGenInLike = args.head
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args.head
 }

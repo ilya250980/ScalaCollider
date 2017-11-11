@@ -45,7 +45,7 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
 
   private val sync            = new AnyRef
 
-  override def toString = {
+  override def toString: String = {
     val info = if (numFramesVar >= 0) s" : <$numFramesVar,$numChannelsVar,$sampleRateVar>" else ""
     s"Buffer($server,$id)$info"
   }
@@ -54,19 +54,19 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
     * the buffer was not allocated or its number of frames is
     * not yet known.
     */
-  def numFrames   = numFramesVar
+  def numFrames: Int = numFramesVar
 
   /** The number of channels allocated for this buffer, or `-1` if
     * the buffer was not allocated or its number of channels is
     * not yet known.
     */
-  def numChannels = numChannelsVar
+  def numChannels: Int = numChannelsVar
 
   /** The sample-rate for this buffer, or `0` if
     * the buffer was not allocated or its sample-rate is
     * not yet known.
     */
-  def sampleRate  = sampleRateVar
+  def sampleRate: Float = sampleRateVar
 
   /** Adds this buffer to the server's buffer manager so that
     * its information fields will be tracked and updated.
@@ -147,7 +147,7 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
 
   def setnMsg(values: IndexedSeq[Float]) = message.BufferSetn(id, (0, values))
 
-  def setnMsg(pairs: (Int, IndexedSeq[Float])*) = {
+  def setnMsg(pairs: (Int, IndexedSeq[Float])*): message.BufferSetn = {
     //    val numSmp = numChannels * numFrames
     //    require(pairs.forall(tup => (tup._1 >= 0 && (tup._1 + tup._2.size) <= numSmp)))
     val iPairs = pairs.map(tup => (tup._1, tup._2))
@@ -186,7 +186,8 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
     * @param clear      if set, the previous content is erased, otherwise the new waveform is added
     *                   to the existing content
     */
-  def sine1Msg(partials: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true, clear: Boolean = true) =
+  def sine1Msg(partials: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true,
+               clear: Boolean = true): message.BufferGen =
     genMsg(message.BufferGen.Sine1(
       partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
 
@@ -201,7 +202,7 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
     *                   to the existing content
     */
   def sine2Msg(partials: Seq[(Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
-               clear: Boolean = true) =
+               clear: Boolean = true): message.BufferGen =
     genMsg(message.BufferGen.Sine2(
       partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
 
@@ -217,7 +218,7 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
     *                   to the existing content
     */
   def sine3Msg(partials: Seq[(Float, Float, Float)], normalize: Boolean = true, wavetable: Boolean = true,
-               clear: Boolean = true) =
+               clear: Boolean = true): message.BufferGen =
     genMsg(message.BufferGen.Sine3(
       partials = partials, normalize = normalize, wavetable = wavetable, clear = clear))
 
@@ -238,7 +239,7 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
     *                   to the existing content
     */
   def chebyMsg(amps: Seq[Float], normalize: Boolean = true, wavetable: Boolean = true,
-               clear: Boolean = true) =
+               clear: Boolean = true): message.BufferGen =
     genMsg(message.BufferGen.Cheby(
       amps = amps, normalize = normalize, wavetable = wavetable, clear = clear))
 }

@@ -82,6 +82,7 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
   // unary ops
   def unary_-   : GE  = unOp(Neg       )
   def unary_!   : GE  = unOp(Not       )
+  def unary_~   : GE  = unOp(BitNot    )
   def abs       : GE  = unOp(Abs       )
   // def toFloat: GE = ...
   // def toInteger: GE = ...

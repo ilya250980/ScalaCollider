@@ -26,7 +26,7 @@ object Curve {
     override def productPrefix  = "Curve$step$"  // compatible with SoundProcesses serialization
     override def toString       = "step"
   
-    def levelAt(pos: Float, y1: Float, y2: Float) = if (pos < 1f) y1 else y2
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = if (pos < 1f) y1 else y2
   }
 
   case object linear extends Curve {
@@ -35,9 +35,9 @@ object Curve {
     override def productPrefix  = "Curve$linear$"
     override def toString       = "linear"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = pos * (y2 - y1) + y1
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = pos * (y2 - y1) + y1
   }
-  val lin = linear
+  val lin: linear.type = linear
 
   case object exponential extends Curve {
     final val id = 2
@@ -45,12 +45,12 @@ object Curve {
     override def productPrefix  = "Curve$exponential$"
     override def toString       = "exponential"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = {
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = {
       val y1Lim = max(0.0001f, y1)
       (y1Lim * pow(y2 / y1Lim, pos)).toFloat
     }
   }
-  val exp = exponential
+  val exp: exponential.type = exponential
 
   case object sine extends Curve {
     final val id = 3
@@ -58,7 +58,7 @@ object Curve {
     override def productPrefix  = "Curve$sine$"
     override def toString       = "sine"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) =
+    def levelAt(pos: Float, y1: Float, y2: Float): Float =
       (y1 + (y2 - y1) * (-cos(Pi * pos) * 0.5 + 0.5)).toFloat
   }
 
@@ -68,7 +68,7 @@ object Curve {
     override def productPrefix  = "Curve$welch$"
     override def toString       = "welch"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = if (y1 < y2) {
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = if (y1 < y2) {
       (y1 + (y2 - y1) * sin(Pi * 0.5 * pos)).toFloat
     } else {
       (y2 - (y2 - y1) * sin(Pi * 0.5 * (1 - pos))).toFloat
@@ -81,12 +81,12 @@ object Curve {
     final val id = 5
   }
   final case class parametric(/*override val */ curvature: Float) extends Curve {
-    def id = parametric.id
+    def id: Int = parametric.id
 
     override def productPrefix  = s"Curve$$parametric"
     override def toString       = s"parametric($curvature)"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = if (abs(curvature) < 0.0001f) {
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = if (abs(curvature) < 0.0001f) {
       pos * (y2 - y1) + y1
     } else {
       val denominator = 1.0 - math.exp(curvature)
@@ -101,7 +101,7 @@ object Curve {
     override def productPrefix  = "Curve$squared$"
     override def toString       = "squared"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = {
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = {
       val y1Pow2  = sqrt(y1)
       val y2Pow2  = sqrt(y2)
       val yPow2   = pos * (y2Pow2 - y1Pow2) + y1Pow2
@@ -115,7 +115,7 @@ object Curve {
     override def productPrefix  = "Curve$cubed$"
     override def toString       = "cubed"
 
-    def levelAt(pos: Float, y1: Float, y2: Float) = {
+    def levelAt(pos: Float, y1: Float, y2: Float): Float = {
       val y1Pow3  = pow(y1, 0.3333333)
       val y2Pow3  = pow(y2, 0.3333333)
       val yPow3   = pos * (y2Pow3 - y1Pow3) + y1Pow3

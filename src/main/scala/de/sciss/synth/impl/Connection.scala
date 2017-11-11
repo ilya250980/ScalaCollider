@@ -80,7 +80,7 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
       if (!c.isConnected) c.connect()
       ping(message.ServerNotify(on = true)) {
         // Note: SC 3.6 sends two args, 3.7 sends a third arg, appending a senseless zero!
-        case msg @ Message("/done", "/notify", _ @ _*) =>
+        case Message("/done", "/notify", _ @ _*) =>
       }
       val cnt = ping(Status) {
         case m: StatusReply => m
@@ -157,7 +157,7 @@ private[synth] final class Connection(val name: String, val c: OSCClient, val ad
 
   override def toString = s"connect<$name>"
 
-  def handleAbort() = ()
+  def handleAbort(): Unit = ()
 
   def connectionAlive = true
 
@@ -195,7 +195,7 @@ private[synth] final class Booting(val name: String, val c: OSCClient, val addr:
         log("exit waitFor")
         println(s"scsynth terminated ($res)")
       } catch {
-        case e: InterruptedException =>
+        case _: InterruptedException =>
           log("InterruptedException")
           p.destroy()
       } finally {
@@ -227,7 +227,7 @@ private[synth] final class Booting(val name: String, val c: OSCClient, val addr:
             }
           }
         } catch {
-          case NonFatal(e) => isOpen = false
+          case NonFatal(_) => isOpen = false
         }
         if (isOpen) { // if `false`, `processThread` will terminate and invoke `abort()`
           log("isOpen")

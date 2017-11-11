@@ -37,11 +37,11 @@ object Responder {
   private final class Impl(val server: Server, handler: PartialFunction[Message, Unit], once: Boolean)
     extends Responder {
 
-    def add() = {
+    def add(): this.type = {
       server.addResponder(this); this
     }
 
-    def remove() = {
+    def remove(): this.type = {
       server.removeResponder(this); this
     }
 
@@ -55,7 +55,7 @@ object Responder {
       once && handled
     }
 
-    private[synth] def removed() = ()
+    private[synth] def removed(): Unit = ()
 
     override def toString = s"Responder($server${if (once) ", once = true" else ""})@${hashCode().toHexString}"
   }

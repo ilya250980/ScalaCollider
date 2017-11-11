@@ -50,7 +50,7 @@ object ProxyStudy2 extends App {
 
   trait Controls { ctl =>
     type Proxy
-    private type Tpe = ControlType { type Proxy = ctl.Proxy }
+    type Tpe = ControlType { type Proxy = ctl.Proxy }
 
     def tpe: Tpe
 

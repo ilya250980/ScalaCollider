@@ -218,7 +218,7 @@ val x = play {
 /////////////////////
 
 val x = play {
-  var n = 6        // number of keys playing
+  val n = 6        // number of keys playing
   Mix.fill(n) {    // mix an array of notes
     // calculate delay based on a random note
     val pitch  = IRand(36, 89)

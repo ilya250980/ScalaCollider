@@ -1,15 +1,18 @@
 val baseName = "ScalaCollider"
 
-val PROJECT_VERSION           = "1.22.2"
-val scalaColliderSwingVersion = "1.32.1"
+val PROJECT_VERSION           = "1.23.0"
+val scalaColliderSwingVersion = "1.35.0"
+val ugensVersion              = "1.17.1"
+val audioFileVersion          = "1.4.6"
+val oscVersion                = "1.1.5"
 
-val lOSC                = RootProject(uri( "git://github.com/Sciss/ScalaOSC.git#v1.1.4"))
-val lAudioFile          = RootProject(uri( "git://github.com/Sciss/ScalaAudioFile.git#v1.4.5"))
-val lUGens              = RootProject(uri( "git://github.com/Sciss/ScalaColliderUGens.git#v1.16.3"))
+val lOSC                = RootProject(uri( "git://github.com/Sciss/ScalaOSC.git#v$oscVersion"))
+val lAudioFile          = RootProject(uri( "git://github.com/Sciss/ScalaAudioFile.git#v$audioFileVersion"))
+val lUGens              = RootProject(uri( "git://github.com/Sciss/ScalaColliderUGens.git#v$ugensVersion"))
 val lScalaCollider      = RootProject(uri(s"git://github.com/Sciss/$baseName.git#v${PROJECT_VERSION}"))
 val lScalaColliderSwing = RootProject(uri(s"git://github.com/Sciss/ScalaColliderSwing.git#v$scalaColliderSwingVersion"))
 
-scalaVersion in ThisBuild := "2.11.8"
+scalaVersion in ThisBuild := "2.12.4"
 
 val root = (project in file("."))
   .settings(unidocSettings)

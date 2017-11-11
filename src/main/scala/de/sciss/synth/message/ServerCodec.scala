@@ -183,7 +183,7 @@ object ServerCodec extends PacketCodec {
       tag = b.getShort()
     }
     skipToAlign(b)
-    var infos = new mutable.ListBuffer[BufferInfo.Data]
+    val infos = new mutable.ListBuffer[BufferInfo.Data]
     while (cnt > 0) {
       infos += BufferInfo.Data(b.getInt(), b.getInt(), b.getInt(), b.getFloat())
       cnt -= 1
@@ -225,7 +225,7 @@ object ServerCodec extends PacketCodec {
 
   def encodeMessage(msg: Message, b: ByteBuffer): Unit = superCodec.encodeMessage(msg, b)
 
-  def encodedMessageSize(msg: Message) = superCodec.encodedMessageSize(msg)
+  def encodedMessageSize(msg: Message): Int = superCodec.encodedMessageSize(msg)
 
   def encodeBundle(bndl: Bundle, b: ByteBuffer): Unit = superCodec.encodeBundle(bndl, b)
 

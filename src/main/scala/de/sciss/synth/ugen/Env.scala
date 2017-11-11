@@ -14,9 +14,10 @@
 package de.sciss.synth
 package ugen
 
-import collection.immutable.{IndexedSeq => Vec}
-import de.sciss.synth.Curve.{sine => sin, _}
-import language.implicitConversions
+import de.sciss.synth.Curve.{sine => sin, step => _step, _}
+
+import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.language.implicitConversions
 
 sealed trait EnvFactory[V] {
   import Env.{Segment => Seg}
@@ -54,6 +55,8 @@ sealed trait EnvFactory[V] {
 object Env extends EnvFactory[Env] {
   object Curve {
     implicit def const(peer: de.sciss.synth.Curve): Curve = Const(peer)
+
+    implicit def fromDouble(d: Double): Curve = parametric(d.toFloat)
 
     final case class Const(peer: de.sciss.synth.Curve) extends Curve {
       override def productPrefix = "Env$Curve$Const"
@@ -106,32 +109,40 @@ object Env extends EnvFactory[Env] {
       case Curve.Const(`exponential`) => 1e-05f // dbamp( -100 )
       case _ => 0
     }
-    new Env(level, (release, releaseLevel, curve) :: Nil, 0)
+    new Env(level, (release, releaseLevel, curve) :: Nil, releaseNode = 0)
   }
 
   def dadsr: Env = dadsr()
 
   def dadsr(delay: GE = 0.1f, attack: GE = 0.01f, decay: GE = 0.3f, sustainLevel: GE = 0.5f, release: GE = 1,
-            peakLevel: GE = 1, curve: Curve = parametric(-4), bias: GE = 0): Env =
+            peakLevel: GE = 1, curve: Curve = -4.0, bias: GE = 0): Env =
     new Env(bias, Vector[Segment](
-      (delay, bias, curve),
-      (attack, peakLevel + bias, curve),
-      (decay, peakLevel * sustainLevel + bias, curve),
-      (release, bias, curve)), 3)
+      (delay  , bias                            , curve),
+      (attack , peakLevel + bias                , curve),
+      (decay  , peakLevel * sustainLevel + bias , curve),
+      (release, bias                            , curve)),
+      releaseNode = 3)
 
   def adsr: Env = adsr()
 
   def adsr(attack: GE = 0.01f, decay: GE = 0.3f, sustainLevel: GE = 0.5f, release: GE = 1, peakLevel: GE = 1,
-           curve: Curve = parametric(-4), bias: GE = 0): Env =
+           curve: Curve = -4.0, bias: GE = 0): Env =
     new Env(bias, Vector[Segment](
-      (attack, bias, curve),
-      (decay, peakLevel * sustainLevel + bias, curve),
-      (release, bias, curve)), 2)
+      (attack , peakLevel + bias               , curve),
+      (decay  , peakLevel * sustainLevel + bias, curve),
+      (release, bias                           , curve)),
+      releaseNode = 2)
 
   def asr: Env = asr()
 
-  def asr(attack: GE = 0.01f, level: GE = 1, release: GE = 1, curve: Curve = parametric(-4)): Env =
-    new Env(0, Vector[Segment]((attack, level, curve), (release, 0, curve)), 1)
+  def asr(attack: GE = 0.01f, level: GE = 1, release: GE = 1, curve: Curve = -4.0): Env =
+    new Env(0, Vector[Segment]((attack, level, curve), (release, 0, curve)), releaseNode = 1)
+
+  def step(levels: Seq[GE], durs: Seq[GE], releaseNode: GE = -99, loopNode: GE = -99 /*, offset: GE = 0 */): Env = {
+    require (levels.nonEmpty && levels.size == durs.size)
+    new Env(levels.head, (levels, durs).zipped.map { case (lvl, dur) => Segment(lvl, dur, _step) },
+      releaseNode = releaseNode, loopNode = loopNode)
+  }
 }
 
 sealed trait EnvLike extends GE {
@@ -156,7 +167,7 @@ final case class Env(startLevel: GE, segments: Seq[Env.Segment],
 
   def rate: MaybeRate = toGE.rate
 
-  def isSustained = releaseNode != Constant(-99)
+  def isSustained: Boolean = releaseNode != Constant(-99)
 }
 
 object IEnv extends EnvFactory[IEnv] {

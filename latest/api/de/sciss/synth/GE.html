@@ -1,44 +1,538 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GE - ScalaCollider 1.22.2 API - de.sciss.synth.GE</title>
-          <meta name="description" content="GE - ScalaCollider 1.22.2 API - de.sciss.synth.GE" />
-          <meta name="keywords" content="GE ScalaCollider 1.22.2 API de.sciss.synth.GE" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaCollider 1.23.0 API  - de.sciss.synth.GE</title>
+          <meta name="description" content="ScalaCollider 1.23.0 API - de.sciss.synth.GE" />
+          <meta name="keywords" content="ScalaCollider 1.23.0 API de.sciss.synth.GE" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
-      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
-         if(top === self) {
-            var url = '../../../index.html';
-            var hash = 'de.sciss.synth.GE';
-            var anchor = window.location.hash;
-            var anchor_opt = '';
-            if (anchor.length >= 1)
-              anchor_opt = '@' + anchor.substring(1);
-            window.location.href = url + '#' + hash + anchor_opt;
-         }
-   	  </script>
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
     
         </head>
-        <body class="type">
-      <div id="definition">
-        <a href="GE$.html" title="See companion object"><img alt="Trait/Object" src="../../../lib/trait_to_object_big.png" /></a>
-        <p id="owner"><a href="../../package.html" class="extype" name="de">de</a>.<a href="../package.html" class="extype" name="de.sciss">sciss</a>.<a href="package.html" class="extype" name="de.sciss.synth">synth</a></p>
-        <h1><a href="GE$.html" title="See companion object">GE</a></h1><h3><span class="morelinks"><div>
-            Related Docs:
-            <a href="GE$.html" title="See companion object">object GE</a>
-            | <a href="package.html" class="extype" name="de.sciss.synth">package synth</a>
-          </div></span></h3><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaCollider 1.23.0 API<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.de" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="de"></a><a id="de:de"></a>
+      <span class="permalink">
+      <a href="index.html#de" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">de</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="de.sciss" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sciss"></a><a id="sciss:sciss"></a>
+      <span class="permalink">
+      <a href="../de/index.html#sciss" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">sciss</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="de">de</a></dd></dl></div>
+    </li><li name="de.sciss.synth" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synth"></a><a id="synth:synth"></a>
+      <span class="permalink">
+      <a href="../../de/sciss/index.html#synth" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="The synth package provides some extension methods." href="index.html"><span class="name">synth</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">The <code>synth</code> package provides some extension methods.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>synth</code> package provides some extension methods. In particular converting numbers to
+constant graph elements, operators on graph elements and allowing succinct creation of named controls.
+Furthermore, it contains the <code>play</code> function to quickly test graph functions.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="de.sciss">sciss</a></dd></dl></div>
+    </li><li name="de.sciss.synth.io" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="io"></a><a id="io:io"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/index.html#io" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="io/index.html"><span class="name">io</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
+    </li><li name="de.sciss.synth.message" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="message"></a><a id="message:message"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/index.html#message" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="message/index.html"><span class="name">message</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
+    </li><li name="de.sciss.synth.swing" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="swing"></a><a id="swing:swing"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/index.html#swing" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="swing/index.html"><span class="name">swing</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
+    </li><li name="de.sciss.synth.ugen" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ugen"></a><a id="ugen:ugen"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/index.html#ugen" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="ugen/index.html"><span class="name">ugen</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AddAction.html" title="Add-actions are used by the server to determine where to place a node with respect to other nodes."></a>
+                        <a href="AddAction.html" title="Add-actions are used by the server to determine where to place a node with respect to other nodes.">AddAction</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AllocatorExhausted.html" title=""></a>
+                        <a href="AllocatorExhausted.html" title="">AllocatorExhausted</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AudioBus.html" title=""></a>
+                        <a href="AudioBus.html" title="">AudioBus</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AudioRated.html" title="Utility trait that defines a rate method returning audio."></a>
+                        <a href="AudioRated.html" title="Utility trait that defines a rate method returning audio.">AudioRated</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Buffer$.html" title=""></a>
+                        <a class="class" href="Buffer.html" title=""></a>
+                        <a href="Buffer.html" title="">Buffer</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="BufferManager$.html" title=""></a>
+                        <a class="class" href="BufferManager.html" title=""></a>
+                        <a href="BufferManager.html" title="">BufferManager</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="BuildInfo$.html" title="This object was generated by sbt-buildinfo."></a>
+                        <a href="BuildInfo$.html" title="This object was generated by sbt-buildinfo.">BuildInfo</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Bus$.html" title=""></a>
+                        <a class="trait" href="Bus.html" title=""></a>
+                        <a href="Bus.html" title="">Bus</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="Client$.html" title=""></a>
+                        <a href="Client$.html" title="">Client</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Completion$.html" title=""></a>
+                        <a class="class" href="Completion.html" title=""></a>
+                        <a href="Completion.html" title="">Completion</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ControlABusMap$.html" title=""></a>
+                        <a class="trait" href="ControlABusMap.html" title="A mapping from an audio bus to a synth control."></a>
+                        <a href="ControlABusMap.html" title="A mapping from an audio bus to a synth control.">ControlABusMap</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="ControlBus.html" title=""></a>
+                        <a href="ControlBus.html" title="">ControlBus</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ControlFillRange$.html" title=""></a>
+                        <a class="class" href="ControlFillRange.html" title=""></a>
+                        <a href="ControlFillRange.html" title="">ControlFillRange</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ControlKBusMap$.html" title=""></a>
+                        <a class="trait" href="ControlKBusMap.html" title="A mapping from a control-rate bus to a synth control."></a>
+                        <a href="ControlKBusMap.html" title="A mapping from a control-rate bus to a synth control.">ControlKBusMap</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ControlRated.html" title="Utility trait that defines a rate method returning control."></a>
+                        <a href="ControlRated.html" title="Utility trait that defines a rate method returning control.">ControlRated</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ControlSet$.html" title=""></a>
+                        <a class="trait" href="ControlSet.html" title=""></a>
+                        <a href="ControlSet.html" title="">ControlSet</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Curve$.html" title=""></a>
+                        <a class="trait" href="Curve.html" title=""></a>
+                        <a href="Curve.html" title="">Curve</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="DemandRated.html" title="Utility trait that defines a rate method returning demand."></a>
+                        <a href="DemandRated.html" title="Utility trait that defines a rate method returning demand.">DemandRated</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="DoneAction$.html" title=""></a>
+                        <a class="trait" href="DoneAction.html" title="An enumeration of special codes used by some UGens to issue a related action when they they are &quot;done&quot;."></a>
+                        <a href="DoneAction.html" title="An enumeration of special codes used by some UGens to issue a related action when they they are &quot;done&quot;.">DoneAction</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="FillRange$.html" title=""></a>
+                        <a class="class" href="FillRange.html" title="A fill range for control buses or buffers."></a>
+                        <a href="FillRange.html" title="A fill range for control buses or buffers.">FillRange</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="FillValue$.html" title=""></a>
+                        <a class="class" href="FillValue.html" title="A tuple consisting of an index and value for that index."></a>
+                        <a href="FillValue.html" title="A tuple consisting of an index and value for that index.">FillValue</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="GE$.html" title="The UGen graph is constructed from interconnecting graph elements (GE)."></a>
+                        <a class="trait" href="" title="The main trait used in synthesis graph, a graph element, abbreviated as GE."></a>
+                        <a href="" title="The main trait used in synthesis graph, a graph element, abbreviated as GE.">GE</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="GEOps$.html" title=""></a>
+                        <a class="class" href="GEOps.html" title=""></a>
+                        <a href="GEOps.html" title="">GEOps</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="GraphFunction$.html" title=""></a>
+                        <a class="class" href="GraphFunction.html" title=""></a>
+                        <a href="GraphFunction.html" title="">GraphFunction</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Group$.html" title=""></a>
+                        <a class="class" href="Group.html" title=""></a>
+                        <a href="Group.html" title="">Group</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="HasDoneFlag.html" title="Marks a ugen which sets a special done flag that can be read by ugens such as Done."></a>
+                        <a href="HasDoneFlag.html" title="Marks a ugen which sets a special done flag that can be read by ugens such as Done.">HasDoneFlag</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="HasSideEffect.html" title="Marks a ugen which has side effects such as writing to a bus or buffer, communicating back to the client, etc."></a>
+                        <a href="HasSideEffect.html" title="Marks a ugen which has side effects such as writing to a bus or buffer, communicating back to the client, etc.">HasSideEffect</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="IsIndividual.html" title="Marks a ugen which is individual, that is two instances of that ugen are different even if all inputs are the same."></a>
+                        <a href="IsIndividual.html" title="Marks a ugen which is individual, that is two instances of that ugen are different even if all inputs are the same.">IsIndividual</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Lazy$.html" title=""></a>
+                        <a class="trait" href="Lazy.html" title="Elements implementing the Lazy trait may participate in the building of a SynthGraph body."></a>
+                        <a href="Lazy.html" title="Elements implementing the Lazy trait may participate in the building of a SynthGraph body.">Lazy</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MaybeRate$.html" title=""></a>
+                        <a class="class" href="MaybeRate.html" title="This trait denotes an optional server calculation rate."></a>
+                        <a href="MaybeRate.html" title="This trait denotes an optional server calculation rate.">MaybeRate</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Node$.html" title="A representation for a node on the server's tree."></a>
+                        <a class="class" href="Node.html" title=""></a>
+                        <a href="Node.html" title="">Node</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="NodeIDAllocator.html" title=""></a>
+                        <a href="NodeIDAllocator.html" title="">NodeIDAllocator</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="NodeManager$.html" title=""></a>
+                        <a class="class" href="NodeManager.html" title=""></a>
+                        <a href="NodeManager.html" title="">NodeManager</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="Ops$.html" title="Importing the contents of this object adds imperative (side-effect) functions to resources such as synths, buses, buffers."></a>
+                        <a href="Ops$.html" title="Importing the contents of this object adds imperative (side-effect) functions to resources such as synths, buses, buffers.">Ops</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Rate$.html" title=""></a>
+                        <a class="class" href="Rate.html" title="The server calculation rate of a UGen or a UGen output."></a>
+                        <a href="Rate.html" title="The server calculation rate of a UGen or a UGen output.">Rate</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="RawUGen.html" title="The raw UGen information as it is found in a final UGenGraph."></a>
+                        <a href="RawUGen.html" title="The raw UGen information as it is found in a final UGenGraph.">RawUGen</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="RichDouble.html" title=""></a>
+                        <a href="RichDouble.html" title="">RichDouble</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="RichFloat.html" title=""></a>
+                        <a href="RichFloat.html" title="">RichFloat</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="RichInt.html" title=""></a>
+                        <a href="RichInt.html" title="">RichInt</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="RichNumber$.html" title=""></a>
+                        <a href="RichNumber$.html" title="">RichNumber</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ScalarRated.html" title="Utility trait that defines a rate method returning scalar."></a>
+                        <a href="ScalarRated.html" title="Utility trait that defines a rate method returning scalar.">ScalarRated</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Server$.html" title=""></a>
+                        <a class="trait" href="Server.html" title=""></a>
+                        <a href="Server.html" title="">Server</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ServerConnection$.html" title=""></a>
+                        <a class="trait" href="ServerConnection.html" title=""></a>
+                        <a href="ServerConnection.html" title="">ServerConnection</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ServerLike.html" title=""></a>
+                        <a href="ServerLike.html" title="">ServerLike</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Synth$.html" title=""></a>
+                        <a class="class" href="Synth.html" title=""></a>
+                        <a href="Synth.html" title="">Synth</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SynthDef$.html" title=""></a>
+                        <a class="class" href="SynthDef.html" title=""></a>
+                        <a href="SynthDef.html" title="">SynthDef</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SynthGraph$.html" title=""></a>
+                        <a class="class" href="SynthGraph.html" title=""></a>
+                        <a href="SynthGraph.html" title="">SynthGraph</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="UGen$.html" title=""></a>
+                        <a class="trait" href="UGen.html" title="A UGen during graph building process is a more rich thing than RawUGen: it implements equality based on isIndividual status and may be omitted from the final graph based on hasSideEffect status."></a>
+                        <a href="UGen.html" title="A UGen during graph building process is a more rich thing than RawUGen: it implements equality based on isIndividual status and may be omitted from the final graph based on hasSideEffect status.">UGen</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="UGenGraph$.html" title=""></a>
+                        <a class="class" href="UGenGraph.html" title=""></a>
+                        <a href="UGenGraph.html" title="">UGenGraph</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="UGenIn.html" title="An element that can be used as an input to a UGen."></a>
+                        <a href="UGenIn.html" title="An element that can be used as an input to a UGen.">UGenIn</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="UGenInLike$.html" title=""></a>
+                        <a class="trait" href="UGenInLike.html" title="A super-trait that contains UGenIn and UGenInGroup."></a>
+                        <a href="UGenInLike.html" title="A super-trait that contains UGenIn and UGenInGroup.">UGenInLike</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="UGenSource$.html" title=""></a>
+                        <a class="class" href="UGenSource.html" title=""></a>
+                        <a href="UGenSource.html" title="">UGenSource</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="UGenSpec$.html" title=""></a>
+                        <a class="class" href="UGenSpec.html" title="Specification of a Unit Generator."></a>
+                        <a href="UGenSpec.html" title="Specification of a Unit Generator.">UGenSpec</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="UndefinedRate$.html" title="An undefined rate signifies that a rate is either unknown or will be implicitly resolved."></a>
+                        <a href="UndefinedRate$.html" title="An undefined rate signifies that a rate is either unknown or will be implicitly resolved.">UndefinedRate</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="UsesRandSeed.html" title=""></a>
+                        <a href="UsesRandSeed.html" title="">UsesRandSeed</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="WritesBuffer.html" title=""></a>
+                        <a href="WritesBuffer.html" title="">WritesBuffer</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="WritesBus.html" title=""></a>
+                        <a href="WritesBus.html" title="">WritesBus</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="WritesFFT.html" title=""></a>
+                        <a href="WritesFFT.html" title="">WritesFFT</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="addAfter$.html" title="An AddAction with id 3, indicating that a node should be added to the same group as the target node, right after it."></a>
+                        <a href="addAfter$.html" title="An AddAction with id 3, indicating that a node should be added to the same group as the target node, right after it.">addAfter</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="addBefore$.html" title="An AddAction with id 2, indicating that a node should be added to the same group as the target node, right before it."></a>
+                        <a href="addBefore$.html" title="An AddAction with id 2, indicating that a node should be added to the same group as the target node, right before it.">addBefore</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="addReplace$.html" title="An AddAction with id 4, indicating that a node should replace an existing node, that is take the target node's exact position in the tree."></a>
+                        <a href="addReplace$.html" title="An AddAction with id 4, indicating that a node should replace an existing node, that is take the target node's exact position in the tree.">addReplace</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="addToHead$.html" title="An AddAction with id 0, indicating that a node should be add to the head of of a target group."></a>
+                        <a href="addToHead$.html" title="An AddAction with id 0, indicating that a node should be add to the head of of a target group.">addToHead</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="addToTail$.html" title="An AddAction with id 1, indicating that a node should be add to the tail of of a target group."></a>
+                        <a href="addToTail$.html" title="An AddAction with id 1, indicating that a node should be add to the tail of of a target group.">addToTail</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="audio$.html" title="Audio rated calculation (id 1) means that values are calculated at the audio sampling rate."></a>
+                        <a href="audio$.html" title="Audio rated calculation (id 1) means that values are calculated at the audio sampling rate.">audio</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="control$.html" title="Control rated calculation (id 1) means that one value is calculated per block."></a>
+                        <a href="control$.html" title="Control rated calculation (id 1) means that one value is calculated per block.">control</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="demand$.html" title="Demand rated calculation (id 1) means that the UGen is queried by trigger through a special UGen such as Demand."></a>
+                        <a href="demand$.html" title="Demand rated calculation (id 1) means that the UGen is queried by trigger through a special UGen such as Demand.">demand</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="doNothing$.html" title="A DoneAction with id 0, signifying that nothing should be done in particular when the UGen is finished."></a>
+                        <a href="doNothing$.html" title="A DoneAction with id 0, signifying that nothing should be done in particular when the UGen is finished.">doNothing</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeAllInGroup$.html" title="A DoneAction with id 13, freeing the enclosing synth along with all other nodes in the group when the UGen is finished (i.e."></a>
+                        <a href="freeAllInGroup$.html" title="A DoneAction with id 13, freeing the enclosing synth along with all other nodes in the group when the UGen is finished (i.e.">freeAllInGroup</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeGroup$.html" title="A DoneAction with id 14, freeing the enclosing group when the UGen is finished, and hence also frees this synth along with all other nodes in the group."></a>
+                        <a href="freeGroup$.html" title="A DoneAction with id 14, freeing the enclosing group when the UGen is finished, and hence also frees this synth along with all other nodes in the group.">freeGroup</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelf$.html" title="A DoneAction with id 2, freeing the enclosing synth when the UGen is finished."></a>
+                        <a href="freeSelf$.html" title="A DoneAction with id 2, freeing the enclosing synth when the UGen is finished.">freeSelf</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfPausePred$.html" title="A DoneAction with id 9, freeing the enclosing synth and pauses the predecessor node when the UGen is finished."></a>
+                        <a href="freeSelfPausePred$.html" title="A DoneAction with id 9, freeing the enclosing synth and pauses the predecessor node when the UGen is finished.">freeSelfPausePred</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfPauseSucc$.html" title="A DoneAction with id 10, freeing the enclosing synth and pauses the successor node when the UGen is finished."></a>
+                        <a href="freeSelfPauseSucc$.html" title="A DoneAction with id 10, freeing the enclosing synth and pauses the successor node when the UGen is finished.">freeSelfPauseSucc</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfPred$.html" title="A DoneAction with id 3, freeing the enclosing synth as well as the predecessor node when the UGen is finished."></a>
+                        <a href="freeSelfPred$.html" title="A DoneAction with id 3, freeing the enclosing synth as well as the predecessor node when the UGen is finished.">freeSelfPred</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfPredAll$.html" title="A DoneAction with id 5, freeing the enclosing synth when the UGen is finished."></a>
+                        <a href="freeSelfPredAll$.html" title="A DoneAction with id 5, freeing the enclosing synth when the UGen is finished.">freeSelfPredAll</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfPredDeep$.html" title="A DoneAction with id 11, freeing the enclosing synth when the UGen is finished."></a>
+                        <a href="freeSelfPredDeep$.html" title="A DoneAction with id 11, freeing the enclosing synth when the UGen is finished.">freeSelfPredDeep</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfSucc$.html" title="A DoneAction with id 4, freeing the enclosing synth as well as the successor node when the UGen is finished."></a>
+                        <a href="freeSelfSucc$.html" title="A DoneAction with id 4, freeing the enclosing synth as well as the successor node when the UGen is finished.">freeSelfSucc</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfSuccAll$.html" title="A DoneAction with id 6, freeing the enclosing synth when the UGen is finished."></a>
+                        <a href="freeSelfSuccAll$.html" title="A DoneAction with id 6, freeing the enclosing synth when the UGen is finished.">freeSelfSuccAll</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfSuccDeep$.html" title="A DoneAction with id 12, freeing the enclosing synth when the UGen is finished."></a>
+                        <a href="freeSelfSuccDeep$.html" title="A DoneAction with id 12, freeing the enclosing synth when the UGen is finished.">freeSelfSuccDeep</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfToHead$.html" title="A DoneAction with id 7, freeing the enclosing synth and all preceding nodes in its group when the UGen is finished."></a>
+                        <a href="freeSelfToHead$.html" title="A DoneAction with id 7, freeing the enclosing synth and all preceding nodes in its group when the UGen is finished.">freeSelfToHead</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="freeSelfToTail$.html" title="A DoneAction with id 8, freeing the enclosing synth and all succeeding nodes  in its group when the UGen is finished."></a>
+                        <a href="freeSelfToTail$.html" title="A DoneAction with id 8, freeing the enclosing synth and all succeeding nodes  in its group when the UGen is finished.">freeSelfToTail</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="pauseSelf$.html" title="A DoneAction with id 1, pausing the enclosing synth when the UGen is finished."></a>
+                        <a href="pauseSelf$.html" title="A DoneAction with id 1, pausing the enclosing synth when the UGen is finished.">pauseSelf</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="package$$rangeOps.html" title=""></a>
+                        <a href="package$$rangeOps.html" title="">rangeOps</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="scalar$.html" title="Scalar rated calculation (id 0) means that a value is only calculated once when a Synth is initialized."></a>
+                        <a href="scalar$.html" title="Scalar rated calculation (id 0) means that a value is only calculated once when a Synth is initialized.">scalar</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="trait type">
+      <div id="definition">
+        <a href="GE$.html" title="See companion object"><div class="big-circle trait-companion-object">t</div></a>
+        <p id="owner"><a href="../../index.html" class="extype" name="de">de</a>.<a href="../index.html" class="extype" name="de.sciss">sciss</a>.<a href="index.html" class="extype" name="de.sciss.synth">synth</a></p>
+        <h1><a href="GE$.html" title="See companion object">GE</a><span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"><div>
+            Companion <a href="GE$.html" title="See companion object">object GE</a>
+          </div></span></h3>
       </div>
 
       <h4 id="signature" class="signature">
@@ -50,6 +544,7 @@
         <span class="name">GE</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span></span>
       </span>
       </h4>
+
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The main trait used in synthesis graph, a graph element, abbreviated as <code>GE</code>.</p><p>Graph elements are characterized by having a calculation rate (possibly unknown),
 and they embody future UGens, which are created by invoking the <code>expand</code> method.
@@ -58,41 +553,54 @@ in the <code>ugen</code> package, and these elements take again graph elements a
 Multi-channel expansion is thus deferred to the transition from <code>SynthGraph</code> to <code>UGenGraph</code>.</p><p>Currently, also a lot of unary and binary operations are directly defined on the <code>GE</code> trait,
 although they might go into a separate <code>GEOps</code> implicit class in future versions.
 </p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="SynthGraph.html" class="extype" name="de.sciss.synth.SynthGraph">de.sciss.synth.SynthGraph</a></p></span></dd></dl><div class="toggleContainer block">
-          <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
-            <span class="toggle">Known Subclasses</span>
-            <div class="subClasses hiddenContent"><a href="ugen/A2K.html" class="extype" name="de.sciss.synth.ugen.A2K">A2K</a>, <a href="ugen/APF.html" class="extype" name="de.sciss.synth.ugen.APF">APF</a>, <a href="ugen/AllpassC.html" class="extype" name="de.sciss.synth.ugen.AllpassC">AllpassC</a>, <a href="ugen/AllpassL.html" class="extype" name="de.sciss.synth.ugen.AllpassL">AllpassL</a>, <a href="ugen/AllpassN.html" class="extype" name="de.sciss.synth.ugen.AllpassN">AllpassN</a>, <a href="ugen/AmpComp.html" class="extype" name="de.sciss.synth.ugen.AmpComp">AmpComp</a>, <a href="ugen/AmpCompA.html" class="extype" name="de.sciss.synth.ugen.AmpCompA">AmpCompA</a>, <a href="ugen/Amplitude.html" class="extype" name="de.sciss.synth.ugen.Amplitude">Amplitude</a>, <a href="ugen/ArrayMax.html" class="extype" name="de.sciss.synth.ugen.ArrayMax">ArrayMax</a>, <a href="ugen/ArrayMin.html" class="extype" name="de.sciss.synth.ugen.ArrayMin">ArrayMin</a>, <a href="ugen/AudioControl.html" class="extype" name="de.sciss.synth.ugen.AudioControl">AudioControl</a>, <a href="ugen/AudioControlProxy.html" class="extype" name="de.sciss.synth.ugen.AudioControlProxy">AudioControlProxy</a>, <a href="ugen/BAllPass.html" class="extype" name="de.sciss.synth.ugen.BAllPass">BAllPass</a>, <a href="ugen/BBandPass.html" class="extype" name="de.sciss.synth.ugen.BBandPass">BBandPass</a>, <a href="ugen/BBandStop.html" class="extype" name="de.sciss.synth.ugen.BBandStop">BBandStop</a>, <a href="ugen/BHiPass.html" class="extype" name="de.sciss.synth.ugen.BHiPass">BHiPass</a>, <a href="ugen/BHiShelf.html" class="extype" name="de.sciss.synth.ugen.BHiShelf">BHiShelf</a>, <a href="ugen/BLowPass.html" class="extype" name="de.sciss.synth.ugen.BLowPass">BLowPass</a>, <a href="ugen/BLowShelf.html" class="extype" name="de.sciss.synth.ugen.BLowShelf">BLowShelf</a>, <a href="ugen/BPF.html" class="extype" name="de.sciss.synth.ugen.BPF">BPF</a>, <a href="ugen/BPZ2.html" class="extype" name="de.sciss.synth.ugen.BPZ2">BPZ2</a>, <a href="ugen/BPeakEQ.html" class="extype" name="de.sciss.synth.ugen.BPeakEQ">BPeakEQ</a>, <a href="ugen/BRF.html" class="extype" name="de.sciss.synth.ugen.BRF">BRF</a>, <a href="ugen/BRZ2.html" class="extype" name="de.sciss.synth.ugen.BRZ2">BRZ2</a>, <a href="ugen/Balance2.html" class="extype" name="de.sciss.synth.ugen.Balance2">Balance2</a>, <a href="ugen/Ball.html" class="extype" name="de.sciss.synth.ugen.Ball">Ball</a>, <a href="ugen/BeatTrack.html" class="extype" name="de.sciss.synth.ugen.BeatTrack">BeatTrack</a>, <a href="ugen/BeatTrack2.html" class="extype" name="de.sciss.synth.ugen.BeatTrack2">BeatTrack2</a>, <a href="ugen/BiPanB2.html" class="extype" name="de.sciss.synth.ugen.BiPanB2">BiPanB2</a>, <a href="ugen/BinaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">BinaryOpUGen</a>, <a href="ugen/Blip.html" class="extype" name="de.sciss.synth.ugen.Blip">Blip</a>, <a href="ugen/BrownNoise.html" class="extype" name="de.sciss.synth.ugen.BrownNoise">BrownNoise</a>, <a href="ugen/BufAllpassC.html" class="extype" name="de.sciss.synth.ugen.BufAllpassC">BufAllpassC</a>, <a href="ugen/BufAllpassL.html" class="extype" name="de.sciss.synth.ugen.BufAllpassL">BufAllpassL</a>, <a href="ugen/BufAllpassN.html" class="extype" name="de.sciss.synth.ugen.BufAllpassN">BufAllpassN</a>, <a href="ugen/BufChannels.html" class="extype" name="de.sciss.synth.ugen.BufChannels">BufChannels</a>, <a href="ugen/BufCombC.html" class="extype" name="de.sciss.synth.ugen.BufCombC">BufCombC</a>, <a href="ugen/BufCombL.html" class="extype" name="de.sciss.synth.ugen.BufCombL">BufCombL</a>, <a href="ugen/BufCombN.html" class="extype" name="de.sciss.synth.ugen.BufCombN">BufCombN</a>, <a href="ugen/BufDelayC.html" class="extype" name="de.sciss.synth.ugen.BufDelayC">BufDelayC</a>, <a href="ugen/BufDelayL.html" class="extype" name="de.sciss.synth.ugen.BufDelayL">BufDelayL</a>, <a href="ugen/BufDelayN.html" class="extype" name="de.sciss.synth.ugen.BufDelayN">BufDelayN</a>, <a href="ugen/BufDur.html" class="extype" name="de.sciss.synth.ugen.BufDur">BufDur</a>, <a href="ugen/BufFrames.html" class="extype" name="de.sciss.synth.ugen.BufFrames">BufFrames</a>, <a href="ugen/BufMax.html" class="extype" name="de.sciss.synth.ugen.BufMax">BufMax</a>, <a href="ugen/BufMin.html" class="extype" name="de.sciss.synth.ugen.BufMin">BufMin</a>, <a href="ugen/BufRateScale.html" class="extype" name="de.sciss.synth.ugen.BufRateScale">BufRateScale</a>, <a href="ugen/BufRd.html" class="extype" name="de.sciss.synth.ugen.BufRd">BufRd</a>, <a href="ugen/BufSampleRate.html" class="extype" name="de.sciss.synth.ugen.BufSampleRate">BufSampleRate</a>, <a href="ugen/BufSamples.html" class="extype" name="de.sciss.synth.ugen.BufSamples">BufSamples</a>, <a href="ugen/BufWr.html" class="extype" name="de.sciss.synth.ugen.BufWr">BufWr</a>, <a href="ugen/COsc.html" class="extype" name="de.sciss.synth.ugen.COsc">COsc</a>, <a href="ugen/ChannelIndices.html" class="extype" name="de.sciss.synth.ugen.ChannelIndices">ChannelIndices</a>, <a href="ugen/ChannelProxy.html" class="extype" name="de.sciss.synth.ugen.ChannelProxy">ChannelProxy</a>, <a href="ugen/ChannelRangeProxy.html" class="extype" name="de.sciss.synth.ugen.ChannelRangeProxy">ChannelRangeProxy</a>, <a href="ugen/CheckBadValues.html" class="extype" name="de.sciss.synth.ugen.CheckBadValues">CheckBadValues</a>, <a href="ugen/CircleRamp.html" class="extype" name="de.sciss.synth.ugen.CircleRamp">CircleRamp</a>, <a href="ugen/ClearBuf.html" class="extype" name="de.sciss.synth.ugen.ClearBuf">ClearBuf</a>, <a href="ugen/Clip.html" class="extype" name="de.sciss.synth.ugen.Clip">Clip</a>, <a href="ugen/ClipNoise.html" class="extype" name="de.sciss.synth.ugen.ClipNoise">ClipNoise</a>, <a href="ugen/CoinGate.html" class="extype" name="de.sciss.synth.ugen.CoinGate">CoinGate</a>, <a href="ugen/CombC.html" class="extype" name="de.sciss.synth.ugen.CombC">CombC</a>, <a href="ugen/CombL.html" class="extype" name="de.sciss.synth.ugen.CombL">CombL</a>, <a href="ugen/CombN.html" class="extype" name="de.sciss.synth.ugen.CombN">CombN</a>, <a href="ugen/Compander.html" class="extype" name="de.sciss.synth.ugen.Compander">Compander</a>, <a href="ugen/Constant.html" class="extype" name="de.sciss.synth.ugen.Constant">Constant</a>, <a href="ugen/Control.html" class="extype" name="de.sciss.synth.ugen.Control">Control</a>, <a href="ugen/ControlDur.html" class="extype" name="de.sciss.synth.ugen.ControlDur">ControlDur</a>, <a href="ugen/impl/ControlImpl.html" class="extype" name="de.sciss.synth.ugen.impl.ControlImpl">ControlImpl</a>, <a href="ugen/ControlProxy.html" class="extype" name="de.sciss.synth.ugen.ControlProxy">ControlProxy</a>, <a href="ugen/ControlProxyLike.html" class="extype" name="de.sciss.synth.ugen.ControlProxyLike">ControlProxyLike</a>, <a href="ugen/ControlRate.html" class="extype" name="de.sciss.synth.ugen.ControlRate">ControlRate</a>, <a href="ugen/ControlUGenOutProxy.html" class="extype" name="de.sciss.synth.ugen.ControlUGenOutProxy">ControlUGenOutProxy</a>, <a href="ugen/Convolution.html" class="extype" name="de.sciss.synth.ugen.Convolution">Convolution</a>, <a href="ugen/Convolution2.html" class="extype" name="de.sciss.synth.ugen.Convolution2">Convolution2</a>, <a href="ugen/Convolution2L.html" class="extype" name="de.sciss.synth.ugen.Convolution2L">Convolution2L</a>, <a href="ugen/Convolution3.html" class="extype" name="de.sciss.synth.ugen.Convolution3">Convolution3</a>, <a href="ugen/Crackle.html" class="extype" name="de.sciss.synth.ugen.Crackle">Crackle</a>, <a href="ugen/CuspL.html" class="extype" name="de.sciss.synth.ugen.CuspL">CuspL</a>, <a href="ugen/CuspN.html" class="extype" name="de.sciss.synth.ugen.CuspN">CuspN</a>, <a href="ugen/DC.html" class="extype" name="de.sciss.synth.ugen.DC">DC</a>, <a href="ugen/DFM1.html" class="extype" name="de.sciss.synth.ugen.DFM1">DFM1</a>, <a href="ugen/Dbrown.html" class="extype" name="de.sciss.synth.ugen.Dbrown">Dbrown</a>, <a href="ugen/Dbufrd.html" class="extype" name="de.sciss.synth.ugen.Dbufrd">Dbufrd</a>, <a href="ugen/Dbufwr.html" class="extype" name="de.sciss.synth.ugen.Dbufwr">Dbufwr</a>, <a href="ugen/Decay.html" class="extype" name="de.sciss.synth.ugen.Decay">Decay</a>, <a href="ugen/Decay2.html" class="extype" name="de.sciss.synth.ugen.Decay2">Decay2</a>, <a href="ugen/DecodeB2.html" class="extype" name="de.sciss.synth.ugen.DecodeB2">DecodeB2</a>, <a href="ugen/DegreeToKey.html" class="extype" name="de.sciss.synth.ugen.DegreeToKey">DegreeToKey</a>, <a href="ugen/DelTapRd.html" class="extype" name="de.sciss.synth.ugen.DelTapRd">DelTapRd</a>, <a href="ugen/DelTapWr.html" class="extype" name="de.sciss.synth.ugen.DelTapWr">DelTapWr</a>, <a href="ugen/Delay1.html" class="extype" name="de.sciss.synth.ugen.Delay1">Delay1</a>, <a href="ugen/Delay2.html" class="extype" name="de.sciss.synth.ugen.Delay2">Delay2</a>, <a href="ugen/DelayC.html" class="extype" name="de.sciss.synth.ugen.DelayC">DelayC</a>, <a href="ugen/DelayL.html" class="extype" name="de.sciss.synth.ugen.DelayL">DelayL</a>, <a href="ugen/DelayN.html" class="extype" name="de.sciss.synth.ugen.DelayN">DelayN</a>, <a href="ugen/Demand.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a>, <a href="ugen/DemandEnvGen.html" class="extype" name="de.sciss.synth.ugen.DemandEnvGen">DemandEnvGen</a>, <a href="ugen/DetectIndex.html" class="extype" name="de.sciss.synth.ugen.DetectIndex">DetectIndex</a>, <a href="ugen/DetectSilence.html" class="extype" name="de.sciss.synth.ugen.DetectSilence">DetectSilence</a>, <a href="ugen/Dgeom.html" class="extype" name="de.sciss.synth.ugen.Dgeom">Dgeom</a>, <a href="ugen/Dibrown.html" class="extype" name="de.sciss.synth.ugen.Dibrown">Dibrown</a>, <a href="ugen/DiskIn.html" class="extype" name="de.sciss.synth.ugen.DiskIn">DiskIn</a>, <a href="ugen/DiskOut.html" class="extype" name="de.sciss.synth.ugen.DiskOut">DiskOut</a>, <a href="ugen/Diwhite.html" class="extype" name="de.sciss.synth.ugen.Diwhite">Diwhite</a>, <a href="ugen/Donce.html" class="extype" name="de.sciss.synth.ugen.Donce">Donce</a>, <a href="ugen/Done.html" class="extype" name="de.sciss.synth.ugen.Done">Done</a>, <a href="ugen/Dpoll.html" class="extype" name="de.sciss.synth.ugen.Dpoll">Dpoll</a>, <a href="ugen/Drand.html" class="extype" name="de.sciss.synth.ugen.Drand">Drand</a>, <a href="ugen/Dreset.html" class="extype" name="de.sciss.synth.ugen.Dreset">Dreset</a>, <a href="ugen/Dseq.html" class="extype" name="de.sciss.synth.ugen.Dseq">Dseq</a>, <a href="ugen/Dser.html" class="extype" name="de.sciss.synth.ugen.Dser">Dser</a>, <a href="ugen/Dseries.html" class="extype" name="de.sciss.synth.ugen.Dseries">Dseries</a>, <a href="ugen/Dshuf.html" class="extype" name="de.sciss.synth.ugen.Dshuf">Dshuf</a>, <a href="ugen/Dstutter.html" class="extype" name="de.sciss.synth.ugen.Dstutter">Dstutter</a>, <a href="ugen/Dswitch.html" class="extype" name="de.sciss.synth.ugen.Dswitch">Dswitch</a>, <a href="ugen/Dswitch1.html" class="extype" name="de.sciss.synth.ugen.Dswitch1">Dswitch1</a>, <a href="ugen/Dust.html" class="extype" name="de.sciss.synth.ugen.Dust">Dust</a>, <a href="ugen/Dust2.html" class="extype" name="de.sciss.synth.ugen.Dust2">Dust2</a>, <a href="ugen/Duty.html" class="extype" name="de.sciss.synth.ugen.Duty">Duty</a>, <a href="ugen/Dwhite.html" class="extype" name="de.sciss.synth.ugen.Dwhite">Dwhite</a>, <a href="ugen/Dxrand.html" class="extype" name="de.sciss.synth.ugen.Dxrand">Dxrand</a>, <a href="ugen/Env.html" class="extype" name="de.sciss.synth.ugen.Env">Env</a>, <a href="ugen/EnvGen.html" class="extype" name="de.sciss.synth.ugen.EnvGen">EnvGen</a>, <a href="ugen/EnvLike.html" class="extype" name="de.sciss.synth.ugen.EnvLike">EnvLike</a>, <a href="ugen/ExpRand.html" class="extype" name="de.sciss.synth.ugen.ExpRand">ExpRand</a>, <a href="ugen/FBSineC.html" class="extype" name="de.sciss.synth.ugen.FBSineC">FBSineC</a>, <a href="ugen/FBSineL.html" class="extype" name="de.sciss.synth.ugen.FBSineL">FBSineL</a>, <a href="ugen/FBSineN.html" class="extype" name="de.sciss.synth.ugen.FBSineN">FBSineN</a>, <a href="ugen/FFT.html" class="extype" name="de.sciss.synth.ugen.FFT">FFT</a>, <a href="ugen/FFTTrigger.html" class="extype" name="de.sciss.synth.ugen.FFTTrigger">FFTTrigger</a>, <a href="ugen/FOS.html" class="extype" name="de.sciss.synth.ugen.FOS">FOS</a>, <a href="ugen/FSinOsc.html" class="extype" name="de.sciss.synth.ugen.FSinOsc">FSinOsc</a>, <a href="ugen/Flatten.html" class="extype" name="de.sciss.synth.ugen.Flatten">Flatten</a>, <a href="ugen/Fold.html" class="extype" name="de.sciss.synth.ugen.Fold">Fold</a>, <a href="ugen/FoldIndex.html" class="extype" name="de.sciss.synth.ugen.FoldIndex">FoldIndex</a>, <a href="ugen/Formant.html" class="extype" name="de.sciss.synth.ugen.Formant">Formant</a>, <a href="ugen/Formlet.html" class="extype" name="de.sciss.synth.ugen.Formlet">Formlet</a>, <a href="ugen/Free.html" class="extype" name="de.sciss.synth.ugen.Free">Free</a>, <a href="ugen/FreeSelf.html" class="extype" name="de.sciss.synth.ugen.FreeSelf">FreeSelf</a>, <a href="ugen/FreeSelfWhenDone.html" class="extype" name="de.sciss.synth.ugen.FreeSelfWhenDone">FreeSelfWhenDone</a>, <a href="ugen/FreeVerb.html" class="extype" name="de.sciss.synth.ugen.FreeVerb">FreeVerb</a>, <a href="ugen/FreeVerb2.html" class="extype" name="de.sciss.synth.ugen.FreeVerb2">FreeVerb2</a>, <a href="ugen/FreqShift.html" class="extype" name="de.sciss.synth.ugen.FreqShift">FreqShift</a>, <a href="ugen/GESeq.html" class="extype" name="de.sciss.synth.ugen.GESeq">GESeq</a>, <a href="ugen/GVerb.html" class="extype" name="de.sciss.synth.ugen.GVerb">GVerb</a>, <a href="ugen/Gate.html" class="extype" name="de.sciss.synth.ugen.Gate">Gate</a>, <a href="ugen/GbmanL.html" class="extype" name="de.sciss.synth.ugen.GbmanL">GbmanL</a>, <a href="ugen/GbmanN.html" class="extype" name="de.sciss.synth.ugen.GbmanN">GbmanN</a>, <a href="ugen/Gendy1.html" class="extype" name="de.sciss.synth.ugen.Gendy1">Gendy1</a>, <a href="ugen/Gendy2.html" class="extype" name="de.sciss.synth.ugen.Gendy2">Gendy2</a>, <a href="ugen/Gendy3.html" class="extype" name="de.sciss.synth.ugen.Gendy3">Gendy3</a>, <a href="ugen/GrainBuf.html" class="extype" name="de.sciss.synth.ugen.GrainBuf">GrainBuf</a>, <a href="ugen/GrainFM.html" class="extype" name="de.sciss.synth.ugen.GrainFM">GrainFM</a>, <a href="ugen/GrainIn.html" class="extype" name="de.sciss.synth.ugen.GrainIn">GrainIn</a>, <a href="ugen/GrainSin.html" class="extype" name="de.sciss.synth.ugen.GrainSin">GrainSin</a>, <a href="ugen/GrayNoise.html" class="extype" name="de.sciss.synth.ugen.GrayNoise">GrayNoise</a>, <a href="ugen/HPF.html" class="extype" name="de.sciss.synth.ugen.HPF">HPF</a>, <a href="ugen/HPZ1.html" class="extype" name="de.sciss.synth.ugen.HPZ1">HPZ1</a>, <a href="ugen/HPZ2.html" class="extype" name="de.sciss.synth.ugen.HPZ2">HPZ2</a>, <a href="ugen/Hasher.html" class="extype" name="de.sciss.synth.ugen.Hasher">Hasher</a>, <a href="ugen/HenonC.html" class="extype" name="de.sciss.synth.ugen.HenonC">HenonC</a>, <a href="ugen/HenonL.html" class="extype" name="de.sciss.synth.ugen.HenonL">HenonL</a>, <a href="ugen/HenonN.html" class="extype" name="de.sciss.synth.ugen.HenonN">HenonN</a>, <a href="ugen/Hilbert.html" class="extype" name="de.sciss.synth.ugen.Hilbert">Hilbert</a>, <a href="ugen/IEnv.html" class="extype" name="de.sciss.synth.ugen.IEnv">IEnv</a>, <a href="ugen/IEnvGen.html" class="extype" name="de.sciss.synth.ugen.IEnvGen">IEnvGen</a>, <a href="ugen/IFFT.html" class="extype" name="de.sciss.synth.ugen.IFFT">IFFT</a>, <a href="ugen/IRand.html" class="extype" name="de.sciss.synth.ugen.IRand">IRand</a>, <a href="ugen/Impulse.html" class="extype" name="de.sciss.synth.ugen.Impulse">Impulse</a>, <a href="ugen/In.html" class="extype" name="de.sciss.synth.ugen.In">In</a>, <a href="ugen/InFeedback.html" class="extype" name="de.sciss.synth.ugen.InFeedback">InFeedback</a>, <a href="ugen/InRange.html" class="extype" name="de.sciss.synth.ugen.InRange">InRange</a>, <a href="ugen/InRect.html" class="extype" name="de.sciss.synth.ugen.InRect">InRect</a>, <a href="ugen/InTrig.html" class="extype" name="de.sciss.synth.ugen.InTrig">InTrig</a>, <a href="ugen/Index.html" class="extype" name="de.sciss.synth.ugen.Index">Index</a>, <a href="ugen/IndexInBetween.html" class="extype" name="de.sciss.synth.ugen.IndexInBetween">IndexInBetween</a>, <a href="ugen/IndexL.html" class="extype" name="de.sciss.synth.ugen.IndexL">IndexL</a>, <a href="ugen/Integrator.html" class="extype" name="de.sciss.synth.ugen.Integrator">Integrator</a>, <a href="ugen/K2A.html" class="extype" name="de.sciss.synth.ugen.K2A">K2A</a>, <a href="ugen/KeyState.html" class="extype" name="de.sciss.synth.ugen.KeyState">KeyState</a>, <a href="ugen/KeyTrack.html" class="extype" name="de.sciss.synth.ugen.KeyTrack">KeyTrack</a>, <a href="ugen/Klang.html" class="extype" name="de.sciss.synth.ugen.Klang">Klang</a>, <a href="ugen/KlangSpec.html" class="extype" name="de.sciss.synth.ugen.KlangSpec">KlangSpec</a>, <a href="ugen/Klank.html" class="extype" name="de.sciss.synth.ugen.Klank">Klank</a>, <a href="ugen/LFClipNoise.html" class="extype" name="de.sciss.synth.ugen.LFClipNoise">LFClipNoise</a>, <a href="ugen/LFCub.html" class="extype" name="de.sciss.synth.ugen.LFCub">LFCub</a>, <a href="ugen/LFDClipNoise.html" class="extype" name="de.sciss.synth.ugen.LFDClipNoise">LFDClipNoise</a>, <a href="ugen/LFDNoise0.html" class="extype" name="de.sciss.synth.ugen.LFDNoise0">LFDNoise0</a>, <a href="ugen/LFDNoise1.html" class="extype" name="de.sciss.synth.ugen.LFDNoise1">LFDNoise1</a>, <a href="ugen/LFDNoise3.html" class="extype" name="de.sciss.synth.ugen.LFDNoise3">LFDNoise3</a>, <a href="ugen/LFGauss.html" class="extype" name="de.sciss.synth.ugen.LFGauss">LFGauss</a>, <a href="ugen/LFNoise0.html" class="extype" name="de.sciss.synth.ugen.LFNoise0">LFNoise0</a>, <a href="ugen/LFNoise1.html" class="extype" name="de.sciss.synth.ugen.LFNoise1">LFNoise1</a>, <a href="ugen/LFNoise2.html" class="extype" name="de.sciss.synth.ugen.LFNoise2">LFNoise2</a>, <a href="ugen/LFPar.html" class="extype" name="de.sciss.synth.ugen.LFPar">LFPar</a>, <a href="ugen/LFPulse.html" class="extype" name="de.sciss.synth.ugen.LFPulse">LFPulse</a>, <a href="ugen/LFSaw.html" class="extype" name="de.sciss.synth.ugen.LFSaw">LFSaw</a>, <a href="ugen/LFTri.html" class="extype" name="de.sciss.synth.ugen.LFTri">LFTri</a>, <a href="ugen/LPF.html" class="extype" name="de.sciss.synth.ugen.LPF">LPF</a>, <a href="ugen/LPZ1.html" class="extype" name="de.sciss.synth.ugen.LPZ1">LPZ1</a>, <a href="ugen/LPZ2.html" class="extype" name="de.sciss.synth.ugen.LPZ2">LPZ2</a>, <a href="ugen/Lag.html" class="extype" name="de.sciss.synth.ugen.Lag">Lag</a>, <a href="ugen/Lag2.html" class="extype" name="de.sciss.synth.ugen.Lag2">Lag2</a>, <a href="ugen/Lag2UD.html" class="extype" name="de.sciss.synth.ugen.Lag2UD">Lag2UD</a>, <a href="ugen/Lag3.html" class="extype" name="de.sciss.synth.ugen.Lag3">Lag3</a>, <a href="ugen/Lag3UD.html" class="extype" name="de.sciss.synth.ugen.Lag3UD">Lag3UD</a>, <a href="ugen/LagIn.html" class="extype" name="de.sciss.synth.ugen.LagIn">LagIn</a>, <a href="ugen/LagUD.html" class="extype" name="de.sciss.synth.ugen.LagUD">LagUD</a>, <a href="ugen/LastValue.html" class="extype" name="de.sciss.synth.ugen.LastValue">LastValue</a>, <a href="ugen/Latch.html" class="extype" name="de.sciss.synth.ugen.Latch">Latch</a>, <a href="ugen/LatoocarfianC.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianC">LatoocarfianC</a>, <a href="ugen/LatoocarfianL.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianL">LatoocarfianL</a>, <a href="ugen/LatoocarfianN.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianN">LatoocarfianN</a>, <a href="GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">Lazy</a>, <a href="ugen/LeakDC.html" class="extype" name="de.sciss.synth.ugen.LeakDC">LeakDC</a>, <a href="ugen/LeastChange.html" class="extype" name="de.sciss.synth.ugen.LeastChange">LeastChange</a>, <a href="ugen/Limiter.html" class="extype" name="de.sciss.synth.ugen.Limiter">Limiter</a>, <a href="ugen/LinCongC.html" class="extype" name="de.sciss.synth.ugen.LinCongC">LinCongC</a>, <a href="ugen/LinCongL.html" class="extype" name="de.sciss.synth.ugen.LinCongL">LinCongL</a>, <a href="ugen/LinCongN.html" class="extype" name="de.sciss.synth.ugen.LinCongN">LinCongN</a>, <a href="ugen/LinExp.html" class="extype" name="de.sciss.synth.ugen.LinExp">LinExp</a>, <a href="ugen/LinLin.html" class="extype" name="de.sciss.synth.ugen.LinLin">LinLin</a>, <a href="ugen/LinPan2.html" class="extype" name="de.sciss.synth.ugen.LinPan2">LinPan2</a>, <a href="ugen/LinRand.html" class="extype" name="de.sciss.synth.ugen.LinRand">LinRand</a>, <a href="ugen/LinXFade2.html" class="extype" name="de.sciss.synth.ugen.LinXFade2">LinXFade2</a>, <a href="ugen/Line.html" class="extype" name="de.sciss.synth.ugen.Line">Line</a>, <a href="ugen/Linen.html" class="extype" name="de.sciss.synth.ugen.Linen">Linen</a>, <a href="ugen/ListTrig.html" class="extype" name="de.sciss.synth.ugen.ListTrig">ListTrig</a>, <a href="ugen/ListTrig2.html" class="extype" name="de.sciss.synth.ugen.ListTrig2">ListTrig2</a>, <a href="ugen/LocalBuf.html" class="extype" name="de.sciss.synth.ugen.LocalBuf">LocalBuf</a>, <a href="ugen/LocalIn.html" class="extype" name="de.sciss.synth.ugen.LocalIn">LocalIn</a>, <a href="ugen/Logger.html" class="extype" name="de.sciss.synth.ugen.Logger">Logger</a>, <a href="ugen/Logistic.html" class="extype" name="de.sciss.synth.ugen.Logistic">Logistic</a>, <a href="ugen/LorenzL.html" class="extype" name="de.sciss.synth.ugen.LorenzL">LorenzL</a>, <a href="ugen/Loudness.html" class="extype" name="de.sciss.synth.ugen.Loudness">Loudness</a>, <a href="ugen/MFCC.html" class="extype" name="de.sciss.synth.ugen.MFCC">MFCC</a>, <a href="ugen/MantissaMask.html" class="extype" name="de.sciss.synth.ugen.MantissaMask">MantissaMask</a>, <a href="ugen/Median.html" class="extype" name="de.sciss.synth.ugen.Median">Median</a>, <a href="ugen/MidEQ.html" class="extype" name="de.sciss.synth.ugen.MidEQ">MidEQ</a>, <a href="ugen/Mix.html" class="extype" name="de.sciss.synth.ugen.Mix">Mix</a>, <a href="ugen/Mix$$Mono.html" class="extype" name="de.sciss.synth.ugen.Mix.Mono">Mono</a>, <a href="ugen/MoogFF.html" class="extype" name="de.sciss.synth.ugen.MoogFF">MoogFF</a>, <a href="ugen/MostChange.html" class="extype" name="de.sciss.synth.ugen.MostChange">MostChange</a>, <a href="ugen/MouseButton.html" class="extype" name="de.sciss.synth.ugen.MouseButton">MouseButton</a>, <a href="ugen/MouseX.html" class="extype" name="de.sciss.synth.ugen.MouseX">MouseX</a>, <a href="ugen/MouseY.html" class="extype" name="de.sciss.synth.ugen.MouseY">MouseY</a>, <a href="ugen/MulAdd.html" class="extype" name="de.sciss.synth.ugen.MulAdd">MulAdd</a>, <a href="UGen$$MultiOut.html" class="extype" name="de.sciss.synth.UGen.MultiOut">MultiOut</a>, <a href="UGenSource$$MultiOut.html" class="extype" name="de.sciss.synth.UGenSource.MultiOut">MultiOut</a>, <a href="ugen/impl/MultiOutImpl.html" class="extype" name="de.sciss.synth.ugen.impl.MultiOutImpl">MultiOutImpl</a>, <a href="ugen/NRand.html" class="extype" name="de.sciss.synth.ugen.NRand">NRand</a>, <a href="ugen/NodeID.html" class="extype" name="de.sciss.synth.ugen.NodeID">NodeID</a>, <a href="ugen/Normalizer.html" class="extype" name="de.sciss.synth.ugen.Normalizer">Normalizer</a>, <a href="ugen/NumAudioBuses.html" class="extype" name="de.sciss.synth.ugen.NumAudioBuses">NumAudioBuses</a>, <a href="ugen/NumBuffers.html" class="extype" name="de.sciss.synth.ugen.NumBuffers">NumBuffers</a>, <a href="ugen/NumChannels.html" class="extype" name="de.sciss.synth.ugen.NumChannels">NumChannels</a>, <a href="ugen/NumControlBuses.html" class="extype" name="de.sciss.synth.ugen.NumControlBuses">NumControlBuses</a>, <a href="ugen/NumInputBuses.html" class="extype" name="de.sciss.synth.ugen.NumInputBuses">NumInputBuses</a>, <a href="ugen/NumOutputBuses.html" class="extype" name="de.sciss.synth.ugen.NumOutputBuses">NumOutputBuses</a>, <a href="ugen/NumRunningSynths.html" class="extype" name="de.sciss.synth.ugen.NumRunningSynths">NumRunningSynths</a>, <a href="ugen/Nyquist.html" class="extype" name="de.sciss.synth.ugen.Nyquist">Nyquist</a>, <a href="ugen/OnePole.html" class="extype" name="de.sciss.synth.ugen.OnePole">OnePole</a>, <a href="ugen/OneZero.html" class="extype" name="de.sciss.synth.ugen.OneZero">OneZero</a>, <a href="ugen/Onsets.html" class="extype" name="de.sciss.synth.ugen.Onsets">Onsets</a>, <a href="ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a>, <a href="ugen/OscN.html" class="extype" name="de.sciss.synth.ugen.OscN">OscN</a>, <a href="ugen/PV_Add.html" class="extype" name="de.sciss.synth.ugen.PV_Add">PV_Add</a>, <a href="ugen/PV_BinScramble.html" class="extype" name="de.sciss.synth.ugen.PV_BinScramble">PV_BinScramble</a>, <a href="ugen/PV_BinShift.html" class="extype" name="de.sciss.synth.ugen.PV_BinShift">PV_BinShift</a>, <a href="ugen/PV_BinWipe.html" class="extype" name="de.sciss.synth.ugen.PV_BinWipe">PV_BinWipe</a>, <a href="ugen/PV_BrickWall.html" class="extype" name="de.sciss.synth.ugen.PV_BrickWall">PV_BrickWall</a>, <a href="ugen/PV_ConformalMap.html" class="extype" name="de.sciss.synth.ugen.PV_ConformalMap">PV_ConformalMap</a>, <a href="ugen/PV_Conj.html" class="extype" name="de.sciss.synth.ugen.PV_Conj">PV_Conj</a>, <a href="ugen/PV_Copy.html" class="extype" name="de.sciss.synth.ugen.PV_Copy">PV_Copy</a>, <a href="ugen/PV_CopyPhase.html" class="extype" name="de.sciss.synth.ugen.PV_CopyPhase">PV_CopyPhase</a>, <a href="ugen/PV_Diffuser.html" class="extype" name="de.sciss.synth.ugen.PV_Diffuser">PV_Diffuser</a>, <a href="ugen/PV_Div.html" class="extype" name="de.sciss.synth.ugen.PV_Div">PV_Div</a>, <a href="ugen/PV_HainsworthFoote.html" class="extype" name="de.sciss.synth.ugen.PV_HainsworthFoote">PV_HainsworthFoote</a>, <a href="ugen/PV_JensenAndersen.html" class="extype" name="de.sciss.synth.ugen.PV_JensenAndersen">PV_JensenAndersen</a>, <a href="ugen/PV_LocalMax.html" class="extype" name="de.sciss.synth.ugen.PV_LocalMax">PV_LocalMax</a>, <a href="ugen/PV_MagAbove.html" class="extype" name="de.sciss.synth.ugen.PV_MagAbove">PV_MagAbove</a>, <a href="ugen/PV_MagBelow.html" class="extype" name="de.sciss.synth.ugen.PV_MagBelow">PV_MagBelow</a>, <a href="ugen/PV_MagClip.html" class="extype" name="de.sciss.synth.ugen.PV_MagClip">PV_MagClip</a>, <a href="ugen/PV_MagDiv.html" class="extype" name="de.sciss.synth.ugen.PV_MagDiv">PV_MagDiv</a>, <a href="ugen/PV_MagFreeze.html" class="extype" name="de.sciss.synth.ugen.PV_MagFreeze">PV_MagFreeze</a>, <a href="ugen/PV_MagMul.html" class="extype" name="de.sciss.synth.ugen.PV_MagMul">PV_MagMul</a>, <a href="ugen/PV_MagNoise.html" class="extype" name="de.sciss.synth.ugen.PV_MagNoise">PV_MagNoise</a>, <a href="ugen/PV_MagShift.html" class="extype" name="de.sciss.synth.ugen.PV_MagShift">PV_MagShift</a>, <a href="ugen/PV_MagSmear.html" class="extype" name="de.sciss.synth.ugen.PV_MagSmear">PV_MagSmear</a>, <a href="ugen/PV_MagSquared.html" class="extype" name="de.sciss.synth.ugen.PV_MagSquared">PV_MagSquared</a>, <a href="ugen/PV_Max.html" class="extype" name="de.sciss.synth.ugen.PV_Max">PV_Max</a>, <a href="ugen/PV_Min.html" class="extype" name="de.sciss.synth.ugen.PV_Min">PV_Min</a>, <a href="ugen/PV_Mul.html" class="extype" name="de.sciss.synth.ugen.PV_Mul">PV_Mul</a>, <a href="ugen/PV_PhaseShift.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift">PV_PhaseShift</a>, <a href="ugen/PV_PhaseShift270.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift270">PV_PhaseShift270</a>, <a href="ugen/PV_PhaseShift90.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift90">PV_PhaseShift90</a>, <a href="ugen/PV_RandComb.html" class="extype" name="de.sciss.synth.ugen.PV_RandComb">PV_RandComb</a>, <a href="ugen/PV_RandWipe.html" class="extype" name="de.sciss.synth.ugen.PV_RandWipe">PV_RandWipe</a>, <a href="ugen/PV_RectComb.html" class="extype" name="de.sciss.synth.ugen.PV_RectComb">PV_RectComb</a>, <a href="ugen/PV_RectComb2.html" class="extype" name="de.sciss.synth.ugen.PV_RectComb2">PV_RectComb2</a>, <a href="ugen/PackFFT.html" class="extype" name="de.sciss.synth.ugen.PackFFT">PackFFT</a>, <a href="ugen/Pad.html" class="extype" name="de.sciss.synth.ugen.Pad">Pad</a>, <a href="ugen/Pan2.html" class="extype" name="de.sciss.synth.ugen.Pan2">Pan2</a>, <a href="ugen/Pan4.html" class="extype" name="de.sciss.synth.ugen.Pan4">Pan4</a>, <a href="ugen/PanAz.html" class="extype" name="de.sciss.synth.ugen.PanAz">PanAz</a>, <a href="ugen/PanB.html" class="extype" name="de.sciss.synth.ugen.PanB">PanB</a>, <a href="ugen/PanB2.html" class="extype" name="de.sciss.synth.ugen.PanB2">PanB2</a>, <a href="ugen/PartConv.html" class="extype" name="de.sciss.synth.ugen.PartConv">PartConv</a>, <a href="ugen/Pause.html" class="extype" name="de.sciss.synth.ugen.Pause">Pause</a>, <a href="ugen/PauseSelf.html" class="extype" name="de.sciss.synth.ugen.PauseSelf">PauseSelf</a>, <a href="ugen/PauseSelfWhenDone.html" class="extype" name="de.sciss.synth.ugen.PauseSelfWhenDone">PauseSelfWhenDone</a>, <a href="ugen/Peak.html" class="extype" name="de.sciss.synth.ugen.Peak">Peak</a>, <a href="ugen/PeakFollower.html" class="extype" name="de.sciss.synth.ugen.PeakFollower">PeakFollower</a>, <a href="ugen/Phasor.html" class="extype" name="de.sciss.synth.ugen.Phasor">Phasor</a>, <a href="ugen/PhysicalIn.html" class="extype" name="de.sciss.synth.ugen.PhysicalIn">PhysicalIn</a>, <a href="ugen/PinkNoise.html" class="extype" name="de.sciss.synth.ugen.PinkNoise">PinkNoise</a>, <a href="ugen/Pitch.html" class="extype" name="de.sciss.synth.ugen.Pitch">Pitch</a>, <a href="ugen/PitchShift.html" class="extype" name="de.sciss.synth.ugen.PitchShift">PitchShift</a>, <a href="ugen/PlayBuf.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a>, <a href="ugen/Pluck.html" class="extype" name="de.sciss.synth.ugen.Pluck">Pluck</a>, <a href="ugen/Poll.html" class="extype" name="de.sciss.synth.ugen.Poll">Poll</a>, <a href="ugen/Pulse.html" class="extype" name="de.sciss.synth.ugen.Pulse">Pulse</a>, <a href="ugen/PulseCount.html" class="extype" name="de.sciss.synth.ugen.PulseCount">PulseCount</a>, <a href="ugen/PulseDivider.html" class="extype" name="de.sciss.synth.ugen.PulseDivider">PulseDivider</a>, <a href="ugen/QuadC.html" class="extype" name="de.sciss.synth.ugen.QuadC">QuadC</a>, <a href="ugen/QuadL.html" class="extype" name="de.sciss.synth.ugen.QuadL">QuadL</a>, <a href="ugen/QuadN.html" class="extype" name="de.sciss.synth.ugen.QuadN">QuadN</a>, <a href="ugen/RHPF.html" class="extype" name="de.sciss.synth.ugen.RHPF">RHPF</a>, <a href="ugen/RLPF.html" class="extype" name="de.sciss.synth.ugen.RLPF">RLPF</a>, <a href="ugen/RadiansPerSample.html" class="extype" name="de.sciss.synth.ugen.RadiansPerSample">RadiansPerSample</a>, <a href="ugen/Ramp.html" class="extype" name="de.sciss.synth.ugen.Ramp">Ramp</a>, <a href="ugen/Rand.html" class="extype" name="de.sciss.synth.ugen.Rand">Rand</a>, <a href="ugen/RandID.html" class="extype" name="de.sciss.synth.ugen.RandID">RandID</a>, <a href="ugen/RandSeed.html" class="extype" name="de.sciss.synth.ugen.RandSeed">RandSeed</a>, <a href="ugen/RecordBuf.html" class="extype" name="de.sciss.synth.ugen.RecordBuf">RecordBuf</a>, <a href="ugen/Reduce.html" class="extype" name="de.sciss.synth.ugen.Reduce">Reduce</a>, <a href="ugen/RepeatChannels.html" class="extype" name="de.sciss.synth.ugen.RepeatChannels">RepeatChannels</a>, <a href="ugen/Resonz.html" class="extype" name="de.sciss.synth.ugen.Resonz">Resonz</a>, <a href="ugen/Ringz.html" class="extype" name="de.sciss.synth.ugen.Ringz">Ringz</a>, <a href="ugen/Rotate2.html" class="extype" name="de.sciss.synth.ugen.Rotate2">Rotate2</a>, <a href="ugen/RunningMax.html" class="extype" name="de.sciss.synth.ugen.RunningMax">RunningMax</a>, <a href="ugen/RunningMin.html" class="extype" name="de.sciss.synth.ugen.RunningMin">RunningMin</a>, <a href="ugen/RunningSum.html" class="extype" name="de.sciss.synth.ugen.RunningSum">RunningSum</a>, <a href="ugen/SOS.html" class="extype" name="de.sciss.synth.ugen.SOS">SOS</a>, <a href="ugen/SampleDur.html" class="extype" name="de.sciss.synth.ugen.SampleDur">SampleDur</a>, <a href="ugen/SampleRate.html" class="extype" name="de.sciss.synth.ugen.SampleRate">SampleRate</a>, <a href="ugen/Saw.html" class="extype" name="de.sciss.synth.ugen.Saw">Saw</a>, <a href="ugen/Schmidt.html" class="extype" name="de.sciss.synth.ugen.Schmidt">Schmidt</a>, <a href="ugen/Select.html" class="extype" name="de.sciss.synth.ugen.Select">Select</a>, <a href="ugen/KlangSpec$$Seq.html" class="extype" name="de.sciss.synth.ugen.KlangSpec.Seq">Seq</a>, <a href="ugen/SetBuf.html" class="extype" name="de.sciss.synth.ugen.SetBuf">SetBuf</a>, <a href="ugen/SetResetFF.html" class="extype" name="de.sciss.synth.ugen.SetResetFF">SetResetFF</a>, <a href="ugen/Shaper.html" class="extype" name="de.sciss.synth.ugen.Shaper">Shaper</a>, <a href="ugen/Silent.html" class="extype" name="de.sciss.synth.ugen.Silent">Silent</a>, <a href="ugen/SinOsc.html" class="extype" name="de.sciss.synth.ugen.SinOsc">SinOsc</a>, <a href="ugen/SinOscFB.html" class="extype" name="de.sciss.synth.ugen.SinOscFB">SinOscFB</a>, <a href="UGen$$SingleOut.html" class="extype" name="de.sciss.synth.UGen.SingleOut">SingleOut</a>, <a href="UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="ugen/impl/SingleOutImpl.html" class="extype" name="de.sciss.synth.ugen.impl.SingleOutImpl">SingleOutImpl</a>, <a href="ugen/Slew.html" class="extype" name="de.sciss.synth.ugen.Slew">Slew</a>, <a href="ugen/Slope.html" class="extype" name="de.sciss.synth.ugen.Slope">Slope</a>, <a href="UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="ugen/SpecCentroid.html" class="extype" name="de.sciss.synth.ugen.SpecCentroid">SpecCentroid</a>, <a href="ugen/SpecFlatness.html" class="extype" name="de.sciss.synth.ugen.SpecFlatness">SpecFlatness</a>, <a href="ugen/SpecPcile.html" class="extype" name="de.sciss.synth.ugen.SpecPcile">SpecPcile</a>, <a href="ugen/SplayAz.html" class="extype" name="de.sciss.synth.ugen.SplayAz">SplayAz</a>, <a href="ugen/Spring.html" class="extype" name="de.sciss.synth.ugen.Spring">Spring</a>, <a href="ugen/StandardL.html" class="extype" name="de.sciss.synth.ugen.StandardL">StandardL</a>, <a href="ugen/StandardN.html" class="extype" name="de.sciss.synth.ugen.StandardN">StandardN</a>, <a href="ugen/Stepper.html" class="extype" name="de.sciss.synth.ugen.Stepper">Stepper</a>, <a href="ugen/StereoConvolution2L.html" class="extype" name="de.sciss.synth.ugen.StereoConvolution2L">StereoConvolution2L</a>, <a href="ugen/SubsampleOffset.html" class="extype" name="de.sciss.synth.ugen.SubsampleOffset">SubsampleOffset</a>, <a href="ugen/Sum3.html" class="extype" name="de.sciss.synth.ugen.Sum3">Sum3</a>, <a href="ugen/Sum4.html" class="extype" name="de.sciss.synth.ugen.Sum4">Sum4</a>, <a href="ugen/Sweep.html" class="extype" name="de.sciss.synth.ugen.Sweep">Sweep</a>, <a href="ugen/SyncSaw.html" class="extype" name="de.sciss.synth.ugen.SyncSaw">SyncSaw</a>, <a href="ugen/T2A.html" class="extype" name="de.sciss.synth.ugen.T2A">T2A</a>, <a href="ugen/T2K.html" class="extype" name="de.sciss.synth.ugen.T2K">T2K</a>, <a href="ugen/TBall.html" class="extype" name="de.sciss.synth.ugen.TBall">TBall</a>, <a href="ugen/TDelay.html" class="extype" name="de.sciss.synth.ugen.TDelay">TDelay</a>, <a href="ugen/TDuty.html" class="extype" name="de.sciss.synth.ugen.TDuty">TDuty</a>, <a href="ugen/TExpRand.html" class="extype" name="de.sciss.synth.ugen.TExpRand">TExpRand</a>, <a href="ugen/TGrains.html" class="extype" name="de.sciss.synth.ugen.TGrains">TGrains</a>, <a href="ugen/TIRand.html" class="extype" name="de.sciss.synth.ugen.TIRand">TIRand</a>, <a href="ugen/TRand.html" class="extype" name="de.sciss.synth.ugen.TRand">TRand</a>, <a href="ugen/TWindex.html" class="extype" name="de.sciss.synth.ugen.TWindex">TWindex</a>, <a href="ugen/Timer.html" class="extype" name="de.sciss.synth.ugen.Timer">Timer</a>, <a href="ugen/ToggleFF.html" class="extype" name="de.sciss.synth.ugen.ToggleFF">ToggleFF</a>, <a href="ugen/Trig.html" class="extype" name="de.sciss.synth.ugen.Trig">Trig</a>, <a href="ugen/Trig1.html" class="extype" name="de.sciss.synth.ugen.Trig1">Trig1</a>, <a href="ugen/TrigControl.html" class="extype" name="de.sciss.synth.ugen.TrigControl">TrigControl</a>, <a href="ugen/TrigControlProxy.html" class="extype" name="de.sciss.synth.ugen.TrigControlProxy">TrigControlProxy</a>, <a href="ugen/TwoPole.html" class="extype" name="de.sciss.synth.ugen.TwoPole">TwoPole</a>, <a href="ugen/TwoZero.html" class="extype" name="de.sciss.synth.ugen.TwoZero">TwoZero</a>, <a href="UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a>, <a href="ugen/UGenInGroup.html" class="extype" name="de.sciss.synth.ugen.UGenInGroup">UGenInGroup</a>, <a href="UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>, <a href="ugen/UGenOutProxy.html" class="extype" name="de.sciss.synth.ugen.UGenOutProxy">UGenOutProxy</a>, <a href="ugen/UGenProxy.html" class="extype" name="de.sciss.synth.ugen.UGenProxy">UGenProxy</a>, <a href="ugen/UnaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a>, <a href="ugen/Unpack1FFT.html" class="extype" name="de.sciss.synth.ugen.Unpack1FFT">Unpack1FFT</a>, <a href="ugen/VBAP.html" class="extype" name="de.sciss.synth.ugen.VBAP">VBAP</a>, <a href="ugen/VDiskIn.html" class="extype" name="de.sciss.synth.ugen.VDiskIn">VDiskIn</a>, <a href="ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a>, <a href="ugen/VOsc3.html" class="extype" name="de.sciss.synth.ugen.VOsc3">VOsc3</a>, <a href="ugen/VarSaw.html" class="extype" name="de.sciss.synth.ugen.VarSaw">VarSaw</a>, <a href="ugen/Vibrato.html" class="extype" name="de.sciss.synth.ugen.Vibrato">Vibrato</a>, <a href="ugen/Warp1.html" class="extype" name="de.sciss.synth.ugen.Warp1">Warp1</a>, <a href="ugen/WhiteNoise.html" class="extype" name="de.sciss.synth.ugen.WhiteNoise">WhiteNoise</a>, <a href="ugen/Wrap.html" class="extype" name="de.sciss.synth.ugen.Wrap">Wrap</a>, <a href="ugen/WrapIndex.html" class="extype" name="de.sciss.synth.ugen.WrapIndex">WrapIndex</a>, <a href="ugen/XFade2.html" class="extype" name="de.sciss.synth.ugen.XFade2">XFade2</a>, <a href="ugen/XLine.html" class="extype" name="de.sciss.synth.ugen.XLine">XLine</a>, <a href="ugen/ZeroCrossing.html" class="extype" name="de.sciss.synth.ugen.ZeroCrossing">ZeroCrossing</a>, <a href="ugen/Zip.html" class="extype" name="de.sciss.synth.ugen.Zip">Zip</a></div>
+            <span class="toggle">
+              Known Subclasses
+            </span>
+            <div class="subClasses hiddenContent"><a href="GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">Lazy</a>, <a href="UGen$$MultiOut.html" class="extype" name="de.sciss.synth.UGen.MultiOut">MultiOut</a>, <a href="UGen$$SingleOut.html" class="extype" name="de.sciss.synth.UGen.SingleOut">SingleOut</a>, <a href="UGenIn.html" class="extype" name="de.sciss.synth.UGenIn">UGenIn</a>, <a href="UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>, <a href="UGenSource$$MultiOut.html" class="extype" name="de.sciss.synth.UGenSource.MultiOut">MultiOut</a>, <a href="UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="ugen/A2K.html" class="extype" name="de.sciss.synth.ugen.A2K">A2K</a>, <a href="ugen/APF.html" class="extype" name="de.sciss.synth.ugen.APF">APF</a>, <a href="ugen/AllpassC.html" class="extype" name="de.sciss.synth.ugen.AllpassC">AllpassC</a>, <a href="ugen/AllpassL.html" class="extype" name="de.sciss.synth.ugen.AllpassL">AllpassL</a>, <a href="ugen/AllpassN.html" class="extype" name="de.sciss.synth.ugen.AllpassN">AllpassN</a>, <a href="ugen/AmpComp.html" class="extype" name="de.sciss.synth.ugen.AmpComp">AmpComp</a>, <a href="ugen/AmpCompA.html" class="extype" name="de.sciss.synth.ugen.AmpCompA">AmpCompA</a>, <a href="ugen/Amplitude.html" class="extype" name="de.sciss.synth.ugen.Amplitude">Amplitude</a>, <a href="ugen/ArrayMax.html" class="extype" name="de.sciss.synth.ugen.ArrayMax">ArrayMax</a>, <a href="ugen/ArrayMin.html" class="extype" name="de.sciss.synth.ugen.ArrayMin">ArrayMin</a>, <a href="ugen/AudioControl.html" class="extype" name="de.sciss.synth.ugen.AudioControl">AudioControl</a>, <a href="ugen/AudioControlProxy.html" class="extype" name="de.sciss.synth.ugen.AudioControlProxy">AudioControlProxy</a>, <a href="ugen/BAllPass.html" class="extype" name="de.sciss.synth.ugen.BAllPass">BAllPass</a>, <a href="ugen/BBandPass.html" class="extype" name="de.sciss.synth.ugen.BBandPass">BBandPass</a>, <a href="ugen/BBandStop.html" class="extype" name="de.sciss.synth.ugen.BBandStop">BBandStop</a>, <a href="ugen/BHiPass.html" class="extype" name="de.sciss.synth.ugen.BHiPass">BHiPass</a>, <a href="ugen/BHiShelf.html" class="extype" name="de.sciss.synth.ugen.BHiShelf">BHiShelf</a>, <a href="ugen/BLowPass.html" class="extype" name="de.sciss.synth.ugen.BLowPass">BLowPass</a>, <a href="ugen/BLowShelf.html" class="extype" name="de.sciss.synth.ugen.BLowShelf">BLowShelf</a>, <a href="ugen/BPF.html" class="extype" name="de.sciss.synth.ugen.BPF">BPF</a>, <a href="ugen/BPZ2.html" class="extype" name="de.sciss.synth.ugen.BPZ2">BPZ2</a>, <a href="ugen/BPeakEQ.html" class="extype" name="de.sciss.synth.ugen.BPeakEQ">BPeakEQ</a>, <a href="ugen/BRF.html" class="extype" name="de.sciss.synth.ugen.BRF">BRF</a>, <a href="ugen/BRZ2.html" class="extype" name="de.sciss.synth.ugen.BRZ2">BRZ2</a>, <a href="ugen/Balance2.html" class="extype" name="de.sciss.synth.ugen.Balance2">Balance2</a>, <a href="ugen/Ball.html" class="extype" name="de.sciss.synth.ugen.Ball">Ball</a>, <a href="ugen/BeatTrack.html" class="extype" name="de.sciss.synth.ugen.BeatTrack">BeatTrack</a>, <a href="ugen/BeatTrack2.html" class="extype" name="de.sciss.synth.ugen.BeatTrack2">BeatTrack2</a>, <a href="ugen/BiPanB2.html" class="extype" name="de.sciss.synth.ugen.BiPanB2">BiPanB2</a>, <a href="ugen/BinaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.BinaryOpUGen">BinaryOpUGen</a>, <a href="ugen/Blip.html" class="extype" name="de.sciss.synth.ugen.Blip">Blip</a>, <a href="ugen/BrownNoise.html" class="extype" name="de.sciss.synth.ugen.BrownNoise">BrownNoise</a>, <a href="ugen/BufAllpassC.html" class="extype" name="de.sciss.synth.ugen.BufAllpassC">BufAllpassC</a>, <a href="ugen/BufAllpassL.html" class="extype" name="de.sciss.synth.ugen.BufAllpassL">BufAllpassL</a>, <a href="ugen/BufAllpassN.html" class="extype" name="de.sciss.synth.ugen.BufAllpassN">BufAllpassN</a>, <a href="ugen/BufChannels.html" class="extype" name="de.sciss.synth.ugen.BufChannels">BufChannels</a>, <a href="ugen/BufCombC.html" class="extype" name="de.sciss.synth.ugen.BufCombC">BufCombC</a>, <a href="ugen/BufCombL.html" class="extype" name="de.sciss.synth.ugen.BufCombL">BufCombL</a>, <a href="ugen/BufCombN.html" class="extype" name="de.sciss.synth.ugen.BufCombN">BufCombN</a>, <a href="ugen/BufDelayC.html" class="extype" name="de.sciss.synth.ugen.BufDelayC">BufDelayC</a>, <a href="ugen/BufDelayL.html" class="extype" name="de.sciss.synth.ugen.BufDelayL">BufDelayL</a>, <a href="ugen/BufDelayN.html" class="extype" name="de.sciss.synth.ugen.BufDelayN">BufDelayN</a>, <a href="ugen/BufDur.html" class="extype" name="de.sciss.synth.ugen.BufDur">BufDur</a>, <a href="ugen/BufFrames.html" class="extype" name="de.sciss.synth.ugen.BufFrames">BufFrames</a>, <a href="ugen/BufMax.html" class="extype" name="de.sciss.synth.ugen.BufMax">BufMax</a>, <a href="ugen/BufMin.html" class="extype" name="de.sciss.synth.ugen.BufMin">BufMin</a>, <a href="ugen/BufRateScale.html" class="extype" name="de.sciss.synth.ugen.BufRateScale">BufRateScale</a>, <a href="ugen/BufRd.html" class="extype" name="de.sciss.synth.ugen.BufRd">BufRd</a>, <a href="ugen/BufSampleRate.html" class="extype" name="de.sciss.synth.ugen.BufSampleRate">BufSampleRate</a>, <a href="ugen/BufSamples.html" class="extype" name="de.sciss.synth.ugen.BufSamples">BufSamples</a>, <a href="ugen/BufWr.html" class="extype" name="de.sciss.synth.ugen.BufWr">BufWr</a>, <a href="ugen/COsc.html" class="extype" name="de.sciss.synth.ugen.COsc">COsc</a>, <a href="ugen/ChannelIndices.html" class="extype" name="de.sciss.synth.ugen.ChannelIndices">ChannelIndices</a>, <a href="ugen/ChannelProxy.html" class="extype" name="de.sciss.synth.ugen.ChannelProxy">ChannelProxy</a>, <a href="ugen/ChannelRangeProxy.html" class="extype" name="de.sciss.synth.ugen.ChannelRangeProxy">ChannelRangeProxy</a>, <a href="ugen/CheckBadValues.html" class="extype" name="de.sciss.synth.ugen.CheckBadValues">CheckBadValues</a>, <a href="ugen/CircleRamp.html" class="extype" name="de.sciss.synth.ugen.CircleRamp">CircleRamp</a>, <a href="ugen/ClearBuf.html" class="extype" name="de.sciss.synth.ugen.ClearBuf">ClearBuf</a>, <a href="ugen/Clip.html" class="extype" name="de.sciss.synth.ugen.Clip">Clip</a>, <a href="ugen/ClipNoise.html" class="extype" name="de.sciss.synth.ugen.ClipNoise">ClipNoise</a>, <a href="ugen/CoinGate.html" class="extype" name="de.sciss.synth.ugen.CoinGate">CoinGate</a>, <a href="ugen/CombC.html" class="extype" name="de.sciss.synth.ugen.CombC">CombC</a>, <a href="ugen/CombL.html" class="extype" name="de.sciss.synth.ugen.CombL">CombL</a>, <a href="ugen/CombN.html" class="extype" name="de.sciss.synth.ugen.CombN">CombN</a>, <a href="ugen/Compander.html" class="extype" name="de.sciss.synth.ugen.Compander">Compander</a>, <a href="ugen/ComplexRes.html" class="extype" name="de.sciss.synth.ugen.ComplexRes">ComplexRes</a>, <a href="ugen/Constant.html" class="extype" name="de.sciss.synth.ugen.Constant">Constant</a>, <a href="ugen/Control.html" class="extype" name="de.sciss.synth.ugen.Control">Control</a>, <a href="ugen/ControlDur.html" class="extype" name="de.sciss.synth.ugen.ControlDur">ControlDur</a>, <a href="ugen/ControlProxy.html" class="extype" name="de.sciss.synth.ugen.ControlProxy">ControlProxy</a>, <a href="ugen/ControlProxyLike.html" class="extype" name="de.sciss.synth.ugen.ControlProxyLike">ControlProxyLike</a>, <a href="ugen/ControlRate.html" class="extype" name="de.sciss.synth.ugen.ControlRate">ControlRate</a>, <a href="ugen/ControlUGenOutProxy.html" class="extype" name="de.sciss.synth.ugen.ControlUGenOutProxy">ControlUGenOutProxy</a>, <a href="ugen/Convolution.html" class="extype" name="de.sciss.synth.ugen.Convolution">Convolution</a>, <a href="ugen/Convolution2.html" class="extype" name="de.sciss.synth.ugen.Convolution2">Convolution2</a>, <a href="ugen/Convolution2L.html" class="extype" name="de.sciss.synth.ugen.Convolution2L">Convolution2L</a>, <a href="ugen/Convolution3.html" class="extype" name="de.sciss.synth.ugen.Convolution3">Convolution3</a>, <a href="ugen/Crackle.html" class="extype" name="de.sciss.synth.ugen.Crackle">Crackle</a>, <a href="ugen/CuspL.html" class="extype" name="de.sciss.synth.ugen.CuspL">CuspL</a>, <a href="ugen/CuspN.html" class="extype" name="de.sciss.synth.ugen.CuspN">CuspN</a>, <a href="ugen/DC.html" class="extype" name="de.sciss.synth.ugen.DC">DC</a>, <a href="ugen/DFM1.html" class="extype" name="de.sciss.synth.ugen.DFM1">DFM1</a>, <a href="ugen/DNoiseRing.html" class="extype" name="de.sciss.synth.ugen.DNoiseRing">DNoiseRing</a>, <a href="ugen/Dbrown.html" class="extype" name="de.sciss.synth.ugen.Dbrown">Dbrown</a>, <a href="ugen/Dbufrd.html" class="extype" name="de.sciss.synth.ugen.Dbufrd">Dbufrd</a>, <a href="ugen/Dbufwr.html" class="extype" name="de.sciss.synth.ugen.Dbufwr">Dbufwr</a>, <a href="ugen/Dconst.html" class="extype" name="de.sciss.synth.ugen.Dconst">Dconst</a>, <a href="ugen/Decay.html" class="extype" name="de.sciss.synth.ugen.Decay">Decay</a>, <a href="ugen/Decay2.html" class="extype" name="de.sciss.synth.ugen.Decay2">Decay2</a>, <a href="ugen/DecodeB2.html" class="extype" name="de.sciss.synth.ugen.DecodeB2">DecodeB2</a>, <a href="ugen/DegreeToKey.html" class="extype" name="de.sciss.synth.ugen.DegreeToKey">DegreeToKey</a>, <a href="ugen/DelTapRd.html" class="extype" name="de.sciss.synth.ugen.DelTapRd">DelTapRd</a>, <a href="ugen/DelTapWr.html" class="extype" name="de.sciss.synth.ugen.DelTapWr">DelTapWr</a>, <a href="ugen/Delay1.html" class="extype" name="de.sciss.synth.ugen.Delay1">Delay1</a>, <a href="ugen/Delay2.html" class="extype" name="de.sciss.synth.ugen.Delay2">Delay2</a>, <a href="ugen/DelayC.html" class="extype" name="de.sciss.synth.ugen.DelayC">DelayC</a>, <a href="ugen/DelayL.html" class="extype" name="de.sciss.synth.ugen.DelayL">DelayL</a>, <a href="ugen/DelayN.html" class="extype" name="de.sciss.synth.ugen.DelayN">DelayN</a>, <a href="ugen/Demand.html" class="extype" name="de.sciss.synth.ugen.Demand">Demand</a>, <a href="ugen/DemandEnvGen.html" class="extype" name="de.sciss.synth.ugen.DemandEnvGen">DemandEnvGen</a>, <a href="ugen/DetectIndex.html" class="extype" name="de.sciss.synth.ugen.DetectIndex">DetectIndex</a>, <a href="ugen/DetectSilence.html" class="extype" name="de.sciss.synth.ugen.DetectSilence">DetectSilence</a>, <a href="ugen/Dgeom.html" class="extype" name="de.sciss.synth.ugen.Dgeom">Dgeom</a>, <a href="ugen/Dibrown.html" class="extype" name="de.sciss.synth.ugen.Dibrown">Dibrown</a>, <a href="ugen/DiodeRingMod.html" class="extype" name="de.sciss.synth.ugen.DiodeRingMod">DiodeRingMod</a>, <a href="ugen/DiskIn.html" class="extype" name="de.sciss.synth.ugen.DiskIn">DiskIn</a>, <a href="ugen/DiskOut.html" class="extype" name="de.sciss.synth.ugen.DiskOut">DiskOut</a>, <a href="ugen/Diwhite.html" class="extype" name="de.sciss.synth.ugen.Diwhite">Diwhite</a>, <a href="ugen/Donce.html" class="extype" name="de.sciss.synth.ugen.Donce">Donce</a>, <a href="ugen/Done.html" class="extype" name="de.sciss.synth.ugen.Done">Done</a>, <a href="ugen/Dpoll.html" class="extype" name="de.sciss.synth.ugen.Dpoll">Dpoll</a>, <a href="ugen/Drand.html" class="extype" name="de.sciss.synth.ugen.Drand">Drand</a>, <a href="ugen/Dreset.html" class="extype" name="de.sciss.synth.ugen.Dreset">Dreset</a>, <a href="ugen/Dseq.html" class="extype" name="de.sciss.synth.ugen.Dseq">Dseq</a>, <a href="ugen/Dser.html" class="extype" name="de.sciss.synth.ugen.Dser">Dser</a>, <a href="ugen/Dseries.html" class="extype" name="de.sciss.synth.ugen.Dseries">Dseries</a>, <a href="ugen/Dshuf.html" class="extype" name="de.sciss.synth.ugen.Dshuf">Dshuf</a>, <a href="ugen/Dstutter.html" class="extype" name="de.sciss.synth.ugen.Dstutter">Dstutter</a>, <a href="ugen/Dswitch.html" class="extype" name="de.sciss.synth.ugen.Dswitch">Dswitch</a>, <a href="ugen/Dswitch1.html" class="extype" name="de.sciss.synth.ugen.Dswitch1">Dswitch1</a>, <a href="ugen/Dust.html" class="extype" name="de.sciss.synth.ugen.Dust">Dust</a>, <a href="ugen/Dust2.html" class="extype" name="de.sciss.synth.ugen.Dust2">Dust2</a>, <a href="ugen/Duty.html" class="extype" name="de.sciss.synth.ugen.Duty">Duty</a>, <a href="ugen/Dwhite.html" class="extype" name="de.sciss.synth.ugen.Dwhite">Dwhite</a>, <a href="ugen/Dxrand.html" class="extype" name="de.sciss.synth.ugen.Dxrand">Dxrand</a>, <a href="ugen/Env.html" class="extype" name="de.sciss.synth.ugen.Env">Env</a>, <a href="ugen/EnvGen.html" class="extype" name="de.sciss.synth.ugen.EnvGen">EnvGen</a>, <a href="ugen/EnvLike.html" class="extype" name="de.sciss.synth.ugen.EnvLike">EnvLike</a>, <a href="ugen/ExpRand.html" class="extype" name="de.sciss.synth.ugen.ExpRand">ExpRand</a>, <a href="ugen/FBSineC.html" class="extype" name="de.sciss.synth.ugen.FBSineC">FBSineC</a>, <a href="ugen/FBSineL.html" class="extype" name="de.sciss.synth.ugen.FBSineL">FBSineL</a>, <a href="ugen/FBSineN.html" class="extype" name="de.sciss.synth.ugen.FBSineN">FBSineN</a>, <a href="ugen/FFT.html" class="extype" name="de.sciss.synth.ugen.FFT">FFT</a>, <a href="ugen/FFTTrigger.html" class="extype" name="de.sciss.synth.ugen.FFTTrigger">FFTTrigger</a>, <a href="ugen/FOS.html" class="extype" name="de.sciss.synth.ugen.FOS">FOS</a>, <a href="ugen/FSinOsc.html" class="extype" name="de.sciss.synth.ugen.FSinOsc">FSinOsc</a>, <a href="ugen/Flatten.html" class="extype" name="de.sciss.synth.ugen.Flatten">Flatten</a>, <a href="ugen/Fold.html" class="extype" name="de.sciss.synth.ugen.Fold">Fold</a>, <a href="ugen/FoldIndex.html" class="extype" name="de.sciss.synth.ugen.FoldIndex">FoldIndex</a>, <a href="ugen/Formant.html" class="extype" name="de.sciss.synth.ugen.Formant">Formant</a>, <a href="ugen/Formlet.html" class="extype" name="de.sciss.synth.ugen.Formlet">Formlet</a>, <a href="ugen/Free.html" class="extype" name="de.sciss.synth.ugen.Free">Free</a>, <a href="ugen/FreeSelf.html" class="extype" name="de.sciss.synth.ugen.FreeSelf">FreeSelf</a>, <a href="ugen/FreeSelfWhenDone.html" class="extype" name="de.sciss.synth.ugen.FreeSelfWhenDone">FreeSelfWhenDone</a>, <a href="ugen/FreeVerb.html" class="extype" name="de.sciss.synth.ugen.FreeVerb">FreeVerb</a>, <a href="ugen/FreeVerb2.html" class="extype" name="de.sciss.synth.ugen.FreeVerb2">FreeVerb2</a>, <a href="ugen/FreqShift.html" class="extype" name="de.sciss.synth.ugen.FreqShift">FreqShift</a>, <a href="ugen/GESeq.html" class="extype" name="de.sciss.synth.ugen.GESeq">GESeq</a>, <a href="ugen/GVerb.html" class="extype" name="de.sciss.synth.ugen.GVerb">GVerb</a>, <a href="ugen/Gate.html" class="extype" name="de.sciss.synth.ugen.Gate">Gate</a>, <a href="ugen/GbmanL.html" class="extype" name="de.sciss.synth.ugen.GbmanL">GbmanL</a>, <a href="ugen/GbmanN.html" class="extype" name="de.sciss.synth.ugen.GbmanN">GbmanN</a>, <a href="ugen/Gendy1.html" class="extype" name="de.sciss.synth.ugen.Gendy1">Gendy1</a>, <a href="ugen/Gendy2.html" class="extype" name="de.sciss.synth.ugen.Gendy2">Gendy2</a>, <a href="ugen/Gendy3.html" class="extype" name="de.sciss.synth.ugen.Gendy3">Gendy3</a>, <a href="ugen/GrainBuf.html" class="extype" name="de.sciss.synth.ugen.GrainBuf">GrainBuf</a>, <a href="ugen/GrainFM.html" class="extype" name="de.sciss.synth.ugen.GrainFM">GrainFM</a>, <a href="ugen/GrainIn.html" class="extype" name="de.sciss.synth.ugen.GrainIn">GrainIn</a>, <a href="ugen/GrainSin.html" class="extype" name="de.sciss.synth.ugen.GrainSin">GrainSin</a>, <a href="ugen/GrayNoise.html" class="extype" name="de.sciss.synth.ugen.GrayNoise">GrayNoise</a>, <a href="ugen/Greyhole.html" class="extype" name="de.sciss.synth.ugen.Greyhole">Greyhole</a>, <a href="ugen/HPF.html" class="extype" name="de.sciss.synth.ugen.HPF">HPF</a>, <a href="ugen/HPZ1.html" class="extype" name="de.sciss.synth.ugen.HPZ1">HPZ1</a>, <a href="ugen/HPZ2.html" class="extype" name="de.sciss.synth.ugen.HPZ2">HPZ2</a>, <a href="ugen/Hasher.html" class="extype" name="de.sciss.synth.ugen.Hasher">Hasher</a>, <a href="ugen/HenonC.html" class="extype" name="de.sciss.synth.ugen.HenonC">HenonC</a>, <a href="ugen/HenonL.html" class="extype" name="de.sciss.synth.ugen.HenonL">HenonL</a>, <a href="ugen/HenonN.html" class="extype" name="de.sciss.synth.ugen.HenonN">HenonN</a>, <a href="ugen/Hilbert.html" class="extype" name="de.sciss.synth.ugen.Hilbert">Hilbert</a>, <a href="ugen/IEnv.html" class="extype" name="de.sciss.synth.ugen.IEnv">IEnv</a>, <a href="ugen/IEnvGen.html" class="extype" name="de.sciss.synth.ugen.IEnvGen">IEnvGen</a>, <a href="ugen/IFFT.html" class="extype" name="de.sciss.synth.ugen.IFFT">IFFT</a>, <a href="ugen/IRand.html" class="extype" name="de.sciss.synth.ugen.IRand">IRand</a>, <a href="ugen/Impulse.html" class="extype" name="de.sciss.synth.ugen.Impulse">Impulse</a>, <a href="ugen/In.html" class="extype" name="de.sciss.synth.ugen.In">In</a>, <a href="ugen/InFeedback.html" class="extype" name="de.sciss.synth.ugen.InFeedback">InFeedback</a>, <a href="ugen/InRange.html" class="extype" name="de.sciss.synth.ugen.InRange">InRange</a>, <a href="ugen/InRect.html" class="extype" name="de.sciss.synth.ugen.InRect">InRect</a>, <a href="ugen/InTrig.html" class="extype" name="de.sciss.synth.ugen.InTrig">InTrig</a>, <a href="ugen/Index.html" class="extype" name="de.sciss.synth.ugen.Index">Index</a>, <a href="ugen/IndexInBetween.html" class="extype" name="de.sciss.synth.ugen.IndexInBetween">IndexInBetween</a>, <a href="ugen/IndexL.html" class="extype" name="de.sciss.synth.ugen.IndexL">IndexL</a>, <a href="ugen/InsideOut.html" class="extype" name="de.sciss.synth.ugen.InsideOut">InsideOut</a>, <a href="ugen/Integrator.html" class="extype" name="de.sciss.synth.ugen.Integrator">Integrator</a>, <a href="ugen/JPverb.html" class="extype" name="de.sciss.synth.ugen.JPverb">JPverb</a>, <a href="ugen/K2A.html" class="extype" name="de.sciss.synth.ugen.K2A">K2A</a>, <a href="ugen/KeyState.html" class="extype" name="de.sciss.synth.ugen.KeyState">KeyState</a>, <a href="ugen/KeyTrack.html" class="extype" name="de.sciss.synth.ugen.KeyTrack">KeyTrack</a>, <a href="ugen/Klang.html" class="extype" name="de.sciss.synth.ugen.Klang">Klang</a>, <a href="ugen/KlangSpec.html" class="extype" name="de.sciss.synth.ugen.KlangSpec">KlangSpec</a>, <a href="ugen/KlangSpec$$Seq.html" class="extype" name="de.sciss.synth.ugen.KlangSpec.Seq">Seq</a>, <a href="ugen/Klank.html" class="extype" name="de.sciss.synth.ugen.Klank">Klank</a>, <a href="ugen/LFClipNoise.html" class="extype" name="de.sciss.synth.ugen.LFClipNoise">LFClipNoise</a>, <a href="ugen/LFCub.html" class="extype" name="de.sciss.synth.ugen.LFCub">LFCub</a>, <a href="ugen/LFDClipNoise.html" class="extype" name="de.sciss.synth.ugen.LFDClipNoise">LFDClipNoise</a>, <a href="ugen/LFDNoise0.html" class="extype" name="de.sciss.synth.ugen.LFDNoise0">LFDNoise0</a>, <a href="ugen/LFDNoise1.html" class="extype" name="de.sciss.synth.ugen.LFDNoise1">LFDNoise1</a>, <a href="ugen/LFDNoise3.html" class="extype" name="de.sciss.synth.ugen.LFDNoise3">LFDNoise3</a>, <a href="ugen/LFGauss.html" class="extype" name="de.sciss.synth.ugen.LFGauss">LFGauss</a>, <a href="ugen/LFNoise0.html" class="extype" name="de.sciss.synth.ugen.LFNoise0">LFNoise0</a>, <a href="ugen/LFNoise1.html" class="extype" name="de.sciss.synth.ugen.LFNoise1">LFNoise1</a>, <a href="ugen/LFNoise2.html" class="extype" name="de.sciss.synth.ugen.LFNoise2">LFNoise2</a>, <a href="ugen/LFPar.html" class="extype" name="de.sciss.synth.ugen.LFPar">LFPar</a>, <a href="ugen/LFPulse.html" class="extype" name="de.sciss.synth.ugen.LFPulse">LFPulse</a>, <a href="ugen/LFSaw.html" class="extype" name="de.sciss.synth.ugen.LFSaw">LFSaw</a>, <a href="ugen/LFTri.html" class="extype" name="de.sciss.synth.ugen.LFTri">LFTri</a>, <a href="ugen/LPF.html" class="extype" name="de.sciss.synth.ugen.LPF">LPF</a>, <a href="ugen/LPZ1.html" class="extype" name="de.sciss.synth.ugen.LPZ1">LPZ1</a>, <a href="ugen/LPZ2.html" class="extype" name="de.sciss.synth.ugen.LPZ2">LPZ2</a>, <a href="ugen/Lag.html" class="extype" name="de.sciss.synth.ugen.Lag">Lag</a>, <a href="ugen/Lag2.html" class="extype" name="de.sciss.synth.ugen.Lag2">Lag2</a>, <a href="ugen/Lag2UD.html" class="extype" name="de.sciss.synth.ugen.Lag2UD">Lag2UD</a>, <a href="ugen/Lag3.html" class="extype" name="de.sciss.synth.ugen.Lag3">Lag3</a>, <a href="ugen/Lag3UD.html" class="extype" name="de.sciss.synth.ugen.Lag3UD">Lag3UD</a>, <a href="ugen/LagIn.html" class="extype" name="de.sciss.synth.ugen.LagIn">LagIn</a>, <a href="ugen/LagUD.html" class="extype" name="de.sciss.synth.ugen.LagUD">LagUD</a>, <a href="ugen/LastValue.html" class="extype" name="de.sciss.synth.ugen.LastValue">LastValue</a>, <a href="ugen/Latch.html" class="extype" name="de.sciss.synth.ugen.Latch">Latch</a>, <a href="ugen/LatoocarfianC.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianC">LatoocarfianC</a>, <a href="ugen/LatoocarfianL.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianL">LatoocarfianL</a>, <a href="ugen/LatoocarfianN.html" class="extype" name="de.sciss.synth.ugen.LatoocarfianN">LatoocarfianN</a>, <a href="ugen/LeakDC.html" class="extype" name="de.sciss.synth.ugen.LeakDC">LeakDC</a>, <a href="ugen/LeastChange.html" class="extype" name="de.sciss.synth.ugen.LeastChange">LeastChange</a>, <a href="ugen/Limiter.html" class="extype" name="de.sciss.synth.ugen.Limiter">Limiter</a>, <a href="ugen/LinCongC.html" class="extype" name="de.sciss.synth.ugen.LinCongC">LinCongC</a>, <a href="ugen/LinCongL.html" class="extype" name="de.sciss.synth.ugen.LinCongL">LinCongL</a>, <a href="ugen/LinCongN.html" class="extype" name="de.sciss.synth.ugen.LinCongN">LinCongN</a>, <a href="ugen/LinExp.html" class="extype" name="de.sciss.synth.ugen.LinExp">LinExp</a>, <a href="ugen/LinLin.html" class="extype" name="de.sciss.synth.ugen.LinLin">LinLin</a>, <a href="ugen/LinPan2.html" class="extype" name="de.sciss.synth.ugen.LinPan2">LinPan2</a>, <a href="ugen/LinRand.html" class="extype" name="de.sciss.synth.ugen.LinRand">LinRand</a>, <a href="ugen/LinXFade2.html" class="extype" name="de.sciss.synth.ugen.LinXFade2">LinXFade2</a>, <a href="ugen/Line.html" class="extype" name="de.sciss.synth.ugen.Line">Line</a>, <a href="ugen/Linen.html" class="extype" name="de.sciss.synth.ugen.Linen">Linen</a>, <a href="ugen/ListTrig.html" class="extype" name="de.sciss.synth.ugen.ListTrig">ListTrig</a>, <a href="ugen/ListTrig2.html" class="extype" name="de.sciss.synth.ugen.ListTrig2">ListTrig2</a>, <a href="ugen/LocalBuf.html" class="extype" name="de.sciss.synth.ugen.LocalBuf">LocalBuf</a>, <a href="ugen/LocalIn.html" class="extype" name="de.sciss.synth.ugen.LocalIn">LocalIn</a>, <a href="ugen/Logger.html" class="extype" name="de.sciss.synth.ugen.Logger">Logger</a>, <a href="ugen/Logistic.html" class="extype" name="de.sciss.synth.ugen.Logistic">Logistic</a>, <a href="ugen/LorenzL.html" class="extype" name="de.sciss.synth.ugen.LorenzL">LorenzL</a>, <a href="ugen/Loudness.html" class="extype" name="de.sciss.synth.ugen.Loudness">Loudness</a>, <a href="ugen/MFCC.html" class="extype" name="de.sciss.synth.ugen.MFCC">MFCC</a>, <a href="ugen/MantissaMask.html" class="extype" name="de.sciss.synth.ugen.MantissaMask">MantissaMask</a>, <a href="ugen/MdaPiano.html" class="extype" name="de.sciss.synth.ugen.MdaPiano">MdaPiano</a>, <a href="ugen/Median.html" class="extype" name="de.sciss.synth.ugen.Median">Median</a>, <a href="ugen/MidEQ.html" class="extype" name="de.sciss.synth.ugen.MidEQ">MidEQ</a>, <a href="ugen/Mix.html" class="extype" name="de.sciss.synth.ugen.Mix">Mix</a>, <a href="ugen/Mix$$Mono.html" class="extype" name="de.sciss.synth.ugen.Mix.Mono">Mono</a>, <a href="ugen/MoogFF.html" class="extype" name="de.sciss.synth.ugen.MoogFF">MoogFF</a>, <a href="ugen/MostChange.html" class="extype" name="de.sciss.synth.ugen.MostChange">MostChange</a>, <a href="ugen/MouseButton.html" class="extype" name="de.sciss.synth.ugen.MouseButton">MouseButton</a>, <a href="ugen/MouseX.html" class="extype" name="de.sciss.synth.ugen.MouseX">MouseX</a>, <a href="ugen/MouseY.html" class="extype" name="de.sciss.synth.ugen.MouseY">MouseY</a>, <a href="ugen/MulAdd.html" class="extype" name="de.sciss.synth.ugen.MulAdd">MulAdd</a>, <a href="ugen/NRand.html" class="extype" name="de.sciss.synth.ugen.NRand">NRand</a>, <a href="ugen/NodeID.html" class="extype" name="de.sciss.synth.ugen.NodeID">NodeID</a>, <a href="ugen/Normalizer.html" class="extype" name="de.sciss.synth.ugen.Normalizer">Normalizer</a>, <a href="ugen/NumAudioBuses.html" class="extype" name="de.sciss.synth.ugen.NumAudioBuses">NumAudioBuses</a>, <a href="ugen/NumBuffers.html" class="extype" name="de.sciss.synth.ugen.NumBuffers">NumBuffers</a>, <a href="ugen/NumChannels.html" class="extype" name="de.sciss.synth.ugen.NumChannels">NumChannels</a>, <a href="ugen/NumControlBuses.html" class="extype" name="de.sciss.synth.ugen.NumControlBuses">NumControlBuses</a>, <a href="ugen/NumInputBuses.html" class="extype" name="de.sciss.synth.ugen.NumInputBuses">NumInputBuses</a>, <a href="ugen/NumOutputBuses.html" class="extype" name="de.sciss.synth.ugen.NumOutputBuses">NumOutputBuses</a>, <a href="ugen/NumRunningSynths.html" class="extype" name="de.sciss.synth.ugen.NumRunningSynths">NumRunningSynths</a>, <a href="ugen/Nyquist.html" class="extype" name="de.sciss.synth.ugen.Nyquist">Nyquist</a>, <a href="ugen/OnePole.html" class="extype" name="de.sciss.synth.ugen.OnePole">OnePole</a>, <a href="ugen/OneZero.html" class="extype" name="de.sciss.synth.ugen.OneZero">OneZero</a>, <a href="ugen/Onsets.html" class="extype" name="de.sciss.synth.ugen.Onsets">Onsets</a>, <a href="ugen/Osc.html" class="extype" name="de.sciss.synth.ugen.Osc">Osc</a>, <a href="ugen/OscN.html" class="extype" name="de.sciss.synth.ugen.OscN">OscN</a>, <a href="ugen/PV_Add.html" class="extype" name="de.sciss.synth.ugen.PV_Add">PV_Add</a>, <a href="ugen/PV_BinScramble.html" class="extype" name="de.sciss.synth.ugen.PV_BinScramble">PV_BinScramble</a>, <a href="ugen/PV_BinShift.html" class="extype" name="de.sciss.synth.ugen.PV_BinShift">PV_BinShift</a>, <a href="ugen/PV_BinWipe.html" class="extype" name="de.sciss.synth.ugen.PV_BinWipe">PV_BinWipe</a>, <a href="ugen/PV_BrickWall.html" class="extype" name="de.sciss.synth.ugen.PV_BrickWall">PV_BrickWall</a>, <a href="ugen/PV_ConformalMap.html" class="extype" name="de.sciss.synth.ugen.PV_ConformalMap">PV_ConformalMap</a>, <a href="ugen/PV_Conj.html" class="extype" name="de.sciss.synth.ugen.PV_Conj">PV_Conj</a>, <a href="ugen/PV_Copy.html" class="extype" name="de.sciss.synth.ugen.PV_Copy">PV_Copy</a>, <a href="ugen/PV_CopyPhase.html" class="extype" name="de.sciss.synth.ugen.PV_CopyPhase">PV_CopyPhase</a>, <a href="ugen/PV_Diffuser.html" class="extype" name="de.sciss.synth.ugen.PV_Diffuser">PV_Diffuser</a>, <a href="ugen/PV_Div.html" class="extype" name="de.sciss.synth.ugen.PV_Div">PV_Div</a>, <a href="ugen/PV_HainsworthFoote.html" class="extype" name="de.sciss.synth.ugen.PV_HainsworthFoote">PV_HainsworthFoote</a>, <a href="ugen/PV_JensenAndersen.html" class="extype" name="de.sciss.synth.ugen.PV_JensenAndersen">PV_JensenAndersen</a>, <a href="ugen/PV_LocalMax.html" class="extype" name="de.sciss.synth.ugen.PV_LocalMax">PV_LocalMax</a>, <a href="ugen/PV_MagAbove.html" class="extype" name="de.sciss.synth.ugen.PV_MagAbove">PV_MagAbove</a>, <a href="ugen/PV_MagBelow.html" class="extype" name="de.sciss.synth.ugen.PV_MagBelow">PV_MagBelow</a>, <a href="ugen/PV_MagClip.html" class="extype" name="de.sciss.synth.ugen.PV_MagClip">PV_MagClip</a>, <a href="ugen/PV_MagDiv.html" class="extype" name="de.sciss.synth.ugen.PV_MagDiv">PV_MagDiv</a>, <a href="ugen/PV_MagFreeze.html" class="extype" name="de.sciss.synth.ugen.PV_MagFreeze">PV_MagFreeze</a>, <a href="ugen/PV_MagMul.html" class="extype" name="de.sciss.synth.ugen.PV_MagMul">PV_MagMul</a>, <a href="ugen/PV_MagNoise.html" class="extype" name="de.sciss.synth.ugen.PV_MagNoise">PV_MagNoise</a>, <a href="ugen/PV_MagShift.html" class="extype" name="de.sciss.synth.ugen.PV_MagShift">PV_MagShift</a>, <a href="ugen/PV_MagSmear.html" class="extype" name="de.sciss.synth.ugen.PV_MagSmear">PV_MagSmear</a>, <a href="ugen/PV_MagSquared.html" class="extype" name="de.sciss.synth.ugen.PV_MagSquared">PV_MagSquared</a>, <a href="ugen/PV_Max.html" class="extype" name="de.sciss.synth.ugen.PV_Max">PV_Max</a>, <a href="ugen/PV_Min.html" class="extype" name="de.sciss.synth.ugen.PV_Min">PV_Min</a>, <a href="ugen/PV_Mul.html" class="extype" name="de.sciss.synth.ugen.PV_Mul">PV_Mul</a>, <a href="ugen/PV_PhaseShift.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift">PV_PhaseShift</a>, <a href="ugen/PV_PhaseShift270.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift270">PV_PhaseShift270</a>, <a href="ugen/PV_PhaseShift90.html" class="extype" name="de.sciss.synth.ugen.PV_PhaseShift90">PV_PhaseShift90</a>, <a href="ugen/PV_RandComb.html" class="extype" name="de.sciss.synth.ugen.PV_RandComb">PV_RandComb</a>, <a href="ugen/PV_RandWipe.html" class="extype" name="de.sciss.synth.ugen.PV_RandWipe">PV_RandWipe</a>, <a href="ugen/PV_RectComb.html" class="extype" name="de.sciss.synth.ugen.PV_RectComb">PV_RectComb</a>, <a href="ugen/PV_RectComb2.html" class="extype" name="de.sciss.synth.ugen.PV_RectComb2">PV_RectComb2</a>, <a href="ugen/PackFFT.html" class="extype" name="de.sciss.synth.ugen.PackFFT">PackFFT</a>, <a href="ugen/Pad.html" class="extype" name="de.sciss.synth.ugen.Pad">Pad</a>, <a href="ugen/Pan2.html" class="extype" name="de.sciss.synth.ugen.Pan2">Pan2</a>, <a href="ugen/Pan4.html" class="extype" name="de.sciss.synth.ugen.Pan4">Pan4</a>, <a href="ugen/PanAz.html" class="extype" name="de.sciss.synth.ugen.PanAz">PanAz</a>, <a href="ugen/PanB.html" class="extype" name="de.sciss.synth.ugen.PanB">PanB</a>, <a href="ugen/PanB2.html" class="extype" name="de.sciss.synth.ugen.PanB2">PanB2</a>, <a href="ugen/PartConv.html" class="extype" name="de.sciss.synth.ugen.PartConv">PartConv</a>, <a href="ugen/Pause.html" class="extype" name="de.sciss.synth.ugen.Pause">Pause</a>, <a href="ugen/PauseSelf.html" class="extype" name="de.sciss.synth.ugen.PauseSelf">PauseSelf</a>, <a href="ugen/PauseSelfWhenDone.html" class="extype" name="de.sciss.synth.ugen.PauseSelfWhenDone">PauseSelfWhenDone</a>, <a href="ugen/Peak.html" class="extype" name="de.sciss.synth.ugen.Peak">Peak</a>, <a href="ugen/PeakFollower.html" class="extype" name="de.sciss.synth.ugen.PeakFollower">PeakFollower</a>, <a href="ugen/Phasor.html" class="extype" name="de.sciss.synth.ugen.Phasor">Phasor</a>, <a href="ugen/PhysicalIn.html" class="extype" name="de.sciss.synth.ugen.PhysicalIn">PhysicalIn</a>, <a href="ugen/PinkNoise.html" class="extype" name="de.sciss.synth.ugen.PinkNoise">PinkNoise</a>, <a href="ugen/Pitch.html" class="extype" name="de.sciss.synth.ugen.Pitch">Pitch</a>, <a href="ugen/PitchShift.html" class="extype" name="de.sciss.synth.ugen.PitchShift">PitchShift</a>, <a href="ugen/PlayBuf.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a>, <a href="ugen/Pluck.html" class="extype" name="de.sciss.synth.ugen.Pluck">Pluck</a>, <a href="ugen/Poll.html" class="extype" name="de.sciss.synth.ugen.Poll">Poll</a>, <a href="ugen/Pulse.html" class="extype" name="de.sciss.synth.ugen.Pulse">Pulse</a>, <a href="ugen/PulseCount.html" class="extype" name="de.sciss.synth.ugen.PulseCount">PulseCount</a>, <a href="ugen/PulseDivider.html" class="extype" name="de.sciss.synth.ugen.PulseDivider">PulseDivider</a>, <a href="ugen/QuadC.html" class="extype" name="de.sciss.synth.ugen.QuadC">QuadC</a>, <a href="ugen/QuadL.html" class="extype" name="de.sciss.synth.ugen.QuadL">QuadL</a>, <a href="ugen/QuadN.html" class="extype" name="de.sciss.synth.ugen.QuadN">QuadN</a>, <a href="ugen/RHPF.html" class="extype" name="de.sciss.synth.ugen.RHPF">RHPF</a>, <a href="ugen/RLPF.html" class="extype" name="de.sciss.synth.ugen.RLPF">RLPF</a>, <a href="ugen/RMS.html" class="extype" name="de.sciss.synth.ugen.RMS">RMS</a>, <a href="ugen/RadiansPerSample.html" class="extype" name="de.sciss.synth.ugen.RadiansPerSample">RadiansPerSample</a>, <a href="ugen/Ramp.html" class="extype" name="de.sciss.synth.ugen.Ramp">Ramp</a>, <a href="ugen/Rand.html" class="extype" name="de.sciss.synth.ugen.Rand">Rand</a>, <a href="ugen/RandID.html" class="extype" name="de.sciss.synth.ugen.RandID">RandID</a>, <a href="ugen/RandSeed.html" class="extype" name="de.sciss.synth.ugen.RandSeed">RandSeed</a>, <a href="ugen/RecordBuf.html" class="extype" name="de.sciss.synth.ugen.RecordBuf">RecordBuf</a>, <a href="ugen/Reduce.html" class="extype" name="de.sciss.synth.ugen.Reduce">Reduce</a>, <a href="ugen/RepeatChannels.html" class="extype" name="de.sciss.synth.ugen.RepeatChannels">RepeatChannels</a>, <a href="ugen/Resonz.html" class="extype" name="de.sciss.synth.ugen.Resonz">Resonz</a>, <a href="ugen/Ringz.html" class="extype" name="de.sciss.synth.ugen.Ringz">Ringz</a>, <a href="ugen/Rotate2.html" class="extype" name="de.sciss.synth.ugen.Rotate2">Rotate2</a>, <a href="ugen/RunningMax.html" class="extype" name="de.sciss.synth.ugen.RunningMax">RunningMax</a>, <a href="ugen/RunningMin.html" class="extype" name="de.sciss.synth.ugen.RunningMin">RunningMin</a>, <a href="ugen/RunningSum.html" class="extype" name="de.sciss.synth.ugen.RunningSum">RunningSum</a>, <a href="ugen/SOS.html" class="extype" name="de.sciss.synth.ugen.SOS">SOS</a>, <a href="ugen/SampleDur.html" class="extype" name="de.sciss.synth.ugen.SampleDur">SampleDur</a>, <a href="ugen/SampleRate.html" class="extype" name="de.sciss.synth.ugen.SampleRate">SampleRate</a>, <a href="ugen/Saw.html" class="extype" name="de.sciss.synth.ugen.Saw">Saw</a>, <a href="ugen/Schmidt.html" class="extype" name="de.sciss.synth.ugen.Schmidt">Schmidt</a>, <a href="ugen/Select.html" class="extype" name="de.sciss.synth.ugen.Select">Select</a>, <a href="ugen/SetBuf.html" class="extype" name="de.sciss.synth.ugen.SetBuf">SetBuf</a>, <a href="ugen/SetResetFF.html" class="extype" name="de.sciss.synth.ugen.SetResetFF">SetResetFF</a>, <a href="ugen/Shaper.html" class="extype" name="de.sciss.synth.ugen.Shaper">Shaper</a>, <a href="ugen/Silent.html" class="extype" name="de.sciss.synth.ugen.Silent">Silent</a>, <a href="ugen/SinOsc.html" class="extype" name="de.sciss.synth.ugen.SinOsc">SinOsc</a>, <a href="ugen/SinOscFB.html" class="extype" name="de.sciss.synth.ugen.SinOscFB">SinOscFB</a>, <a href="ugen/Slew.html" class="extype" name="de.sciss.synth.ugen.Slew">Slew</a>, <a href="ugen/Slope.html" class="extype" name="de.sciss.synth.ugen.Slope">Slope</a>, <a href="ugen/SpecCentroid.html" class="extype" name="de.sciss.synth.ugen.SpecCentroid">SpecCentroid</a>, <a href="ugen/SpecFlatness.html" class="extype" name="de.sciss.synth.ugen.SpecFlatness">SpecFlatness</a>, <a href="ugen/SpecPcile.html" class="extype" name="de.sciss.synth.ugen.SpecPcile">SpecPcile</a>, <a href="ugen/SplayAz.html" class="extype" name="de.sciss.synth.ugen.SplayAz">SplayAz</a>, <a href="ugen/Spring.html" class="extype" name="de.sciss.synth.ugen.Spring">Spring</a>, <a href="ugen/Squiz.html" class="extype" name="de.sciss.synth.ugen.Squiz">Squiz</a>, <a href="ugen/StandardL.html" class="extype" name="de.sciss.synth.ugen.StandardL">StandardL</a>, <a href="ugen/StandardN.html" class="extype" name="de.sciss.synth.ugen.StandardN">StandardN</a>, <a href="ugen/Stepper.html" class="extype" name="de.sciss.synth.ugen.Stepper">Stepper</a>, <a href="ugen/StereoConvolution2L.html" class="extype" name="de.sciss.synth.ugen.StereoConvolution2L">StereoConvolution2L</a>, <a href="ugen/SubsampleOffset.html" class="extype" name="de.sciss.synth.ugen.SubsampleOffset">SubsampleOffset</a>, <a href="ugen/Sum3.html" class="extype" name="de.sciss.synth.ugen.Sum3">Sum3</a>, <a href="ugen/Sum4.html" class="extype" name="de.sciss.synth.ugen.Sum4">Sum4</a>, <a href="ugen/Sweep.html" class="extype" name="de.sciss.synth.ugen.Sweep">Sweep</a>, <a href="ugen/SyncSaw.html" class="extype" name="de.sciss.synth.ugen.SyncSaw">SyncSaw</a>, <a href="ugen/T2A.html" class="extype" name="de.sciss.synth.ugen.T2A">T2A</a>, <a href="ugen/T2K.html" class="extype" name="de.sciss.synth.ugen.T2K">T2K</a>, <a href="ugen/TBall.html" class="extype" name="de.sciss.synth.ugen.TBall">TBall</a>, <a href="ugen/TDelay.html" class="extype" name="de.sciss.synth.ugen.TDelay">TDelay</a>, <a href="ugen/TDuty.html" class="extype" name="de.sciss.synth.ugen.TDuty">TDuty</a>, <a href="ugen/TExpRand.html" class="extype" name="de.sciss.synth.ugen.TExpRand">TExpRand</a>, <a href="ugen/TGrains.html" class="extype" name="de.sciss.synth.ugen.TGrains">TGrains</a>, <a href="ugen/TIRand.html" class="extype" name="de.sciss.synth.ugen.TIRand">TIRand</a>, <a href="ugen/TRand.html" class="extype" name="de.sciss.synth.ugen.TRand">TRand</a>, <a href="ugen/TWindex.html" class="extype" name="de.sciss.synth.ugen.TWindex">TWindex</a>, <a href="ugen/Timer.html" class="extype" name="de.sciss.synth.ugen.Timer">Timer</a>, <a href="ugen/ToggleFF.html" class="extype" name="de.sciss.synth.ugen.ToggleFF">ToggleFF</a>, <a href="ugen/Trig.html" class="extype" name="de.sciss.synth.ugen.Trig">Trig</a>, <a href="ugen/Trig1.html" class="extype" name="de.sciss.synth.ugen.Trig1">Trig1</a>, <a href="ugen/TrigControl.html" class="extype" name="de.sciss.synth.ugen.TrigControl">TrigControl</a>, <a href="ugen/TrigControlProxy.html" class="extype" name="de.sciss.synth.ugen.TrigControlProxy">TrigControlProxy</a>, <a href="ugen/TwoPole.html" class="extype" name="de.sciss.synth.ugen.TwoPole">TwoPole</a>, <a href="ugen/TwoZero.html" class="extype" name="de.sciss.synth.ugen.TwoZero">TwoZero</a>, <a href="ugen/UGenInGroup.html" class="extype" name="de.sciss.synth.ugen.UGenInGroup">UGenInGroup</a>, <a href="ugen/UGenOutProxy.html" class="extype" name="de.sciss.synth.ugen.UGenOutProxy">UGenOutProxy</a>, <a href="ugen/UGenProxy.html" class="extype" name="de.sciss.synth.ugen.UGenProxy">UGenProxy</a>, <a href="ugen/UnaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a>, <a href="ugen/Unpack1FFT.html" class="extype" name="de.sciss.synth.ugen.Unpack1FFT">Unpack1FFT</a>, <a href="ugen/VBAP.html" class="extype" name="de.sciss.synth.ugen.VBAP">VBAP</a>, <a href="ugen/VDiskIn.html" class="extype" name="de.sciss.synth.ugen.VDiskIn">VDiskIn</a>, <a href="ugen/VOsc.html" class="extype" name="de.sciss.synth.ugen.VOsc">VOsc</a>, <a href="ugen/VOsc3.html" class="extype" name="de.sciss.synth.ugen.VOsc3">VOsc3</a>, <a href="ugen/VarSaw.html" class="extype" name="de.sciss.synth.ugen.VarSaw">VarSaw</a>, <a href="ugen/Vibrato.html" class="extype" name="de.sciss.synth.ugen.Vibrato">Vibrato</a>, <a href="ugen/Warp1.html" class="extype" name="de.sciss.synth.ugen.Warp1">Warp1</a>, <a href="ugen/WaveLoss.html" class="extype" name="de.sciss.synth.ugen.WaveLoss">WaveLoss</a>, <a href="ugen/WhiteNoise.html" class="extype" name="de.sciss.synth.ugen.WhiteNoise">WhiteNoise</a>, <a href="ugen/Wrap.html" class="extype" name="de.sciss.synth.ugen.Wrap">Wrap</a>, <a href="ugen/WrapIndex.html" class="extype" name="de.sciss.synth.ugen.WrapIndex">WrapIndex</a>, <a href="ugen/XFade2.html" class="extype" name="de.sciss.synth.ugen.XFade2">XFade2</a>, <a href="ugen/XLine.html" class="extype" name="de.sciss.synth.ugen.XLine">XLine</a>, <a href="ugen/ZeroCrossing.html" class="extype" name="de.sciss.synth.ugen.ZeroCrossing">ZeroCrossing</a>, <a href="ugen/Zip.html" class="extype" name="de.sciss.synth.ugen.Zip">Zip</a>, <a href="ugen/impl/ControlImpl.html" class="extype" name="de.sciss.synth.ugen.impl.ControlImpl">ControlImpl</a>, <a href="ugen/impl/MultiOutImpl.html" class="extype" name="de.sciss.synth.ugen.impl.MultiOutImpl">MultiOutImpl</a>, <a href="ugen/impl/SingleOutImpl.html" class="extype" name="de.sciss.synth.ugen.impl.SingleOutImpl">SingleOutImpl</a></div>
           </div></div>
         
 
       <div id="mbrsel">
-        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        <div id="order">
-              <span class="filtertype">Ordering</span>
-              <ol>
-                
-                <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By Inheritance</span></li>
-              </ol>
-            </div>
-        <div id="ancestors">
-                <span class="filtertype">Inherited<br />
-                </span>
-                <ol id="linearization">
-                  <li class="in" name="de.sciss.synth.GE"><span>GE</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                </ol>
-              </div><div id="ancestors">
-            <span class="filtertype"></span>
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
             <ol>
-              <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show All</span></li>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
             </ol>
           </div>
-        <div id="visbl">
-            <span class="filtertype">Visibility</span>
-            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
-          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="de.sciss.synth.GE"><span>GE</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
       </div>
 
       <div id="template">
@@ -101,12 +609,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
 
         
 
-        <div id="values" class="values members">
+        <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="scala.Equals#canEqual" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="canEqual(that:Any):Boolean"></a>
-      <a id="canEqual(Any):Boolean"></a>
-      <h4 class="signature">
+              <ol><li name="scala.Equals#canEqual" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="canEqual(that:Any):Boolean"></a><a id="canEqual(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#canEqual(that:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
@@ -114,16 +625,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">canEqual</span><span class="params">(<span name="that">that: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@canEqual(that:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Equals</dd></dl></div>
+    </li><li name="scala.Product#productArity" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="productArity:Int"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#productArity:Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Equals</dd></dl></div>
-    </li><li name="scala.Product#productArity" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="productArity:Int"></a>
-      <a id="productArity:Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
@@ -131,16 +641,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">productArity</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@productArity:Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="scala.Product#productElement" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="productElement(n:Int):Any"></a><a id="productElement(Int):Any"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#productElement(n:Int):Any" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
-    </li><li name="scala.Product#productElement" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="productElement(n:Int):Any"></a>
-      <a id="productElement(Int):Any"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
@@ -148,16 +657,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">productElement</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@productElement(n:Int):Any" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="de.sciss.synth.GE#rate" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="rate:de.sciss.synth.MaybeRate"></a><a id="rate:MaybeRate"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#rate:de.sciss.synth.MaybeRate" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
-    </li><li name="de.sciss.synth.GE#rate" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="rate:de.sciss.synth.MaybeRate"></a>
-      <a id="rate:MaybeRate"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
@@ -165,21 +673,21 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">rate</span><span class="result">: <a href="MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@rate:de.sciss.synth.MaybeRate" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       
     </li></ol>
             </div>
 
-        <div id="values" class="values members">
+        <div class="values members">
               <h3>Concrete Value Members</h3>
-              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:Any):Boolean"></a>
-      <a id="!=(Any):Boolean"></a>
-      <h4 class="signature">
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -187,16 +695,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="##():Int"></a>
-      <a id="##():Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -204,16 +711,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@##():Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:Any):Boolean"></a>
-      <a id="==(Any):Boolean"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -221,16 +727,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="asInstanceOf[T0]:T0"></a>
-      <a id="asInstanceOf[T0]:T0"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -238,56 +743,55 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="clone():Object"></a>
-      <a id="clone():AnyRef"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@clone():Object" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="eq(x$1:AnyRef):Boolean"></a>
-      <a id="eq(AnyRef):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -295,16 +799,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="finalize():Unit"></a>
-      <a id="finalize():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -312,22 +815,21 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="symbol">classOf[java.lang.Throwable]</span>
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
-      <a id="getClass():Class[_]"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -335,16 +837,18 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -352,16 +856,18 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isInstanceOf[T0]:Boolean"></a>
-      <a id="isInstanceOf[T0]:Boolean"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -369,33 +875,31 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ne(x$1:AnyRef):Boolean"></a>
-      <a id="ne(AnyRef):Boolean"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="notify():Unit"></a>
-      <a id="notify():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -403,16 +907,18 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@notify():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="notifyAll():Unit"></a>
-      <a id="notifyAll():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -420,33 +926,34 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Product#productIterator" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="productIterator:Iterator[Any]"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#productIterator:Iterator[Any]" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.Product#productIterator" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="productIterator:Iterator[Any]"></a>
-      <a id="productIterator:Iterator[Any]"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">productIterator</span><span class="result">: <a href="../../../scala/package.html#Iterator[+A]=Iterator[A]" class="extmbr" name="scala.Iterator">Iterator</a>[<span class="extype" name="scala.Any">Any</span>]</span>
+        <span class="name">productIterator</span><span class="result">: <a href="../../../scala/index.html#Iterator[+A]=Iterator[A]" class="extmbr" name="scala.Iterator">Iterator</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@productIterator:Iterator[Any]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="scala.Product#productPrefix" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="productPrefix:String"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#productPrefix:String" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
-    </li><li name="scala.Product#productPrefix" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="productPrefix:String"></a>
-      <a id="productPrefix:String"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -454,16 +961,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">productPrefix</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@productPrefix:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
-    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
-      <a id="synchronized[T0](⇒T0):T0"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -471,16 +977,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -488,16 +993,15 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@toString():String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait():Unit"></a>
-      <a id="wait():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -505,11 +1009,7 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@wait():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -517,10 +1017,13 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
-      <a id="wait(Long,Int):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -528,11 +1031,7 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -540,10 +1039,13 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long):Unit"></a>
-      <a id="wait(Long):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/GE.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -551,19 +1053,18 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <span class="symbol">
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#de.sciss.synth.GE@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
     </span>)</span>
               
         </dd></dl></div>
-    </li></ol>
+    </li>
+              </ol>
             </div>
 
         
@@ -577,7 +1078,7 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+              <h3>Inherited from <a href="../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>
@@ -596,7 +1097,9 @@ although they might go into a separate <code>GEOps</code> implicit class in futu
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-
-
+    </body>
+          </div>
+        </div>
+      </div>
     </body>
       </html>

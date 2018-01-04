@@ -49,7 +49,7 @@ scalacOptions ++= {
 initialCommands in console :=
 """import de.sciss.osc
   |import de.sciss.synth._
-  |import ugen._
+  |import de.sciss.synth.ugen._
   |import Predef.{any2stringadd => _}
   |import Ops._
   |def s = Server.default

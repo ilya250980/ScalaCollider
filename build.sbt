@@ -6,8 +6,8 @@ lazy val mimaVersion    = "1.23.0"   // for compatibility testing
 name                 := baseName
 version              := projectVersion
 organization         := "de.sciss"
-scalaVersion         := "2.12.4"
-crossScalaVersions   := Seq("2.12.4", "2.11.11")
+scalaVersion         := "2.13.0-M3"
+crossScalaVersions   := Seq("2.12.4", "2.11.12")
 
 description          := "A sound synthesis library for the SuperCollider server"
 homepage             := Some(url(s"https://github.com/Sciss/${name.value}"))
@@ -15,27 +15,26 @@ licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgp
 
 mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
-// ---- main dependencies ----
-
-lazy val ugensVersion     = "1.17.1"
-lazy val oscVersion       = "1.1.5"
-lazy val audioFileVersion = "1.4.6"
-lazy val processorVersion = "0.4.1"
-lazy val optionalVersion  = "1.0.0"
-
-// ---- test-only dependencies ----
-
-lazy val scalaTestVersion = "3.0.4"
-//lazy val dotVersion       = "0.4.0"
+lazy val deps = new {
+  val main = new {
+    val ugens            = "1.17.1"
+    val osc              = "1.1.5"
+    val audiofile        = "1.4.6"
+    val processor        = "0.4.1"
+    val optional         = "1.0.0"
+  }
+  val test = new {
+    val scalatest        = "3.0.5-M1"
+  }
+}
 
 libraryDependencies ++= Seq(
-  "de.sciss"      %% "scalaosc"                % oscVersion,
-  "de.sciss"      %% "scalaaudiofile"          % audioFileVersion,
-  "de.sciss"      %% "scalacolliderugens-core" % ugensVersion,
-  "de.sciss"      %% "processor"               % processorVersion,
-  "de.sciss"      %% "optional"                % optionalVersion,
-  "org.scalatest" %% "scalatest"               % scalaTestVersion % "test"
-//  "at.iem"        %% "scalacollider-dot"       % dotVersion       % "test"
+  "de.sciss"      %% "scalaosc"                % deps.main.osc,
+  "de.sciss"      %% "scalaaudiofile"          % deps.main.audiofile,
+  "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
+  "de.sciss"      %% "processor"               % deps.main.processor,
+  "de.sciss"      %% "optional"                % deps.main.optional,
+  "org.scalatest" %% "scalatest"               % deps.test.scalatest % "test"
 )
 
 scalacOptions ++= {

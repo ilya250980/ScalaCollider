@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.23.0 API  - de.sciss.synth.ugen.Poll</title>
-          <meta name="description" content="ScalaCollider 1.23.0 API - de.sciss.synth.ugen.Poll" />
-          <meta name="keywords" content="ScalaCollider 1.23.0 API de.sciss.synth.ugen.Poll" />
+          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen.Poll</title>
+          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen.Poll" />
+          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen.Poll" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.23.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -1913,14 +1913,14 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Poll</span><span class="params">(<span name="rate">rate: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>, <span name="trig">trig: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="label">label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;poll&quot;</span></span>, <span name="trigID">trigID: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">-1</a></span></span></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <a href="../HasSideEffect.html" class="extype" name="de.sciss.synth.HasSideEffect">HasSideEffect</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Poll</span><span class="params">(<span name="rate">rate: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>, <span name="trig">trig: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="label">label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;poll&quot;</span></span>, <span name="trigId">trigId: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">-1</a></span></span></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <a href="../HasSideEffect.html" class="extype" name="de.sciss.synth.HasSideEffect">HasSideEffect</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen for printing the current output value of its input to the console.
 </p></div><dl class="paramcmts block"><dt class="param">trig</dt><dd class="cmt"><p>a non-positive to positive transition telling Poll to
-                        return a value</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal you want to poll</p></dd><dt class="param">label</dt><dd class="cmt"><p>a string or symbol to be printed with the polled value</p></dd><dt class="param">trigID</dt><dd class="cmt"><p>if greater then 0, a <code>&quot;/tr&quot;</code> OSC message is sent back
+                        return a value</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal you want to poll</p></dd><dt class="param">label</dt><dd class="cmt"><p>a string or symbol to be printed with the polled value</p></dd><dt class="param">trigId</dt><dd class="cmt"><p>if greater then 0, a <code>&quot;/tr&quot;</code> OSC message is sent back
                         to the client (similar to <code>SendTrig</code> )</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="SendTrig$.html" class="extype" name="de.sciss.synth.ugen.SendTrig">SendTrig</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
@@ -1972,9 +1972,9 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="de.sciss.synth.ugen.Poll#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(rate:de.sciss.synth.MaybeRate,trig:de.sciss.synth.GE,in:de.sciss.synth.GE,label:String,trigID:de.sciss.synth.GE):de.sciss.synth.ugen.Poll"></a><a id="&lt;init&gt;:Poll"></a>
+      <a id="&lt;init&gt;(rate:de.sciss.synth.MaybeRate,trig:de.sciss.synth.GE,in:de.sciss.synth.GE,label:String,trigId:de.sciss.synth.GE):de.sciss.synth.ugen.Poll"></a><a id="&lt;init&gt;:Poll"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/Poll.html#&lt;init&gt;(rate:de.sciss.synth.MaybeRate,trig:de.sciss.synth.GE,in:de.sciss.synth.GE,label:String,trigID:de.sciss.synth.GE):de.sciss.synth.ugen.Poll" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/Poll.html#&lt;init&gt;(rate:de.sciss.synth.MaybeRate,trig:de.sciss.synth.GE,in:de.sciss.synth.GE,label:String,trigId:de.sciss.synth.GE):de.sciss.synth.ugen.Poll" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1983,11 +1983,11 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Poll</span><span class="params">(<span name="rate">rate: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>, <span name="trig">trig: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="label">label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;poll&quot;</span></span>, <span name="trigID">trigID: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">-1</a></span></span></span>)</span>
+        <span class="name">Poll</span><span class="params">(<span name="rate">rate: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>, <span name="trig">trig: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="in">in: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="label">label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;poll&quot;</span></span>, <span name="trigId">trigId: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">-1</a></span></span></span>)</span>
       </span>
       
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">trig</dt><dd class="cmt"><p>a non-positive to positive transition telling Poll to
-                        return a value</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal you want to poll</p></dd><dt class="param">label</dt><dd class="cmt"><p>a string or symbol to be printed with the polled value</p></dd><dt class="param">trigID</dt><dd class="cmt"><p>if greater then 0, a <code>&quot;/tr&quot;</code> OSC message is sent back
+                        return a value</p></dd><dt class="param">in</dt><dd class="cmt"><p>the signal you want to poll</p></dd><dt class="param">label</dt><dd class="cmt"><p>a string or symbol to be printed with the polled value</p></dd><dt class="param">trigId</dt><dd class="cmt"><p>if greater then 0, a <code>&quot;/tr&quot;</code> OSC message is sent back
                         to the client (similar to <code>SendTrig</code> )</p></dd></dl></div>
     </li></ol>
             </div>
@@ -2362,10 +2362,10 @@ expansion
       </span>
       
       
-    </li><li name="de.sciss.synth.ugen.Poll#trigID" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="trigID:de.sciss.synth.GE"></a><a id="trigID:GE"></a>
+    </li><li name="de.sciss.synth.ugen.Poll#trigId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="trigId:de.sciss.synth.GE"></a><a id="trigId:GE"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/Poll.html#trigID:de.sciss.synth.GE" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/Poll.html#trigId:de.sciss.synth.GE" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -2374,7 +2374,7 @@ expansion
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">trigID</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
+        <span class="name">trigId</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
       </span>
       
       

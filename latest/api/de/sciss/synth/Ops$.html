@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.23.0 API  - de.sciss.synth.Ops</title>
-          <meta name="description" content="ScalaCollider 1.23.0 API - de.sciss.synth.Ops" />
-          <meta name="keywords" content="ScalaCollider 1.23.0 API de.sciss.synth.Ops" />
+          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.Ops</title>
+          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.Ops" />
+          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.Ops" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.23.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -120,22 +120,6 @@
 constant graph elements, operators on graph elements and allowing succinct creation of named controls.
 Furthermore, it contains the <code>play</code> function to quickly test graph functions.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="de.sciss">sciss</a></dd></dl></div>
-    </li><li name="de.sciss.synth.io" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="io"></a><a id="io:io"></a>
-      <span class="permalink">
-      <a href="../../../de/sciss/synth/index.html#io" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="io/index.html"><span class="name">io</span></a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
     </li><li name="de.sciss.synth.message" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="message"></a><a id="message:message"></a>
       <span class="permalink">
@@ -310,8 +294,8 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                         <a href="Node.html" title="">Node</a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="NodeIDAllocator.html" title=""></a>
-                        <a href="NodeIDAllocator.html" title="">NodeIDAllocator</a>
+                        <a class="class" href="NodeIdAllocator.html" title=""></a>
+                        <a href="NodeIdAllocator.html" title="">NodeIdAllocator</a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="NodeManager$.html" title=""></a>
                         <a class="class" href="NodeManager.html" title=""></a>
@@ -1070,26 +1054,6 @@ such as SoundProcesses to avoid side-effects which they handle differently (e.g.
               
         </dd></dl></div>
     </li><li name="de.sciss.synth.Ops#play" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="play[A](target:de.sciss.synth.Node,outBus:Int,fadeTime:Double,addAction:de.sciss.synth.AddAction)(thunk:=&gt;A)(implicitresult:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth"></a><a id="play[A](Node,Int,Double,AddAction)(⇒A)(Result[A]):Synth"></a>
-      <span class="permalink">
-      <a href="../../../de/sciss/synth/Ops$.html#play[A](target:de.sciss.synth.Node,outBus:Int,fadeTime:Double,addAction:de.sciss.synth.AddAction)(thunk:=&gt;A)(implicitresult:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">play</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="target">target: <a href="Node.html" class="extype" name="de.sciss.synth.Node">Node</a> = <span class="symbol"><span class="name"><a href="Server$.html">Server.default</a></span></span></span>, <span name="outBus">outBus: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>, <span name="fadeTime">fadeTime: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.02</span></span>, <span name="addAction">addAction: <a href="AddAction.html" class="extype" name="de.sciss.synth.AddAction">AddAction</a> = <span class="symbol"><span class="name"><a href="addToHead$.html">addToHead</a></span></span></span>)</span><span class="params">(<span name="thunk">thunk: ⇒ <span class="extype" name="de.sciss.synth.Ops.play.A">A</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="result">result: <a href="GraphFunction$$Result.html" class="extype" name="de.sciss.synth.GraphFunction.Result">Result</a>[<span class="extype" name="de.sciss.synth.Ops.play.A">A</span>]</span>)</span><span class="result">: <a href="Synth.html" class="extype" name="de.sciss.synth.Synth">Synth</a></span>
-      </span>
-      
-      <p class="shortcomment cmt">Wraps the body of the thunk argument in a <code>SynthGraph</code>, adds an output UGen, and plays the graph
-in a synth attached to a given target.</p><div class="fullcomment"><div class="comment cmt"><p>Wraps the body of the thunk argument in a <code>SynthGraph</code>, adds an output UGen, and plays the graph
-in a synth attached to a given target.
-</p></div><dl class="paramcmts block"><dt class="param">target</dt><dd class="cmt"><p>the target with respect to which to place the synth</p></dd><dt class="param">outBus</dt><dd class="cmt"><p>audio bus index which is used for the synthetically generated <code>Out</code> UGen.</p></dd><dt class="param">fadeTime</dt><dd class="cmt"><p>if <code>&gt;= 0</code>, specifies the fade-in time for a synthetically added amplitude envelope.
-                    if negative, avoids building an envelope.</p></dd><dt class="param">addAction</dt><dd class="cmt"><p>the relation between the new synth and the target</p></dd><dt class="param">thunk</dt><dd class="cmt"><p>the thunk which produces the UGens to play</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the spawned Synth</p></dd></dl></div>
-    </li><li name="de.sciss.synth.Ops#play" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="play[A](thunk:=&gt;A)(implicitevidence$1:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth"></a><a id="play[A](⇒A)(Result[A]):Synth"></a>
       <span class="permalink">
       <a href="../../../de/sciss/synth/Ops$.html#play[A](thunk:=&gt;A)(implicitevidence$1:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth" title="Permalink">
@@ -1108,6 +1072,26 @@ in a synth attached to a given target.
 on the default group of the default server.</p><div class="fullcomment"><div class="comment cmt"><p>Wraps the body of the thunk argument in a <code>SynthGraph</code>, adds an output UGen, and plays the graph
 on the default group of the default server.
 </p></div><dl class="paramcmts block"><dt class="param">thunk</dt><dd class="cmt"><p>the thunk which produces the UGens to play</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the spawned Synth</p></dd></dl></div>
+    </li><li name="de.sciss.synth.Ops#playWith" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="playWith[A](target:de.sciss.synth.Node,out:Int,fadeTime:Double,addAction:de.sciss.synth.AddAction)(thunk:=&gt;A)(implicitresult:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth"></a><a id="playWith[A](Node,Int,Double,AddAction)(⇒A)(Result[A]):Synth"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/Ops$.html#playWith[A](target:de.sciss.synth.Node,out:Int,fadeTime:Double,addAction:de.sciss.synth.AddAction)(thunk:=&gt;A)(implicitresult:de.sciss.synth.GraphFunction.Result[A]):de.sciss.synth.Synth" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">playWith</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="target">target: <a href="Node.html" class="extype" name="de.sciss.synth.Node">Node</a> = <span class="symbol"><span class="name"><a href="Server$.html">Server.default</a></span></span></span>, <span name="out">out: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>, <span name="fadeTime">fadeTime: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.02</span></span>, <span name="addAction">addAction: <a href="AddAction.html" class="extype" name="de.sciss.synth.AddAction">AddAction</a> = <span class="symbol"><span class="name"><a href="addToHead$.html">addToHead</a></span></span></span>)</span><span class="params">(<span name="thunk">thunk: ⇒ <span class="extype" name="de.sciss.synth.Ops.playWith.A">A</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="result">result: <a href="GraphFunction$$Result.html" class="extype" name="de.sciss.synth.GraphFunction.Result">Result</a>[<span class="extype" name="de.sciss.synth.Ops.playWith.A">A</span>]</span>)</span><span class="result">: <a href="Synth.html" class="extype" name="de.sciss.synth.Synth">Synth</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Wraps the body of the thunk argument in a <code>SynthGraph</code>, adds an output UGen, and plays the graph
+in a synth attached to a given target.</p><div class="fullcomment"><div class="comment cmt"><p>Wraps the body of the thunk argument in a <code>SynthGraph</code>, adds an output UGen, and plays the graph
+in a synth attached to a given target.
+</p></div><dl class="paramcmts block"><dt class="param">target</dt><dd class="cmt"><p>the target with respect to which to place the synth</p></dd><dt class="param">out</dt><dd class="cmt"><p>audio bus index which is used for the synthetically generated <code>Out</code> UGen.</p></dd><dt class="param">fadeTime</dt><dd class="cmt"><p>if <code>&gt;= 0</code>, specifies the fade-in time for a synthetically added amplitude envelope.
+                    if negative, avoids building an envelope.</p></dd><dt class="param">addAction</dt><dd class="cmt"><p>the relation between the new synth and the target</p></dd><dt class="param">thunk</dt><dd class="cmt"><p>the thunk which produces the UGens to play</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the spawned Synth</p></dd></dl></div>
     </li><li name="de.sciss.synth.Ops#stringToControl" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="stringToControl(name:String):de.sciss.synth.ugen.ControlProxyFactory"></a><a id="stringToControl(String):ControlProxyFactory"></a>
       <span class="permalink">

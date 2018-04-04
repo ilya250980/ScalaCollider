@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.23.0 API  - de.sciss.synth.ugen.BufRd</title>
-          <meta name="description" content="ScalaCollider 1.23.0 API - de.sciss.synth.ugen.BufRd" />
-          <meta name="keywords" content="ScalaCollider 1.23.0 API de.sciss.synth.ugen.BufRd" />
+          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen.BufRd</title>
+          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen.BufRd" />
+          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen.BufRd" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.23.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -1918,7 +1918,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen which reads the content of a buffer, using an index pointer.</p><p>Warning: if the supplied <code>bufID</code> refers to a buffer whose number of channels
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A UGen which reads the content of a buffer, using an index pointer.</p><p>Warning: if the supplied <code>buf</code> refers to a buffer whose number of channels
 differs from <code>numChannels</code> , the UGen will fail silently.</p><p>An alternative to <code>BufRd</code> is <code>PlayBuf</code> . While <code>PlayBuf</code> plays through the
 buffer by itself, <code>BufRd</code> only moves its read point by the index input and
 therefore has no pitch input. <code>PlayBuf</code> uses cubic interpolation, while <code>BufRd</code>
@@ -1930,7 +1930,7 @@ issue a done-action.
                         SynthDefs.</p></dd><dt class="param">buf</dt><dd class="cmt"><p>the identifier of the buffer to use</p></dd><dt class="param">index</dt><dd class="cmt"><p>audio rate frame-index into the buffer. Can be
                         fractional.</p></dd><dt class="param">loop</dt><dd class="cmt"><p>1 to enable looping, 0 to disable looping. this can be
                         modulated.</p></dd><dt class="param">interp</dt><dd class="cmt"><p>1 for no interpolation, 2 for linear, and 4 for cubic
-                        interpolation. <i>(init-time only)</i></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="BufRateScale$.html" class="extype" name="de.sciss.synth.ugen.BufRateScale">BufRateScale</a></p></span><span class="cmt"><p><a href="BufFrames$.html" class="extype" name="de.sciss.synth.ugen.BufFrames">BufFrames</a></p></span><span class="cmt"><p><a href="Phasor$.html" class="extype" name="de.sciss.synth.ugen.Phasor">Phasor</a></p></span><span class="cmt"><p><a href="BufWr$.html" class="extype" name="de.sciss.synth.ugen.BufWr">BufWr</a></p></span><span class="cmt"><p><a href="PlayBuf$.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a></p></span></dd></dl><div class="toggleContainer block">
+                        interpolation. <i>(init-time only)</i></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="PlayBuf$.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a></p></span><span class="cmt"><p><a href="BufWr$.html" class="extype" name="de.sciss.synth.ugen.BufWr">BufWr</a></p></span><span class="cmt"><p><a href="Phasor$.html" class="extype" name="de.sciss.synth.ugen.Phasor">Phasor</a></p></span><span class="cmt"><p><a href="BufFrames$.html" class="extype" name="de.sciss.synth.ugen.BufFrames">BufFrames</a></p></span><span class="cmt"><p><a href="BufRateScale$.html" class="extype" name="de.sciss.synth.ugen.BufRateScale">BufRateScale</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>

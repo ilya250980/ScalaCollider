@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.23.0 API  - de.sciss.synth.ugen.VDiskIn</title>
-          <meta name="description" content="ScalaCollider 1.23.0 API - de.sciss.synth.ugen.VDiskIn" />
-          <meta name="keywords" content="ScalaCollider 1.23.0 API de.sciss.synth.ugen.VDiskIn" />
+          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen.VDiskIn</title>
+          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen.VDiskIn" />
+          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen.VDiskIn" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.23.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -1913,7 +1913,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">VDiskIn</span><span class="params">(<span name="rate">rate: <a href="../Rate.html" class="extype" name="de.sciss.synth.Rate">Rate</a></span>, <span name="numChannels">numChannels: <span class="extype" name="scala.Int">Int</span></span>, <span name="buf">buf: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="speed">speed: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">1.0f</a></span></span></span>, <span name="loop">loop: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>, <span name="sendID">sendID: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>)</span><span class="result"> extends <a href="../UGenSource$$MultiOut.html" class="extype" name="de.sciss.synth.UGenSource.MultiOut">MultiOut</a> with <a href="../HasSideEffect.html" class="extype" name="de.sciss.synth.HasSideEffect">HasSideEffect</a> with <a href="../IsIndividual.html" class="extype" name="de.sciss.synth.IsIndividual">IsIndividual</a> with <a href="../HasDoneFlag.html" class="extype" name="de.sciss.synth.HasDoneFlag">HasDoneFlag</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">VDiskIn</span><span class="params">(<span name="rate">rate: <a href="../Rate.html" class="extype" name="de.sciss.synth.Rate">Rate</a></span>, <span name="numChannels">numChannels: <span class="extype" name="scala.Int">Int</span></span>, <span name="buf">buf: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="speed">speed: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">1.0f</a></span></span></span>, <span name="loop">loop: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>, <span name="sendId">sendId: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>)</span><span class="result"> extends <a href="../UGenSource$$MultiOut.html" class="extype" name="de.sciss.synth.UGenSource.MultiOut">MultiOut</a> with <a href="../HasSideEffect.html" class="extype" name="de.sciss.synth.HasSideEffect">HasSideEffect</a> with <a href="../IsIndividual.html" class="extype" name="de.sciss.synth.IsIndividual">IsIndividual</a> with <a href="../HasDoneFlag.html" class="extype" name="de.sciss.synth.HasDoneFlag">HasDoneFlag</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -1934,10 +1934,10 @@ size). See <code>Buffer#cue</code> for details.</p><p>If the speed is too high, 
                         more disk activity there is, and the more likelihood
                         there will be a problem. The following must be true:
                         <code>rate &lt; bufFrames / (2 * blockSize)</code> , e.g with typical
-                        default values, this will be <code>32768 / (2 * 64) = 256</code> .</p></dd><dt class="param">loop</dt><dd class="cmt"><p>whether the file should loop when its end is reached</p></dd><dt class="param">sendID</dt><dd class="cmt"><p>If a value other than zero is used, the UGen sends an
+                        default values, this will be <code>32768 / (2 * 64) = 256</code> .</p></dd><dt class="param">loop</dt><dd class="cmt"><p>whether the file should loop when its end is reached</p></dd><dt class="param">sendId</dt><dd class="cmt"><p>If a value other than zero is used, the UGen sends an
                         OSC message with this id and the file position each time
                         it reloads the buffer:
-                        <code>OSCMessage(&quot;/diskin&quot;, nodeID, sendID, frame)</code></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="PlayBuf$.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a></p></span><span class="cmt"><p><a href="DiskOut$.html" class="extype" name="de.sciss.synth.ugen.DiskOut">DiskOut</a></p></span><span class="cmt"><p><a href="DiskIn$.html" class="extype" name="de.sciss.synth.ugen.DiskIn">DiskIn</a></p></span><span class="cmt"><p><span class="extype" name="de.sciss.synth.Buffer#cue">Buffer#cue</span></p></span></dd></dl><div class="toggleContainer block">
+                        <code>OSCMessage(&quot;/diskin&quot;, nodeId, sendId, frame)</code></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><span class="extype" name="de.sciss.synth.Buffer#cue">Buffer#cue</span></p></span><span class="cmt"><p><a href="DiskIn$.html" class="extype" name="de.sciss.synth.ugen.DiskIn">DiskIn</a></p></span><span class="cmt"><p><a href="DiskOut$.html" class="extype" name="de.sciss.synth.ugen.DiskOut">DiskOut</a></p></span><span class="cmt"><p><a href="PlayBuf$.html" class="extype" name="de.sciss.synth.ugen.PlayBuf">PlayBuf</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -1988,9 +1988,9 @@ size). See <code>Buffer#cue</code> for details.</p><p>If the speed is too high, 
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="de.sciss.synth.ugen.VDiskIn#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(rate:de.sciss.synth.Rate,numChannels:Int,buf:de.sciss.synth.GE,speed:de.sciss.synth.GE,loop:de.sciss.synth.GE,sendID:de.sciss.synth.GE):de.sciss.synth.ugen.VDiskIn"></a><a id="&lt;init&gt;:VDiskIn"></a>
+      <a id="&lt;init&gt;(rate:de.sciss.synth.Rate,numChannels:Int,buf:de.sciss.synth.GE,speed:de.sciss.synth.GE,loop:de.sciss.synth.GE,sendId:de.sciss.synth.GE):de.sciss.synth.ugen.VDiskIn"></a><a id="&lt;init&gt;:VDiskIn"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/VDiskIn.html#&lt;init&gt;(rate:de.sciss.synth.Rate,numChannels:Int,buf:de.sciss.synth.GE,speed:de.sciss.synth.GE,loop:de.sciss.synth.GE,sendID:de.sciss.synth.GE):de.sciss.synth.ugen.VDiskIn" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/VDiskIn.html#&lt;init&gt;(rate:de.sciss.synth.Rate,numChannels:Int,buf:de.sciss.synth.GE,speed:de.sciss.synth.GE,loop:de.sciss.synth.GE,sendId:de.sciss.synth.GE):de.sciss.synth.ugen.VDiskIn" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1999,7 +1999,7 @@ size). See <code>Buffer#cue</code> for details.</p><p>If the speed is too high, 
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">VDiskIn</span><span class="params">(<span name="rate">rate: <a href="../Rate.html" class="extype" name="de.sciss.synth.Rate">Rate</a></span>, <span name="numChannels">numChannels: <span class="extype" name="scala.Int">Int</span></span>, <span name="buf">buf: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="speed">speed: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">1.0f</a></span></span></span>, <span name="loop">loop: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>, <span name="sendID">sendID: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>)</span>
+        <span class="name">VDiskIn</span><span class="params">(<span name="rate">rate: <a href="../Rate.html" class="extype" name="de.sciss.synth.Rate">Rate</a></span>, <span name="numChannels">numChannels: <span class="extype" name="scala.Int">Int</span></span>, <span name="buf">buf: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>, <span name="speed">speed: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">1.0f</a></span></span></span>, <span name="loop">loop: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>, <span name="sendId">sendId: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a> = <span class="symbol"><span class="name"><a href="../GE$.html">0</a></span></span></span>)</span>
       </span>
       
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">numChannels</dt><dd class="cmt"><p>the amount of channels the file and the buffer will
@@ -2013,10 +2013,10 @@ size). See <code>Buffer#cue</code> for details.</p><p>If the speed is too high, 
                         more disk activity there is, and the more likelihood
                         there will be a problem. The following must be true:
                         <code>rate &lt; bufFrames / (2 * blockSize)</code> , e.g with typical
-                        default values, this will be <code>32768 / (2 * 64) = 256</code> .</p></dd><dt class="param">loop</dt><dd class="cmt"><p>whether the file should loop when its end is reached</p></dd><dt class="param">sendID</dt><dd class="cmt"><p>If a value other than zero is used, the UGen sends an
+                        default values, this will be <code>32768 / (2 * 64) = 256</code> .</p></dd><dt class="param">loop</dt><dd class="cmt"><p>whether the file should loop when its end is reached</p></dd><dt class="param">sendId</dt><dd class="cmt"><p>If a value other than zero is used, the UGen sends an
                         OSC message with this id and the file position each time
                         it reloads the buffer:
-                        <code>OSCMessage(&quot;/diskin&quot;, nodeID, sendID, frame)</code></p></dd></dl></div>
+                        <code>OSCMessage(&quot;/diskin&quot;, nodeId, sendId, frame)</code></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -2374,10 +2374,10 @@ expansion
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.VDiskIn">VDiskIn</a> → <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.VDiskIn#sendID" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="sendID:de.sciss.synth.GE"></a><a id="sendID:GE"></a>
+    </li><li name="de.sciss.synth.ugen.VDiskIn#sendId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="sendId:de.sciss.synth.GE"></a><a id="sendId:GE"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/VDiskIn.html#sendID:de.sciss.synth.GE" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/VDiskIn.html#sendId:de.sciss.synth.GE" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -2386,7 +2386,7 @@ expansion
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">sendID</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
+        <span class="name">sendId</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
       </span>
       
       

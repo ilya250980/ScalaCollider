@@ -3,8 +3,8 @@ val baseName = "ScalaCollider"
 val PROJECT_VERSION           = "1.24.0"
 val scalaColliderSwingVersion = "1.36.0"
 val ugensVersion              = "1.18.0"
-val audioFileVersion          = "1.4.6"
-val oscVersion                = "1.1.5"
+val audioFileVersion          = "1.4.7"
+val oscVersion                = "1.1.6"
 
 val lOSC                = RootProject(uri(s"git://github.com/Sciss/ScalaOSC.git#v$oscVersion"))
 val lAudioFile          = RootProject(uri(s"git://github.com/Sciss/ScalaAudioFile.git#v$audioFileVersion"))
@@ -12,12 +12,12 @@ val lUGens              = RootProject(uri(s"git://github.com/Sciss/ScalaCollider
 val lScalaCollider      = RootProject(uri(s"git://github.com/Sciss/$baseName.git#v${PROJECT_VERSION}"))
 val lScalaColliderSwing = RootProject(uri(s"git://github.com/Sciss/ScalaColliderSwing.git#v$scalaColliderSwingVersion"))
 
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.5"
 
 val root = (project in file("."))
-  .settings(unidocSettings)
-  .enablePlugins(ParadoxSitePlugin, SiteScaladocPlugin)
-  .settings(ghpages.settings)
+  .enablePlugins(ParadoxSitePlugin, GhpagesPlugin, ScalaUnidocPlugin, SiteScaladocPlugin)
+  // .settings(unidocSettings)
+  // .settings(ghpages.settings)
   .settings(
     name                 := baseName,
     version              := PROJECT_VERSION,
@@ -40,7 +40,7 @@ val root = (project in file("."))
       "-doc-title", s"${baseName} ${PROJECT_VERSION} API"
     )
   )
-  .aggregate(lOSC, lAudioFile, lUGens, lScalaCollider, lScalaColliderSwing)
+  .aggregate(/* lOSC, lAudioFile, */ lUGens, lScalaCollider, lScalaColliderSwing)
 
 val snippets = (project in file("snippets"))
   .dependsOn(lScalaCollider)

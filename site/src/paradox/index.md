@@ -35,7 +35,7 @@ to [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
 
 In order to run ScalaCollider, you also need to have installed on your computer:
 
-- [Java](https://www.java.com/download/) (Java 8 is recommended, but Java 6 should suffice) 
+- [Java](https://www.java.com/download/) (Java 8 is recommended, Java 9 might cause problems) 
 - [SuperCollider](https://supercollider.github.io/download) (version 3.9.1 is recommended, but 3.6.x and up
   should work, too)
 
@@ -55,3 +55,5 @@ these examples into the ScalaCollider-Swing prototyping environment. If you star
 have to adjust the location of the `scsynth` or `scsynth.exe` program in the preferences. Press the boot button to
 fire up the SuperCollider server. Then, select an example and press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute.
 Hover over a UGen name (e.g. `Mix` or `SinOsc`) and press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open its help file.
+
+For reference, consult the [API documentation](http://sciss.github.io/ScalaCollider/latest/api/de/sciss/synth/index.html).

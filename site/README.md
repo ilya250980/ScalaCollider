@@ -18,4 +18,4 @@ __To build the docs locally, run `sbt unidoc`. You can view the results via `ope
 
 Alternatively, you can run the site via a local web server as `sbt previewSite` which is a functionality of
 the [sbt-site](https://github.com/sbt/sbt-site) plugin. I publish the results to GitHub using
-`sbt ghpages-push-site` which is provided by the [sbt-ghpages](https://github.com/sbt/sbt-ghpages) plugin.
+`sbt ghpagesPushSite` which is provided by the [sbt-ghpages](https://github.com/sbt/sbt-ghpages) plugin.

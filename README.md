@@ -36,7 +36,7 @@ from [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
 
 More information is available from the wiki
 at [github.com/Sciss/ScalaCollider/wiki](http://github.com/Sciss/ScalaCollider/wiki). The API documentation is
-available at [sciss.github.io/ScalaCollider/latest/api](http://sciss.github.io/ScalaCollider/latest/api/).
+available at [sciss.github.io/ScalaCollider/latest/api](http://sciss.github.io/ScalaCollider/latest/api/de/sciss/synth/index.html).
 
 The best way to ask questions, no matter if newbie or expert, is to use the mailing list
 at [groups.google.com/group/scalacollider](http://groups.google.com/group/scalacollider). To subscribe, simply

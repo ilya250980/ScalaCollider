@@ -2,7 +2,7 @@
  *  GraphFunction.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -17,12 +17,12 @@ import de.sciss.osc.{Bundle, Message}
 import de.sciss.synth.ugen.WrapOut
 
 object GraphFunction {
-  private[this] final var uniqueIDCnt = 0
+  private[this] final var uniqueIdCnt = 0
   private[this] final val uniqueSync  = new AnyRef
 
-  private[this] def uniqueID(): Int = uniqueSync.synchronized {
-    uniqueIDCnt += 1
-    val result = uniqueIDCnt
+  private[this] def uniqueId(): Int = uniqueSync.synchronized {
+    uniqueIdCnt += 1
+    val result = uniqueIdCnt
     result
   }
 
@@ -43,7 +43,7 @@ object GraphFunction {
   }
 
   def mkSynthDef[A](fun: GraphFunction[A], fadeTime: Double = -1): SynthDef = {
-    val defName = s"temp_${uniqueID()}"   // more clear than using hashCode
+    val defName = s"temp_${uniqueId()}"   // more clear than using hashCode
     SynthDef(defName) {
       fun.result.close(fun.peer(), fadeTime)
     }

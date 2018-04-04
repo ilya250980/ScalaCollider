@@ -2,7 +2,7 @@
  *  Curve.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -142,7 +142,7 @@ object Curve {
         case parametric .id => parametric(in.readFloat())
         case squared    .id => squared
         case cubed      .id => cubed
-        case other          => sys.error(s"Unexpected envelope shape ID $other")
+        case other          => sys.error(s"Unexpected envelope shape id $other")
       }
   }
 }

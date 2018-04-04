@@ -1,8 +1,8 @@
 val baseName = "ScalaCollider"
 
-val PROJECT_VERSION           = "1.23.0"
-val scalaColliderSwingVersion = "1.35.0"
-val ugensVersion              = "1.17.1"
+val PROJECT_VERSION           = "1.24.0"
+val scalaColliderSwingVersion = "1.36.0"
+val ugensVersion              = "1.18.0"
 val audioFileVersion          = "1.4.6"
 val oscVersion                = "1.1.5"
 

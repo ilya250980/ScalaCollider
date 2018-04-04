@@ -2,7 +2,7 @@
  *  ServerCodec.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -57,11 +57,11 @@ object ServerCodec extends PacketCodec {
     if (b.getInt() != 0x2C696966) decodeFail(name)
     skipToValues(b)
 
-    val nodeID  = b.getInt()
+    val nodeId  = b.getInt()
     val trig    = b.getInt()
     val value   = b.getFloat()
 
-    Trigger(nodeID = nodeID, trig = trig, value = value)
+    Trigger(nodeId = nodeId, trig = trig, value = value)
   }
 
   private def decodeSetNum(b: ByteBuffer, name: String): Int = {
@@ -156,19 +156,19 @@ object ServerCodec extends PacketCodec {
     } else {
       skipToValues(b)
     }
-    val nodeID    = b.getInt()
-    val parentID  = b.getInt()
-    val predID    = b.getInt()
-    val succID    = b.getInt()
+    val nodeId    = b.getInt()
+    val parentId  = b.getInt()
+    val predId    = b.getInt()
+    val succId    = b.getInt()
     val nodeType  = b.getInt()
 
     if (nodeType == 0) {
-      factory.apply(nodeID, NodeInfo.SynthData(parentID, predID, succID))
+      factory.apply(nodeId, NodeInfo.SynthData(parentId, predId, succId))
     } else if ((nodeType == 1) && (extTags == 0x6969)) {
       // group
-      val headID  = b.getInt()
-      val tailID  = b.getInt()
-      factory.apply(nodeID, NodeInfo.GroupData(parentID, predID, succID, headID, tailID))
+      val headId  = b.getInt()
+      val tailId  = b.getInt()
+      factory.apply(nodeId, NodeInfo.GroupData(parentId, predId, succId, headId, tailId))
     } else decodeFail(name)
   }
 
@@ -232,7 +232,7 @@ object ServerCodec extends PacketCodec {
   def printAtom(value: Any, stream: PrintStream, nestCount: Int): Unit =
     superCodec.printAtom(value, stream, nestCount)
 
-  final val charsetName = superCodec.charsetName
+  final val charsetName: String = superCodec.charsetName
 
   private def decodeFail(name: String): Nothing = throw PacketCodec.MalformedPacket(name)
 }

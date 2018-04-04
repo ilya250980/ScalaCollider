@@ -1,13 +1,13 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.23.0"
-lazy val mimaVersion    = "1.23.0"   // for compatibility testing
+lazy val projectVersion = "1.24.0"
+lazy val mimaVersion    = "1.24.0"   // for compatibility testing
 
 name                 := baseName
 version              := projectVersion
 organization         := "de.sciss"
-scalaVersion         := "2.12.4"
-crossScalaVersions   := Seq("2.12.4", "2.11.11")
+scalaVersion         := "2.12.5"
+crossScalaVersions   := Seq("2.12.5", "2.11.12")
 
 description          := "A sound synthesis library for the SuperCollider server"
 homepage             := Some(url(s"https://github.com/Sciss/${name.value}"))
@@ -15,33 +15,32 @@ licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgp
 
 mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion)
 
-// ---- main dependencies ----
-
-lazy val ugensVersion     = "1.17.1"
-lazy val oscVersion       = "1.1.5"
-lazy val audioFileVersion = "1.4.6"
-lazy val processorVersion = "0.4.1"
-lazy val optionalVersion  = "1.0.0"
-
-// ---- test-only dependencies ----
-
-lazy val scalaTestVersion = "3.0.4"
-//lazy val dotVersion       = "0.4.0"
+lazy val deps = new {
+  val main = new {
+    val audioFile = "1.4.6"
+    val osc       = "1.1.5"
+    val optional  = "1.0.0"
+    val processor = "0.4.1"
+    val ugens     = "1.18.0"
+  }
+  val test = new {
+    val scalaTest = "3.0.5"
+  }
+}
 
 libraryDependencies ++= Seq(
-  "de.sciss"      %% "scalaosc"                % oscVersion,
-  "de.sciss"      %% "scalaaudiofile"          % audioFileVersion,
-  "de.sciss"      %% "scalacolliderugens-core" % ugensVersion,
-  "de.sciss"      %% "processor"               % processorVersion,
-  "de.sciss"      %% "optional"                % optionalVersion,
-  "org.scalatest" %% "scalatest"               % scalaTestVersion % "test"
+  "de.sciss"      %% "scalaosc"                % deps.main.osc,
+  "de.sciss"      %% "scalaaudiofile"          % deps.main.audioFile,
+  "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
+  "de.sciss"      %% "processor"               % deps.main.processor,
+  "de.sciss"      %% "optional"                % deps.main.optional,
+  "org.scalatest" %% "scalatest"               % deps.test.scalaTest % "test"
 //  "at.iem"        %% "scalacollider-dot"       % dotVersion       % "test"
 )
 
 scalacOptions ++= {
-  val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture")
-  val ys = if (scalaVersion.value.startsWith("2.10")) xs else xs :+ "-Xlint:-stars-align,_"  // syntax not supported in Scala 2.10
-  if (isSnapshot.value) ys else ys ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+  val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture", "-Xlint:-stars-align,_")
+  if (isSnapshot.value) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
 }
 
 // ---- console ----

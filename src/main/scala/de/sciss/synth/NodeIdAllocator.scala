@@ -1,8 +1,8 @@
 /*
- *  NodeIDAllocator.scala
+ *  NodeIdAllocator.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -13,7 +13,7 @@
 
 package de.sciss.synth
 
-final class NodeIDAllocator(user: Int, initTemp: Int) {
+final class NodeIdAllocator(user: Int, initTemp: Int) {
   private[this] var temp = initTemp
   private[this] val mask = user << 26
   private[this] val sync = new AnyRef

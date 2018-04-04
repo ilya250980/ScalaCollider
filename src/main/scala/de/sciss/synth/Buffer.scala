@@ -2,7 +2,7 @@
  *  Buffer.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -24,9 +24,9 @@ object Buffer {
 
   type Completion   = synth.Completion[Buffer]
 
-  def apply(server: Server = Server.default): Buffer = apply(server, allocID(server))
+  def apply(server: Server = Server.default): Buffer = apply(server, allocId(server))
 
-  private def allocID(server: Server): Int = {
+  private def allocId(server: Server): Int = {
     val id = server.allocBuffer(1)
     if (id == -1) {
       throw AllocatorExhausted(s"Buffer: failed to get a buffer allocated on ${server.name}")
@@ -36,14 +36,12 @@ object Buffer {
 }
 final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager.BufferInfo] {
 
-  //  def this(server: Server = Server.default) = this(server, Buffer.allocID(server))
+  private[this] var released        = false
+  private[this] var numFramesVar    = -1
+  private[this] var numChannelsVar  = -1
+  private[this] var sampleRateVar   = 0f
 
-  private var released        = false
-  private var numFramesVar    = -1
-  private var numChannelsVar  = -1
-  private var sampleRateVar   = 0f
-
-  private val sync            = new AnyRef
+  private[this] val sync            = new AnyRef
 
   override def toString: String = {
     val info = if (numFramesVar >= 0) s" : <$numFramesVar,$numChannelsVar,$sampleRateVar>" else ""

@@ -2,6 +2,22 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v1.24.0
+
+- resolves #49 by renaming overloaded `play` (the one with arguments for target, add-action etc.)
+  to `playWith`.
+- renames `ID` in argument-names to `Id` (e.g. `nodeId`, `bufId`).
+- adds `copy` method to various server messages
+
+## changes in v1.23.0
+
+- adds `Bus.apply`
+- adds `UnaryUGen.Op` `unary_~`
+- adds `Env.test`
+- adds implicit `Curve.fromDouble`
+- adds `Env.step`, fixes `Env.adsr` and `Env.dadsr`
+- fixes `PhysicalIn` outputs MCE
+
 ## changes in v1.22.0
 
 - fixes a bug with `b_gen` marking as synchronous or asynchronous message.

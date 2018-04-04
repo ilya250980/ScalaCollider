@@ -2,7 +2,7 @@
  *  ServerMessages.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -101,21 +101,13 @@ object Error {
 /** Produces an `/error` message that selects how the server will report errors to the console. */
 final case class Error(mode: Int) extends Message("/error", mode) with SyncCmd
 
-//trait NodeChange {
-//	def name: String // aka command (/n_go, /n_end, /n_off, /n_on, /n_move, /n_info)
-//	def nodeID:   Int
-//	def parentID: Int
-//	def predID:   Int
-//	def succID:   Int
-//}
-
 sealed trait NodeChange extends Receive {
-  def nodeID: Int
+  def nodeId: Int
   def info: NodeInfo.Data
 }
 
 private[synth] sealed trait NodeMessageFactory {
-  def apply(nodeID: Int, info: NodeInfo.Data): Message
+  def apply(nodeId: Int, info: NodeInfo.Data): Message
 }
 
 /** The `/n_go` message is received from the server when a node has been newly created.
@@ -124,32 +116,32 @@ private[synth] sealed trait NodeMessageFactory {
   * @see [[GroupNew]]
   */
 object NodeGo extends NodeMessageFactory
-final case class NodeGo(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_go", info.toList(nodeID): _*) with NodeChange
+final case class NodeGo(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_go", info.toList(nodeId): _*) with NodeChange
 
 /** The `/n_end` message is received from the server when a node has been freed.
   *
   * @see [[NodeFree]]
   */
 object NodeEnd extends NodeMessageFactory
-final case class NodeEnd(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_end", info.toList(nodeID): _*) with NodeChange
+final case class NodeEnd(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_end", info.toList(nodeId): _*) with NodeChange
 
 /** The `/n_on` message is received from the server when a node has resumed.
   *
   * @see [[NodeRun]]
   */
 object NodeOn extends NodeMessageFactory
-final case class NodeOn(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_on", info.toList(nodeID): _*) with NodeChange
+final case class NodeOn(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_on", info.toList(nodeId): _*) with NodeChange
 
 /** The `/n_off` message is received from the server when a node has been paused.
   *
   * @see [[NodeRun]]
   */
 object NodeOff extends NodeMessageFactory
-final case class NodeOff(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_off", info.toList(nodeID): _*) with NodeChange
+final case class NodeOff(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_off", info.toList(nodeId): _*) with NodeChange
 
 /** The `/n_move` message is received from the server when a node has changed its position in the tree.
   *
@@ -159,8 +151,8 @@ final case class NodeOff(nodeID: Int, info: NodeInfo.Data)
   * @see [[GroupTail]]
   */
 object NodeMove extends NodeMessageFactory
-final case class NodeMove(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_move", info.toList(nodeID): _*) with NodeChange
+final case class NodeMove(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_move", info.toList(nodeId): _*) with NodeChange
 
 object NodeInfo extends NodeMessageFactory {
   /** @see [[NodeInfo]]
@@ -172,47 +164,47 @@ object NodeInfo extends NodeMessageFactory {
     */
   abstract sealed class Data {
     /** The identifier of the node's parent group. */
-    def parentID: Int
+    def parentId: Int
     /** The identifier of the node preceding this node within the same group,
       * or `-1` if there is no predecessor.
       */
-    def predID: Int
+    def predId: Int
     /** The identifier of the node following this node within the same group,
       * or `-1` if there is no successor.
       */
-    def succID: Int
+    def succId: Int
 
     /** The serial presentation of the information within an OSC message.
       * This method is used internally and probably not useful in other ways.
       */
-    def toList(nodeID: Int): List[Any]
+    def toList(nodeId: Int): List[Any]
   }
 
   /** Information about a `Synth` node. */
-  final case class SynthData(parentID: Int, predID: Int, succID: Int) extends Data {
-    def toList(nodeID: Int): List[Any] = nodeID :: parentID :: predID :: succID :: 0 :: Nil
+  final case class SynthData(parentId: Int, predId: Int, succId: Int) extends Data {
+    def toList(nodeId: Int): List[Any] = nodeId :: parentId :: predId :: succId :: 0 :: Nil
   }
 
   /** Information about a `Group` node. */
-  final case class GroupData(parentID: Int, predID: Int, succID: Int, headID: Int, tailID: Int) extends Data {
-    def toList(nodeID: Int): List[Any] = nodeID :: parentID :: predID :: succID :: 1 :: headID :: tailID :: Nil
+  final case class GroupData(parentId: Int, predId: Int, succId: Int, headId: Int, tailId: Int) extends Data {
+    def toList(nodeId: Int): List[Any] = nodeId :: parentId :: predId :: succId :: 1 :: headId :: tailId :: Nil
   }
 }
 
 /** An `/n_info` message is received as a reply to an `/n_query` message.
   *
-  * @param nodeID the identifier of the node for which information has been received
+  * @param nodeId the identifier of the node for which information has been received
   * @param info   the information object describing the topological position of the node
   *
   * @see [[NodeQuery]]
   */
-final case class NodeInfo(nodeID: Int, info: NodeInfo.Data)
-  extends Message("/n_info", info.toList(nodeID): _*) with NodeChange
+final case class NodeInfo(nodeId: Int, info: NodeInfo.Data)
+  extends Message("/n_info", info.toList(nodeId): _*) with NodeChange
 
 // we need List[Any] as scala would otherwise expand to List[Float]!
 object BufferInfo {
   /** @see [[BufferInfo]] */
-  final case class Data(bufID: Int, numFrames: Int, numChannels: Int, sampleRate: Float)
+  final case class Data(bufId: Int, numFrames: Int, numChannels: Int, sampleRate: Float)
 }
 
 /** A `/b_info` message is received in reply to a `/b_query` message.
@@ -221,7 +213,7 @@ object BufferInfo {
   */
 final case class BufferInfo(data: BufferInfo.Data*)
   extends Message("/b_info", data.flatMap(info =>
-    List[Any](info.bufID, info.numFrames, info.numChannels, info.sampleRate)): _*)
+    List[Any](info.bufId, info.numFrames, info.numChannels, info.sampleRate)): _*)
   with Receive
 
 // ---- messages to the server ----
@@ -470,7 +462,11 @@ final case class BufferWrite(id: Int, path: String, fileType: io.AudioFileType, 
   */
 final case class BufferSet(id: Int, pairs: FillValue*)
   extends Message("/b_set", id :: (pairs.flatMap(_.toList)(breakOut): List[Any]): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, pairs: Seq[FillValue] = pairs): BufferSet =
+    BufferSet(id = id, pairs = pairs: _*)
+}
 
 /** The `/b_setn` message sets individual ranges of samples of the buffer to given values.
   *
@@ -488,7 +484,11 @@ final case class BufferSet(id: Int, pairs: FillValue*)
   */
 final case class BufferSetn(id: Int, indicesAndValues: (Int, IndexedSeq[Float])*)
   extends Message("/b_setn", id +: indicesAndValues.flatMap(iv => iv._1 +: iv._2.size +: iv._2): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, indicesAndValues: Seq[(Int, IndexedSeq[Float])] = indicesAndValues): BufferSetn =
+    BufferSetn(id = id, indicesAndValues = indicesAndValues: _*)
+}
 
 /** The `/b_fill` message sets individual ranges of samples of the buffer to given values.
   *
@@ -504,7 +504,11 @@ final case class BufferSetn(id: Int, indicesAndValues: (Int, IndexedSeq[Float])*
   */
 final case class BufferFill(id: Int, ranges: FillRange*)
   extends Message("/b_fill", id :: (ranges.flatMap(_.toList)(breakOut): List[Any]): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, ranges: Seq[FillRange] = ranges): BufferFill =
+    BufferFill(id = id, ranges = ranges: _*)
+}
 
 object BufferGen {
   trait Command {
@@ -648,7 +652,11 @@ final case class BufferGen(id: Int, command: BufferGen.Command)
   */
 final case class BufferGet(id: Int, index: Int*) // `indices` is taken by SeqLike
   extends Message("/b_get", id +: index: _*)
-  with SyncQuery
+  with SyncQuery {
+
+  def copy(id: Int = id, index: Seq[Int] = index): BufferGet =
+    BufferGet(id = id, index = index: _*)
+}
 
 /** The `/b_getn` message.
   *
@@ -658,7 +666,11 @@ final case class BufferGet(id: Int, index: Int*) // `indices` is taken by SeqLik
   */
 final case class BufferGetn(id: Int, ranges: Range*)
   extends Message("/b_getn", id +: ranges.flatMap(_.toGetnSeq): _*)
-  with SyncQuery
+  with SyncQuery {
+
+  def copy(id: Int = id, ranges: Seq[Range] = ranges): BufferGetn =
+    BufferGetn(id = id, ranges = ranges: _*)
+}
 
 /** The `/c_set` message.
   *
@@ -713,8 +725,8 @@ final case class ControlBusFill(ranges: FillRange*)
   with SyncCmd
 
 object GroupNew {
-  final case class Data(groupID: Int, addAction: Int, targetID: Int) {
-    def toList: List[Int] = groupID :: addAction :: targetID :: Nil
+  final case class Data(groupId: Int, addAction: Int, targetId: Int) {
+    def toList: List[Int] = groupId :: addAction :: targetId :: Nil
   }
 }
 /** The `/g_new` message. */
@@ -736,8 +748,8 @@ final case class GroupQueryTree(groups: (Int, Boolean)*)
   * {{{
   * /g_head
   *   [
-  *     Int - the ID of the group at which head a node is to be placed (B)
-  *     int - the ID of the node to place (A)
+  *     Int - the id of the group at which head a node is to be placed (B)
+  *     int - the id of the node to place (A)
   *   ] * N
   * }}}
   * So that for each pair, node A is moved to the head of group B.
@@ -750,8 +762,8 @@ final case class GroupHead(groups: (Int, Int)*)
   * {{{
   * /g_tail
   *   [
-  *     Int - the ID of the group at which tail a node is to be placed (B)
-  *     int - the ID of the node to place (A)
+  *     Int - the id of the group at which tail a node is to be placed (B)
+  *     int - the id of the node to place (A)
   *   ] * N
   * }}}
   * So that for each pair, node A is moved to the tail of group B.
@@ -776,20 +788,33 @@ final case class ParGroupNew(groups: GroupNew.Data*)
   with SyncCmd
 
 /** The `/s_new` message. */
-final case class SynthNew(defName: String, id: Int, addAction: Int, targetID: Int, controls: ControlSet*)
+final case class SynthNew(defName: String, id: Int, addAction: Int, targetId: Int, controls: ControlSet*)
   extends Message("/s_new",
-    defName +: id +: addAction +: targetID +: controls.flatMap(_.toSetSeq): _*)
-  with SyncCmd
+    defName +: id +: addAction +: targetId +: controls.flatMap(_.toSetSeq): _*)
+  with SyncCmd {
+
+  def copy(defName: String = defName, id: Int = id, addAction: Int = addAction,
+           targetId: Int = targetId, controls: Seq[ControlSet] = controls): SynthNew =
+    SynthNew(defName = defName, id = id, addAction = addAction, targetId = targetId, controls = controls: _*)
+}
 
 /** The `/s_get` message. */
 final case class SynthGet(id: Int, controls: Any*)
   extends Message("/s_get", id +: controls: _*)
-  with SyncQuery
+  with SyncQuery {
+
+  def copy(id: Int = id, controls: Seq[Any] = controls): SynthGet =
+    SynthGet(id = id, controls = controls: _*)
+}
 
 /** The `/s_getn` message. */
 final case class SynthGetn(id: Int, controls: (Any, Int)*)
   extends Message("/s_getn", id +: controls.flatMap(tup => tup._1 :: tup._2 :: Nil): _*)
-  with SyncQuery
+  with SyncQuery {
+
+  def copy(id: Int = id, controls: Seq[(Any, Int)] = controls): SynthGetn =
+    SynthGetn(id = id, controls = controls: _*)
+}
 
 /** The `/n_run` message. */
 final case class NodeRun(nodes: (Int, Boolean)*)
@@ -799,12 +824,20 @@ final case class NodeRun(nodes: (Int, Boolean)*)
 /** The `/n_set` message. */
 final case class NodeSet(id: Int, pairs: ControlSet*)
   extends Message("/n_set", id +: pairs.flatMap(_.toSetSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, pairs: Seq[ControlSet] = pairs): NodeSet =
+    NodeSet(id = id, pairs = pairs: _*)
+}
 
 /** The `/n_setn` message. */
 final case class NodeSetn(id: Int, pairs: ControlSet*)
   extends Message("/n_setn", id +: pairs.flatMap(_.toSetnSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, pairs: Seq[ControlSet] = pairs): NodeSetn =
+    NodeSetn(id = id, pairs = pairs: _*)
+}
 
 /** The `/n_trace` message. */
 final case class NodeTrace(ids: Int*)
@@ -812,7 +845,7 @@ final case class NodeTrace(ids: Int*)
   with SyncCmd
 
 /** The `/n_noid` message. */
-final case class NodeNoID(ids: Int*)
+final case class NodeNoId(ids: Int*)
   extends Message("/n_noid", ids: _*)
   with SyncCmd
 
@@ -824,34 +857,54 @@ final case class NodeFree(ids: Int*)
 /** The `/n_map` message. */
 final case class NodeMap(id: Int, mappings: ControlKBusMap.Single*)
   extends Message("/n_map", id +: mappings.flatMap(_.toMapSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, mappings: Seq[ControlKBusMap.Single] = mappings): NodeMap =
+    NodeMap(id = id, mappings = mappings: _*)
+}
 
 /** The `/n_mapn` message. */
 final case class NodeMapn(id: Int, mappings: ControlKBusMap*)
   extends Message("/n_mapn", id +: mappings.flatMap(_.toMapnSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, mappings: Seq[ControlKBusMap] = mappings): NodeMapn =
+    NodeMapn(id = id, mappings = mappings: _*)
+}
 
 /** The `/n_mapa` message. */
 final case class NodeMapa(id: Int, mappings: ControlABusMap.Single*)
   extends Message("/n_mapa", id +: mappings.flatMap(_.toMapaSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, mappings: Seq[ControlABusMap.Single] = mappings): NodeMapa =
+    NodeMapa(id = id, mappings = mappings: _*)
+}
 
 /** The `/n_mapan` message. */
 final case class NodeMapan(id: Int, mappings: ControlABusMap*)
   extends Message("/n_mapan", id +: mappings.flatMap(_.toMapanSeq): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, mappings: Seq[ControlABusMap] = mappings): NodeMapan =
+    NodeMapan(id = id, mappings = mappings: _*)
+}
 
 /** The `/n_fill` message. */
 final case class NodeFill(id: Int, data: ControlFillRange*)
   extends Message("/n_fill", id :: (data.flatMap(_.toList)(breakOut): List[Any]): _*)
-  with SyncCmd
+  with SyncCmd {
+
+  def copy(id: Int = id, data: Seq[ControlFillRange] = data): NodeFill =
+    NodeFill(id = id, data = data: _*)
+}
 
 /** The `/n_before` message pair-wise places nodes before other nodes.
   * {{{
   * /n_before
   *   [
-  *     Int - the ID of the node to place (A)
-  *     int - the ID of the node before which the above is placed (B)
+  *     Int - the id of the node to place (A)
+  *     int - the id of the node before which the above is placed (B)
   *   ] * N
   * }}}
   * So that for each pair, node A in the same group as node B, to execute immediately before node B.
@@ -864,8 +917,8 @@ final case class NodeBefore(groups: (Int, Int)*)
   * {{{
   * /n_after
   *   [
-  *     Int - the ID of the node to place (A)
-  *     int - the ID of the node after which the above is placed (B)
+  *     Int - the id of the node to place (A)
+  *     int - the id of the node after which the above is placed (B)
   *   ] * N
   * }}}
   * So that for each pair, node A in the same group as node B, to execute immediately after node B.
@@ -878,9 +931,13 @@ final case class NodeAfter(groups: (Int, Int)*)
 final case class NodeQuery(ids: Int*) extends Message("/n_query", ids: _*) with SyncQuery
 
 /** The `/n_order` message. */
-final case class NodeOrder(addAction: Int, targetID: Int, ids: Int*)
-  extends Message("/n_order", addAction +: targetID +: ids: _*)
-  with SyncCmd
+final case class NodeOrder(addAction: Int, targetId: Int, ids: Int*)
+  extends Message("/n_order", addAction +: targetId +: ids: _*)
+  with SyncCmd {
+
+  def copy(addAction: Int = addAction, targetId: Int = targetId, ids: Seq[Int] = ids): NodeOrder =
+    NodeOrder(addAction = addAction, targetId = targetId, ids = ids: _*)
+}
 
 /** The `/d_recv` message. */
 final case class SynthDefRecv(bytes: ByteBuffer, completion: Option[Packet])
@@ -921,10 +978,14 @@ final case class SynthDefLoadDir(path: String, completion: Option[Packet])
 }
 
 /** The `/u_cmd` message allows one to send UGen specific commands. */
-final case class UGenCommand(nodeID: Int, ugenIdx: Int, command: String, rest: Any*)
-  extends Message("/u_cmd", nodeID +: ugenIdx +: command +: rest)
-  with SyncCmd
+final case class UGenCommand(nodeId: Int, ugenIdx: Int, command: String, rest: Any*)
+  extends Message("/u_cmd", nodeId +: ugenIdx +: command +: rest)
+  with SyncCmd {
+
+  def copy(nodeId: Int = nodeId, ugenIdx: Int = ugenIdx, command: String = command, res: Seq[Any] = rest): UGenCommand =
+    UGenCommand(nodeId = nodeId, ugenIdx = ugenIdx, command = command, rest = rest: _*)
+}
 
 /** The `/tr` message send from a [[de.sciss.synth.ugen.SendTrig SendTrig]] UGen. */
-final case class Trigger(nodeID: Int, trig: Int, value: Float)
-  extends Message("/tr", nodeID, trig, value) with Receive
+final case class Trigger(nodeId: Int, trig: Int, value: Float)
+  extends Message("/tr", nodeId, trig, value) with Receive

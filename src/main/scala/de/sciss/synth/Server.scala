@@ -2,7 +2,7 @@
  *  Server.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -506,11 +506,11 @@ object Server {
     /** (Realtime) The default device name is `None` (scsynth default; it will
       * use the system default sound card)
       */
-    private var deviceNameVar: Option[String] = None
+    private[this] var deviceNameVar: Option[String] = None
     /** (Realtime) The default input/output device names is `None` (scsynth default; it will
       * use the system default sound card)
       */
-    private var deviceNamesVar: Option[(String, String)] = None
+    private[this] var deviceNamesVar: Option[(String, String)] = None
 
     def deviceName: Option[String] = deviceNameVar
     def deviceName_=(value: Option[String]): Unit = {
@@ -827,8 +827,8 @@ trait Server extends ServerLike with Model[Server.Update] {
   def isRunning    : Boolean
   def isOffline    : Boolean
 
-  def nextNodeID(): Int
-  def nextSyncID(): Int
+  def nextNodeId(): Int
+  def nextSyncId(): Int
 
   def allocControlBus(numChannels: Int): Int
   def allocAudioBus  (numChannels: Int): Int

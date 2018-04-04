@@ -2,7 +2,7 @@
  *  ServerImpl.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -306,16 +306,12 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     extends Runnable {
     watcher =>
 
-    private var	alive			          = deathBounces
-    private val delayMillis         = (delay  * 1000).toInt
-    private val periodMillis        = (period * 1000).toInt
-    //      private val	timer			   = new SwingTimer( periodMillis, this )
-    private var timer               = Option.empty[Timer]
-    private var callServerContacted = true
-    private val sync                = new AnyRef
-
-    //      // ---- constructor ----
-    //      timer.setInitialDelay( delayMillis )
+    private[this] var	alive			          = deathBounces
+    private[this] val delayMillis         = (delay  * 1000).toInt
+    private[this] val periodMillis        = (period * 1000).toInt
+    private[this] var timer               = Option.empty[Timer]
+    private[this] var callServerContacted = true
+    private[this] val sync                = new AnyRef
 
     def start(): Unit = {
       stop()
@@ -327,7 +323,6 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     }
 
     def stop(): Unit = {
-      //         timer.stop
       timer.foreach { t =>
         t.cancel()
         timer = None
@@ -402,51 +397,51 @@ private[synth] abstract class ServerImpl
 
   server =>
 
-  val rootNode      = Group(this, 0)
-  val defaultGroup  = Group(this, 1)
-  val nodeManager   = new NodeManager  (this)
-  val bufManager    = new BufferManager(this)
+  final val rootNode      = Group(this, 0)
+  final val defaultGroup  = Group(this, 1)
+  final val nodeManager   = new NodeManager  (this)
+  final val bufManager    = new BufferManager(this)
 
-  private val nodeAllocator        = new NodeIDAllocator(clientConfig.clientID, clientConfig.nodeIDOffset)
-  private val controlBusAllocator  = new ContiguousBlockAllocator(config.controlBusChannels)
-  private val audioBusAllocator    = new ContiguousBlockAllocator(config.audioBusChannels, config.internalBusIndex)
-  private val bufferAllocator      = new ContiguousBlockAllocator(config.audioBuffers)
-  private var uniqueID             = 0
-  private val uniqueSync           = new AnyRef
+  private[this] val nodeAllocator        = new NodeIdAllocator(clientConfig.clientId, clientConfig.nodeIdOffset)
+  private[this] val controlBusAllocator  = new ContiguousBlockAllocator(config.controlBusChannels)
+  private[this] val audioBusAllocator    = new ContiguousBlockAllocator(config.audioBusChannels, config.internalBusIndex)
+  private[this] val bufferAllocator      = new ContiguousBlockAllocator(config.audioBuffers)
+  private[this] var uniqueId             = 0
+  private[this] val uniqueSync           = new AnyRef
 
-  def isLocal: Boolean = {
+  final def isLocal: Boolean = {
     val host = addr.getAddress
     host.isLoopbackAddress || host.isSiteLocalAddress
   }
 
-  def nextNodeID(): Int = nodeAllocator.alloc()
+  final def nextNodeId(): Int = nodeAllocator.alloc()
 
-  def allocControlBus(numChannels: Int): Int = controlBusAllocator.alloc(numChannels)
-  def allocAudioBus  (numChannels: Int): Int = audioBusAllocator  .alloc(numChannels)
-  def allocBuffer    (numChannels: Int): Int = bufferAllocator    .alloc(numChannels)
+  final def allocControlBus(numChannels: Int): Int = controlBusAllocator.alloc(numChannels)
+  final def allocAudioBus  (numChannels: Int): Int = audioBusAllocator  .alloc(numChannels)
+  final def allocBuffer    (numChannels: Int): Int = bufferAllocator    .alloc(numChannels)
 
-  def freeControlBus(index: Int): Unit = controlBusAllocator.free(index)
-  def freeAudioBus  (index: Int): Unit = audioBusAllocator  .free(index)
-  def freeBuffer    (index: Int): Unit = bufferAllocator    .free(index)
+  final def freeControlBus(index: Int): Unit = controlBusAllocator.free(index)
+  final def freeAudioBus  (index: Int): Unit = audioBusAllocator  .free(index)
+  final def freeBuffer    (index: Int): Unit = bufferAllocator    .free(index)
 
-  def nextSyncID(): Int = uniqueSync.synchronized {
-    val res = uniqueID; uniqueID += 1; res
+  final def nextSyncId(): Int = uniqueSync.synchronized {
+    val res = uniqueId; uniqueId += 1; res
   }
 
-  def sampleRate = counts.sampleRate
+  final def sampleRate: Double = counts.sampleRate
 
-  def dumpTree(controls: Boolean = false): Unit = {
+  final def dumpTree(controls: Boolean = false): Unit = {
     import de.sciss.synth.Ops._
     rootNode.dumpTree(controls)
   }
 
-  def queryCounts(): Unit = this ! message.Status
+  final def queryCounts(): Unit = this ! message.Status
 
-  def dumpOSC(mode: osc.Dump, filter: osc.Packet => Boolean): Unit = {
+  final def dumpOSC(mode: osc.Dump, filter: osc.Packet => Boolean): Unit = {
     dumpInOSC (mode, filter)
     dumpOutOSC(mode, filter)
   }
 
-  def syncMsg(): message.Sync = message.Sync(nextSyncID())
-  def quitMsg: message.ServerQuit.type = message.ServerQuit
+  final def syncMsg(): message.Sync = message.Sync(nextSyncId())
+  final def quitMsg: message.ServerQuit.type = message.ServerQuit
 }

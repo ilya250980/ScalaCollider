@@ -11,8 +11,8 @@ class RichNumberSuite extends FunSpec {
   describe("Rich number operators") {
     it("should properly expand to primitives and GE") {
       val intInt1 = 6.roundTo(4)
-      assert(intInt1 === 8f)
-      assert(intInt1.isInstanceOf[Float], "found " + intInt1.getClass)
+      assert(intInt1 === 8)
+      assert(intInt1.isInstanceOf[Int], "found " + intInt1.getClass)
 
       val intInt2 = 6.signum
       assert(intInt2 === 1)

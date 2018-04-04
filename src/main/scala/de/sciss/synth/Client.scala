@@ -2,7 +2,7 @@
  *  Client.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -19,9 +19,9 @@ import concurrent.ExecutionContext
 
 object Client {
   sealed trait ConfigLike {
-    def clientID: Int
-    def nodeIDOffset: Int
-    def addr: Option[InetSocketAddress]
+    def clientId        : Int
+    def nodeIdOffset    : Int
+    def addr            : Option[InetSocketAddress]
     def executionContext: ExecutionContext
   }
 
@@ -35,18 +35,18 @@ object Client {
     implicit def build(cb: ConfigBuilder): Config = cb.build
   }
 
-  final class Config private[Client](val clientID: Int, val nodeIDOffset: Int, val addr: Option[InetSocketAddress])
+  final class Config private[Client](val clientId: Int, val nodeIdOffset: Int, val addr: Option[InetSocketAddress])
                                      (implicit val executionContext: ExecutionContext)
     extends ConfigLike {
     override def toString = "ClientOptions"
   }
 
   final class ConfigBuilder private[Client]() extends ConfigLike {
-    var clientID: Int = 0
-    var nodeIDOffset: Int = 1000
-    var addr: Option[InetSocketAddress] = None
-    var executionContext: ExecutionContext = ExecutionContext.global
+    var clientId        : Int                       = 0
+    var nodeIdOffset    : Int                       = 1000
+    var addr            : Option[InetSocketAddress] = None
+    var executionContext: ExecutionContext          = ExecutionContext.global
 
-    def build: Config = new Config(clientID, nodeIDOffset, addr)(executionContext)
+    def build: Config = new Config(clientId, nodeIdOffset, addr)(executionContext)
   }
 }

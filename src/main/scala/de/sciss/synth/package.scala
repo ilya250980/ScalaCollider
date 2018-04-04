@@ -2,7 +2,7 @@
  *  package.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -45,8 +45,7 @@ package object synth {
   /** Provides operators for graph elements, such as `.abs`, `.linlin` or `.poll`. */
   implicit def geOps(g: GE): GEOps = new GEOps(g)
 
-  implicit class rangeOps(val `this`: Range) extends AnyVal { me =>
-    import me.{`this` => r}
+  implicit class rangeOps(private val r: Range) extends AnyVal {
 
     /** Creates a new `Range` shifted by the given offset. */
     def shift(n: Int): Range = {

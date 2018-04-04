@@ -2,7 +2,7 @@
  *  GE.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -19,9 +19,8 @@ object GEOps {
   private def getRate(g: GE, name: String): Rate =
     g.rate.getOrElse(throw new UnsupportedOperationException(s"`$name` input rate must be defined"))
 }
-final class GEOps(val `this`: GE) extends AnyVal { me =>
+final class GEOps(private val g: GE) extends AnyVal {
   import GEOps.getRate
-  import me.{`this` => g}
 
   /** Creates a proxy that represents a specific output channel of the element.
     *
@@ -52,12 +51,12 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
     * @param   label    a string to print along with the values, in order to identify
     *                   different polls. Using the special label `"$auto"` (default) will generated
     *                   automatic useful labels using information from the polled graph element
-    * @param   trigID   if greater then 0, a `"/tr"` OSC message is sent back to the client
+    * @param   trigId   if greater then 0, a `"/tr"` OSC message is sent back to the client
     *                   (similar to `SendTrig`)
     *
     * @see  [[de.sciss.synth.ugen.Poll]]
     */
-  def poll(trig: GE = 10, label: String = "$auto", trigID: GE = -1): Poll = {
+  def poll(trig: GE = 10, label: String = "$auto", trigId: GE = -1): Poll = {
     val trig1 = trig match {
       case Constant(freq) => Impulse((g.rate getOrElse audio) max control, freq, 0) // XXX good? or throw an error? should have a maxRate?
       case other          => other
@@ -72,7 +71,7 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
         else str
       }
     }
-    Poll(trig1.rate, trig = trig1, in = g, label = label1, trigID = trigID)
+    Poll(trig1.rate, trig = trig1, in = g, label = label1, trigId = trigId)
   }
 
   import UnaryOpUGen._
@@ -149,7 +148,12 @@ final class GEOps(val `this`: GE) extends AnyVal { me =>
   def *       (b: GE): GE = binOp(Times   , b)
   // def div(b: GE): GE = ...
   def /       (b: GE): GE = binOp(Div     , b)
+
+//  @deprecated("Use 'mod' now, because '%' is misleading, as the server implements modulus different from scala.math.",
+//    since = "1.24.0")
+  /** An alias for `mod`. */
   def %       (b: GE): GE = binOp(Mod     , b)
+  def mod     (b: GE): GE = binOp(Mod     , b)
   def sig_==  (b: GE): GE = binOp(Eq      , b)
   def sig_!=  (b: GE): GE = binOp(Neq     , b)
   def <       (b: GE): GE = binOp(Lt      , b)

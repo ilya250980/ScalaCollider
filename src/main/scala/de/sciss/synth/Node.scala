@@ -2,7 +2,7 @@
  *  Node.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -16,14 +16,13 @@ package de.sciss.synth
 import de.sciss.model.Model
 import de.sciss.model.impl.ModelImpl
 
-/**
- * A representation for a node on the server's tree. A `Node` is either a `Synth` or a `Group`.
- *
- * '''Note''' that if the node is a group, all messages send to the node which are not specific to a
- * `Synth` or `Group`, i.e. all messages found in this class, will affect all child nodes of the group.
- * For example, if `release()` is called on a `Group`, the underlying `setMsg` is propagated to all
- * `Synth`s in the tree whose root is this group.
- */
+/** A representation for a node on the server's tree. A `Node` is either a `Synth` or a `Group`.
+  *
+  * '''Note''' that if the node is a group, all messages send to the node which are not specific to a
+  * `Synth` or `Group`, i.e. all messages found in this class, will affect all child nodes of the group.
+  * For example, if `release()` is called on a `Group`, the underlying `setMsg` is propagated to all
+  * `Synth`s in the tree whose root is this group.
+  */
 object Node {
   type Listener = Model.Listener[NodeManager.NodeChange]
 }

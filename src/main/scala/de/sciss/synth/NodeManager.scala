@@ -2,7 +2,7 @@
  *  NodeManager.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -38,8 +38,8 @@ object NodeManager {
 final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update] {
   import NodeManager._
 
-  private var nodes: Map[Int, Node] = _
-  private val sync     = new AnyRef
+  private[this] var nodes: Map[Int, Node] = _
+  private[this] val sync     = new AnyRef
 
   // ---- constructor ----
   clear()
@@ -51,12 +51,12 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
 
   def nodeChange(e: message.NodeChange): Unit =
     e match {
-      case message.NodeGo(nodeID, info) =>
-        val node = nodes.getOrElse(nodeID, {
-          if ( /* autoAdd && */ nodes.contains(info.parentID)) {
+      case message.NodeGo(nodeId, info) =>
+        val node = nodes.getOrElse(nodeId, {
+          if ( /* autoAdd && */ nodes.contains(info.parentId)) {
             val created = info match {
-              case _: message.NodeInfo.SynthData => Synth(server, nodeID)
-              case _: message.NodeInfo.GroupData => Group(server, nodeID)
+              case _: message.NodeInfo.SynthData => Synth(server, nodeId)
+              case _: message.NodeInfo.GroupData => Group(server, nodeId)
             }
             register(created)
             created
@@ -64,25 +64,25 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
         })
         dispatchBoth(NodeGo(node, info))
 
-      case message.NodeEnd(nodeID, info) =>
-        // println(s"---- NodeEnd: ${nodes.get(nodeID)}")
-        nodes.get(nodeID).foreach { node =>
+      case message.NodeEnd(nodeId, info) =>
+        // println(s"---- NodeEnd: ${nodes.get(nodeId)}")
+        nodes.get(nodeId).foreach { node =>
           unregister(node)
           dispatchBoth(NodeEnd(node, info))
         }
 
-      case message.NodeOff(nodeID, info) =>
-        nodes.get(nodeID).foreach { node =>
+      case message.NodeOff(nodeId, info) =>
+        nodes.get(nodeId).foreach { node =>
           dispatchBoth(NodeOff(node, info))
         }
 
-      case message.NodeOn(nodeID, info) =>
-        nodes.get(nodeID).foreach { node =>
+      case message.NodeOn(nodeId, info) =>
+        nodes.get(nodeId).foreach { node =>
           dispatchBoth(NodeOn(node, info))
         }
 
-      case message.NodeMove(nodeID, info) =>
-        nodes.get(nodeID).foreach { node =>
+      case message.NodeMove(nodeId, info) =>
+        nodes.get(nodeId).foreach { node =>
           dispatchBoth(NodeMove(node, info))
         }
 

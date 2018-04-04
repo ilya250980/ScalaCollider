@@ -2,7 +2,7 @@
  *  ControlMappings.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -27,6 +27,8 @@ object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicit
 
     private[sciss] def toSetSeq : IndexedSeq[Any] = scala.Vector(key,    value)
     private[sciss] def toSetnSeq: IndexedSeq[Any] = scala.Vector(key, 1, value)
+
+    def numChannels: Int = 1
   }
 
   object Vector extends ControlSetVectorImplicits {
@@ -38,12 +40,16 @@ object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicit
 
     private[sciss] def toSetSeq : IndexedSeq[Any] = scala.Vector(key, values)
     private[sciss] def toSetnSeq: IndexedSeq[Any] = key +: values.size +: values
+
+    def numChannels: Int = values.size
   }
 }
 
 sealed trait ControlSet {
   private[sciss] def toSetSeq : IndexedSeq[Any]
   private[sciss] def toSetnSeq: IndexedSeq[Any]
+
+  def numChannels: Int
 }
 
 private[synth] sealed trait ControlSetValueImplicits {

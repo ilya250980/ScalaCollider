@@ -2,7 +2,7 @@
  *  Synth.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -14,7 +14,7 @@
 package de.sciss.synth
 
 object Synth {
-  def apply(server: Server = Server.default): Synth = apply(server, server.nextNodeID())
+  def apply(server: Server = Server.default): Synth = apply(server, server.nextNodeId())
 }
 final case class Synth(server: Server, id: Int)
   extends Node {

@@ -2,7 +2,7 @@
  *  BufferManager.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -22,8 +22,8 @@ object BufferManager {
 final class BufferManager(server: Server) extends ModelImpl[BufferManager.BufferInfo] {
   import BufferManager._
 
-  private var buffers: Map[Int, Buffer] = _
-  private val sync = new AnyRef
+  private[this] var buffers: Map[Int, Buffer] = _
+  private[this] val sync = new AnyRef
 
   // ---- constructor ----
   clear()
@@ -31,7 +31,7 @@ final class BufferManager(server: Server) extends ModelImpl[BufferManager.Buffer
   def bufferInfo(msg: message.BufferInfo): Unit =
     sync.synchronized {
       msg.data.foreach { info =>
-        buffers.get(info.bufID).foreach { buf =>
+        buffers.get(info.bufId).foreach { buf =>
           // this is the only safe way: automatically unregister,
           // since unlike nodes whose id is steadily increasing
           // and which fire identifiable n_end messages, we

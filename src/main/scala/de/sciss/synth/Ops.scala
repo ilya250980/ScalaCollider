@@ -2,7 +2,7 @@
  *  Ops.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -23,7 +23,7 @@ import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec}
 import scala.concurrent.{Future, Promise}
 import scala.language.implicitConversions
-import scala.util.Success
+import scala.util.{Failure, Success}
 
 /** Importing the contents of this object adds imperative (side-effect) functions to resources such as
   * synths, buses, buffers. In general these reflect the OSC messages defined for each object, and send
@@ -42,7 +42,7 @@ object Ops {
     * @param  thunk   the thunk which produces the UGens to play
     * @return         a reference to the spawned Synth
     */
-  def play[A: GraphFunction.Result](thunk: => A): Synth = play()(thunk)
+  def play[A: GraphFunction.Result](thunk: => A): Synth = playWith()(thunk)
 
   /** Constructs a `GraphFunction`, on which then for example `play` can be called. */
   def graph[A](thunk: => A)(implicit result: GraphFunction.Result[A]): GraphFunction[A] =
@@ -53,18 +53,18 @@ object Ops {
     *
     * @param  target      the target with respect to which to place the synth
     * @param  addAction   the relation between the new synth and the target
-    * @param  outBus      audio bus index which is used for the synthetically generated `Out` UGen.
+    * @param  out         audio bus index which is used for the synthetically generated `Out` UGen.
     * @param  fadeTime    if `&gt;= 0`, specifies the fade-in time for a synthetically added amplitude envelope.
     *                     if negative, avoids building an envelope.
     * @param  thunk       the thunk which produces the UGens to play
     * @return             a reference to the spawned Synth
     */
-  def play[A](target: Node = Server.default, outBus: Int = 0,
-              fadeTime: Double = 0.02,
-              addAction: AddAction = addToHead)(thunk: => A)
-             (implicit result: GraphFunction.Result[A]): Synth = {
+  def playWith[A](target: Node = Server.default, out: Int = 0,
+                  fadeTime: Double = 0.02,
+                  addAction: AddAction = addToHead)(thunk: => A)
+                 (implicit result: GraphFunction.Result[A]): Synth = {
     val fun = new GraphFunction(() => thunk)(result)
-    fun.play(target = target, outBus = outBus, fadeTime = fadeTime, addAction = addAction)
+    fun.play(target = target, outBus = out, fadeTime = fadeTime, addAction = addAction)
   }
 
   /** Allows the construction or named controls, for example via `"freq".kr`. */
@@ -101,20 +101,21 @@ object Ops {
       server ! msgFun(completion.message.map(_.apply(res)))
     } { action =>
       val syncMsg = server.syncMsg()
-      val syncID  = syncMsg.id
+      val syncId  = syncMsg.id
       val compPacket: Packet = completion.message match {
         case Some(msgFun2) => osc.Bundle.now(msgFun2(res), syncMsg)
         case None => syncMsg
       }
       val p   = msgFun(Some(compPacket))
       val fut = server.!!(p) {
-        case message.Synced(`syncID`) => action(res)
+        case message.Synced(`syncId`) => action(res)
         //        case message.TIMEOUT => println("ERROR: " + d + "." + name + " : timeout!")
       }
       val cfg = server.clientConfig
       import cfg.executionContext
-      fut.onFailure {
-        case message.Timeout() => println(s"ERROR: $name : timeout!")
+      fut.onComplete {
+        case Failure(message.Timeout()) => println(s"ERROR: $name : timeout!")
+        case _ =>
       }
     }
 
@@ -595,7 +596,7 @@ object Ops {
 
     def play(loop: Boolean = false, amp: Double = 1.0, out: Int = 0): Synth = {
       import ugen._
-      Ops.play(server, out) {
+      Ops.playWith(target = server, out = out) {
         // working around nasty compiler bug
         val ply = PlayBuf.ar(numChannels, id, BufRateScale.kr(id), loop = if (loop) 1 else 0)
         if (!loop) FreeSelfWhenDone.kr(ply)

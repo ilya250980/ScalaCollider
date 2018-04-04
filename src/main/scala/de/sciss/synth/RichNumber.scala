@@ -2,7 +2,7 @@
  *  RichNumber.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -88,10 +88,8 @@ object RichNumber {
 
 // ---------------------------- Int ----------------------------
 
-final class RichInt private[synth](val `this`: Int)
-  extends AnyVal with RichNumber.NAryGEOps { me =>
-
-  import me.{`this` => i}
+final class RichInt private[synth](private val i: Int)
+  extends AnyVal with RichNumber.NAryGEOps {
 
   protected def f : Float     = i.toFloat
   protected def d : Double    = i.toDouble
@@ -100,10 +98,8 @@ final class RichInt private[synth](val `this`: Int)
 
 // ---------------------------- Float ----------------------------
 
-final class RichFloat private[synth](val `this`: Float)
-  extends AnyVal with RichNumber.NAryGEOps { me =>
-
-  import me.{`this` => f}
+final class RichFloat private[synth](private val f: Float)
+  extends AnyVal with RichNumber.NAryGEOps {
 
   protected def d : Double    = f.toDouble
   protected def cn: Constant  = Constant(f)
@@ -111,10 +107,8 @@ final class RichFloat private[synth](val `this`: Float)
 
 // ---------------------------- Double ----------------------------
 
-final class RichDouble private[synth](val `this`: Double)
-  extends AnyVal with RichNumber.NAryGEOps { me =>
-
-  import me.{`this` => d}
+final class RichDouble private[synth](private val d: Double)
+  extends AnyVal with RichNumber.NAryGEOps {
 
   protected def cn = Constant(d.toFloat)
 }

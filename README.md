@@ -75,7 +75,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.24.0"`
+The current version `v` is `"1.25.0"`
 
 ## contributing
 
@@ -158,7 +158,7 @@ ScalaCollider's core functionality may be extended by other libraries I or other
 libraries are dependencies and therefore always available in ScalaCollider:
 
 - UGens are defined by the [ScalaCollider-UGens](http://github.com/Sciss/ScalaColliderUGens) library.
-- Audio file functionality is provided by the [ScalaAudioFile](http://github.com/Sciss/ScalaAudioFile) library.
+- Audio file functionality is provided by the [AudioFile](http://github.com/Sciss/AudioFile) library.
 - Open Sound Control functionality is provided by the [ScalaOSC](http://github.com/Sciss/ScalaOSC) library.
 
 Here are some examples for libraries not included:

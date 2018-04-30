@@ -1,7 +1,7 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.25.0"
-lazy val mimaVersion    = "1.25.0"   // for compatibility testing
+lazy val projectVersion = "1.26.0-SNAPSHOT"
+lazy val mimaVersion    = "1.26.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
@@ -22,8 +22,8 @@ lazy val root = project.withId(baseNameL).in(file("."))
     name                 := baseName,
     version              := projectVersion,
     organization         := "de.sciss",
-    scalaVersion         := "2.12.5",
-    crossScalaVersions   := Seq("2.12.5", "2.11.12"),
+    scalaVersion         := "2.12.6",
+    crossScalaVersions   := Seq("2.12.6", "2.11.12"),
     description          := "A sound synthesis library for the SuperCollider server",
     homepage             := Some(url(s"https://github.com/Sciss/${name.value}")),
     licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt")),

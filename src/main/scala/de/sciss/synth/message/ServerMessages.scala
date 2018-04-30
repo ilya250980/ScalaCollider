@@ -260,7 +260,7 @@ final case class BufferQuery(ids: Int*) extends Message("/b_query", ids: _*) wit
   * @see [[BufferAlloc]]
   */
 final case class BufferFree(id: Int, completion: Option[Packet])
-  extends Message("/b_free", id :: completion.toList: _*)
+  extends Message("/b_free", (id: Any) :: (completion.toList: List[Any]): _*)
   with HasCompletion {
 
   def updateCompletion(completion: Option[Packet]): BufferFree = copy(completion = completion)
@@ -275,7 +275,7 @@ final case class BufferFree(id: Int, completion: Option[Packet])
   * @see [[BufferAlloc]]
   */
 final case class BufferClose(id: Int, completion: Option[Packet])
-  extends Message("/b_close", id :: completion.toList: _*)
+  extends Message("/b_close", (id: Any) :: (completion.toList: List[Any]): _*)
   with HasCompletion {
 
   def updateCompletion(completion: Option[Packet]): BufferClose = copy(completion = completion)
@@ -415,7 +415,7 @@ final case class BufferReadChannel(id: Int, path: String, fileStartFrame: Int, n
   * @see [[BufferGen]]
   */
 final case class BufferZero(id: Int, completion: Option[Packet])
-  extends Message("/b_zero", id :: completion.toList: _*)
+  extends Message("/b_zero", (id: Any) :: (completion.toList: List[Any]): _*)
   with HasCompletion {
 
   def updateCompletion(completion: Option[Packet]): BufferZero = copy(completion = completion)
@@ -736,12 +736,12 @@ final case class GroupNew(groups: GroupNew.Data*)
 
 /** The `/g_dumpTree` message. */
 final case class GroupDumpTree(groups: (Int, Boolean)*)
-  extends Message("/g_dumpTree", groups.flatMap(g => g._1 :: g._2 :: Nil): _*)
+  extends Message("/g_dumpTree", groups.flatMap(g => (g._1: Any) :: (g._2: Any) :: Nil): _*)
   with SyncCmd
 
 /** The `/g_queryTree` message. */
 final case class GroupQueryTree(groups: (Int, Boolean)*)
-  extends Message("/g_queryTree", groups.flatMap(g => g._1 :: g._2 :: Nil): _*)
+  extends Message("/g_queryTree", groups.flatMap(g => (g._1: Any) :: (g._2: Any) :: Nil): _*)
   with SyncQuery
 
 /** The `/g_head` message pair-wise places nodes at the head of groups.
@@ -818,7 +818,7 @@ final case class SynthGetn(id: Int, controls: (Any, Int)*)
 
 /** The `/n_run` message. */
 final case class NodeRun(nodes: (Int, Boolean)*)
-  extends Message("/n_run", nodes.flatMap(n => n._1 :: n._2 :: Nil): _*)
+  extends Message("/n_run", nodes.flatMap(n => (n._1: Any) :: (n._2: Any) :: Nil): _*)
   with SyncCmd
 
 /** The `/n_set` message. */

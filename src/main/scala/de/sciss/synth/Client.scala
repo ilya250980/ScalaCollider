@@ -23,6 +23,12 @@ object Client {
     def nodeIdOffset    : Int
     def addr            : Option[InetSocketAddress]
     def executionContext: ExecutionContext
+
+    /** Nominal expected latency in seconds.
+      * This is not interpreted by ScalaCollider directly,
+      * but can be used by code using it.
+      */
+    def latency         : Double
   }
 
   object Config {
@@ -35,8 +41,9 @@ object Client {
     implicit def build(cb: ConfigBuilder): Config = cb.build
   }
 
-  final class Config private[Client](val clientId: Int, val nodeIdOffset: Int, val addr: Option[InetSocketAddress])
-                                     (implicit val executionContext: ExecutionContext)
+  final class Config private[Client](val clientId: Int, val nodeIdOffset: Int, val addr: Option[InetSocketAddress],
+                                     val latency: Double)
+                                    (implicit val executionContext: ExecutionContext)
     extends ConfigLike {
     override def toString = "ClientOptions"
   }
@@ -46,7 +53,9 @@ object Client {
     var nodeIdOffset    : Int                       = 1000
     var addr            : Option[InetSocketAddress] = None
     var executionContext: ExecutionContext          = ExecutionContext.global
+    var latency         : Double                    = 0.2
 
-    def build: Config = new Config(clientId, nodeIdOffset, addr)(executionContext)
+    def build: Config =
+      new Config(clientId = clientId, nodeIdOffset = nodeIdOffset, addr = addr, latency = latency)(executionContext)
   }
 }

@@ -17,7 +17,7 @@ import de.sciss.serial.{DataInput, DataOutput, ImmutableSerializer}
 
 import scala.annotation.switch
 import scala.language.implicitConversions
-import scala.math.{Pi, abs, cos, max, pow, sin, sqrt}
+import scala.math.{Pi, abs, cos, pow, sin, sqrt}
 
 object Curve {
   case object step extends Curve {
@@ -45,10 +45,14 @@ object Curve {
     override def productPrefix  = "Curve$exponential$"
     override def toString       = "exponential"
 
-    def levelAt(pos: Float, y1: Float, y2: Float): Float = {
-      val y1Lim = max(0.0001f, y1)
-      (y1Lim * pow(y2 / y1Lim, pos)).toFloat
-    }
+    def levelAt(pos: Float, y1: Float, y2: Float): Float =
+      if (y1 == 0) {
+        if (pos >= 0.5) y2 else y1
+      } else {
+        val y1d = y1.toDouble
+        val y2d = y2.toDouble
+        (y1d * pow(y2d / y1d, pos)).toFloat
+      }
   }
   val exp: exponential.type = exponential
 

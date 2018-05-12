@@ -1,18 +1,18 @@
 val baseName = "ScalaCollider"
 
-val PROJECT_VERSION           = "1.24.0"
-val scalaColliderSwingVersion = "1.36.0"
-val ugensVersion              = "1.18.0"
-val audioFileVersion          = "1.4.7"
+val PROJECT_VERSION           = "1.27.0"
+val scalaColliderSwingVersion = "1.39.0"
+val ugensVersion              = "1.19.0"
+val audioFileVersion          = "1.5.0"
 val oscVersion                = "1.1.6"
 
 val lOSC                = RootProject(uri(s"git://github.com/Sciss/ScalaOSC.git#v$oscVersion"))
-val lAudioFile          = RootProject(uri(s"git://github.com/Sciss/ScalaAudioFile.git#v$audioFileVersion"))
+val lAudioFile          = RootProject(uri(s"git://github.com/Sciss/AudioFile.git#v$audioFileVersion"))
 val lUGens              = RootProject(uri(s"git://github.com/Sciss/ScalaColliderUGens.git#v$ugensVersion"))
 val lScalaCollider      = RootProject(uri(s"git://github.com/Sciss/$baseName.git#v${PROJECT_VERSION}"))
 val lScalaColliderSwing = RootProject(uri(s"git://github.com/Sciss/ScalaColliderSwing.git#v$scalaColliderSwingVersion"))
 
-scalaVersion in ThisBuild := "2.12.5"
+scalaVersion in ThisBuild := "2.12.6"
 
 val root = (project in file("."))
   .enablePlugins(ParadoxSitePlugin, GhpagesPlugin, ScalaUnidocPlugin, SiteScaladocPlugin)

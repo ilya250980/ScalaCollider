@@ -28,7 +28,7 @@ import Server.{default => s}
 ////////////////////
 
 val x0 = play {
-  val f = LFSaw.kr(0.4).madd(24, LFSaw.kr(Seq(8, 7.23)).madd(3, 80)).midicps // glissando function
+  val f = LFSaw.kr(0.4).mulAdd(24, LFSaw.kr(Seq(8, 7.23)).mulAdd(3, 80)).midiCps // glissando function
   CombN.ar(SinOsc.ar(f)*0.04, 0.2, 0.2, 4) // echoing sine wave
 }
 
@@ -38,7 +38,7 @@ val df1 = SynthDef("AnalogBubbles") {
   val f1 = "freq1".kr(0.4)
   val f2 = "freq2".kr(8.0)
   val d  = "detune".kr(0.90375)
-  val f  = LFSaw.ar(f1).madd(24, LFSaw.ar(Seq(f2, f2 * d)).madd(3, 80)).midicps // glissando function
+  val f  = LFSaw.ar(f1).mulAdd(24, LFSaw.ar(Seq(f2, f2 * d)).mulAdd(3, 80)).midiCps // glissando function
   val x  = CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4) // echoing sine wave
   Out.ar(0, x)
 }
@@ -55,8 +55,8 @@ s.freeAll()
 
 val x2 = play {
   CombL.ar(
-    RLPF.ar(LFPulse.ar(FSinOsc.kr(0.05).madd(80, 160), 0, 0.4) * 0.05, 
-            FSinOsc.kr(Seq(0.6, 0.7)).madd(3600, 4000), 0.2),
+    RLPF.ar(LFPulse.ar(FSinOsc.kr(0.05).mulAdd(80, 160), 0, 0.4) * 0.05,
+            FSinOsc.kr(Seq(0.6, 0.7)).mulAdd(3600, 4000), 0.2),
     0.3, Seq(0.2, 0.25), 2)
 }
 
@@ -67,7 +67,7 @@ x2.free()
 //////////////
 
 val x3 = play {
-  RLPF.ar(LFPulse.ar(SinOsc.kr(0.2).madd(10, 21), 0.1), 100, 0.1).clip2(0.4) 
+  RLPF.ar(LFPulse.ar(SinOsc.kr(0.2).mulAdd(10, 21), 0.1), 100, 0.1).clip2(0.4)
 }
 
 x3.free()
@@ -85,7 +85,7 @@ x4.free()
 ///////////////
 
 val x5 = play {
-  BPZ2.ar(WhiteNoise.ar(LFPulse.kr(LFPulse.kr(0.09, 0, 0.16).madd(10, 7), 0, 0.25) * 0.1))
+  BPZ2.ar(WhiteNoise.ar(LFPulse.kr(LFPulse.kr(0.09, 0, 0.16).mulAdd(10, 7), 0, 0.25) * 0.1))
 }
 
 x5.free()
@@ -107,7 +107,7 @@ val x7 = play {
   Mix.tabulate(p) { i =>
     FSinOsc.ar(f * (i+1)) * // freq of partial
       LFNoise1.kr(Seq(Rand(2, 10), Rand(2, 10)))  // amplitude rate
-      .madd(  
+      .mulAdd(
         0.02,     // amplitude scale
         offset    // amplitude offset
       ).max(0)    // clip negative amplitudes to zero
@@ -164,7 +164,7 @@ x9.free()
 val x10 = play {
   val p = 8    // number of partials
   val exciter = Decay.ar(Dust.ar(0.6) * 0.001, 3.1) * WhiteNoise.ar
-  for (i <- 1 to 2) yield {
+  for (_ <- 1 to 2) yield {
     val spec = KlangSpec.fill(p) {
       (Rand(80, 10080), 1, Rand(0.2, 8.2))
     }
@@ -181,20 +181,20 @@ x10.free()
 val x11 = play {
   val z = RLPF.ar(
     Pulse.ar(
-      SinOsc.kr(4).madd(1, 80).max(
+      SinOsc.kr(4).mulAdd(1, 80).max(
         Decay.ar(LFPulse.ar(0.1, 0, 0.05) * Impulse.ar(8) * 500, 2)
       ), 
-      LFNoise1.kr(0.157).madd(0.4, 0.5)
+      LFNoise1.kr(0.157).mulAdd(0.4, 0.5)
     ) * 0.04,
-    LFNoise1.kr(0.2).madd(2000, 2400),
+    LFNoise1.kr(0.2).mulAdd(2000, 2400),
     0.2
   )
   val y = z * 0.6
   z + Seq(
-    CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).madd(0.025, 0.035), 1) 
-  + CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).madd(0.025, 0.035), 1),
-    CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).madd(0.025, 0.035), 1)
-  + CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).madd(0.025, 0.035), 1)
+    CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).mulAdd(0.025, 0.035), 1)
+  + CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).mulAdd(0.025, 0.035), 1),
+    CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).mulAdd(0.025, 0.035), 1)
+  + CombL.ar(y, 0.06, LFNoise1.kr(Rand(0, 0.3)).mulAdd(0.025, 0.035), 1)
   )
 }
 
@@ -210,14 +210,14 @@ val x12 = play {
     Mix.fill(n) {
       Pan2.ar(
         SinOsc.ar(
-          SinOsc.kr(Rand(0.02, 0.12), Rand(0, 2*math.Pi)).madd(IRand(0, 599), IRand(700, 1299))
+          SinOsc.kr(Rand(0.02, 0.12), Rand(0, 2*math.Pi)).mulAdd(IRand(0, 599), IRand(700, 1299))
         ) * LFNoise2.ar(Rand(80, 120)) * 0.1,
         Rand(-1, 1)
       )
     }
     + LFNoise2.ar(
-        LFNoise2.kr(Seq(0.4, 0.4)).madd(90, 620)) * 
-        LFNoise2.kr(Seq(0.3, 0.3)).madd(0.15, 0.18),
+        LFNoise2.kr(Seq(0.4, 0.4)).mulAdd(90, 620)) *
+        LFNoise2.kr(Seq(0.3, 0.3)).mulAdd(0.15, 0.18),
         0.3, 0.3, 3
   )
 }
@@ -232,7 +232,7 @@ val x13 = play {
   val p = 15   // number of partials per channel per 'cymbal'.
   val f1 = Rand(500, 2500)
   val f2 = Rand(0, 8000)
-  for (i <- 1 to 2) yield {
+  for (_ <- 1 to 2) yield {
     val z = KlangSpec.fill(p) {
       // sine oscillator bank specification :
       (f1 + Rand(0, f2),  // frequencies
@@ -261,7 +261,7 @@ val x14 = play {
       Mix.tabulate(3) { i =>
         // detune strings, calculate delay time :
         val detune = Array(-0.05, 0, 0.04)(i)
-        val delayTime = 1 / (pitch + detune).midicps
+        val delayTime = 1 / (pitch + detune).midiCps
         // each string gets own exciter :
         val hammer = LFNoise2.ar(3000) * hammerEnv   // 3000 Hz was chosen by ear..
         CombL.ar(hammer,   // used as a string resonator
@@ -293,7 +293,7 @@ val x15 = play {
   val z = DelayN.ar(s, 0.048)
 
   // 'c' length modulated comb delays in parallel :
-  val y = Mix(CombL.ar(z, 0.1, LFNoise1.kr(Seq.fill(c)(Rand(0, 0.1))).madd(0.04, 0.05), 15))
+  val y = Mix(CombL.ar(z, 0.1, LFNoise1.kr(Seq.fill(c)(Rand(0, 0.1))).mulAdd(0.04, 0.05), 15))
 
   // chain of 'a' allpass delays on each of two channels (2 times 'a' total) :
   val x = Mix.fold(y, a) { in =>
@@ -318,7 +318,7 @@ val x16 = play {
   val z = DelayN.ar(s, 0.048, 0.048)
 
   // 6 modulated comb delays in parallel :
-  val y = Mix(CombL.ar(z, 0.1, LFNoise1.kr(Seq.fill(6)(Rand(0, 0.1))).madd(0.04, 0.05), 15))
+  val y = Mix(CombL.ar(z, 0.1, LFNoise1.kr(Seq.fill(6)(Rand(0, 0.1))).mulAdd(0.04, 0.05), 15))
 
   // chain of 4 allpass delays on each of two channels (8 total) :
   val x = Mix.fold(y, 4) { in => 
@@ -363,7 +363,7 @@ x17.free()
 val x18 = play {
   val lfoDepth = MouseY.kr(200, 8000, 1)
   val lfoRate  = MouseX.kr(4, 60, 1)
-  val freq     = LFSaw.kr(lfoRate).madd(lfoDepth, lfoDepth * 1.2)
+  val freq     = LFSaw.kr(lfoRate).mulAdd(lfoDepth, lfoDepth * 1.2)
   val filtered = RLPF.ar(WhiteNoise.ar(Seq(0.03, 0.03)), freq, 0.1)
   CombN.ar(filtered, 0.3, 0.3, 2) + filtered
 }
@@ -387,7 +387,7 @@ val x19 = play {
     val excitation = PinkNoise.ar(
       // if amplitude is below zero it is clipped
       // density determines the probability of being above zero
-      LFNoise1.kr(8).madd(dmul, dadd).max(0)
+      LFNoise1.kr(8).mulAdd(dmul, dadd).max(0)
     )
 
     val freq = Lag.kr(           // lag the pitch so it makes glissandi between pitches
@@ -395,12 +395,12 @@ val x19 = play {
         Vector(1, 0.5, 0.25)(    // choose a frequency of pitch change
           util.Random.nextInt(3)
         )
-      ).madd(
+      ).mulAdd(
         7,                       // +/- 7 semitones
         IRand(36, 96)            // random center note
       ).roundTo(1),              // round to nearest semitone
       0.2                        // glissando time
-    ).midicps                    // convert to hertz
+    ).midiCps                    // convert to hertz
 
     Pan2.ar(    // pan each instrument
       CombL.ar(excitation, 0.02, freq.reciprocal, 3),    // comb delay simulates string
@@ -433,7 +433,7 @@ val x20 = play {
     // place trigger points from 0.25 to 0.75
     val trigger = HPZ1.kr(mouseX > (0.25 + (i * triggerSpacing))).abs
     val pluck   = PinkNoise.ar(Decay.kr(trigger, 0.05))
-    val period  = pitch(i).midicps.reciprocal
+    val period  = pitch(i).midiCps.reciprocal
     val string  = CombL.ar(pluck, period, period, 8)
     Pan2.ar(string, i * panSpacing - 0.75)
   }
@@ -508,8 +508,8 @@ val x24 = play {
 val r24 = message.Responder.add() {
   case osc.Message("/reply", x24.id, _, freqL: Float, hasFreqL: Float, freqR: Float, hasFreqR: Float) =>
     if (hasFreqL > 0 || hasFreqR > 0) {
-      val sl = if (hasFreqL > 0) f"${freqL.cpsmidi}%1.2f" else "?"
-      val sr = if (hasFreqR > 0) f"${freqR.cpsmidi}%1.2f" else "?"
+      val sl = if (hasFreqL > 0) f"${freqL.cpsMidi}%1.2f" else "?"
+      val sr = if (hasFreqR > 0) f"${freqR.cpsMidi}%1.2f" else "?"
       println(s"Pitch : $sl / $sr")
     }
 }
@@ -523,7 +523,7 @@ x24.free()
 //////////////////////////////////////////////////////////////////
 
 val df25 = SynthDef("AnalogBubbles" ) {
-  val f = LFSaw.kr(0.4).madd(24, LFSaw.kr(Seq(8, 7.23)).madd(3, 80)).midicps // glissando function
+  val f = LFSaw.kr(0.4).mulAdd(24, LFSaw.kr(Seq(8, 7.23)).mulAdd(3, 80)).midiCps // glissando function
   val x = CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4) // echoing sine wave
   WrapOut(x, -1)
 }
@@ -594,15 +594,15 @@ x28.free()
 /////////////////////////////////////////
 
 // In the current version `numOutputs` and `outputs` are disabled. You still have the
-// backslash operator, hence instead of
+// `out` operator, hence instead of
 
 val Seq(freq0, hasFreq0) = Pitch.kr(???)
 
 // you can do
 
 val pch1      = Pitch.kr(???)
-val freq1     = pch1.\ 0
-val hasFreq1  = pch1 \ 1
+val freq1     = pch1 out 0
+val hasFreq1  = pch1 out 1
 
 // but even better, use the named outputs:
 
@@ -619,7 +619,7 @@ val x29 = play {
   val amp     = Amplitude.kr(in, 0.05, 0.05) * 0.3
   val p       = Pitch.kr(in, ampThresh = 0.02, median = 7)
   p.hasFreq.poll(1)
-  val syn     = Mix(VarSaw.ar(p.freq * Seq(0.5, 1.0, 2.0), 0, LFNoise1.kr(0.3).madd(0.1, 0.1)) * amp)
+  val syn     = Mix(VarSaw.ar(p.freq * Seq(0.5, 1.0, 2.0), 0, LFNoise1.kr(0.3).mulAdd(0.1, 0.1)) * amp)
   Mix.fold(syn, 6) { sig =>
     AllpassN.ar(sig, 0.040, Seq(Rand(0, 0.040), Rand(0, 0.040)), 2)
   }

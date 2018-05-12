@@ -75,7 +75,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.26.1"`
+The current version `v` is `"1.27.0"`
 
 ## contributing
 
@@ -102,7 +102,7 @@ Server.run(cfg) { s =>
   // a synth graph function in an `Out` element
   // and playing it back.
   play {
-    val f = LFSaw.kr(0.4).madd(24, LFSaw.kr(Seq(8, 7.23)).madd(3, 80)).midicps
+    val f = LFSaw.kr(0.4).mulAdd(24, LFSaw.kr(Seq(8, 7.23)).mulAdd(3, 80)).midiCps
     CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4)
   }
 }    

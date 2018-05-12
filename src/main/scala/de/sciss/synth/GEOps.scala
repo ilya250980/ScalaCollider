@@ -29,16 +29,16 @@ final class GEOps(private val g: GE) extends AnyVal {
     *
     * @return a monophonic element that represents the given channel of the receiver
     */
-  def `\\`(index: Int)      : GE = ChannelProxy(g, index)
+  def out(index: Int): GE = ChannelProxy(g, index)
 
-  def `\\`(range: Range)    : GE = {
+  def out(range: Range): GE = {
     val until = if (range.isInclusive) range.end + range.step else range.end
     ChannelRangeProxy(g, from = range.start, until = until, step = range.step)
   }
 
-  def madd(mul: GE, add: GE): GE = MulAdd(g, mul, add)
+  def mulAdd(mul: GE, add: GE): GE = MulAdd(g, mul, add)
 
-  def flatten               : GE = Flatten(g)
+  def flatten: GE = Flatten(g)
 
   def poll: Poll = poll()
 
@@ -94,14 +94,14 @@ final class GEOps(private val g: GE) extends AnyVal {
   def sqrt      : GE  = unOp(Sqrt      )
   def exp       : GE  = unOp(Exp       )
   def reciprocal: GE  = unOp(Reciprocal)
-  def midicps   : GE  = unOp(Midicps   )
-  def cpsmidi   : GE  = unOp(Cpsmidi   )
-  def midiratio : GE  = unOp(Midiratio )
-  def ratiomidi : GE  = unOp(Ratiomidi )
-  def dbamp     : GE  = unOp(Dbamp     )
-  def ampdb     : GE  = unOp(Ampdb     )
-  def octcps    : GE  = unOp(Octcps    )
-  def cpsoct    : GE  = unOp(Cpsoct    )
+  def midiCps   : GE  = unOp(Midicps   )
+  def cpsMidi   : GE  = unOp(Cpsmidi   )
+  def midiRatio : GE  = unOp(Midiratio )
+  def ratioMidi : GE  = unOp(Ratiomidi )
+  def dbAmp     : GE  = unOp(Dbamp     )
+  def ampDb     : GE  = unOp(Ampdb     )
+  def octCps    : GE  = unOp(Octcps    )
+  def cpsOct    : GE  = unOp(Cpsoct    )
   def log       : GE  = unOp(Log       )
   def log2      : GE  = unOp(Log2      )
   def log10     : GE  = unOp(Log10     )
@@ -114,23 +114,23 @@ final class GEOps(private val g: GE) extends AnyVal {
   def sinh      : GE  = unOp(Sinh      )
   def cosh      : GE  = unOp(Cosh      )
   def tanh      : GE  = unOp(Tanh      )
-  // def rand : GE              = UnOp.make( 'rand, this )
-  // def rand2 : GE             = UnOp.make( 'rand2, this )
-  // def linrand : GE           = UnOp.make( 'linrand, this )
-  // def bilinrand : GE         = UnOp.make( 'bilinrand, this )
-  // def sum3rand : GE          = UnOp.make( 'sum3rand, this )
+  def rand      : GE  = unOp(Rand      )
+  def rand2     : GE  = unOp(Rand2     )
+  def linRand   : GE  = unOp(Linrand   )
+  def bilinRand : GE  = unOp(Bilinrand )
+  def sum3Rand  : GE  = unOp(Sum3rand  )
   def distort   : GE  = unOp(Distort   )
-  def softclip  : GE  = unOp(Softclip  )
+  def softClip  : GE  = unOp(Softclip  )
+  def coin      : GE  = unOp(Coin      )
 
-  // def coin : GE              = UnOp.make( 'coin, this )
   // def even : GE              = UnOp.make( 'even, this )
   // def odd : GE               = UnOp.make( 'odd, this )
-  // def rectWindow : GE        = UnOp.make( 'rectWindow, this )
-  // def hanWindow : GE         = UnOp.make( 'hanWindow, this )
-  // def welWindow : GE         = UnOp.make( 'sum3rand, this )
-  // def triWindow : GE         = UnOp.make( 'triWindow, this )
-  def ramp      : GE  = unOp(Ramp      )
-  def scurve    : GE  = unOp(Scurve    )
+ def rectWindow : GE  = unOp(RectWindow )
+ def hannWindow : GE  = unOp(HannWindow )
+ def welchWindow: GE  = unOp(WelchWindow)
+ def triWindow  : GE  = unOp(TriWindow  )
+ def ramp       : GE  = unOp(Ramp       )
+ def sCurve     : GE  = unOp(Scurve     )
 
   // def isPositive : GE        = UnOp.make( 'isPositive, this )
   // def isNegative : GE        = UnOp.make( 'isNegative, this )
@@ -173,7 +173,7 @@ final class GEOps(private val g: GE) extends AnyVal {
   def trunc   (b: GE): GE = binOp(Trunc   , b)
   def atan2   (b: GE): GE = binOp(Atan2   , b)
   def hypot   (b: GE): GE = binOp(Hypot   , b)
-  def hypotx  (b: GE): GE = binOp(Hypotx  , b)
+  def hypotApx(b: GE): GE = binOp(Hypotx  , b)
 
   /** '''Warning:''' Unlike a normal power operation, the signum of the
     * left operand is always preserved. I.e. `DC.kr(-0.5).pow(2)` will
@@ -193,22 +193,22 @@ final class GEOps(private val g: GE) extends AnyVal {
   def ring2   (b: GE): GE = binOp(Ring2   , b)
   def ring3   (b: GE): GE = binOp(Ring3   , b)
   def ring4   (b: GE): GE = binOp(Ring4   , b)
-  def difsqr  (b: GE): GE = binOp(Difsqr  , b)
-  def sumsqr  (b: GE): GE = binOp(Sumsqr  , b)
-  def sqrsum  (b: GE): GE = binOp(Sqrsum  , b)
-  def sqrdif  (b: GE): GE = binOp(Sqrdif  , b)
-  def absdif  (b: GE): GE = binOp(Absdif  , b)
+  def difSqr  (b: GE): GE = binOp(Difsqr  , b)
+  def sumSqr  (b: GE): GE = binOp(Sumsqr  , b)
+  def sqrSum  (b: GE): GE = binOp(Sqrsum  , b)
+  def sqrDif  (b: GE): GE = binOp(Sqrdif  , b)
+  def absDif  (b: GE): GE = binOp(Absdif  , b)
   def thresh  (b: GE): GE = binOp(Thresh  , b)
-  def amclip  (b: GE): GE = binOp(Amclip  , b)
-  def scaleneg(b: GE): GE = binOp(Scaleneg, b)
+  def amClip  (b: GE): GE = binOp(Amclip  , b)
+  def scaleNeg(b: GE): GE = binOp(Scaleneg, b)
   def clip2   (b: GE): GE = binOp(Clip2   , b)
   def excess  (b: GE): GE = binOp(Excess  , b)
   def fold2   (b: GE): GE = binOp(Fold2   , b)
   def wrap2   (b: GE): GE = binOp(Wrap2   , b)
-  def firstarg(b: GE): GE = binOp(Firstarg, b)
+  def firstArg(b: GE): GE = binOp(Firstarg, b)
 
-// def rrand(b: GE): GE    = ...
-// def exprrand(b: GE): GE = ...
+ def rangeRand(b: GE): GE = binOp(Rrand   , b)
+ def expRand  (b: GE): GE = binOp(Exprand , b)
 
   def clip(low: GE, high: GE): GE = {
     val r = getRate(g, "clip")
@@ -227,8 +227,8 @@ final class GEOps(private val g: GE) extends AnyVal {
     Wrap(r, g, low, high)
   }
 
-  def linlin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
-    val r = getRate(g, "linlin")
+  def linLin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
+    val r = getRate(g, "linLin")
     if (r == demand) {
       (g - inLow) / (inHigh - inLow) * (outHigh - outLow) + outLow
     } else {
@@ -236,8 +236,8 @@ final class GEOps(private val g: GE) extends AnyVal {
     }
   }
 
-  def linexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
-    val r = getRate(g, "linexp")
+  def linExp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
+    val r = getRate(g, "linExp")
     if (r == demand) {
       (outHigh / outLow).pow((g - inLow) / (inHigh - inLow)) * outLow
     } else {
@@ -245,9 +245,9 @@ final class GEOps(private val g: GE) extends AnyVal {
     }
   }
 
-  def explin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
+  def expLin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
     (g / inLow).log / (inHigh / inLow).log * (outHigh - outLow) + outLow
 
-  def expexp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
+  def expExp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
     (outHigh / outLow).pow((g / inLow).log / (inHigh / inLow).log) * outLow
 }

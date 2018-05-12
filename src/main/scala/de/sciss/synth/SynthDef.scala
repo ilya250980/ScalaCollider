@@ -13,7 +13,7 @@
 
 package de.sciss.synth
 
-import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream, InputStream}
+import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream, InputStream, OutputStream}
 import java.nio.ByteBuffer
 import File.{separator => sep}
 
@@ -54,18 +54,26 @@ object SynthDef {
   def write(path: String, defs: Seq[SynthDef], version: Int = 1): Unit = {
     if (version != 1 && version != 2) throw new IllegalArgumentException(s"Illegal SynthDef version $version")
 
-    val os  = new FileOutputStream(path)
-    val dos = new DataOutputStream(new BufferedOutputStream(os))
-
+    val os = new FileOutputStream(path)
     try {
-      dos.writeInt(COOKIE)        // magic cookie
-      dos.writeInt(version)       // version
-      dos.writeShort(defs.size)   // number of defs in file.
-      defs.foreach(_.write(dos, version = version))
+      write(os, defs, version = version)
     }
     finally {
-      dos.close()
+      os.close()
     }
+  }
+
+  /** Writes a sequence of synth-definitions to a file specified by its `path`. */
+  def write(os: OutputStream, defs: Seq[SynthDef], version: Int): Unit = {
+    if (version != 1 && version != 2) throw new IllegalArgumentException(s"Illegal SynthDef version $version")
+
+    val dos = new DataOutputStream(new BufferedOutputStream(os))
+
+    dos.writeInt(COOKIE)        // magic cookie
+    dos.writeInt(version)       // version
+    dos.writeShort(defs.size)   // number of defs in file.
+    defs.foreach(_.write(dos, version = version))
+    dos.flush()
   }
 
   def loadMsg   (path: String, completion: Optional[Packet] = None) = message.SynthDefLoad   (path, completion)
@@ -136,8 +144,8 @@ final case class SynthDef(name: String, graph: UGenGraph) {
     *         size of the buffer.
     */
   def toBytes(version: Int = 1): ByteBuffer = {
-    val baos  = new ByteArrayOutputStream
-    val dos   = new DataOutputStream(baos)
+    val bos = new ByteArrayOutputStream
+    val dos = new DataOutputStream(bos)
 
     import SynthDef.COOKIE
 
@@ -145,10 +153,9 @@ final case class SynthDef(name: String, graph: UGenGraph) {
     dos.writeInt(version)       // version
     dos.writeShort(1)           // number of defs in file.
     write(dos, version = version)
-    dos.flush()
     dos.close()
 
-    ByteBuffer.wrap(baos.toByteArray).asReadOnlyBuffer()
+    ByteBuffer.wrap(bos.toByteArray).asReadOnlyBuffer()
   }
 
   private def write(dos: DataOutputStream, version: Int): Unit = {

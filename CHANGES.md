@@ -2,6 +2,18 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v1.27.0
+
+- adopts camel-case for operators, e.g. `ampDb` instead of `ampdb`, `linLin` instead of `linlin`
+- `madd` becomes `mulAdd`, the backlash operator becomes `out`
+- adds random unary and binary ops (e.g. `.coin`, `.expRand`)
+- adds window unary ops (e.g. `.hannWindow`)
+- fixes bug in `Curve.exp`
+
+## changes in v1.26.0
+
+- `Client.Config` has a latency parameter (not used by the core library)
+
 ## changes in v1.24.0
 
 - resolves #49 by renaming overloaded `play` (the one with arguments for target, add-action etc.)

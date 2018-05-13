@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen.UnaryOpUGen</title>
-          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen.UnaryOpUGen" />
-          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen.UnaryOpUGen" />
+          <title>ScalaCollider 1.27.0 API  - de.sciss.synth.ugen.UnaryOpUGen</title>
+          <meta name="description" content="ScalaCollider 1.27.0 API - de.sciss.synth.ugen.UnaryOpUGen" />
+          <meta name="keywords" content="ScalaCollider 1.27.0 API de.sciss.synth.ugen.UnaryOpUGen" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.27.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -270,7 +270,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                         <a href="BiPanB2.html" title="A two dimensional Ambisonics B-format encoder UGen for a two-channel input signal.">BiPanB2</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="BinaryOpUGen$.html" title="Binary operations are generally constructed by calling one of the methods of GEOps."></a>
-                        <a class="trait" href="BinaryOpUGen.html" title=""></a>
+                        <a class="class" href="BinaryOpUGen.html" title=""></a>
                         <a href="BinaryOpUGen.html" title="">BinaryOpUGen</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="Blip$.html" title="Band Limited ImPulse generator UGen."></a>
@@ -1909,11 +1909,11 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">case class</span>
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">UnaryOpUGen</span><span class="params">(<span name="selector">selector: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>, <span name="a">a: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">UnaryOpUGen</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a></span>
       </span>
       </h4>
 
@@ -1922,7 +1922,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a>, <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a>, <a href="../GE$$Lazy.html" class="extype" name="de.sciss.synth.GE.Lazy">GE.Lazy</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>, <a href="../UGenSource.html" class="extype" name="de.sciss.synth.UGenSource">UGenSource</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy$$Expander.html" class="extype" name="de.sciss.synth.Lazy.Expander">Expander</a>[<a href="../UGenInLike.html" class="extype" name="de.sciss.synth.UGenInLike">UGenInLike</a>], <a href="../Lazy.html" class="extype" name="de.sciss.synth.Lazy">Lazy</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -1948,7 +1948,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="de.sciss.synth.ugen.UnaryOpUGen"><span>UnaryOpUGen</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="de.sciss.synth.UGenSource.SingleOut"><span>SingleOut</span></li><li class="in" name="de.sciss.synth.UGenSource.SomeOut"><span>SomeOut</span></li><li class="in" name="de.sciss.synth.GE.Lazy"><span>Lazy</span></li><li class="in" name="de.sciss.synth.GE"><span>GE</span></li><li class="in" name="de.sciss.synth.UGenSource"><span>UGenSource</span></li><li class="in" name="de.sciss.synth.Lazy.Expander"><span>Expander</span></li><li class="in" name="de.sciss.synth.Lazy"><span>Lazy</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="de.sciss.synth.ugen.UnaryOpUGen"><span>UnaryOpUGen</span></li><li class="in" name="de.sciss.synth.UGenSource.SingleOut"><span>SingleOut</span></li><li class="in" name="de.sciss.synth.UGenSource.SomeOut"><span>SomeOut</span></li><li class="in" name="de.sciss.synth.GE.Lazy"><span>Lazy</span></li><li class="in" name="de.sciss.synth.GE"><span>GE</span></li><li class="in" name="de.sciss.synth.UGenSource"><span>UGenSource</span></li><li class="in" name="de.sciss.synth.Lazy.Expander"><span>Expander</span></li><li class="in" name="de.sciss.synth.Lazy"><span>Lazy</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -1969,9 +1969,9 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="de.sciss.synth.ugen.UnaryOpUGen#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(selector:de.sciss.synth.ugen.UnaryOpUGen.Op,a:de.sciss.synth.GE):de.sciss.synth.ugen.UnaryOpUGen"></a><a id="&lt;init&gt;:UnaryOpUGen"></a>
+      <a id="&lt;init&gt;():de.sciss.synth.ugen.UnaryOpUGen"></a><a id="&lt;init&gt;:UnaryOpUGen"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#&lt;init&gt;(selector:de.sciss.synth.ugen.UnaryOpUGen.Op,a:de.sciss.synth.GE):de.sciss.synth.ugen.UnaryOpUGen" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#&lt;init&gt;():de.sciss.synth.ugen.UnaryOpUGen" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1980,7 +1980,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">UnaryOpUGen</span><span class="params">(<span name="selector">selector: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>, <span name="a">a: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span>
+        <span class="name">UnaryOpUGen</span><span class="params">()</span>
       </span>
       
       
@@ -1989,10 +1989,93 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
 
         
 
-        
+        <div class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="de.sciss.synth.ugen.UnaryOpUGen#a" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="a:de.sciss.synth.GE"></a><a id="a:GE"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#a:de.sciss.synth.GE" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">a</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
+      </span>
+      
+      
+    </li><li name="scala.Equals#canEqual" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="canEqual(that:Any):Boolean"></a><a id="canEqual(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#canEqual(that:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">canEqual</span><span class="params">(<span name="that">that: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Equals</dd></dl></div>
+    </li><li name="scala.Product#productArity" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="productArity:Int"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#productArity:Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">productArity</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="scala.Product#productElement" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="productElement(n:Int):Any"></a><a id="productElement(Int):Any"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#productElement(n:Int):Any" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">productElement</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#selector" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="selector:de.sciss.synth.ugen.UnaryOpUGen.Op"></a><a id="selector:Op"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#selector:de.sciss.synth.ugen.UnaryOpUGen.Op" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">selector</span><span class="result">: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>
+      </span>
+      
+      
+    </li></ol>
+            </div>
 
         <div class="values members">
-              <h3>Value Members</h3>
+              <h3>Concrete Value Members</h3>
               <ol>
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
@@ -2042,22 +2125,6 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#a" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="a:de.sciss.synth.GE"></a><a id="a:GE"></a>
-      <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#a:de.sciss.synth.GE" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">a</span><span class="result">: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>
-      </span>
-      
-      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -2114,6 +2181,22 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
@@ -2195,7 +2278,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
@@ -2211,7 +2294,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
@@ -2293,10 +2376,10 @@ expansion
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#rate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="rate:de.sciss.synth.MaybeRate"></a><a id="rate:MaybeRate"></a>
+    </li><li name="scala.Product#productIterator" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="productIterator:Iterator[Any]"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#rate:de.sciss.synth.MaybeRate" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#productIterator:Iterator[Any]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -2305,26 +2388,42 @@ expansion
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rate</span><span class="result">: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>
+        <span class="name">productIterator</span><span class="result">: <a href="../../../../scala/index.html#Iterator[+A]=Iterator[A]" class="extmbr" name="scala.Iterator">Iterator</a>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a> → <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></dd></dl></div>
-    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#selector" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="selector:de.sciss.synth.ugen.UnaryOpUGen.Op"></a><a id="selector:Op"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="scala.Product#productPrefix" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="productPrefix:String"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#selector:de.sciss.synth.ugen.UnaryOpUGen.Op" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#productPrefix:String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">selector</span><span class="result">: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>
+        <span class="name">productPrefix</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Product</dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#rate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rate:de.sciss.synth.MaybeRate"></a><a id="rate:MaybeRate"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen.html#rate:de.sciss.synth.MaybeRate" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rate</span><span class="result">: <a href="../MaybeRate.html" class="extype" name="de.sciss.synth.MaybeRate">MaybeRate</a></span>
+      </span>
       
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a> → <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -2435,11 +2534,7 @@ expansion
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="de.sciss.synth.UGenSource.SingleOut">
+        <div class="parent" name="de.sciss.synth.UGenSource.SingleOut">
               <h3>Inherited from <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a></h3>
             </div><div class="parent" name="de.sciss.synth.UGenSource.SomeOut">
               <h3>Inherited from <a href="../UGenSource$$SomeOut.html" class="extype" name="de.sciss.synth.UGenSource.SomeOut">SomeOut</a></h3>

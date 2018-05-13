@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen.UnaryOpUGen</title>
-          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen.UnaryOpUGen" />
-          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen.UnaryOpUGen" />
+          <title>ScalaCollider 1.27.0 API  - de.sciss.synth.ugen.UnaryOpUGen</title>
+          <meta name="description" content="ScalaCollider 1.27.0 API - de.sciss.synth.ugen.UnaryOpUGen" />
+          <meta name="keywords" content="ScalaCollider 1.27.0 API de.sciss.synth.ugen.UnaryOpUGen" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.27.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -270,7 +270,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                         <a href="BiPanB2.html" title="A two dimensional Ambisonics B-format encoder UGen for a two-channel input signal.">BiPanB2</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="BinaryOpUGen$.html" title="Binary operations are generally constructed by calling one of the methods of GEOps."></a>
-                        <a class="trait" href="BinaryOpUGen.html" title=""></a>
+                        <a class="class" href="BinaryOpUGen.html" title=""></a>
                         <a href="BinaryOpUGen.html" title="">BinaryOpUGen</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="Blip$.html" title="Band Limited ImPulse generator UGen."></a>
@@ -1913,7 +1913,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">UnaryOpUGen</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">UnaryOpUGen</span>
       </span>
       </h4>
 
@@ -1924,7 +1924,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="../../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -1950,7 +1950,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="de.sciss.synth.ugen.UnaryOpUGen"><span>UnaryOpUGen</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="de.sciss.synth.ugen.UnaryOpUGen"><span>UnaryOpUGen</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -1980,11 +1980,43 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">sealed </span>
-        <span class="kind">trait</span>
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
         <a title="" href="UnaryOpUGen$$Op.html"><span class="name">Op</span></a><span class="result"> extends <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.PureOp" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PureOpextendsUnaryOpUGen.Op"></a><a id="PureOp:PureOp"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#PureOpextendsUnaryOpUGen.Op" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$PureOp.html"><span class="name">PureOp</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="RandomOpextendsUnaryOpUGen.Op"></a><a id="RandomOp:RandomOp"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#RandomOpextendsUnaryOpUGen.Op" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$RandomOp.html"><span class="name">RandomOp</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>
       </span>
       
       
@@ -2044,6 +2076,22 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="apply(op:de.sciss.synth.ugen.UnaryOpUGen.Op,a:de.sciss.synth.GE):de.sciss.synth.ugen.UnaryOpUGen"></a><a id="apply(Op,GE):UnaryOpUGen"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#apply(op:de.sciss.synth.ugen.UnaryOpUGen.Op,a:de.sciss.synth.GE):de.sciss.synth.ugen.UnaryOpUGen" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="op">op: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>, <span name="a">a: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result">: <a href="UnaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a></span>
+      </span>
+      
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -2278,6 +2326,22 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen#unapply" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="unapply(b:de.sciss.synth.ugen.UnaryOpUGen):Option[(de.sciss.synth.ugen.UnaryOpUGen.Op,de.sciss.synth.GE)]"></a><a id="unapply(UnaryOpUGen):Option[(Op,GE)]"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#unapply(b:de.sciss.synth.ugen.UnaryOpUGen):Option[(de.sciss.synth.ugen.UnaryOpUGen.Op,de.sciss.synth.GE)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unapply</span><span class="params">(<span name="b">b: <a href="UnaryOpUGen.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen">UnaryOpUGen</a></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[(<a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a>, <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a>)]</span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
@@ -2358,7 +2422,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Abs$.html"><span class="name">Abs</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Abs$.html"><span class="name">Abs</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2374,7 +2438,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Acos$.html"><span class="name">Acos</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Acos$.html"><span class="name">Acos</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2390,7 +2454,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Ampdb$.html"><span class="name">Ampdb</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Ampdb$.html"><span class="name">Ampdb</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2406,7 +2470,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Asin$.html"><span class="name">Asin</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Asin$.html"><span class="name">Asin</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2422,7 +2486,23 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Atan$.html"><span class="name">Atan</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Atan$.html"><span class="name">Atan</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Bilinrand" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Bilinrand"></a><a id="Bilinrand:Bilinrand"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Bilinrand" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Bilinrand$.html"><span class="name">Bilinrand</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2438,7 +2518,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$BitNot$.html"><span class="name">BitNot</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$BitNot$.html"><span class="name">BitNot</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2454,7 +2534,23 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Ceil$.html"><span class="name">Ceil</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Ceil$.html"><span class="name">Ceil</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Coin" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Coin"></a><a id="Coin:Coin"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Coin" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Coin$.html"><span class="name">Coin</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2470,7 +2566,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Cos$.html"><span class="name">Cos</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Cos$.html"><span class="name">Cos</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2486,7 +2582,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Cosh$.html"><span class="name">Cosh</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Cosh$.html"><span class="name">Cosh</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2502,7 +2598,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Cpsmidi$.html"><span class="name">Cpsmidi</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Cpsmidi$.html"><span class="name">Cpsmidi</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2518,7 +2614,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Cpsoct$.html"><span class="name">Cpsoct</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Cpsoct$.html"><span class="name">Cpsoct</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2534,7 +2630,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Cubed$.html"><span class="name">Cubed</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Cubed$.html"><span class="name">Cubed</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2550,7 +2646,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Dbamp$.html"><span class="name">Dbamp</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Dbamp$.html"><span class="name">Dbamp</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2566,7 +2662,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Distort$.html"><span class="name">Distort</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Distort$.html"><span class="name">Distort</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2582,7 +2678,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Exp$.html"><span class="name">Exp</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Exp$.html"><span class="name">Exp</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2598,7 +2694,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Floor$.html"><span class="name">Floor</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Floor$.html"><span class="name">Floor</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2614,7 +2710,39 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Frac$.html"><span class="name">Frac</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Frac$.html"><span class="name">Frac</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.HannWindow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HannWindow"></a><a id="HannWindow:HannWindow"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#HannWindow" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$HannWindow$.html"><span class="name">HannWindow</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Linrand" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Linrand"></a><a id="Linrand:Linrand"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Linrand" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Linrand$.html"><span class="name">Linrand</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2630,7 +2758,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Log$.html"><span class="name">Log</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Log$.html"><span class="name">Log</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2646,7 +2774,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Log10$.html"><span class="name">Log10</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Log10$.html"><span class="name">Log10</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2662,7 +2790,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Log2$.html"><span class="name">Log2</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Log2$.html"><span class="name">Log2</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2678,7 +2806,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Midicps$.html"><span class="name">Midicps</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Midicps$.html"><span class="name">Midicps</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2694,7 +2822,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Midiratio$.html"><span class="name">Midiratio</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Midiratio$.html"><span class="name">Midiratio</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2710,7 +2838,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Neg$.html"><span class="name">Neg</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Neg$.html"><span class="name">Neg</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2726,7 +2854,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Not$.html"><span class="name">Not</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Not$.html"><span class="name">Not</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2742,7 +2870,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Octcps$.html"><span class="name">Octcps</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Octcps$.html"><span class="name">Octcps</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2774,7 +2902,39 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Ramp$.html"><span class="name">Ramp</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Ramp$.html"><span class="name">Ramp</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Rand" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Rand"></a><a id="Rand:Rand"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Rand" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Rand$.html"><span class="name">Rand</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Rand2" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Rand2"></a><a id="Rand2:Rand2"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Rand2" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Rand2$.html"><span class="name">Rand2</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2790,7 +2950,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Ratiomidi$.html"><span class="name">Ratiomidi</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Ratiomidi$.html"><span class="name">Ratiomidi</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2806,7 +2966,23 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Reciprocal$.html"><span class="name">Reciprocal</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Reciprocal$.html"><span class="name">Reciprocal</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.RectWindow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RectWindow"></a><a id="RectWindow:RectWindow"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#RectWindow" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$RectWindow$.html"><span class="name">RectWindow</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2822,7 +2998,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Scurve$.html"><span class="name">Scurve</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Scurve$.html"><span class="name">Scurve</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2838,7 +3014,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Signum$.html"><span class="name">Signum</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Signum$.html"><span class="name">Signum</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2854,7 +3030,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Sin$.html"><span class="name">Sin</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Sin$.html"><span class="name">Sin</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2870,7 +3046,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Sinh$.html"><span class="name">Sinh</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Sinh$.html"><span class="name">Sinh</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2886,7 +3062,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Softclip$.html"><span class="name">Softclip</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Softclip$.html"><span class="name">Softclip</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2902,7 +3078,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Sqrt$.html"><span class="name">Sqrt</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Sqrt$.html"><span class="name">Sqrt</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2918,7 +3094,23 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Squared$.html"><span class="name">Squared</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Squared$.html"><span class="name">Squared</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.Sum3rand" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Sum3rand"></a><a id="Sum3rand:Sum3rand"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#Sum3rand" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$Sum3rand$.html"><span class="name">Sum3rand</span></a><span class="result"> extends <a href="UnaryOpUGen$$RandomOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.RandomOp">RandomOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2934,7 +3126,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Tan$.html"><span class="name">Tan</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Tan$.html"><span class="name">Tan</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2950,7 +3142,39 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen$$Tanh$.html"><span class="name">Tanh</span></a><span class="result"> extends <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen$$Tanh$.html"><span class="name">Tanh</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.TriWindow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TriWindow"></a><a id="TriWindow:TriWindow"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#TriWindow" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$TriWindow$.html"><span class="name">TriWindow</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen.WelchWindow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WelchWindow"></a><a id="WelchWindow:WelchWindow"></a>
+      <span class="permalink">
+      <a href="../../../../de/sciss/synth/ugen/UnaryOpUGen$.html#WelchWindow" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="UnaryOpUGen$$WelchWindow$.html"><span class="name">WelchWindow</span></a><span class="result"> extends <a href="UnaryOpUGen$$PureOp.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.PureOp">PureOp</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       
@@ -2964,11 +3188,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../scala/index.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>

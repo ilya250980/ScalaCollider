@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.24.0 API  - de.sciss.synth.ugen</title>
-          <meta name="description" content="ScalaCollider 1.24.0 API - de.sciss.synth.ugen" />
-          <meta name="keywords" content="ScalaCollider 1.24.0 API de.sciss.synth.ugen" />
+          <title>ScalaCollider 1.27.0 API  - de.sciss.synth.ugen</title>
+          <meta name="description" content="ScalaCollider 1.27.0 API - de.sciss.synth.ugen" />
+          <meta name="keywords" content="ScalaCollider 1.27.0 API de.sciss.synth.ugen" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.24.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.27.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -302,7 +302,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
                         <a href="BiPanB2.html" title="A two dimensional Ambisonics B-format encoder UGen for a two-channel input signal.">BiPanB2</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="BinaryOpUGen$.html" title="Binary operations are generally constructed by calling one of the methods of GEOps."></a>
-                        <a class="trait" href="BinaryOpUGen.html" title=""></a>
+                        <a class="class" href="BinaryOpUGen.html" title=""></a>
                         <a href="BinaryOpUGen.html" title="">BinaryOpUGen</a>
                       </li><li class="current-entities indented4">
                         <a class="object" href="Blip$.html" title="Band Limited ImPulse generator UGen."></a>
@@ -2656,8 +2656,8 @@ of the 2D (W, X, Y) Ambisonics field. It is equivalent to:</p><pre>PanB2(_, inA,
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">sealed </span>
-        <span class="kind">trait</span>
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
         <a title="" href="BinaryOpUGen.html"><span class="name">BinaryOpUGen</span></a><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a></span>
@@ -11141,19 +11141,19 @@ UGen.
       </span>
       
       
-    </li><li name="de.sciss.synth.ugen.UnaryOpUGen" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="UnaryOpUGenextendsUGenSource.SingleOutwithProductwithSerializable"></a><a id="UnaryOpUGen:UnaryOpUGen"></a>
+    </li><li name="de.sciss.synth.ugen.UnaryOpUGen" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="UnaryOpUGenextendsUGenSource.SingleOut"></a><a id="UnaryOpUGen:UnaryOpUGen"></a>
       <span class="permalink">
-      <a href="../../../../de/sciss/synth/ugen/index.html#UnaryOpUGenextendsUGenSource.SingleOutwithProductwithSerializable" title="Permalink">
+      <a href="../../../../de/sciss/synth/ugen/index.html#UnaryOpUGenextendsUGenSource.SingleOut" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">case class</span>
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="" href="UnaryOpUGen.html"><span class="name">UnaryOpUGen</span></a><span class="params">(<span name="selector">selector: <a href="UnaryOpUGen$$Op.html" class="extype" name="de.sciss.synth.ugen.UnaryOpUGen.Op">Op</a></span>, <span name="a">a: <a href="../GE.html" class="extype" name="de.sciss.synth.GE">GE</a></span>)</span><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="" href="UnaryOpUGen.html"><span class="name">UnaryOpUGen</span></a><span class="result"> extends <a href="../UGenSource$$SingleOut.html" class="extype" name="de.sciss.synth.UGenSource.SingleOut">SingleOut</a></span>
       </span>
       
       
@@ -21239,7 +21239,7 @@ play { TwoZero.ar(WhiteNoise.ar(<span class="num">0.125</span>), XLine.kr(<span 
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="Unary operations are generally constructed by calling one of the methods of GEOps." href="UnaryOpUGen$.html"><span class="name">UnaryOpUGen</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="Unary operations are generally constructed by calling one of the methods of GEOps." href="UnaryOpUGen$.html"><span class="name">UnaryOpUGen</span></a>
       </span>
       
       <p class="shortcomment cmt">Unary operations are generally constructed by calling one of the methods of <code>GEOps</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Unary operations are generally constructed by calling one of the methods of <code>GEOps</code>.

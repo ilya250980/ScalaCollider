@@ -14,8 +14,9 @@
 package de.sciss.synth
 
 import java.net.InetSocketAddress
-import language.implicitConversions
-import concurrent.ExecutionContext
+
+import scala.concurrent.ExecutionContext
+import scala.language.implicitConversions
 
 object Client {
   sealed trait ConfigLike {
@@ -26,7 +27,7 @@ object Client {
 
     /** Nominal expected latency in seconds.
       * This is not interpreted by ScalaCollider directly,
-      * but can be used by code using it.
+      * but can be used by code based on ScalaCollider.
       */
     def latency         : Double
   }
@@ -45,15 +46,30 @@ object Client {
                                      val latency: Double)
                                     (implicit val executionContext: ExecutionContext)
     extends ConfigLike {
-    override def toString = "ClientOptions"
+    override def toString = "Client.Config"
   }
 
+  object ConfigBuilder {
+    def apply(config: Config): ConfigBuilder = {
+      val b = new ConfigBuilder
+      b.read(config)
+      b
+    }
+  }
   final class ConfigBuilder private[Client]() extends ConfigLike {
     var clientId        : Int                       = 0
     var nodeIdOffset    : Int                       = 1000
     var addr            : Option[InetSocketAddress] = None
     var executionContext: ExecutionContext          = ExecutionContext.global
     var latency         : Double                    = 0.2
+
+    def read(config: Config): Unit = {
+      clientId          = config.clientId
+      nodeIdOffset      = config.nodeIdOffset
+      addr              = config.addr
+      executionContext  = config.executionContext
+      latency           = config.latency
+    }
 
     def build: Config =
       new Config(clientId = clientId, nodeIdOffset = nodeIdOffset, addr = addr, latency = latency)(executionContext)

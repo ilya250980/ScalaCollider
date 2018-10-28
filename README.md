@@ -75,7 +75,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.27.0"`
+The current version `v` is `"1.27.1"`
 
 ## contributing
 

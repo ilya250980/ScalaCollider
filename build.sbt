@@ -1,12 +1,12 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.27.1"
-lazy val mimaVersion    = "1.27.0"   // for compatibility testing
+lazy val projectVersion = "1.28.0-SNAPSHOT"
+lazy val mimaVersion    = "1.28.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
-    val audioFile = "1.5.0"
-    val osc       = "1.1.6"
+    val audioFile = "1.5.1-SNAPSHOT"
+    val osc       = "1.2.0-SNAPSHOT"
     val optional  = "1.0.0"
     val processor = "0.4.1"
     val ugens     = "1.19.1"
@@ -34,8 +34,11 @@ lazy val root = project.withId(baseNameL).in(file("."))
       "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
       "de.sciss"      %% "processor"               % deps.main.processor,
       "de.sciss"      %% "optional"                % deps.main.optional,
-      "org.scalatest" %% "scalatest"               % deps.test.scalaTest % Test
     ),
+    libraryDependencies += {
+      val v = if (scalaVersion.value == "2.13.0-M5") "3.0.6-SNAP5" else deps.test.scalaTest
+      "org.scalatest" %% "scalatest" % v % Test
+    },
     scalacOptions in (Compile, compile) ++= {
       val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture", "-Xlint:-stars-align,_")
       if (isSnapshot.value) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions

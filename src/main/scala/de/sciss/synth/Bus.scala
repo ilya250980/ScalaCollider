@@ -15,6 +15,8 @@ package de.sciss.synth
 
 import de.sciss.synth
 
+import scala.collection.{IndexedSeq => SIndexedSeq}
+
 object Bus {
   def apply(rate: Rate.Bus, server: Server = Server.default, numChannels: Int = 1): Bus =
     rate match {
@@ -112,7 +114,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @param values  the vector of values to set the bus to
     */
-  def setnMsg(values: IndexedSeq[Float]): message.ControlBusSetn = {
+  def setnMsg(values: SIndexedSeq[Float]): message.ControlBusSetn = {
     require(values.size == numChannels)
     message.ControlBusSetn((index, values))
   }
@@ -125,7 +127,7 @@ final case class ControlBus(server: Server, index: Int, numChannels: Int) extend
     *
     * @return the `ControlBusSetn` message with absolute indices
     */
-  def setnMsg(pairs: (Int, IndexedSeq[Float])*): message.ControlBusSetn = {
+  def setnMsg(pairs: (Int, SIndexedSeq[Float])*): message.ControlBusSetn = {
     require(pairs.forall(tup => tup._1 >= 0 && (tup._1 + tup._2.size) <= numChannels))
     val iPairs = pairs.map(tup => (tup._1 + index, tup._2))
     message.ControlBusSetn(iPairs: _*)

@@ -60,9 +60,9 @@ package object synth {
         throw new IllegalArgumentException(s"$r.shift($n) causes number overflow")
 
       if (r.isInclusive)
-        new Range.Inclusive(start1, end1, r.step)
+        Range.inclusive(start1, end1, r.step)
       else
-        new Range          (start1, end1, r.step)
+        Range          (start1, end1, r.step)
     }
 
     private[synth] def toGetnSeq: List[Int] =

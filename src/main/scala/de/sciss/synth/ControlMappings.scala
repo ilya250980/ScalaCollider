@@ -13,8 +13,9 @@
 
 package de.sciss.synth
 
-import collection.immutable.{IndexedSeq => Vec}
-import language.implicitConversions
+import scala.collection.{IndexedSeq => SIndexedSeq, Seq => SSeq}
+import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.language.implicitConversions
 
 object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicits {
 
@@ -25,29 +26,29 @@ object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicit
   final case class Value private(key: Any, value: Float)
     extends ControlSet {
 
-    private[sciss] def toSetSeq : IndexedSeq[Any] = scala.Vector(key,    value)
-    private[sciss] def toSetnSeq: IndexedSeq[Any] = scala.Vector(key, 1, value)
+    private[sciss] def toSetSeq : SIndexedSeq[Any] = scala.Vector(key,    value)
+    private[sciss] def toSetnSeq: SIndexedSeq[Any] = scala.Vector(key, 1, value)
 
     def numChannels: Int = 1
   }
 
   object Vector extends ControlSetVectorImplicits {
-    def apply(key: String, values: IndexedSeq[Float]): Vector = new Vector(key, values)
-    def apply(key: Int   , values: IndexedSeq[Float]): Vector = new Vector(key, values)
+    def apply(key: String, values: SIndexedSeq[Float]): Vector = new Vector(key, values)
+    def apply(key: Int   , values: SIndexedSeq[Float]): Vector = new Vector(key, values)
   }
-  final case class Vector private(key: Any, values: IndexedSeq[Float])
+  final case class Vector private(key: Any, values: SIndexedSeq[Float])
     extends ControlSet {
 
-    private[sciss] def toSetSeq : IndexedSeq[Any] = scala.Vector(key, values)
-    private[sciss] def toSetnSeq: IndexedSeq[Any] = key +: values.size +: values
+    private[sciss] def toSetSeq : SIndexedSeq[Any] = scala.Vector(key, values)
+    private[sciss] def toSetnSeq: SIndexedSeq[Any] = key +: values.size +: values
 
     def numChannels: Int = values.size
   }
 }
 
 sealed trait ControlSet {
-  private[sciss] def toSetSeq : IndexedSeq[Any]
-  private[sciss] def toSetnSeq: IndexedSeq[Any]
+  private[sciss] def toSetSeq : SIndexedSeq[Any]
+  private[sciss] def toSetnSeq: SIndexedSeq[Any]
 
   def numChannels: Int
 }
@@ -63,13 +64,13 @@ private[synth] sealed trait ControlSetValueImplicits {
 
 private[synth] sealed trait ControlSetVectorImplicits {
   // leaves stuff like ArrayWrapper untouched
-  private[this] def carefulIndexed(xs: Seq[Float]): IndexedSeq[Float] = xs match {
-    case indexed: IndexedSeq[Float] => indexed
-    case _                          => xs.toIndexedSeq
+  private[this] def carefulIndexed(xs: SSeq[Float]): SIndexedSeq[Float] = xs match {
+    case indexed: SIndexedSeq[Float]  => indexed
+    case _                            => xs.toIndexedSeq
   }
 
-  implicit def intFloatsControlSet   (tup: (Int   , Seq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
-  implicit def stringFloatsControlSet(tup: (String, Seq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
+  implicit def intFloatsControlSet   (tup: (Int   , SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
+  implicit def stringFloatsControlSet(tup: (String, SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
 }
 
 object ControlKBusMap {

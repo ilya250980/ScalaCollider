@@ -15,10 +15,9 @@ package de.sciss.synth
 package ugen
 
 import de.sciss.synth.Ops.stringToControl
+import de.sciss.synth.UGenSource._
 
 import scala.annotation.{switch, tailrec}
-import scala.collection.breakOut
-import UGenSource._
 
 /** A graph element that flattens the channels from a nested multi-channel structure.
   *
@@ -288,8 +287,8 @@ final case class Zip(elems: GE*) extends GE.Lazy {
   def rate: MaybeRate = MaybeRate.reduce(elems.map(_.rate): _*)
 
   protected def makeUGens: UGenInLike = {
-    val exp: Vec[UGenInLike] = elems.map(_.expand)(breakOut)
-    val sz    = exp.map(_.outputs.size) // exp.view.map ?
+    val exp   = elems.map(_.expand)
+    val sz    = exp.map(_.outputs.size)
     val minSz = sz.min
     UGenInGroup((0 until minSz).flatMap(i => exp.map(_.unwrap(i))))
   }

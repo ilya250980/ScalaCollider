@@ -19,7 +19,6 @@ import de.sciss.synth.UGenGraph.IndexedUGen
 import de.sciss.synth.ugen.{Constant, ControlProxyLike, ControlUGenOutProxy, UGenProxy}
 
 import scala.annotation.elidable
-import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec, Set => ISet}
 import scala.collection.mutable.{Buffer => MBuffer, Map => MMap}
 
@@ -173,9 +172,16 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
   def build(controlProxies: Iterable[ControlProxyLike]): UGenGraph = {
     val ctrlProxyMap        = buildControls(controlProxies)
     val (iUGens, constants) = indexUGens(ctrlProxyMap)
-    val indexedUGens        = sortUGens(iUGens)
-    val richUGens: Vec[IndexedUGen] =
-      indexedUGens.map(iu => new IndexedUGen(iu.ugen, iu.inputIndices.map(_.create)))(breakOut)
+    val indexedUGens: Array[IndexedUGenBuilder] = sortUGens(iUGens)
+    val richUGensB = Vector.newBuilder[IndexedUGen]
+    richUGensB.sizeHint(indexedUGens.length)
+    var i = 0
+    while (i < indexedUGens.length) {
+      val iu = indexedUGens(i)
+      richUGensB += new IndexedUGen(iu.ugen, iu.inputIndices.map(_.create))
+      i += 1
+    }
+    val richUGens: Vec[IndexedUGen] = richUGensB.result()
     UGenGraph(constants, controlValues, controlNames, richUGens)
   }
 
@@ -186,7 +192,7 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     val constants       = Vector.newBuilder[Float]
     var numConstants    = 0
     var numIneffective  = ugens.size
-    val indexedUGens    = ugens.zipWithIndex.map { case (ugen, idx) =>
+    val indexedUGens: Vec[IndexedUGenBuilder] = ugens.zipWithIndex.map { case (ugen, idx) =>
       val eff = ugen.hasSideEffect
       if (eff) numIneffective -= 1
       new IndexedUGenBuilder(ugen, idx, eff)
@@ -196,12 +202,12 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     //val a1 = indexedUGens(3).ugen
     //val ee = a0.equals(a1)
 
-    val ugenMap: Map[AnyRef, IndexedUGenBuilder] = indexedUGens.map(iu => (iu.ugen /* .ref */ , iu))(breakOut)
+    val ugenMap: Map[AnyRef, IndexedUGenBuilder] = indexedUGens.iterator.map(iu => (iu.ugen /* .ref */ , iu)).toMap
     indexedUGens.foreach { iu =>
       // XXX Warning: match not exhaustive -- "missing combination UGenOutProxy"
       // this is clearly a nasty scala bug, as UGenProxy does catch UGenOutProxy;
       // might be http://lampsvn.epfl.ch/trac/scala/ticket/4020
-      iu.inputIndices = iu.ugen.inputs.map {
+      iu.inputIndices = iu.ugen.inputs.iterator.map {
         // don't worry -- the match _is_ exhaustive
         case Constant(value) => constantMap.getOrElse(value, {
           val rc        = new ConstantIndex(numConstants)
@@ -224,7 +230,7 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
           iui.children   += iu
           new UGenProxyIndex(iui, off + outputIndex)
 
-      } (breakOut)
+      } .toList
       if (iu.effective) iu.inputIndices.foreach(numIneffective -= _.makeEffective())
     }
     val filtered: Vec[IndexedUGenBuilder] = if (numIneffective == 0) indexedUGens
@@ -249,9 +255,9 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
   private def sortUGens(indexedUGens: Vec[IndexedUGenBuilder]): Array[IndexedUGenBuilder] = {
     indexedUGens.foreach(iu => iu.children = iu.children.sortWith((a, b) => a.index > b.index))
     val sorted = new Array[IndexedUGenBuilder](indexedUGens.size)
-    var avail: List[IndexedUGenBuilder] = indexedUGens.collect {
+    var avail: List[IndexedUGenBuilder] = indexedUGens.iterator.collect {
       case iu if iu.parents.isEmpty => iu
-    } (breakOut)
+    } .toList
 
     var cnt = 0
     while (avail.nonEmpty) {
@@ -277,7 +283,7 @@ trait UGenGraphBuilderLike extends UGenGraph.Builder {
     if (showLog) println(s"ScalaCollider <ugen-graph> $what")
 
   private def buildControls(p: Iterable[ControlProxyLike]): Map[ControlProxyLike, (UGen, Int)] =
-    p.groupBy(_.factory).flatMap { case (factory, proxies) =>
+    p.groupBy(_.factory).iterator.flatMap { case (factory, proxies) =>
       factory.build(builder, proxies.toIndexedSeq)
-    } (breakOut)
+    } .toMap
 }

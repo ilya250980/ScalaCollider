@@ -52,38 +52,49 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
   def nodeChange(e: message.NodeChange): Unit =
     e match {
       case message.NodeGo(nodeId, info) =>
-        val node = nodes.getOrElse(nodeId, {
-          if ( /* autoAdd && */ nodes.contains(info.parentId)) {
-            val created = info match {
-              case _: message.NodeInfo.SynthData => Synth(server, nodeId)
-              case _: message.NodeInfo.GroupData => Group(server, nodeId)
+        nodes.get(nodeId) match {
+          case Some(node) =>
+            dispatchBoth(NodeGo(node, info))
+
+          case None =>
+            if ( /* autoAdd && */ nodes.contains(info.parentId)) {
+              val created = info match {
+                case _: message.NodeInfo.SynthData => Synth(server, nodeId)
+                case _: message.NodeInfo.GroupData => Group(server, nodeId)
+              }
+              register(created)
+              dispatchBoth(NodeGo(created, info))
             }
-            register(created)
-            created
-          } else return
-        })
-        dispatchBoth(NodeGo(node, info))
+          }
 
       case message.NodeEnd(nodeId, info) =>
         // println(s"---- NodeEnd: ${nodes.get(nodeId)}")
-        nodes.get(nodeId).foreach { node =>
-          unregister(node)
-          dispatchBoth(NodeEnd(node, info))
+        nodes.get(nodeId) match {
+          case Some(node) =>
+            unregister(node)
+            dispatchBoth(NodeEnd(node, info))
+          case None =>
         }
 
       case message.NodeOff(nodeId, info) =>
-        nodes.get(nodeId).foreach { node =>
-          dispatchBoth(NodeOff(node, info))
+        nodes.get(nodeId) match {
+          case Some(node) =>
+            dispatchBoth(NodeOff(node, info))
+          case None =>
         }
 
       case message.NodeOn(nodeId, info) =>
-        nodes.get(nodeId).foreach { node =>
-          dispatchBoth(NodeOn(node, info))
+        nodes.get(nodeId) match {
+          case Some(node) =>
+            dispatchBoth(NodeOn(node, info))
+          case None =>
         }
 
       case message.NodeMove(nodeId, info) =>
-        nodes.get(nodeId).foreach { node =>
-          dispatchBoth(NodeMove(node, info))
+        nodes.get(nodeId) match {
+          case Some(node) =>
+            dispatchBoth(NodeMove(node, info))
+          case None =>
         }
 
       case _ =>

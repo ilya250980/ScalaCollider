@@ -78,10 +78,14 @@ private[synth] final class ContiguousBlockAllocator(size: Int, pos: Int = 0) {
     }
 
   private def findAvailable(n: Int): Block = {
-    freed.get(n).foreach(set => if (set.nonEmpty) return set.head)
-    freed.foreach {
-      entry =>
-        if ((entry._1 >= n) && entry._2.nonEmpty) return entry._2.head
+    freed.get(n) match {
+      case Some(set) if set.nonEmpty => return set.head
+      case _ =>
+    }
+    val it = freed.iterator
+    while (it.hasNext) {
+      val entry = it.next()
+      if ((entry._1 >= n) && entry._2.nonEmpty) return entry._2.head
     }
 
     if ((top + n > size) || array(top).used) return null

@@ -15,10 +15,12 @@ package de.sciss.synth
 package message
 
 import java.nio.ByteBuffer
-import collection.breakOut
-import de.sciss.osc.{Message, Packet}
+
 import de.sciss.osc
-import language.implicitConversions
+import de.sciss.osc.{Message, Packet}
+
+import scala.collection.{IndexedSeq => SIndexedSeq}
+import scala.language.implicitConversions
 
 /** Identifies messages received or sent by the SuperCollider server. */
 sealed trait ServerMessage
@@ -461,7 +463,7 @@ final case class BufferWrite(id: Int, path: String, fileType: io.AudioFileType, 
   * @see [[BufferGen]]
   */
 final case class BufferSet(id: Int, pairs: FillValue*)
-  extends Message("/b_set", id :: (pairs.flatMap(_.toList)(breakOut): List[Any]): _*)
+  extends Message("/b_set", id +: pairs.flatMap(_.toList): _*)
   with SyncCmd {
 
   def copy(id: Int = id, pairs: Seq[FillValue] = pairs): BufferSet =
@@ -482,11 +484,11 @@ final case class BufferSet(id: Int, pairs: FillValue*)
   * @see [[BufferZero]]
   * @see [[BufferGen]]
   */
-final case class BufferSetn(id: Int, indicesAndValues: (Int, IndexedSeq[Float])*)
+final case class BufferSetn(id: Int, indicesAndValues: (Int, SIndexedSeq[Float])*)
   extends Message("/b_setn", id +: indicesAndValues.flatMap(iv => iv._1 +: iv._2.size +: iv._2): _*)
   with SyncCmd {
 
-  def copy(id: Int = id, indicesAndValues: Seq[(Int, IndexedSeq[Float])] = indicesAndValues): BufferSetn =
+  def copy(id: Int = id, indicesAndValues: Seq[(Int, SIndexedSeq[Float])] = indicesAndValues): BufferSetn =
     BufferSetn(id = id, indicesAndValues = indicesAndValues: _*)
 }
 
@@ -503,7 +505,7 @@ final case class BufferSetn(id: Int, indicesAndValues: (Int, IndexedSeq[Float])*
   * @see [[BufferGen]]
   */
 final case class BufferFill(id: Int, ranges: FillRange*)
-  extends Message("/b_fill", id :: (ranges.flatMap(_.toList)(breakOut): List[Any]): _*)
+  extends Message("/b_fill", id +: (ranges.flatMap(_.toList)): _*)
   with SyncCmd {
 
   def copy(id: Int = id, ranges: Seq[FillRange] = ranges): BufferFill =
@@ -690,7 +692,7 @@ final case class ControlBusSet(pairs: FillValue*)
   * @see [[ControlBusGetn]]
   * @see [[ControlBusFill]]
   */
-final case class ControlBusSetn(indicesAndValues: (Int, IndexedSeq[Float])*)
+final case class ControlBusSetn(indicesAndValues: (Int, SIndexedSeq[Float])*)
   extends Message("/c_setn", indicesAndValues.flatMap(iv => iv._1 +: iv._2.size +: iv._2): _*)
   with SyncCmd
 
@@ -892,7 +894,7 @@ final case class NodeMapan(id: Int, mappings: ControlABusMap*)
 
 /** The `/n_fill` message. */
 final case class NodeFill(id: Int, data: ControlFillRange*)
-  extends Message("/n_fill", id :: (data.flatMap(_.toList)(breakOut): List[Any]): _*)
+  extends Message("/n_fill", id +: data.flatMap(_.toList): _*)
   with SyncCmd {
 
   def copy(id: Int = id, data: Seq[ControlFillRange] = data): NodeFill =
@@ -982,7 +984,7 @@ final case class UGenCommand(nodeId: Int, ugenIdx: Int, command: String, rest: A
   extends Message("/u_cmd", nodeId +: ugenIdx +: command +: rest)
   with SyncCmd {
 
-  def copy(nodeId: Int = nodeId, ugenIdx: Int = ugenIdx, command: String = command, res: Seq[Any] = rest): UGenCommand =
+  def copy(nodeId: Int = nodeId, ugenIdx: Int = ugenIdx, command: String = command, rest: Seq[Any] = rest): UGenCommand =
     UGenCommand(nodeId = nodeId, ugenIdx = ugenIdx, command = command, rest = rest: _*)
 }
 

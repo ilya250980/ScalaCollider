@@ -19,8 +19,8 @@ import de.sciss.osc.Packet
 import de.sciss.synth.message.BufferGen
 import de.sciss.synth.ugen.Env
 
-import scala.collection.breakOut
 import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.collection.{IndexedSeq => SIndexedSeq}
 import scala.concurrent.{Future, Promise}
 import scala.language.implicitConversions
 import scala.util.{Failure, Success}
@@ -341,7 +341,11 @@ object Ops {
     val msg = getMsg(indices: _*)
     server.!!(msg) {
       case m: message.BufferSet if m.id == id && sameIndices(m.pairs, indices) =>
-        m.pairs.map(_.value)(breakOut): Vec[Float]
+        val vec = m.pairs match {
+          case pv: Vec[FillValue] => pv.map(_.value)
+          case p => p.iterator.map(_.value).toIndexedSeq
+        }
+        vec
     }
   }
 
@@ -358,7 +362,11 @@ object Ops {
     val rangeSeq = pairs.flatMap(_.toGetnSeq)  // XXX TODO: this is called again in `getnMsg`
     server.!!(getnMsg(pairs: _*)) {
       case m: message.BufferSetn if m.id == id && sameIndicesAndSizes(m.indicesAndValues, rangeSeq) =>
-        m.indicesAndValues.flatMap(_._2.toIndexedSeq)(breakOut): Vec[Float]
+        val vec = m.indicesAndValues match {
+          case ivv: Vec[(Int, SIndexedSeq[Float])] => ivv.flatMap(_._2)
+          case iv => iv.iterator.flatMap(_._2).toIndexedSeq
+        }
+        vec
 
       //      case message.BufferSetn(`id`, sq @ _*) if {
       //        println("Missed it.")
@@ -426,7 +434,7 @@ object Ops {
       *             of the first frame of the right channel, followed by the second frame
       *             of the left channel, etc.
       */
-    def setn(v: IndexedSeq[Float]): Unit = server ! setnMsg(v)
+    def setn(v: SIndexedSeq[Float]): Unit = server ! setnMsg(v)
 
     /** Sets the contents of the buffer by replacing
       * individual contiguous chunks of data. An error is thrown if any of the given
@@ -441,7 +449,7 @@ object Ops {
       *                left channel, the second element to frame `offset / 2` of the right channel,
       *                followed by frame `offset / 2 + 1` of the left channel, and so on.
       */
-    def setn(pairs: (Int, IndexedSeq[Float])*): Unit = server ! setnMsg(pairs: _*)
+    def setn(pairs: (Int, SIndexedSeq[Float])*): Unit = server ! setnMsg(pairs: _*)
 
     // def fill(index: Int, num: Int, value: Float): Unit = server ! fillMsg(index, num, value)
 
@@ -629,7 +637,7 @@ object Ops {
     ai.isEmpty && bi.isEmpty
   }
 
-  private def sameIndicesAndSizes(a: Seq[(Int, IndexedSeq[Float])], b: Seq[Int]): Boolean = {
+  private def sameIndicesAndSizes(a: Seq[(Int, SIndexedSeq[Float])], b: Seq[Int]): Boolean = {
     val ai = a.iterator
     val bi = b.iterator
     while (ai.hasNext && bi.hasNext) {
@@ -646,7 +654,11 @@ object Ops {
     val msg = getMsg(indices: _*)
     server.!!(msg) {
       case m: message.ControlBusSet if sameIndices(m.pairs, msg.index) =>
-        m.pairs.map(_.value)(breakOut): Vec[Float]
+        val vec = m.pairs match {
+          case pv: Vec[FillValue] => pv.map(_.value)
+          case p => p.iterator.map(_.value).toIndexedSeq
+        }
+        vec
     }
   }
 
@@ -656,7 +668,11 @@ object Ops {
     val msg       = getnMsg(pairs: _*)
     server.!!(msg) {
       case m: message.ControlBusSetn if sameIndicesAndSizes(m.indicesAndValues, rangeSeq) =>
-        m.indicesAndValues.flatMap(_._2.toIndexedSeq)(breakOut): Vec[Float]
+        val vec = m.indicesAndValues match {
+          case ivv: Vec[(Int, SIndexedSeq[Float])] => ivv.flatMap(_._2)
+          case iv => iv.iterator.flatMap(_._2).toIndexedSeq
+        }
+        vec
     }
   }
 
@@ -670,9 +686,9 @@ object Ops {
 
     def set(pairs: FillValue*): Unit = server ! setMsg(pairs: _*)
 
-    def setData(values: IndexedSeq[Float]): Unit = server ! setnMsg(values)
+    def setData(values: SIndexedSeq[Float]): Unit = server ! setnMsg(values)
 
-    def setn(pairs: (Int, IndexedSeq[Float])*): Unit = server ! setnMsg(pairs: _*)
+    def setn(pairs: (Int, SIndexedSeq[Float])*): Unit = server ! setnMsg(pairs: _*)
 
     /** Convenience method that gets a single bus value.
       * The bus must have exactly one channel, otherwise an exception is thrown.

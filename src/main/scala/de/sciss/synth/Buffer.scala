@@ -13,11 +13,13 @@
 
 package de.sciss.synth
 
-import de.sciss.osc.Packet
 import de.sciss.model.Model
 import de.sciss.model.impl.ModelImpl
 import de.sciss.optional.Optional
+import de.sciss.osc.Packet
 import de.sciss.synth
+
+import scala.collection.{IndexedSeq => SIndexedSeq}
 
 object Buffer {
   type Listener     = Model.Listener[BufferManager.BufferInfo]
@@ -143,9 +145,9 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
 
   def setMsg(pairs: FillValue*) = message.BufferSet(id, pairs: _*)
 
-  def setnMsg(values: IndexedSeq[Float]) = message.BufferSetn(id, (0, values))
+  def setnMsg(values: SIndexedSeq[Float]) = message.BufferSetn(id, (0, values))
 
-  def setnMsg(pairs: (Int, IndexedSeq[Float])*): message.BufferSetn = {
+  def setnMsg(pairs: (Int, SIndexedSeq[Float])*): message.BufferSetn = {
     //    val numSmp = numChannels * numFrames
     //    require(pairs.forall(tup => (tup._1 >= 0 && (tup._1 + tup._2.size) <= numSmp)))
     val iPairs = pairs.map(tup => (tup._1, tup._2))

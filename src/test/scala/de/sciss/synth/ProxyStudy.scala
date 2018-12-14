@@ -1,7 +1,7 @@
 package de.sciss.synth
 
-import collection.immutable.{IndexedSeq => Vec}
-import language.implicitConversions
+import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.language.implicitConversions
 
 object ProxyStudy2 extends App {
   trait ControlBuilder[P] {
@@ -94,8 +94,10 @@ object ProxyStudy {
     private final class Factory extends ControlFactory[Proxy] {
       var result = List.empty[Proxy]
 
-      def make() = {
-        val res = Proxy(util.Random.shuffle("hallo_welt".toSeq).mkString("")); result ::= res; res
+      def make(): Proxy = {
+        val res = Proxy(util.Random.shuffle("hallo_welt".toList).mkString(""))
+        result ::= res
+        res
       }
     }
   }

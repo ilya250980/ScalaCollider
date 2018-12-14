@@ -14,10 +14,10 @@
 package de.sciss.synth
 package message
 
-import de.sciss.osc.{Packet, Message, Bundle, PacketCodec}
 import java.io.PrintStream
 import java.nio.ByteBuffer
-import scala.collection.mutable
+
+import de.sciss.osc.{Bundle, Message, Packet, PacketCodec}
 
 object ServerCodec extends PacketCodec {
   import Packet._
@@ -183,12 +183,12 @@ object ServerCodec extends PacketCodec {
       tag = b.getShort()
     }
     skipToAlign(b)
-    val infos = new mutable.ListBuffer[BufferInfo.Data]
+    val info = Seq.newBuilder[BufferInfo.Data]
     while (cnt > 0) {
-      infos += BufferInfo.Data(b.getInt(), b.getInt(), b.getInt(), b.getFloat())
+      info += BufferInfo.Data(b.getInt(), b.getInt(), b.getInt(), b.getFloat())
       cnt -= 1
     }
-    BufferInfo(infos: _*)
+    BufferInfo(info.result(): _*)
   }
 
   private final val msgDecoders = Map[String, (String, ByteBuffer) => Message](

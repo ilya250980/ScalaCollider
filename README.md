@@ -8,7 +8,7 @@
 
 ScalaCollider is a [SuperCollider](https://supercollider.github.io/) client for the Scala programming language. 
 It is (C)opyright 2008&ndash;2018 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
-the [GNU Lesser General Public License](http://github.com/Sciss/ScalaCollider/blob/master/LICENSE) v2.1+ and comes
+the [GNU Lesser General Public License](https://git.iem.at/sciss/ScalaCollider/raw/master/LICENSE) v2.1+ and comes
 with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language
@@ -20,22 +20,22 @@ standard Scala library, e.g. collections and GUI. Other functionality, such as p
 sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries (see section 'packages' below).
 
 While ScalaCollider itself is in the form of a _library_ (although you can use it from the REPL with `sbt console`),
-you may want to have a look at the [ScalaCollider-Swing](http://github.com/Sciss/ScalaColliderSwing) project that 
+you may want to have a look at the [ScalaCollider-Swing](https://git.iem.at/sciss/ScalaColliderSwing) project that 
 adds an easy-to-use standalone application or mini-IDE. On the ScalaCollider-Swing page, you'll find a link to
 download a readily compiled binary for this standalone version.
 
 A still experimental system on top of ScalaCollider, providing higher level abstractions,
-is [SoundProcesses](http://github.com/Sciss/SoundProcesses) and its graphical
-front-end [Mellite](http://github.com/Sciss/Mellite). Please get in touch if you intend to use these, as the
+is [SoundProcesses](https://git.iem.at/sciss/SoundProcesses) and its graphical
+front-end [Mellite](https://git.iem.at/sciss/Mellite). Please get in touch if you intend to use these, as the
 documentation is still sparse, and the system and API is still a moving target.
 
 ## download and resources
 
 The current version of ScalaCollider (the library) can be downloaded
-from [github.com/Sciss/ScalaCollider](http://github.com/Sciss/ScalaCollider).
+from [git.iem.at/sciss/ScalaCollider](https://git.iem.at/Sciss/ScalaCollider).
 
 More information is available from the wiki
-at [github.com/Sciss/ScalaCollider/wiki](http://github.com/Sciss/ScalaCollider/wiki). The API documentation is
+at [git.iem.at/sciss/ScalaCollider/wikis/](https://git.iem.at/sciss/ScalaCollider/wikis/). The API documentation is
 available at [sciss.github.io/ScalaCollider/latest/api](http://sciss.github.io/ScalaCollider/latest/api/de/sciss/synth/index.html).
 
 The best way to ask questions, no matter if newbie or expert, is to use the mailing list
@@ -46,7 +46,7 @@ The early architectural design of ScalaCollider is documented in the SuperCollid
 [H.H.Rutz, Rethinking the SuperCollider Client...](http://cmr.soc.plymouth.ac.uk/publications/Rutz_SuperCollider2010.pdf).
 However, many design decisions have been revised or refined in the meantime.
 
-The file [ExampleCmd.sc](https://raw.githubusercontent.com/Sciss/ScalaCollider/master/ExampleCmd.sc) is a good
+The file [ExampleCmd.sc](https://git.iem.at/sciss/ScalaCollider/blob/master/ExampleCmd.sc) is a good
 starting point for understanding how UGen graphs are written in ScalaCollider. You can directly copy and paste these
 examples into the ScalaCollider-Swing application's interpreter window.
 
@@ -58,8 +58,8 @@ from your own application code).
 ScalaCollider builds with [sbt](http://scala-sbt.org/) against Scala 2.12, 2.11.
 ScalaCollider requires SuperCollider server to be installed and/or running. The recommended version as of
 this writing is 3.9. Note that the UGens are provided by the
-separate [ScalaColliderUGens](http://github.com/Sciss/ScalaColliderUGens) project. A simple Swing front end is
-provided by the [ScalaColliderSwing](http://github.com/Sciss/ScalaColliderSwing) project.
+separate [ScalaColliderUGens](https://git.iem.at/sciss/ScalaColliderUGens) project. A simple Swing front end is
+provided by the [ScalaColliderSwing](https://git.iem.at/sciss/ScalaColliderSwing) project.
 
 Targets for sbt:
 
@@ -109,9 +109,9 @@ Server.run(cfg) { s =>
 ```
 
 For more sound examples, see `ExampleCmd.sc`. There is also an introductory video for
-the [Swing frontend](http://github.com/Sciss/ScalaColliderSwing)
+the [Swing frontend](https://git.iem.at/sciss/ScalaColliderSwing)
 at [www.screencast.com/t/YjUwNDZjMT](http://www.screencast.com/t/YjUwNDZjMT), and some of
-the [Mellite tutorials](https://sciss.github.io/Mellite/tutorials.html) also introduce ScalaCollider concepts.
+the [Mellite tutorials](https://www.sciss.de/mellite/tutorials.html) also introduce ScalaCollider concepts.
 
 __Troubleshooting:__ If the above boots the server, but on Linux you do not 
 hear any sound, probably the Jack audio server does not establish connections between
@@ -157,16 +157,16 @@ On linux, the environment variables probably go in `~/.profile` or `~/.bashrc`.
 ScalaCollider's core functionality may be extended by other libraries I or other people wrote. The following three
 libraries are dependencies and therefore always available in ScalaCollider:
 
-- UGens are defined by the [ScalaCollider-UGens](http://github.com/Sciss/ScalaColliderUGens) library.
-- Audio file functionality is provided by the [AudioFile](http://github.com/Sciss/AudioFile) library.
-- Open Sound Control functionality is provided by the [ScalaOSC](http://github.com/Sciss/ScalaOSC) library.
+- UGens are defined by the [ScalaCollider-UGens](https://git.iem.at/sciss/ScalaColliderUGens) library.
+- Audio file functionality is provided by the [AudioFile](https://git.iem.at/sciss/AudioFile) library.
+- Open Sound Control functionality is provided by the [ScalaOSC](https://git.iem.at/sciss/ScalaOSC) library.
 
 Here are some examples for libraries not included:
 
-- Patterns functionality is becoming available through the [Patterns](http://github.com/Sciss/Patterns) library.
+- Patterns functionality is becoming available through the [Patterns](https://git.iem.at/sciss/Patterns) library.
   This is currently in experimental phase, with focus clearly on support in
-  [SoundProcesses](http://github.com/Sciss/SoundProcesses) rather than vanilla ScalaCollider.
-- MIDI functionality can be added with the [ScalaMIDI](http://github.com/Sciss/ScalaMIDI) library.
-- Plotting is most easily achieved through [Scala-Chart](https://github.com/wookietreiber/scala-chart), which is 
+  [SoundProcesses](https://git.iem.at/sciss/SoundProcesses) rather than vanilla ScalaCollider.
+- MIDI functionality can be added with the [ScalaMIDI](https://git.iem.at/sciss/ScalaMIDI) library.
+- Plotting is most easily achieved through [Scala-Chart](https://git.iem.at/sciss/scala-chart), which is 
   conveniently included in ScalaCollider-Swing.
 

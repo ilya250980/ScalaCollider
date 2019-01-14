@@ -11,11 +11,24 @@ ScalaCollider-UGens and ScalaCollider.
 
 In order for this to work, it pulls in these libraries directly by closing their respective GitHub repositories
 and building them from source. For them to stay in sync, we use git version tags. For example in `build.sbt`, you
-can see that the URL for ScalaOSC is `"git://github.com/Sciss/ScalaOSC.git#v1.1.5"`. Therefore, when building the
-unified docs, that repository is internally cloned by sbt, using the particular tag `v1.1.5`.
+can see that the URL for ScalaOSC is like `"git://github.com/Sciss/ScalaOSC.git#v1.1.5"`. Therefore, when building the
+unified docs, that repository is internally cloned by sbt, using a particular tag such as `v1.1.5`.
 
-__To build the docs locally, run `sbt unidoc`. You can view the results via `open target/scala-2.11/unidoc/index.html`.__
+__Note:__ You have run sbt using `sbt ++2.12.8`, because some projects ignore `scalaVersion in ThisBuild` apparently.
 
-Alternatively, you can run the site via a local web server as `sbt previewSite` which is a functionality of
+## To build the docs locally
+
+Run `sbt ++2.12.8 scalacollider-site/unidoc`. You can view the results via `open target/scala-2.12/unidoc/index.html`.
+
+## To build a site preview
+
+You can run the site via a local web server as `sbt ++2.12.8 scalacollider-site/previewSite` which is a functionality of
 the [sbt-site](https://github.com/sbt/sbt-site) plugin. I publish the results to GitHub using
-`sbt ghpagesPushSite` which is provided by the [sbt-ghpages](https://github.com/sbt/sbt-ghpages) plugin.
+`sbt ++2.12.8 scalacollider-site/ghpagesPushSite` which is provided by the [sbt-ghpages](https://github.com/sbt/sbt-ghpages) plugin.
+
+## Publishing unified docs
+
+To publish a unidoc only artifact:
+
+    sbt ++2.12.8 scalacollider-unidoc/publishSigned
+

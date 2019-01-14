@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>ScalaCollider 1.27.0 API  - de.sciss.synth.Server</title>
-          <meta name="description" content="ScalaCollider 1.27.0 API - de.sciss.synth.Server" />
-          <meta name="keywords" content="ScalaCollider 1.27.0 API de.sciss.synth.Server" />
+          <title>ScalaCollider 1.28.0 API  - de.sciss.synth.Server</title>
+          <meta name="description" content="ScalaCollider 1.28.0 API - de.sciss.synth.Server" />
+          <meta name="keywords" content="ScalaCollider 1.28.0 API de.sciss.synth.Server" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">ScalaCollider 1.27.0 API<span id="doc-version"></span></span>
+        <span id="doc-title">ScalaCollider 1.28.0 API<span id="doc-version"></span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -120,6 +120,22 @@
 constant graph elements, operators on graph elements and allowing succinct creation of named controls.
 Furthermore, it contains the <code>play</code> function to quickly test graph functions.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="de.sciss">sciss</a></dd></dl></div>
+    </li><li name="de.sciss.synth.io" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="io"></a><a id="io:io"></a>
+      <span class="permalink">
+      <a href="../../../de/sciss/synth/index.html#io" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="io/index.html"><span class="name">io</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="de.sciss.synth">synth</a></dd></dl></div>
     </li><li name="de.sciss.synth.message" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="message"></a><a id="message:message"></a>
       <span class="permalink">
@@ -596,7 +612,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang" class="name">!</span><span class="params">(<span name="p">p: <span class="extype" name="de.sciss.osc.Packet">Packet</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span title="gt4s: $bang" class="name">!</span><span class="params">(<span name="p">p: <a href="../osc/Packet.html" class="extype" name="de.sciss.osc.Packet">Packet</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       
@@ -612,7 +628,7 @@ Furthermore, it contains the <code>play</code> function to quickly test graph fu
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$bang" class="name">!!</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="packet">packet: <span class="extype" name="de.sciss.osc.Packet">Packet</span></span>, <span name="timeout">timeout: <span class="extype" name="scala.concurrent.duration.Duration">Duration</span> = <span class="symbol"><span class="name"><a href="../../../scala/index.html">6.seconds</a></span></span></span>)</span><span class="params">(<span name="handler">handler: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="de.sciss.osc.Message">Message</span>, <span class="extype" name="de.sciss.synth.Server.!!.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="de.sciss.synth.Server.!!.A">A</span>]</span>
+        <span title="gt4s: $bang$bang" class="name">!!</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="packet">packet: <a href="../osc/Packet.html" class="extype" name="de.sciss.osc.Packet">Packet</a></span>, <span name="timeout">timeout: <span class="extype" name="scala.concurrent.duration.Duration">Duration</span> = <span class="symbol"><span class="name"><a href="../../../scala/index.html">6.seconds</a></span></span></span>)</span><span class="params">(<span name="handler">handler: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<a href="../osc/Message.html" class="extype" name="de.sciss.osc.Message">Message</a>, <span class="extype" name="de.sciss.synth.Server.!!.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="de.sciss.synth.Server.!!.A">A</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Sends out an OSC packet that generates some kind of reply, and
@@ -827,7 +843,7 @@ the future fails with a <code>Timeout</code> exception, and the handler is remov
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">dumpInOSC</span><span class="params">(<span name="mode">mode: <span class="extype" name="de.sciss.osc.Dump">Dump</span> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<span class="extype" name="de.sciss.osc.Packet">Packet</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">dumpInOSC</span><span class="params">(<span name="mode">mode: <a href="../osc/Dump.html" class="extype" name="de.sciss.osc.Dump">Dump</a> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<a href="../osc/Packet.html" class="extype" name="de.sciss.osc.Packet">Packet</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       
@@ -843,7 +859,7 @@ the future fails with a <code>Timeout</code> exception, and the handler is remov
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">dumpOSC</span><span class="params">(<span name="mode">mode: <span class="extype" name="de.sciss.osc.Dump">Dump</span> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<span class="extype" name="de.sciss.osc.Packet">Packet</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">dumpOSC</span><span class="params">(<span name="mode">mode: <a href="../osc/Dump.html" class="extype" name="de.sciss.osc.Dump">Dump</a> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<a href="../osc/Packet.html" class="extype" name="de.sciss.osc.Packet">Packet</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       
@@ -859,7 +875,7 @@ the future fails with a <code>Timeout</code> exception, and the handler is remov
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">dumpOutOSC</span><span class="params">(<span name="mode">mode: <span class="extype" name="de.sciss.osc.Dump">Dump</span> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<span class="extype" name="de.sciss.osc.Packet">Packet</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">dumpOutOSC</span><span class="params">(<span name="mode">mode: <a href="../osc/Dump.html" class="extype" name="de.sciss.osc.Dump">Dump</a> = <span class="symbol"><span class="name"><a href="../../index.html">osc.Dump.Text</a></span></span></span>, <span name="filter">filter: (<a href="../osc/Packet.html" class="extype" name="de.sciss.osc.Packet">Packet</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">_ =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       

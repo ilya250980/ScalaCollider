@@ -10,6 +10,18 @@ import Server.{default => s}
   various examples for ScalaCollider;
   some are taken from SC2-examples_1.scd
 
+  You are supposed to execute the examples _step by step_.
+  If you are not familiar with the workings of SuperCollider,
+  as a visual indicator, whenever you see a blank line, this
+  is where a new execution block begins. For example,
+  execute the block `val x0 = play ... ` up to `.. }` as one
+  (it will start playing a sound), then in a second step execute
+  the block `x0.free()` (it will stop that sound).
+
+  If you use ScalaCollider-Swing, you can
+  execute each bloc by selecting it and pressing shift-return.
+
+
  notes:
  - static random operations have been
    replaced by scalar ugens (Rand, IRand)
@@ -43,8 +55,11 @@ val df1 = SynthDef("AnalogBubbles") {
   Out.ar(0, x)
 }
 val x1 = df1.play()
+
 x1.set("freq1" -> 0.1)
+
 x1.set("freq2" -> 222.2)
+
 x1.set("detune" -> 0.44)
 
 s.freeAll()
@@ -461,6 +476,7 @@ val x21 = play {
 
 // stop the synth
 x21.release()
+
 // free the Buffer
 b21.free()
 
@@ -475,7 +491,9 @@ val x22 = play {
 }
 
 x22.set("trig" -> 1)
+
 x22.set("trig" -> 1, "freq" -> 220)
+
 x22.set("trig" -> 1, "freq" -> 880)
 
 x22.free()
@@ -493,6 +511,7 @@ val r23 = message.Responder.add() {
     // case osc.Message("/tr", x.id, _, mouseX) =>
     println("Dang! " + mouseX)
 }
+
 r23.remove()
 x23.free()
 
@@ -527,7 +546,7 @@ val df25 = SynthDef("AnalogBubbles" ) {
   val x = CombN.ar(SinOsc.ar(f) * 0.04, 0.2, 0.2, 4) // echoing sine wave
   WrapOut(x, -1)
 }
-val f25 = viewDef(df25)
+val f25 = de.sciss.synth.swing.SynthGraphPanel.viewDef(df25)
 f25.display.setBackground(java.awt.Color.white)
 
 val width    = f25.display.getWidth
@@ -560,7 +579,9 @@ val df26 = SynthDef("mag-above") {
   Out.ar("out".kr, ifft)
 }
 df26.recv(s)
+
 val x26 = Synth.play(df26.name, Seq("buf" -> b26.id))
+
 x26.free(); b26.free()
 
 ////////////////////
@@ -596,7 +617,7 @@ x28.free()
 // In the current version `numOutputs` and `outputs` are disabled. You still have the
 // `out` operator, hence instead of
 
-val Seq(freq0, hasFreq0) = Pitch.kr(???)
+val Seq(freq0, hasFreq0) = Pitch.kr(???)  // does _not_ compile
 
 // you can do
 
@@ -641,8 +662,11 @@ SynthDef.recv("multi-con") {
 }
 
 val x30 = Synth.play("multi-con", Seq("harm" -> Vector(1f, 3.3f, 4.5f, 7.8f)))
+
 x30.free()
+
 val x31 = Synth.play("multi-con", Seq("harm" -> Vector(2f, 3f, 4f, 5f)))
+
 x31.free()
 
 //////////////

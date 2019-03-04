@@ -90,7 +90,7 @@ final class GEOps(private val g: GE) extends AnyVal {
     *                   interpreted as a frequency value and an `Impulse` generator of that frequency
     *                   is used instead.
     * @param   label    a string to print along with the values, in order to identify
-    *                   different polls. Using the special label `"$auto"` (default) will generated
+    *                   different polls. Using the special label `"\$auto"` (default) will generated
     *                   automatic useful labels using information from the polled graph element
     * @param   trigId   if greater then 0, a `"/tr"` OSC message is sent back to the client
     *                   (similar to `SendTrig`)
@@ -134,52 +134,309 @@ final class GEOps(private val g: GE) extends AnyVal {
     * }}}
     */
   def unary_-   : GE  = unOp(Neg       )
+
   /** Logically negates the signal. Outputs `1` if the signal is greater than zero, otherwise outputs `0`. */
   def unary_!   : GE  = unOp(Not       )
+
   /** Treats the signal as integer numbers and inverts its bits. */
   def unary_~   : GE  = unOp(BitNot    )
-  /** Takes the absolute values or magnitudes of the signal (negative numbers become positive). */
+
+  /** Takes the absolute values or magnitudes of the signal (negative numbers become positive).
+    *
+    * @see [[signum]]
+    */
   def abs       : GE  = unOp(Abs       )
   // def toFloat: GE = ...
   // def toInteger: GE = ...
-  /** Rounds the signal up to the next higher integer number. */
+
+  /** Rounds the signal up to the next higher integer number.
+    *
+    * @see [[floor]]
+    */
   def ceil      : GE  = unOp(Ceil      )
-  /** Rounds the signal down to the next lower integer number. */
+
+  /** Rounds the signal down to the next lower integer number.
+    *
+    * @see [[ceil]]
+    */
   def floor     : GE  = unOp(Floor     )
+
+  /** Takes the fractional part of the signal, equivalent to modulus `1.0`.
+    *
+    * @see  [[trunc]]
+    */
   def frac      : GE  = unOp(Frac      )
+
+  /** Takes the signum of the signal, being `1` for positive signals, `-1` for negative signals,
+    * and zero for a zero input.
+    *
+    * @see [[abs]]
+    */
   def signum    : GE  = unOp(Signum    )
+
+  /** Takes the square of the signal, equivalent to `a * a`.
+    *
+    * @see [[pow]]
+    */
   def squared   : GE  = unOp(Squared   )
+
+  /** Takes the signal to the power of three, equivalent to `a * a * a`.
+    *
+    * @see [[pow]]
+    */
   def cubed     : GE  = unOp(Cubed     )
+
+  /** Takes the square root of the signal. If the input is negative, it returns
+    * the negative of the square root of the absolute value, i.e. `sqrt(-2) == -sqrt(2)`,
+    * so the output is valid for any input.
+    *
+    * @see [[pow]]
+    */
   def sqrt      : GE  = unOp(Sqrt      )
+
+  /** Exponentiates the signal (with base ''e'').
+    *
+    * The inverse function is `log`.
+    *
+    * @see  [[log]]
+    */
   def exp       : GE  = unOp(Exp       )
+
+  /** Takes the reciprocal value of the input signal, equivalent to `1.0 / a`.
+    *
+    * ''Warning:'' Outputs `NaN` if the input is zero ("division by zero").
+    */
   def reciprocal: GE  = unOp(Reciprocal)
+
+  /** Converts the input signal from midi pitch to a frequency in cycles per second (Hertz).
+    * A midi pitch of `69` corresponds to A4 or 440 cps. A pitch of `69 + 12 = 81` is one
+    * octave up, i.e. A5 or 880 cps.
+    *
+    * The inverse function is `cpsMidi`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // midi pitch from 24 to 108 to oscillator frequency
+    * play {
+    *   Saw.ar(Line.kr(24, 108, dur = 10).midiCps) * 0.2
+    * }
+    * }}}
+    *
+    * @see [[cpsMidi]]
+    */
   def midiCps   : GE  = unOp(Midicps   )
+
+  /** Converts the input signal from a frequency in cycles per second (Hertz) to a midi pitch number.
+    * A frequency of 440 cps corresponds to the midi pitch of `69` or note A4.
+    *
+    * The inverse function is `midiCps`.
+    *
+    * @see [[midiCps]]
+    */
   def cpsMidi   : GE  = unOp(Cpsmidi   )
+
+  /** Converts the input signal from midi pitch interval to a frequency ratio.
+    * An interval of zero corresponds to unison and thus a frequency ratio of `1.0`.
+    * An interval of `+12` corresponds to an octave up or ratio of `2.0`.
+    * An interval of `-12` corresponds to an octave down or ratio of `(1.0/2.0) = 0.5`.
+    *
+    * The inverse function is `ratioMidi`.
+    *
+    * @see [[ratioMidi]]
+    */
   def midiRatio : GE  = unOp(Midiratio )
+
+  /** Converts the input signal from a frequency ratio to a midi pitch interval.
+    * A frequency ratio of 1.0 corresponds to the unison or midi interval 0.
+    * A ratio of 2.0 corresponds to an octave up or the midi pitch interval `+12`.
+    * A ratio of 0.5 corresponds to an octave down or the midi pitch interval `-12`.
+    *
+    * The inverse function is `midiRatio`.
+    *
+    * @see [[midiRatio]]
+    */
   def ratioMidi : GE  = unOp(Ratiomidi )
+
+  /** Converts the input signal from a level in decibels (dB) to a linear factor.
+    * A level of 0 dB corresponds to a factor of 1.0. A level of +6 dB corresponds
+    * to a factor of c. 2.0 (double amplitude).
+    * A level of -6 dB corresponds to a factor of c. 0.5 (half amplitude).
+    *
+    * The inverse function is `ampDb`.
+    *
+    * @see  [[ampDb]]
+    */
   def dbAmp     : GE  = unOp(Dbamp     )
+
+  /** Converts the input signal from a linear (amplitude) factor to a level in decibels (dB).
+    * A unit amplitude of 1.0 corresponds with 0 dB. A factor or amplitude of 2.0 corresponds
+    * to c. +6 dB. A factor or amplitude of 0.5 corresponds wot c. -6 dB.
+    *
+    * The inverse function is `dbAmp`.
+    *
+    * @see  [[dbAmp]]
+    */
   def ampDb     : GE  = unOp(Ampdb     )
+
+  /** Converts the input signal from "decimal octaves" to a frequency in cycles per second (Hertz).
+    * For example, octave 4 begins with 4.0 or note C4, corresponding to 261.626 cps. The tritone
+    * above that (plus 6 semitones or half an octave), is "decimal octave" 4.5, corresponding with
+    * note F♯4 or 369.994 cps.
+    *
+    * The inverse function is `cpsOct`.
+    *
+    * @see  [[cpsOct]]
+    */
   def octCps    : GE  = unOp(Octcps    )
+
+  /** Converts the input signal from a frequency in cycles per second (Hertz) to a "decimal octave".
+    * A frequency of 261.626 cps corresponds to the note C4 or "decimal octave" 4.0.
+    *
+    * The inverse function is `cpsOct`.
+    *
+    * @see [[cpsOct]]
+    */
   def cpsOct    : GE  = unOp(Cpsoct    )
+
+  /** Takes the natural logarithm of the input signal.
+    *
+    * ''Warning:'' Outputs `NaN` if the input is negative, and `-Infinity` if the input is zero.
+    *
+    * The inverse function is `exp`.
+    *
+    * @see  [[exp]]
+    * @see  [[log2]]
+    * @see  [[log10]]
+    */
   def log       : GE  = unOp(Log       )
+
+  /** Takes the logarithm of the input signal, using base 2.
+    *
+    * ''Warning:'' Outputs `NaN` if the input is negative, and `-Infinity` if the input is zero.
+    *
+    * @see  [[log]]
+    * @see  [[log10]]
+    */
   def log2      : GE  = unOp(Log2      )
+
+  /** Takes the logarithm of the input signal, using base 10.
+    *
+    * ''Warning:'' Outputs `NaN` if the input is negative, and `-Infinity` if the input is zero.
+    *
+    * @see  [[log]]
+    * @see  [[log2]]
+    */
   def log10     : GE  = unOp(Log10     )
+
+  /** Uses the input signal as argument to the sine (trigonometric) function. */
   def sin       : GE  = unOp(Sin       )
+
+  /** Uses the input signal as argument to the cosine (trigonometric) function. */
   def cos       : GE  = unOp(Cos       )
+
+  /** Uses the input signal as argument to the tangent (trigonometric) function. */
   def tan       : GE  = unOp(Tan       )
+
+  /** Uses the input signal as argument to the arc sine (trigonometric) function.
+    * Warning: produces `NaN` if the input is less than `-1` or greater than `+1`
+    */
   def asin      : GE  = unOp(Asin      )
+
+  /** Uses the input signal as argument to the arc cosine (trigonometric) function.
+    * Warning: produces `NaN` if the input is less than `-1` or greater than `+1`
+    */
   def acos      : GE  = unOp(Acos      )
+
+  /** Uses the input signal as argument to the arc tangent (trigonometric) function.
+    * It is also useful for "compressing" the range of an input signal.
+    *
+    * There is also a binary operator `atan2` for a greater (disambiguated) value range.
+    *
+    * @see [[atan2]]
+    */
   def atan      : GE  = unOp(Atan      )
+
+  /** Uses the input signal as argument to the hyperbolic sine (trigonometric) function.
+    */
   def sinh      : GE  = unOp(Sinh      )
+
+  /** Uses the input signal as argument to the hyperbolic cosine (trigonometric) function.
+    */
   def cosh      : GE  = unOp(Cosh      )
+
+  /** Uses the input signal as argument to the hyperbolic tangent (trigonometric) function.
+    */
   def tanh      : GE  = unOp(Tanh      )
+
+  /** Produces a random signal evenly distributed between zero and the input signal.
+    *
+    * @see  [[linRand]]
+    */
   def rand      : GE  = unOp(Rand      )
+
+  /** Produces a random signal evenly distributed between `-a` and `+a` for input signal `a`.
+    *
+    * @see  [[bilinRand]]
+    */
   def rand2     : GE  = unOp(Rand2     )
+
+  /** Produces a random signal linearly distributed between zero and the input signal.
+    *
+    * @see  [[rand]]
+    */
   def linRand   : GE  = unOp(Linrand   )
+
+  /** Produces a random signal linearly distributed between `-a` and `+a` for input signal `a`.
+    *
+    * @see  [[rand2]]
+    */
   def bilinRand : GE  = unOp(Bilinrand )
+
+  /** Produces a random signal following an approximated Gaussian distribution between zero and the input signal.
+    * It follows the formula `Mix.fill(3)(Rand(0.0, 1.0)) - 1.5 * (2.0/3)`,
+    * thus summing three evenly distributed signals
+    */
   def sum3Rand  : GE  = unOp(Sum3rand  )
+
+  /** Produces a non-linear distortion using the formula `a / (1 + abs(a))`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // gradually increasing amount of distortion
+    * play {
+    *   (SinOsc.ar(500) * XLine.kr(0.1, 10, 10)).distort * 0.25
+    * }
+    * }}}
+    *
+    * @see  [[softClip]]
+    */
   def distort   : GE  = unOp(Distort   )
+
+  /** Produces a non-linear distortion, wherein the input range of `-0.5` to `+0.5` is linear.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // gradually increasing amount of distortion
+    * play {
+    *   (SinOsc.ar(500) * XLine.kr(0.1, 10, 10)).softClip * 0.25
+    * }
+    * }}}
+    *
+    * @see  [[distort]]
+    */
   def softClip  : GE  = unOp(Softclip  )
+
+  /** Produces a random signal taking the values zero or one, using the input
+    * signal as probability. If the input is `0.5`, there is a 50:50 chance of the output
+    * sample becoming zero or one. If the input is `0.1`, the chance of an output sample
+    * becoming zero is 90% and the chance of it becoming one is 10%.
+    *
+    * If the input is zero or less than zero, the output is constantly zero. If the input
+    * is one or greater than one, the output is constantly one.
+    */
   def coin      : GE  = unOp(Coin      )
 
   // def even : GE              = UnOp.make( 'even, this )
@@ -287,16 +544,36 @@ final class GEOps(private val g: GE) extends AnyVal {
   /** Treats the signals as integer numbers and outputs the greatest common denominator of both. */
   def gcd     (b: GE): GE = binOp(Gcd     , b)
 
+  /** Rounds the input signal up or down to a given degree of coarseness. For example,
+    * `roundTo(1.0)` rounds to the closest integer, `roundTo(0.1)` rounds to the closest
+    * number for which modulus 0.1 is zero.
+    */
   def roundTo (b: GE): GE = binOp(RoundTo , b)
+
+  /** Rounds the input signal up to a given degree of coarseness. For example,
+    * `roundUpTo(1.0)` rounds up to the closest integer, `roundTo(0.1)` rounds up to the closest
+    * number for which modulus 0.1 is zero.
+    */
   def roundUpTo (b: GE): GE = binOp(RoundUpTo, b)
+
+  /** Removes the fractional part of the input signal.
+    *
+    * @see  [[frac]]
+    */
   def trunc   (b: GE): GE = binOp(Trunc   , b)
+
   def atan2   (b: GE): GE = binOp(Atan2   , b)
 
-  /** Calculates the hypotenuse of both signals, or the square root of the sum of the squares of both. */
+  /** Calculates the hypotenuse of both signals, or the square root of the sum of the squares of both.
+    *
+    * @see [[hypotApx]]
+    */
   def hypot   (b: GE): GE = binOp(Hypot   , b)
 
   /** An approximate and thus faster version of `hypot` to calculate the hypotenuse of both signals,
     * or the square root of the sum of the squares of both.
+    *
+    * @see [[hypot]]
     */
   def hypotApx(b: GE): GE = binOp(Hypotx  , b)
 
@@ -349,7 +626,7 @@ final class GEOps(private val g: GE) extends AnyVal {
     */
   def firstArg(b: GE): GE = binOp(Firstarg, b)
 
-  /** Outputs random values linearly distributed between the two signals. */
+  /** Outputs random values evenly distributed between the two signals. */
  def rangeRand(b: GE): GE = binOp(Rrand   , b)
 
   /** Outputs random values exponentially distributed between the two signals. */
@@ -358,6 +635,9 @@ final class GEOps(private val g: GE) extends AnyVal {
   /** Clips the receiver to a range defined by `low` and `high`.
     * Outputs `low` if the receiver is smaller than `low`, and
     * outputs `high` if the receiver is larger than `high`.
+    *
+    * @see  [[fold]]
+    * @see  [[wrap]]
     */
   def clip(low: GE, high: GE): GE = {
     val r = getRate(g, "clip")

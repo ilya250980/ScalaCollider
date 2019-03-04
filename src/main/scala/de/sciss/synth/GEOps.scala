@@ -19,6 +19,16 @@ object GEOps {
   private def getRate(g: GE, name: String): Rate =
     g.rate.getOrElse(throw new UnsupportedOperationException(s"`$name` input rate must be defined"))
 }
+
+/** `GEOps` are operations for graph elements (`GE`). Instead of having these operations directly defined
+  * in each UGen, which is a huge list, they appear here as extension methods. Therefore, you can
+  * write `SinOsc.ar.linLin ...` as if `linLin` was defined for `GE` or `SinOsc`.
+  *
+  * Many of these operations are defined for constant numbers, as well, for example you can
+  * write `0.5.linLin ...`. These operations are defined separately.
+  *
+  * @see [[GE]]
+  */
 final class GEOps(private val g: GE) extends AnyVal {
   import GEOps.getRate
 
@@ -28,18 +38,49 @@ final class GEOps(private val g: GE) extends AnyVal {
     *               to the number of outputs are wrapped around.
     *
     * @return a monophonic element that represents the given channel of the receiver
+    *
+    * @see [[ChannelProxy]]
     */
   def out(index: Int): GE = ChannelProxy(g, index)
 
+  /** Creates a proxy that represents a specific range of output channels of the element.
+    *
+    * @param range  a range of channels, zero-based. Indices which are greater than or equal
+    *               to the number of outputs are wrapped around.
+    *
+    * @return a new element that represents the given channels of the receiver
+    *
+    * @see [[ChannelRangeProxy]]
+    */
   def out(range: Range): GE = {
     val until = if (range.isInclusive) range.end + range.step else range.end
     ChannelRangeProxy(g, from = range.start, until = until, step = range.step)
   }
 
+  /** Creates a `MulAdd` UGen, by first multiplying the receiver with `mul`, then adding the `add` parameter.
+    * It can be used to change the value range of the receiver. For example,
+    * `SinOsc` has a nominal range of `-1` to `+1`. Using `SinOsc.ar.mulAdd(3, 4)` that
+    * range would become `(-1 * 3) + 4 = 1` to `(+1 * 3) + 4 = 7`.
+    *
+    * @see [[MulAdd]]
+    */
   def mulAdd(mul: GE, add: GE): GE = MulAdd(g, mul, add)
 
+  /** Creates a `Flatten` graph element that "flattens" the channels from a nested multi-channel structure,
+    * into a one-dimensional multi-channel structure.
+    *
+    * For example `Pan.ar(SinOsc.ar(Seq(400, 600)))` is a nested multi-channel structure, which appears
+    * as two channels (nested) during expansion. Instead, `Pan.ar(SinOsc.ar(Seq(400, 600))).flatten` appears
+    * as a flat four-channel signal.
+    *
+    * @see [[Flatten]]
+    */
   def flatten: GE = Flatten(g)
 
+  /** Creates a `Poll` UGen, printing the receiver's values to the console, ten times a second.
+    *
+    * @see [[Poll]]
+    */
   def poll: Poll = poll()
 
   /** Polls the output values of this graph element, and prints the result to the console.
@@ -79,13 +120,31 @@ final class GEOps(private val g: GE) extends AnyVal {
   @inline private def unOp(op: UnaryOpUGen.Op): GE = op.make(g)
 
   // unary ops
+
+  /** Negatives the signal. As if multiplying the signal by `-1`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // pseudo-stereo by phase inversion
+    * play {
+    *   val a = LFNoise1.ar(1500) * 0.5
+    *   Seq(a, -a)
+    * }
+    * }}}
+    */
   def unary_-   : GE  = unOp(Neg       )
+  /** Logically negates the signal. Outputs `1` if the signal is greater than zero, otherwise outputs `0`. */
   def unary_!   : GE  = unOp(Not       )
+  /** Treats the signal as integer numbers and inverts its bits. */
   def unary_~   : GE  = unOp(BitNot    )
+  /** Takes the absolute values or magnitudes of the signal (negative numbers become positive). */
   def abs       : GE  = unOp(Abs       )
   // def toFloat: GE = ...
   // def toInteger: GE = ...
+  /** Rounds the signal up to the next higher integer number. */
   def ceil      : GE  = unOp(Ceil      )
+  /** Rounds the signal down to the next lower integer number. */
   def floor     : GE  = unOp(Floor     )
   def frac      : GE  = unOp(Frac      )
   def signum    : GE  = unOp(Signum    )
@@ -143,39 +202,107 @@ final class GEOps(private val g: GE) extends AnyVal {
   // binary ops
   @inline private def binOp(op: BinaryOpUGen.Op, b: GE): GE = op.make(g, b)
 
+  /** Adds two signals. */
   def +       (b: GE): GE = binOp(Plus    , b)
+
+  /** Subtracts a signal from the receiver. */
   def -       (b: GE): GE = binOp(Minus   , b)
+
+  /** Multiplies two signals. */
   def *       (b: GE): GE = binOp(Times   , b)
   // def div(b: GE): GE = ...
+
+  /** Divides the receiver by another signal. */
   def /       (b: GE): GE = binOp(Div     , b)
 
-//  @deprecated("Use 'mod' now, because '%' is misleading, as the server implements modulus different from scala.math.",
-//    since = "1.24.0")
-  /** An alias for `mod`. */
+  /** Take the modulus of the signal. Negative input values are
+    * wrapped to positive ones, e.g. `(DC.kr(-4) % 5) sig_== DC.kr(1)`.
+    * If the second operand is zero, the output is zero.
+    *
+    * An alias for mod.
+    */
   def %       (b: GE): GE = binOp(Mod     , b)
+
+  /** Take the modulus of the signal. Negative input values are
+    * wrapped to positive ones, e.g. `DC.kr(-4).mod(5) sig_== DC.kr(1)`
+    * If the second operand is zero, the output is zero.
+    */
   def mod     (b: GE): GE = binOp(Mod     , b)
+
+  /** Compares two signals and outputs one if they are identical, otherwise zero.
+    *
+    * Note that this can be surprising if the signals are not integer, because
+    * due to floating point noise two signals may be "almost identical" but not quite,
+    * thus resulting in an output of zero.
+    */
   def sig_==  (b: GE): GE = binOp(Eq      , b)
+
+  /** Compares two signals and outputs one if they are different, otherwise zero.
+    *
+    * Note that this can be surprising if the signals are not integer, because
+    * due to floating point noise two signals may be "almost identical" but not quite,
+    * thus resulting in an output of one.
+    */
   def sig_!=  (b: GE): GE = binOp(Neq     , b)
+
+  /** Compares two signals and outputs one if the receiver is less than the argument. */
   def <       (b: GE): GE = binOp(Lt      , b)
+
+  /** Compares two signals and outputs one if the receiver is greater than the argument. */
+
   def >       (b: GE): GE = binOp(Gt      , b)
+
+  /** Compares two signals and outputs one if the receiver is less than or equal to the argument.
+    *
+    * Note that this can be surprising if the signals are not integer, because
+    * due to floating point noise two signals may be "almost identical" but not quite.
+    */
   def <=      (b: GE): GE = binOp(Leq     , b)
+
+  /** Compares two signals and outputs one if the receiver is greater than or equal to the argument.
+    *
+    * Note that this can be surprising if the signals are not integer, because
+    * due to floating point noise two signals may be "almost identical" but not quite.
+    */
   def >=      (b: GE): GE = binOp(Geq     , b)
+
+  /** Outputs the smaller of two signals. */
   def min     (b: GE): GE = binOp(Min     , b)
+
+  /** Outputs the larger of two signals. */
   def max     (b: GE): GE = binOp(Max     , b)
+
+  /** Treats the signals as integer numbers and combines their bit representations through `AND`. */
   def &       (b: GE): GE = binOp(BitAnd  , b)
+
+  /** Treats the signals as integer numbers and combines their bit representations through `OR`. */
   def |       (b: GE): GE = binOp(BitOr   , b)
+
+  /** Treats the signals as integer numbers and combines their bit representations through `XOR`. */
   def ^       (b: GE): GE = binOp(BitXor  , b)
+
+  /** Treats the signals as integer numbers and outputs the least common multiplier of both. */
   def lcm     (b: GE): GE = binOp(Lcm     , b)
+
+  /** Treats the signals as integer numbers and outputs the greatest common denominator of both. */
   def gcd     (b: GE): GE = binOp(Gcd     , b)
 
   def roundTo (b: GE): GE = binOp(RoundTo , b)
   def roundUpTo (b: GE): GE = binOp(RoundUpTo, b)
   def trunc   (b: GE): GE = binOp(Trunc   , b)
   def atan2   (b: GE): GE = binOp(Atan2   , b)
+
+  /** Calculates the hypotenuse of both signals, or the square root of the sum of the squares of both. */
   def hypot   (b: GE): GE = binOp(Hypot   , b)
+
+  /** An approximate and thus faster version of `hypot` to calculate the hypotenuse of both signals,
+    * or the square root of the sum of the squares of both.
+    */
   def hypotApx(b: GE): GE = binOp(Hypotx  , b)
 
-  /** '''Warning:''' Unlike a normal power operation, the signum of the
+  /** Takes the power of the signal.
+    *
+    * '''Warning:''' Unlike a normal power operation, the signum of the
     * left operand is always preserved. I.e. `DC.kr(-0.5).pow(2)` will
     * not output `0.25` but `-0.25`. This is to avoid problems with
     * floating point noise and negative input numbers, so
@@ -183,16 +310,27 @@ final class GEOps(private val g: GE) extends AnyVal {
     */
   def pow     (b: GE): GE = binOp(Pow     , b)
 
+  /** Treats the signals as integer numbers and bit-shifts the receiver by the argument to the left. */
   def <<      (b: GE): GE = binOp(LeftShift , b)
+
+  /** Treats the signals as integer numbers and bit-shifts the receiver by the argument to the right. */
   def >>      (b: GE): GE = binOp(RightShift, b)
 
   // def unsgnRghtShift(b: GE): GE = ...
   // def fill(b: GE): GE = ...
 
+  /** An optimized operation on the signals corresponding to the formula `a * b + a`. */
   def ring1   (b: GE): GE = binOp(Ring1   , b)
+
+  /** An optimized operation on the signals corresponding to the formula `a * b + a + b`. */
   def ring2   (b: GE): GE = binOp(Ring2   , b)
+
+  /** An optimized operation on the signals corresponding to the formula `a * a * b`. */
   def ring3   (b: GE): GE = binOp(Ring3   , b)
+
+  /** An optimized operation on the signals corresponding to the formula `a * a * b - b * b * a`. */
   def ring4   (b: GE): GE = binOp(Ring4   , b)
+
   def difSqr  (b: GE): GE = binOp(Difsqr  , b)
   def sumSqr  (b: GE): GE = binOp(Sumsqr  , b)
   def sqrSum  (b: GE): GE = binOp(Sqrsum  , b)
@@ -205,11 +343,22 @@ final class GEOps(private val g: GE) extends AnyVal {
   def excess  (b: GE): GE = binOp(Excess  , b)
   def fold2   (b: GE): GE = binOp(Fold2   , b)
   def wrap2   (b: GE): GE = binOp(Wrap2   , b)
+
+  /** A dummy operation that ensures the topological order of the receiver UGen and the argument UGen.
+    * It ensures that the receiver is placed before the argument. Rarely used.
+    */
   def firstArg(b: GE): GE = binOp(Firstarg, b)
 
+  /** Outputs random values linearly distributed between the two signals. */
  def rangeRand(b: GE): GE = binOp(Rrand   , b)
- def expRand  (b: GE): GE = binOp(Exprand , b)
 
+  /** Outputs random values exponentially distributed between the two signals. */
+  def expRand  (b: GE): GE = binOp(Exprand , b)
+
+  /** Clips the receiver to a range defined by `low` and `high`.
+    * Outputs `low` if the receiver is smaller than `low`, and
+    * outputs `high` if the receiver is larger than `high`.
+    */
   def clip(low: GE, high: GE): GE = {
     val r = getRate(g, "clip")
     if (r == demand) g.max(low).min(high) else Clip(r, g, low, high)

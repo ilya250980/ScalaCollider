@@ -2,7 +2,7 @@
  *  HelperElements.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -259,7 +259,7 @@ final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: shou
 
 /** A graph element that interleaves a number of (multi-channel) input signals.
   * For example, if two stereo-signals `a` and `b` are zipped, the output will be a four-channel
-  * signal corresponding to `[ a \ 0, b \ 0, a \ 1, b \ 1 ]`. If the input signals
+  * signal corresponding to `[ a out 0, b out 0, a out 1, b out 1 ]`. If the input signals
   * have different numbers of channels, the minimum number of channels is used.
   *
   * ===Examples===
@@ -276,7 +276,7 @@ final case class Mix(elem: GE) extends UGenSource.SingleOut {  // XXX TODO: shou
   *
   * val r = message.Responder.add(x.server) {
   *   case osc.Message("/meter", x.id, _, peakL: Float, rmsL: Float, peakR: Float, rmsR: Float) =>
-  *     println(f"peak-left $peakL%g, rms-left $rmsL%g, peak-right $peakR%g, rms-right $rmsR%g")
+  *     println(f"peak-left \$peakL%g, rms-left \$rmsL%g, peak-right \$peakR%g, rms-right \$rmsR%g")
   *
   * x.free(); r.remove()
   * }}}
@@ -665,7 +665,9 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   *
   * {{{
   * Seq[GE](
-  *   x\0 * y\0, x\1 * y\1, x\2 * y\2, x\0 * y\3, x\1 * y\4
+  *   x.out(0) * y.out(0), x.out(1) * y.out(1),
+  *   x.out(2) * y.out(2), x.out(0) * y.out(3),
+  *   x.out(1) * y.out(4)
   * )
   * }}}
   *
@@ -678,9 +680,9 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   *
   * {{{
   * Seq[GE](
-  *   x \ 0, x \ 0, x \ 0, x \ 0, x \ 0,
-  *   x \ 1, x \ 1, x \ 1, x \ 1, x \ 1,
-  *   x \ 2, x \ 2, x \ 2, x \ 2, x \ 2
+  *   x.out(0), x.out(0), x.out(0), x.out(0), x.out(0),
+  *   x.out(1), x.out(1), x.out(1), x.out(1), x.out(1),
+  *   x.out(2), x.out(2), x.out(2), x.out(2), x.out(2)
   * )
   * }}}
   *
@@ -689,9 +691,9 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
   *
   * {{{
   * Seq[GE](
-  *   (x\0) * (y\0), (x\0) * (y\1), (x\0) * (y\2), (x\0) * (y\3), (x\0) * (y\4),
-  *   (x\1) * (y\0), (x\1) * (y\1), (x\1) * (y\2), (x\1) * (y\3), (x\1) * (y\4),
-  *   (x\2) * (y\0), (x\2) * (y\1), (x\2) * (y\2), (x\2) * (y\3), (x\2) * (y\4)
+  *   (x out 0) * (y out 0), (x out 0) * (y out 1), (x out 0) * (y out 2), (x out 0) * (y out 3), (x out 0) * (y out 4),
+  *   (x out 1) * (y out 0), (x out 1) * (y out 1), (x out 1) * (y out 2), (x out 1) * (y out 3), (x out 1) * (y out 4),
+  *   (x out 2) * (y out 0), (x out 2) * (y out 1), (x out 2) * (y out 2), (x out 2) * (y out 3), (x out 2) * (y out 4)
   * )
   * }}}
   *
@@ -715,10 +717,10 @@ final case class RepeatChannels(a: GE, num: Int) extends GE.Lazy {
   * integers and thus cannot be determined at graph expansion time.
   * If this is desired, the `Select` UGen can be used.
   *
-  * Usually the graph element operator `\` (backlash) along with
+  * Usually the graph element operator `out` along with
   * a standard Scala `Range` argument can be used
   * instead of explicitly writing `ChannelRangeProxy`. Thus
-  * `elem \ (0 until 4)` selects the first four channels and is
+  * `elem out (0 until 4)` selects the first four channels and is
   * equivalent to `ChannelRangeProxy(elem, from = 0, until = 4, step = 1)`.
   *
   * Behind the scene, `ChannelProxy` instances are created, thus
@@ -748,7 +750,7 @@ final case class ChannelRangeProxy(elem: GE, from: Int, until: Int, step: Int) e
   def range: Range = Range(from, until, step)
 
   override def toString: String =
-    if (step == 1) s"$elem.\\($from until $until)" else s"$elem.\\($from until $until by $step)"
+    if (step == 1) s"$elem.out($from until $until)" else s"$elem.out($from until $until by $step)"
 
   def makeUGens: UGenInLike = {
     val r = range

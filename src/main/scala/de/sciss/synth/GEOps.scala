@@ -2,7 +2,7 @@
  *  GE.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -441,12 +441,48 @@ final class GEOps(private val g: GE) extends AnyVal {
 
   // def even : GE              = UnOp.make( 'even, this )
   // def odd : GE               = UnOp.make( 'odd, this )
- def rectWindow : GE  = unOp(RectWindow )
- def hannWindow : GE  = unOp(HannWindow )
- def welchWindow: GE  = unOp(WelchWindow)
- def triWindow  : GE  = unOp(TriWindow  )
- def ramp       : GE  = unOp(Ramp       )
- def sCurve     : GE  = unOp(Scurve     )
+
+  /** Scans the rectangular window function between the input signal's range of 0 and 1.
+    * A rectangular window has value 1.0 at every point in the interval `[0, 1]`.
+    * Outside of that range, the output will be zero.
+    */
+  def rectWindow : GE  = unOp(RectWindow )
+
+  /** Scans the von Hann window function between the input signal's range of 0 and 1.
+    * The Hann window is a raised cosine starting and ending at zero at the interval
+    * boundaries, and going to 1.0 at the center (input 0.5).
+    * Outside of the interval `[0, 1]`, the output will be zero.
+    */
+  def hannWindow : GE  = unOp(HannWindow )
+
+  /** Scans the Welch window function between the input signal's range of 0 and 1.
+    * The Welch window is a parabolic curve starting and ending at zero at the interval
+    * boundaries, and going to 1.0 at the center (input 0.5).
+    * Outside of the interval `[0, 1]`, the output will be zero.
+    */
+  def welchWindow: GE  = unOp(WelchWindow)
+
+  /** Scans the triangular window function between the input signal's range of 0 and 1.
+    * The triangular window moves from linearly from the zero at the interval start to
+    * 1.0 at the center (input 0.5) back to 0.0 at the interval end.
+    * Outside of the interval `[0, 1]`, the output will be zero.
+    */
+  def triWindow  : GE  = unOp(TriWindow  )
+
+  /** Scans a ramp function rising from zero to one across the input signals' range of 0 and 1.
+    * The function moves linearly from the zero at the interval start to
+    * 1.0 at the interval end. When the input is smaller than zero, the output is zero,
+    * and when the input is larger than one, the output is one.
+    */
+  def ramp       : GE  = unOp(Ramp       )
+
+  /** Scans a sinusoidal S-shaped function ("easy in, easy out") rising from zero to one across
+    * the input signals' range of 0 and 1.
+    * The function begins to rise from the zero at the interval start to 0.5 at the center to
+    * 1.0 at the interval end. When the input is smaller than zero, the output is zero,
+    * and when the input is larger than one, the output is one.
+    */
+  def sCurve     : GE  = unOp(Scurve     )
 
   // def isPositive : GE        = UnOp.make( 'isPositive, this )
   // def isNegative : GE        = UnOp.make( 'isNegative, this )
@@ -505,8 +541,19 @@ final class GEOps(private val g: GE) extends AnyVal {
   /** Compares two signals and outputs one if the receiver is less than the argument. */
   def <       (b: GE): GE = binOp(Lt      , b)
 
-  /** Compares two signals and outputs one if the receiver is greater than the argument. */
-
+  /** Compares two signals and outputs one if the receiver is greater than the argument.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // trigger an envelope
+    * play {
+    *   val trig = SinOsc.ar(1) > 0
+    *   val env = EnvGen.kr(Env.perc, gate = trig, doneAction = doNothing) *
+    *   SinOsc.ar(440) * env * 0.1
+    * }
+    * }}}
+    */
   def >       (b: GE): GE = binOp(Gt      , b)
 
   /** Compares two signals and outputs one if the receiver is less than or equal to the argument.
@@ -523,10 +570,32 @@ final class GEOps(private val g: GE) extends AnyVal {
     */
   def >=      (b: GE): GE = binOp(Geq     , b)
 
-  /** Outputs the smaller of two signals. */
+  /** Outputs the smaller of two signals.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // LFO distorts and envelopes z
+    * play {
+    *   val z = SinOsc.ar(500)
+    *   z min SinOsc.ar(0.1)
+    * }
+    * }}}
+    */
   def min     (b: GE): GE = binOp(Min     , b)
 
-  /** Outputs the larger of two signals. */
+  /** Outputs the larger of two signals.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // LFO distorts and envelopes z
+    * play {
+    *   val z = SinOsc.ar(500)
+    *   z max SinOsc.ar(0.1)
+    * }
+    * }}}
+    */
   def max     (b: GE): GE = binOp(Max     , b)
 
   /** Treats the signals as integer numbers and combines their bit representations through `AND`. */
@@ -538,10 +607,42 @@ final class GEOps(private val g: GE) extends AnyVal {
   /** Treats the signals as integer numbers and combines their bit representations through `XOR`. */
   def ^       (b: GE): GE = binOp(BitXor  , b)
 
-  /** Treats the signals as integer numbers and outputs the least common multiplier of both. */
+  /** Treats the signals as integer numbers and outputs the least common multiple of both.
+    * This extends the usual definition by returning a negative number if any of the operands is negative.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // rhythmic pitch patterns with mouse control
+    * play {
+    *   val mx = MouseX.kr(-20, 20)
+    *   val my = MouseY.kr(-20, 20)
+    *   SinOsc.ar((SinOsc.kr(0.3) * 20) lcm (GESeq(mx, my) * 30 + 500)) * 0.1
+    * }
+    * }}}
+    *
+    * @see  [[gcd]]
+    */
   def lcm     (b: GE): GE = binOp(Lcm     , b)
 
-  /** Treats the signals as integer numbers and outputs the greatest common denominator of both. */
+  /** Treats the signals as integer numbers and outputs the greatest common divisor of both.
+    * This extends the usual definition by returning a negative number if both operands are negative.
+    * "greater" means "divisible by" in this interpretation, so `-1 gcd -1` returns a negative number.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // rhythmic pitch patterns with mouse control
+    * play {
+    *   val mx = MouseX.kr(-200, 200)
+    *   val my = MouseY.kr(-200, 200)
+    *   val freq = (SinOsc.kr(0.3) * 20).gcd(GESeq(mx, my)) * 30 + 500
+    *   SinOsc.ar(freq) * 0.1
+    * }
+    * }}}
+    *
+    * @see  [[lcm]]
+    */
   def gcd     (b: GE): GE = binOp(Gcd     , b)
 
   /** Rounds the input signal up or down to a given degree of coarseness. For example,
@@ -562,9 +663,34 @@ final class GEOps(private val g: GE) extends AnyVal {
     */
   def trunc   (b: GE): GE = binOp(Trunc   , b)
 
+  /** Uses the input signal and the argument to calculate the arc tangent (trigonometric) function.
+    * The input signal is the numerator ("x") and the argument `b` is the denominator ("y") of the parameter
+    * to arg tangent.
+    *
+    * There is also a unary operator `atan`.
+    *
+    * @see [[atan]]
+    */
   def atan2   (b: GE): GE = binOp(Atan2   , b)
 
   /** Calculates the hypotenuse of both signals, or the square root of the sum of the squares of both.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // hypot used to calculate a Doppler shift pitch and amplitude based on distance.
+    * play {
+    *   // object travels 200 meters in 6 secs (= 120 km/h) passing 10 meters
+    *   // from the listener
+    *   val x = 10
+    *   val y = LFSaw.kr(1.0/6) * 100
+    *   val distance = x hypot y
+    *   val velocity = Slope.kr(distance)
+    *   val pitchRatio = (344 - velocity) / 344  // speed of sound is around 344 m/s
+    *   val amplitude = 20 / distance.squared
+    *   SinOsc.ar(500 * pitchRatio) * amplitude
+    * }
+    * }}}
     *
     * @see [[hypotApx]]
     */
@@ -596,33 +722,242 @@ final class GEOps(private val g: GE) extends AnyVal {
   // def unsgnRghtShift(b: GE): GE = ...
   // def fill(b: GE): GE = ...
 
-  /** An optimized operation on the signals corresponding to the formula `a * b + a`. */
+  /** An optimized operation on the signals corresponding to the formula `a * b + a`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) ring1 SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def ring1   (b: GE): GE = binOp(Ring1   , b)
 
-  /** An optimized operation on the signals corresponding to the formula `a * b + a + b`. */
+  /** An optimized operation on the signals corresponding to the formula `a * b + a + b`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) ring2 SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def ring2   (b: GE): GE = binOp(Ring2   , b)
 
-  /** An optimized operation on the signals corresponding to the formula `a * a * b`. */
+  /** An optimized operation on the signals corresponding to the formula `a * a * b`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) ring3 SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def ring3   (b: GE): GE = binOp(Ring3   , b)
 
-  /** An optimized operation on the signals corresponding to the formula `a * a * b - b * b * a`. */
+  /** An optimized operation on the signals corresponding to the formula `a * a * b - b * b * a`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) ring4 SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def ring4   (b: GE): GE = binOp(Ring4   , b)
 
+  /** Calculates the difference of the squared arguments, equivalent to the formula `(a*a) - (b*b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) difSqr SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def difSqr  (b: GE): GE = binOp(Difsqr  , b)
+
+  /** Calculates the sum of the squared arguments, equivalent to the formula `(a*a) + (b*b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) sumSqr SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def sumSqr  (b: GE): GE = binOp(Sumsqr  , b)
+
+  /** Squares the sum of the two arguments, equivalent to the formula `(a + b) * (a + b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) sqrSum SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def sqrSum  (b: GE): GE = binOp(Sqrsum  , b)
+
+  /** Squares the difference of the two arguments, equivalent to the formula `(a - b) * (a - b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   (SinOsc.ar(800) sqrDif SinOsc.ar(XLine.kr(200, 500, 5))) * 0.125
+    * }
+    * }}}
+    */
   def sqrDif  (b: GE): GE = binOp(Sqrdif  , b)
+
+  /** Calculates the absolute difference of the two arguments, equivalent to the formula `abs(a - b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   // creates a pulsation
+    *   val mul = (SinOsc.ar(2) * 0.5) absDif 0.2
+    *   SinOsc.ar(440) * mul
+    * }
+    * }}}
+    */
   def absDif  (b: GE): GE = binOp(Absdif  , b)
+
+  /** A threshold comparison where the output is zero when input signal is less than the argument, otherwise
+    * the input signal is passed.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   // a low-rent gate
+    *   (LFNoise0.ar(50) * 0.5) thresh 0.45
+    * }
+    * }}}
+    *
+    * @see  [[de.sciss.synth.ugen.Gate]]
+    */
   def thresh  (b: GE): GE = binOp(Thresh  , b)
+
+  /** Multiplies the input signal with the argument, while the argument
+    * is positive, otherwise outputs zero. Thus equivalent to `a * b.max(0)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   // a sine envelope
+    *   WhiteNoise.ar.amClip(SinOsc.kr(1) * 0.2)
+    * }
+    * }}}
+    */
   def amClip  (b: GE): GE = binOp(Amclip  , b)
+
+  /** Scales the negative part of the input by the argument, outputs positive input unaltered.
+    * Thus equivalent to `a.min(0) * b + a.max(0)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   // increasing half-wave asymmetry
+    *   (SinOsc.ar(500) * 0.25).scaleNeg(Line.ar(1, -1, 4))
+    * }
+    * }}}
+    */
   def scaleNeg(b: GE): GE = binOp(Scaleneg, b)
+
+  /** Clips the input signal to the range given by +/- the argument.
+    * If the input falls below `-b`, it is held at `-b`.
+    * If the input rises above `+b`, it is held at `+b`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   // fade in amplitude, fade out distortion
+    *   SinOsc.ar(500).clip2(Line.kr(0, 1, 8)) * 0.5
+    * }
+    * }}}
+    *
+    * @see [[clip]]
+    */
   def clip2   (b: GE): GE = binOp(Clip2   , b)
+
+  /** Produces the difference of the input signal and it being clipped to the argument.
+    * Thus equivalent to `a - a.clip2(b)`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   SinOsc.ar(500).excess(Line.kr(0, 1, 8)) * 0.5
+    * }
+    * }}}
+    */
   def excess  (b: GE): GE = binOp(Excess  , b)
+
+  /** Folds or "reflects" the input signal at the boundaries given by +/- the argument.
+    * For example, with boundaries of +/- 2,
+    * if the input falls below -2, it is reflected such that input -2.1 becomes output -1.9.
+    * If the input rises above +2, it is reflected such that input +2.1 becomes output +1.9.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   SinOsc.ar(500).fold2(Line.kr(0, 1, 8)) * 0.5
+    * }
+    * }}}
+    *
+    * @see  [[clip2]]
+    * @see  [[wrap2]]
+    * @see  [[fold]]
+    */
   def fold2   (b: GE): GE = binOp(Fold2   , b)
+
+  /** Wraps the input signal at the boundaries given by +/- the argument.
+    * If the input falls below `-b`, it is wrapped back to `+b`.
+    * If the input rises above `+b`, it is wrapped back to `-b`.
+    *
+    * ===Example===
+    *
+    * {{{
+    * play {
+    *   SinOsc.ar(500).wrap2(Line.kr(0, 1, 8)) * 0.5
+    * }
+    * }}}
+    *
+    * @see  [[clip2]]
+    * @see  [[fold2]]
+    * @see  [[wrap]]
+    */
   def wrap2   (b: GE): GE = binOp(Wrap2   , b)
 
   /** A dummy operation that ensures the topological order of the receiver UGen and the argument UGen.
     * It ensures that the receiver is placed before the argument. Rarely used.
+    *
+    * ===Example===
+    *
+    * {{{
+    * // useful when two UGens need to be called, but only one of their outputs is used
+    * play {
+    *   val a = Dpoll(Dseq(Seq(1, 2, 3, 4), inf), label = "a")
+    *   val b = Dpoll(Dseq(Seq(1955, 1952, 1823, 1452), inf), label = "b")
+    *   val c = Dpoll(a firstArg b, label = "a firstArg b ")  // c = a
+    *   Duty.kr(0.4, 0, c)
+    *   ()
+    * }
+    * }}}
     */
   def firstArg(b: GE): GE = binOp(Firstarg, b)
 
@@ -638,24 +973,45 @@ final class GEOps(private val g: GE) extends AnyVal {
     *
     * @see  [[fold]]
     * @see  [[wrap]]
+    * @see  [[clip2]]
     */
   def clip(low: GE, high: GE): GE = {
     val r = getRate(g, "clip")
     if (r == demand) g.max(low).min(high) else Clip(r, g, low, high)
   }
 
+  /** Folds or "reflects" the input signal at the boundaries given by the arguments.
+    * For example, with `low = -2` and `high = +3`
+    * if the input falls below -2, it is reflected such that input -2.1 becomes output -1.9.
+    * If the input rises above +3, it is reflected such that input +3.1 becomes output +2.9.
+    *
+    * @see  [[clip]]
+    * @see  [[wrap]]
+    * @see  [[fold2]]
+    */
   def fold(low: GE, high: GE): GE = {
     val r = getRate(g, "fold")
     if (r == demand) throw new UnsupportedOperationException("`fold` not supported for demand rate UGens")
     Fold(r, g, low, high)
   }
 
+  /** Wraps the input signal at the boundaries given by the arguments.
+    * If the input falls below `low`, it is wrapped back to `high`.
+    * If the input rises above `high`, it is wrapped back to `low`.
+    *
+    * @see  [[clip]]
+    * @see  [[fold]]
+    * @see  [[wrap2]]
+    */
   def wrap(low: GE, high: GE): GE = {
     val r = getRate(g, "wrap")
     if (r == demand) throw new UnsupportedOperationException("`wrap` not supported for demand rate UGens")
     Wrap(r, g, low, high)
   }
 
+  /** Scales the input signal `a` from a linear source range to a linear target range.
+    * The formula is `(a - inLow) / (inHigh - inLow) * (outHigh - outLow) + outLow`.
+    */
   def linLin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
     val r = getRate(g, "linLin")
     if (r == demand) {
@@ -665,6 +1021,9 @@ final class GEOps(private val g: GE) extends AnyVal {
     }
   }
 
+  /** Scales the input signal `a` from a linear source range to an exponential target range.
+    * The formula is `(outHigh / outLow).pow((a - inLow) / (inHigh - inLow)) * outLow`.
+    */
   def linExp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE = {
     val r = getRate(g, "linExp")
     if (r == demand) {
@@ -674,9 +1033,15 @@ final class GEOps(private val g: GE) extends AnyVal {
     }
   }
 
+  /** Scales the input signal `a` from an exponential source range to a linear target range.
+    * The formula is `(a / inLow).log / (inHigh / inLow).log * (outHigh - outLow) + outLow`.
+    */
   def expLin(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
     (g / inLow).log / (inHigh / inLow).log * (outHigh - outLow) + outLow
 
+  /** Scales the input signal `a` from an exponential source range to an exponential target range.
+    * The formula is `(outHigh / outLow).pow((a / inLow).log / (inHigh / inLow).log) * outLow`.
+    */
   def expExp(inLow: GE, inHigh: GE, outLow: GE, outHigh: GE): GE =
     (outHigh / outLow).pow((g / inLow).log / (inHigh / inLow).log) * outLow
 }

@@ -2,7 +2,7 @@
  *  Server.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2018 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Lesser General Public License v2.1+
  *
@@ -57,7 +57,7 @@ object Server {
     /** The path to `scsynth`, used when booting a server. This can be either a relative path
       * (relating to the JVM's working directory), or an absolute path.
       *
-      * @see [[de.sciss.synth.Server#defaultProgramPath]]
+      * @see [[de.sciss.synth.Server#defaultProgram]]
       */
     def program: String
 
@@ -450,7 +450,7 @@ object Server {
   final class ConfigBuilder private[Server]() extends ConfigLike {
     /** The default `program` is read from `defaultProgram`
       *
-      * @see [[de.sciss.synth.Server#defaultProgramPath]]
+      * @see [[de.sciss.synth.Server#defaultProgram]]
       */
     var program: String = defaultProgram
     /** The default number of control bus channels is `4096` (scsynth default) */

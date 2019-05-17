@@ -2,7 +2,7 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sciss/ScalaCollider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/Sciss/ScalaCollider.svg?branch=master)](https://travis-ci.org/Sciss/ScalaCollider)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.11)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12)
 
 ## statement
 
@@ -75,7 +75,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"1.28.2"`
+The current version `v` is `"1.28.3"`
 
 ## contributing
 

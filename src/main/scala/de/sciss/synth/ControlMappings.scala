@@ -13,8 +13,8 @@
 
 package de.sciss.synth
 
-import scala.collection.{IndexedSeq => SIndexedSeq, Seq => SSeq}
 import scala.collection.immutable.{IndexedSeq => Vec}
+import scala.collection.{IndexedSeq => SIndexedSeq, Seq => SSeq}
 import scala.language.implicitConversions
 
 object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicits {
@@ -47,6 +47,8 @@ object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicit
 }
 
 sealed trait ControlSet {
+  def key: Any
+
   private[sciss] def toSetSeq : SIndexedSeq[Any]
   private[sciss] def toSetnSeq: SIndexedSeq[Any]
 
@@ -98,6 +100,8 @@ object ControlKBusMap {
 
 /** A mapping from a control-rate bus to a synth control. */
 sealed trait ControlKBusMap {
+  def key: Any
+
   def toMapnSeq: Vec[Any]
 }
 
@@ -133,6 +137,8 @@ object ControlABusMap {
   * @see  [[de.sciss.synth.ugen.InFeedback]]
   */
 sealed trait ControlABusMap {
+  def key: Any
+
   private[sciss] def toMapanSeq: Vec[Any]
 }
 

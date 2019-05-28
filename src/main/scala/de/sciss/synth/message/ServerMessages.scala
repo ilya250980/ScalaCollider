@@ -238,6 +238,9 @@ final case class ServerNotify(on: Boolean)
   */
 case object ServerQuit extends Message("/quit") with AsyncSend
 
+object HasCompletion {
+  def unapply(h: HasCompletion): Option[Option[Packet]] = Some(h.completion)
+}
 sealed trait HasCompletion extends AsyncSend {
   def completion: Option[Packet]
   def updateCompletion(completion: Option[Packet]): Message with AsyncSend with HasCompletion
@@ -505,7 +508,7 @@ final case class BufferSetn(id: Int, indicesAndValues: (Int, SIndexedSeq[Float])
   * @see [[BufferGen]]
   */
 final case class BufferFill(id: Int, ranges: FillRange*)
-  extends Message("/b_fill", id +: (ranges.flatMap(_.toList)): _*)
+  extends Message("/b_fill", id +: ranges.flatMap(_.toList): _*)
   with SyncCmd {
 
   def copy(id: Int = id, ranges: Seq[FillRange] = ranges): BufferFill =
@@ -789,15 +792,27 @@ final case class ParGroupNew(groups: GroupNew.Data*)
   extends Message("/p_new", groups.flatMap(_.toList): _*)
   with SyncCmd
 
+object HasControlSet {
+  def unapply(h: HasControlSet): Option[Seq[ControlSet]] = Some(h.controls)
+}
+sealed trait HasControlSet {
+  def controls: Seq[ControlSet]
+
+  def updateControls(controls: Seq[ControlSet]): Message with SyncCmd with HasControlSet
+}
+
 /** The `/s_new` message. */
 final case class SynthNew(defName: String, id: Int, addAction: Int, targetId: Int, controls: ControlSet*)
   extends Message("/s_new",
     defName +: id +: addAction +: targetId +: controls.flatMap(_.toSetSeq): _*)
-  with SyncCmd {
+  with SyncCmd with HasControlSet {
 
   def copy(defName: String = defName, id: Int = id, addAction: Int = addAction,
            targetId: Int = targetId, controls: Seq[ControlSet] = controls): SynthNew =
     SynthNew(defName = defName, id = id, addAction = addAction, targetId = targetId, controls = controls: _*)
+
+  override def updateControls(controls: Seq[ControlSet]): SynthNew =
+    copy(controls = controls)
 }
 
 /** The `/s_get` message. */
@@ -826,19 +841,29 @@ final case class NodeRun(nodes: (Int, Boolean)*)
 /** The `/n_set` message. */
 final case class NodeSet(id: Int, pairs: ControlSet*)
   extends Message("/n_set", id +: pairs.flatMap(_.toSetSeq): _*)
-  with SyncCmd {
+  with SyncCmd with HasControlSet {
 
   def copy(id: Int = id, pairs: Seq[ControlSet] = pairs): NodeSet =
     NodeSet(id = id, pairs = pairs: _*)
+
+  def controls: Seq[ControlSet] = pairs
+
+  override def updateControls(controls: Seq[ControlSet]): NodeSet =
+    copy(pairs = controls)
 }
 
 /** The `/n_setn` message. */
 final case class NodeSetn(id: Int, pairs: ControlSet*)
   extends Message("/n_setn", id +: pairs.flatMap(_.toSetnSeq): _*)
-  with SyncCmd {
+  with SyncCmd with HasControlSet {
 
   def copy(id: Int = id, pairs: Seq[ControlSet] = pairs): NodeSetn =
     NodeSetn(id = id, pairs = pairs: _*)
+
+  def controls: Seq[ControlSet] = pairs
+
+  override def updateControls(controls: Seq[ControlSet]): NodeSetn =
+    copy(pairs = controls)
 }
 
 /** The `/n_trace` message. */

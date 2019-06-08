@@ -23,7 +23,7 @@ lazy val root = project.withId(baseNameL).in(file("."))
     version              := projectVersion,
     organization         := "de.sciss",
     scalaVersion         := "2.12.8",
-    crossScalaVersions   := Seq("2.12.8", "2.11.12", "2.13.0-RC3"),
+    crossScalaVersions   := Seq("2.12.8", "2.11.12", "2.13.0"),
     description          := "A sound synthesis library for the SuperCollider server",
     homepage             := Some(url(s"https://git.iem.at/sciss/${name.value}")),
     licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt")),
@@ -33,13 +33,18 @@ lazy val root = project.withId(baseNameL).in(file("."))
       "de.sciss"      %% "audiofile"               % deps.main.audioFile,
       "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
       "de.sciss"      %% "processor"               % deps.main.processor,
-      "de.sciss"      %% "optional"                % deps.main.optional,
+      "de.sciss"      %% "optional"                % deps.main.optional
     ),
     libraryDependencies += {
-      "org.scalatest" %% "scalatest" % deps.test.scalaTest % Test
+      val v = deps.test.scalaTest
+      if (scalaVersion.value == "2.13.0") {
+        "org.scalatest" % "scalatest_2.13.0-RC3" % v % Test exclude("org.scala-lang.modules", "scala-xml_2.13.0-RC3")
+      } else {
+        "org.scalatest" %% "scalatest" % v % Test
+      }
     },
     scalacOptions in (Compile, compile) ++= {
-      val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture", "-Xlint:-stars-align,_")
+      val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xlint:-stars-align,_", "-Xsource:2.13")
       if (isSnapshot.value) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
     },
     // ---- console ----

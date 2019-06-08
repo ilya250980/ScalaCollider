@@ -55,7 +55,7 @@ from your own application code).
 
 ## building
 
-ScalaCollider builds with [sbt](http://scala-sbt.org/) against Scala 2.12, 2.11.
+ScalaCollider builds with [sbt](http://scala-sbt.org/) against Scala 2.13, 2.12, 2.11.
 ScalaCollider requires SuperCollider server to be installed and/or running. The recommended version as of
 this writing is 3.9. Note that the UGens are provided by the
 separate [ScalaColliderUGens](https://git.iem.at/sciss/ScalaColliderUGens) project. A simple Swing front end is

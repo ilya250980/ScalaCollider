@@ -166,7 +166,7 @@ object Mix {
     * @param n    the number of iterations
     * @param fun  a function that is recursively applied to produce the output
     */
-  def fold(elem: GE, n: Int)(fun: GE => GE): GE = (elem /: (1 to n)){ (res, _) => fun(res) }
+  def fold(elem: GE, n: Int)(fun: GE => GE): GE = (1 to n).foldLeft(elem) { (res, _) => fun(res) }
 
   final case class Mono(elem: GE) extends GE.Lazy {
     def numOutputs  = 1
@@ -316,7 +316,7 @@ final case class Reduce(elem: GE, op: BinaryOpUGen.Op) extends UGenSource.Single
   protected def makeUGens: UGenInLike = unwrap(this, elem.expand.outputs)
 
   protected def makeUGen(args: Vec[UGenIn]): UGenInLike = args match {
-    case head +: tail => (head /: tail)(op.make1)
+    case head +: tail => tail.foldLeft(head)(op.make1)
     case _            => UGenInGroup.empty
   }
 }

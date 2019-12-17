@@ -3,6 +3,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sciss/ScalaCollider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/Sciss/ScalaCollider.svg?branch=master)](https://travis-ci.org/Sciss/ScalaCollider)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12)
+<a href="https://liberapay.com/sciss/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="24"></a>
 
 ## statement
 
@@ -24,10 +25,10 @@ you may want to have a look at the [ScalaCollider-Swing](https://git.iem.at/scis
 adds an easy-to-use standalone application or mini-IDE. On the ScalaCollider-Swing page, you'll find a link to
 download a readily compiled binary for this standalone version.
 
-A still experimental system on top of ScalaCollider, providing higher level abstractions,
-is [SoundProcesses](https://git.iem.at/sciss/SoundProcesses) and its graphical
-front-end [Mellite](https://git.iem.at/sciss/Mellite). Please get in touch if you intend to use these, as the
-documentation is still sparse, and the system and API is still a moving target.
+__Note:__ An even more elaborate way to use ScalaCollider, is through [SoundProcesses](https://git.iem.at/sciss/SoundProcesses)
+and its graphical front-end [Mellite](https://sciss.de/mellite).
+
+Please consider supporting this project through Liberapay (see badge above) – thank you!
 
 ## download and resources
 
@@ -38,7 +39,8 @@ More information is available from the wiki
 at [git.iem.at/sciss/ScalaCollider/wikis/](https://git.iem.at/sciss/ScalaCollider/wikis/). The API documentation is
 available at [sciss.github.io/ScalaCollider/latest/api](http://sciss.github.io/ScalaCollider/latest/api/de/sciss/synth/index.html).
 
-The best way to ask questions, no matter if newbie or expert, is to use the mailing list
+The best way to ask questions, no matter if newbie or expert, is to use the Gitter channel (see badge above)
+or the mailing list
 at [groups.google.com/group/scalacollider](http://groups.google.com/group/scalacollider). To subscribe, simply
 send a mail to `ScalaCollider+subscribe@googlegroups.com` (you will receive a mail asking for confirmation).
 
@@ -170,4 +172,3 @@ Here are some examples for libraries not included:
 - MIDI functionality can be added with the [ScalaMIDI](https://git.iem.at/sciss/ScalaMIDI) library.
 - Plotting is most easily achieved through [Scala-Chart](https://git.iem.at/sciss/scala-chart), which is 
   conveniently included in ScalaCollider-Swing.
-

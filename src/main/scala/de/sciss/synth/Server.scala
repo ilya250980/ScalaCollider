@@ -453,40 +453,120 @@ object Server {
       * @see [[de.sciss.synth.Server#defaultProgram]]
       */
     var program: String = defaultProgram
-    /** The default number of control bus channels is `4096` (scsynth default) */
-    var controlBusChannels: Int = 4096
-    /** The default number of audio bus channels is `128` (scsynth default) */
-    var audioBusChannels: Int = 128
+
+    private[this] var controlBusChannelsVar = 4096
+
+    /** The default number of control bus channels is `4096` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def controlBusChannels: Int = controlBusChannelsVar
+    /** The default number of control bus channels is `4096` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def controlBusChannels_=(value: Int): Unit = {
+      require (value > 0 && value.isPowerOfTwo)
+      controlBusChannelsVar = value
+    }
+
+    private[this] var audioBusChannelsVar = 128
+
+    /** The default number of audio bus channels is `128` (scsynth default).
+      * Must be greater than zero and a power of two.
+      * When the builder is converted to a `Config`, this value may be increased
+      * to ensure that `audioBusChannels > inputBusChannels + outputBusChannels`.
+      */
+    def audioBusChannels: Int = audioBusChannelsVar
+    /** The default number of audio bus channels is `128` (scsynth default).
+      * Must be greater than zero and a power of two.
+      * When the builder is converted to a `Config`, this value may be increased
+      * to ensure that `audioBusChannels > inputBusChannels + outputBusChannels`.
+      */
+    def audioBusChannels_=(value: Int): Unit = {
+      require (value > 0 && value.isPowerOfTwo)
+      audioBusChannelsVar = value
+    }
+
+    private[this] var outputBusChannelsVar = 8
+
     /** The default number of output bus channels is `8` (scsynth default) */
-    var outputBusChannels: Int = 8
-    /** The default calculation block size is `64` (scsynth default) */
-    var blockSize: Int = 64
+    def outputBusChannels: Int = outputBusChannelsVar
+    /** The default number of output bus channels is `8` (scsynth default) */
+    def outputBusChannels_=(value: Int): Unit = {
+      require (value >= 0)
+      outputBusChannelsVar = value
+    }
+
+    private[this] var blockSizeVar = 64
+
+    /** The default calculation block size is `64` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def blockSize: Int = blockSizeVar
+    /** The default calculation block size is `64` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def blockSize_=(value: Int): Unit = {
+      require (value > 0 && value.isPowerOfTwo)
+      blockSizeVar = value
+    }
+
+    private[this] var sampleRateVar = 0
+
     /** The default sample rate is `0` (meaning that it is adjusted to
       * the sound card's current rate; scsynth default)
       */
-    var sampleRate: Int = 0
-    /** The default number of audio buffers is `1024` (scsynth default) */
-    var audioBuffers: Int = 1024
+    def sampleRate: Int = sampleRateVar
+    /** The default sample rate is `0` (meaning that it is adjusted to
+      * the sound card's current rate; scsynth default)
+      */
+    def sampleRate_=(value: Int): Unit = {
+      require (value >= 0)
+      sampleRateVar = value
+    }
+
+    private[this] var audioBuffersVar = 1024
+
+    /** The default number of audio buffers is `1024` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def audioBuffers: Int = audioBuffersVar
+    /** The default number of audio buffers is `1024` (scsynth default).
+      * Must be greater than zero and a power of two.
+      */
+    def audioBuffers_=(value: Int): Unit = {
+      require (value > 0 && value.isPowerOfTwo)
+      audioBuffersVar = value
+    }
+
     /** The default maximum number of nodes is `1024` (scsynth default) */
     var maxNodes: Int = 1024
+
     /** The default maximum number of synth defs is `1024` (scsynth default) */
     var maxSynthDefs: Int = 1024
+
     /** The default memory size is `65536` (64 KB) (higher than scsynth's default of 8 KB) */
     var memorySize: Int = 65536 // 8192
+
     /** The default number of wire buffers is `256` (higher than scsynth's default of `64`). */
     var wireBuffers: Int = 256 // 64
+
     /** The default number of random number generators is `64` (scsynth default) */
     var randomSeeds: Int = 64
+
     /** The default setting for loading synth defs is `false` (this is not the scsynth default!) */
     var loadSynthDefs: Boolean = false
+
     /** The default settings for mach port name is `None` (scsynth default) */
     var machPortName: Option[(String, String)] = None
+
     /** The default verbosity level is `0` (scsynth default) */
     var verbosity: Int = 0
+
     /** The default setting for plugin path redirection is `Nil`
       * (use standard paths; scsynth default)
       */
     var plugInsPaths: List[String] = Nil
+
     /** The default setting for restricting file access is `None` (scsynth default) */
     var restrictedPath: Option[String] = None
 
@@ -494,48 +574,69 @@ object Server {
 
     /** (Realtime) The default host name is `127.0.0.1` */
     var host: String = "127.0.0.1"
+
     /** (Realtime) The default port is `57110`. */
     var port: Int = 57110
+
     /** (Realtime) The default transport is `UDP`. */
     var transport: osc.Transport.Net = UDP
+
     /** (Realtime) The default settings for enabled input streams is `None` */
     var inputStreamsEnabled: Option[String] = None
+
     /** (Realtime) The default settings for enabled output streams is `None` */
     var outputStreamsEnabled: Option[String] = None
 
-    /** (Realtime) The default device name is `None` (scsynth default; it will
-      * use the system default sound card)
-      */
-    private[this] var deviceNameVar: Option[String] = None
+    private[this] var deviceNameVar  = Option.empty[String]
+    private[this] var deviceNamesVar = Option.empty[(String, String)]
+
     /** (Realtime) The default input/output device names is `None` (scsynth default; it will
       * use the system default sound card)
       */
-    private[this] var deviceNamesVar: Option[(String, String)] = None
-
     def deviceName: Option[String] = deviceNameVar
+    /** (Realtime) The default input/output device names is `None` (scsynth default; it will
+      * use the system default sound card)
+      */
     def deviceName_=(value: Option[String]): Unit = {
       deviceNameVar = value
       if (value.isDefined) deviceNamesVar = None
     }
 
+    /** (Realtime) The default input/output device names is `None` (scsynth default; it will
+      * use the system default sound card)
+      */
     def deviceNames: Option[(String, String)] = deviceNamesVar
+    /** (Realtime) The default input/output device names is `None` (scsynth default; it will
+      * use the system default sound card)
+      */
     def deviceNames_=(value: Option[(String, String)]): Unit = {
       deviceNamesVar = value
       if (value.isDefined) deviceNameVar = None
     }
 
+    private[this] var inputBusChannelsVar = 8
+
     /** (Realtime) The default number of input bus channels is `8` (scsynth default) */
-    var inputBusChannels: Int = 8
+    def inputBusChannels: Int = inputBusChannelsVar
+    /** (Realtime) The default number of input bus channels is `8` (scsynth default) */
+    def inputBusChannels_=(value: Int): Unit = {
+      require (value >= 0)
+      inputBusChannelsVar = value
+    }
+
     /** (Realtime) The default setting for hardware block size is `0` (meaning that
       * scsynth uses the hardware's current block size; scsynth default)
       */
     var hardwareBlockSize: Int = 0
+
     /** (Realtime) The default setting for zero-conf is `false` (other than
       * scsynth's default which is `true`)
       */
     var zeroConf: Boolean = false
+
     /** (Realtime) The maximum number of TCP clients is `64` (scsynth default) */
     var maxLogins: Int = 64
+
     /** (Realtime) The default TCP session password is `None` */
     var sessionPassword: Option[String] = None
 
@@ -577,13 +678,50 @@ object Server {
       hostAddr.isLoopbackAddress || hostAddr.isSiteLocalAddress
     }
 
-    def build: Config = new Config(
-      program, controlBusChannels, audioBusChannels, outputBusChannels, blockSize, sampleRate, audioBuffers,
-      maxNodes, maxSynthDefs, memorySize, wireBuffers, randomSeeds, loadSynthDefs, machPortName, verbosity,
-      plugInsPaths, restrictedPath, /* memoryLocking, */ host, port, transport, inputStreamsEnabled, outputStreamsEnabled,
-      deviceNames, deviceName, inputBusChannels, hardwareBlockSize, zeroConf, maxLogins, sessionPassword,
-      nrtCommandPath,
-      nrtInputPath, nrtOutputPath, nrtHeaderFormat, nrtSampleFormat)
+    def build: Config = {
+      val minAudioBuses     = inputBusChannels + outputBusChannels + 1
+      val audioBusesAdjust  = if (audioBusChannels >= minAudioBuses) audioBusChannels else {
+        minAudioBuses.nextPowerOfTwo
+      }
+
+      new Config(
+        program               = program,
+        controlBusChannels    = controlBusChannels,
+        audioBusChannels      = audioBusesAdjust, /*audioBusChannels,*/
+        outputBusChannels     = outputBusChannels,
+        blockSize             = blockSize,
+        sampleRate            = sampleRate,
+        audioBuffers          = audioBuffers,
+        maxNodes              = maxNodes,
+        maxSynthDefs          = maxSynthDefs,
+        memorySize            = memorySize,
+        wireBuffers           = wireBuffers,
+        randomSeeds           = randomSeeds,
+        loadSynthDefs         = loadSynthDefs,
+        machPortName          = machPortName,
+        verbosity             = verbosity,
+        plugInsPaths          = plugInsPaths,
+        restrictedPath        = restrictedPath,
+        /* memoryLocking, */
+        host                  = host,
+        port                  = port,
+        transport             = transport,
+        inputStreamsEnabled   = inputStreamsEnabled,
+        outputStreamsEnabled  = outputStreamsEnabled,
+        deviceNames           = deviceNames,
+        deviceName            = deviceName,
+        inputBusChannels      = inputBusChannels,
+        hardwareBlockSize     = hardwareBlockSize,
+        zeroConf              = zeroConf,
+        maxLogins             = maxLogins,
+        sessionPassword       = sessionPassword,
+        nrtCommandPath        = nrtCommandPath,
+        nrtInputPath          = nrtInputPath,
+        nrtOutputPath         = nrtOutputPath,
+        nrtHeaderFormat       = nrtHeaderFormat,
+        nrtSampleFormat       = nrtSampleFormat
+      )
+    }
 
     def read(config: Config): Unit = {
       program             = config.program

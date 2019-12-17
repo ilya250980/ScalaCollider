@@ -265,7 +265,7 @@ object Server {
     }
 
     private[Server] def toRealtimeArgs(o: ConfigLike): List[String] = {
-      val b = List.newBuilder[ String ]
+      val b = List.newBuilder[String]
 
       b += o.program
       o.transport match {
@@ -275,6 +275,10 @@ object Server {
         case UDP =>
           b += "-u"
           b += o.port.toString
+      }
+      if (o.host != "0.0.0.0") {
+        b += "-B"
+        b += o.host
       }
 
       addCommonArgs(o, b)
@@ -572,7 +576,10 @@ object Server {
 
     // ---- realtime only ----
 
-    /** (Realtime) The default host name is `127.0.0.1` */
+    /** (Realtime) The default host name is `127.0.0.1`. When booting, this is used
+      * to force scsynth to bind to a particular address (`-B` switch). To avoid the `-B`
+      * switch, you can use `"0.0.0.0"` (server will be reachable via network).
+      */
     var host: String = "127.0.0.1"
 
     /** (Realtime) The default port is `57110`. */
@@ -675,7 +682,7 @@ object Server {
     /** Checks if the currently set `host` is located on the local machine. */
     def isLocal: Boolean = {
       val hostAddr = InetAddress.getByName(host)
-      hostAddr.isLoopbackAddress || hostAddr.isSiteLocalAddress
+      hostAddr.isLoopbackAddress || hostAddr.isSiteLocalAddress || hostAddr.isAnyLocalAddress
     }
 
     def build: Config = {
@@ -831,15 +838,16 @@ object Server {
   }
 
   private def prepareConnection(config: Config, clientConfig: Client.Config): (InetSocketAddress, osc.Client) = {
-    val addr = new InetSocketAddress(config.host, config.port)
+    val sa = new InetSocketAddress(config.host, config.port)
     val clientAddr = clientConfig.addr getOrElse {
-      if (addr.getAddress.isLoopbackAddress)
+      val a = sa.getAddress
+      if (a.isLoopbackAddress || a.isAnyLocalAddress)
         new InetSocketAddress("127.0.0.1", 0)
       else
         new InetSocketAddress(InetAddress.getLocalHost, 0)
     }
-    val c = createClient(config.transport, addr, clientAddr)
-    (addr, c)
+    val c = createClient(config.transport, sa, clientAddr)
+    (sa, c)
   }
 
   def allocPort(transport: osc.Transport): Int = {

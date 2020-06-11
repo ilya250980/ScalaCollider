@@ -1,28 +1,32 @@
 lazy val baseName        = "ScalaCollider"
 lazy val baseNameL       = baseName.toLowerCase
 
-lazy val BASE_VERSION    = "1.28.0"
+lazy val BASE_VERSION    = "1.28.5"
 lazy val PROJECT_VERSION = BASE_VERSION
 
 lazy val deps = new {
-  val audioFile          = "1.5.0"
-  val scalaColliderSwing = "1.41.0"
-  val scalaColliderUGens = "1.19.0"
-  val scalaOsc           = "1.2.0"
+  val audioFile          = "1.5.4"
+  val scalaColliderSwing = "1.41.7"
+  val scalaColliderUGens = "1.19.6"
+  val scalaOsc           = "1.2.1"
 }
 
 lazy val lScalaCollider       = RootProject(uri(s"git://github.com/Sciss/$baseName.git#v${BASE_VERSION}"))
 lazy val lAudioFile           = RootProject(uri(s"git://github.com/Sciss/AudioFile.git#v${deps.audioFile}"))
 lazy val lScalaColliderSwing  = RootProject(uri(s"git://github.com/Sciss/ScalaColliderSwing.git#v${deps.scalaColliderSwing}"))
-lazy val lScalaColliderUGens  = RootProject(uri(s"git://github.com/Sciss/ScalaColliderUGens.git#v${deps.scalaColliderUGens}"))
+// lazy val lScalaColliderUGens  = RootProject(uri(s"git://github.com/Sciss/ScalaColliderUGens.git#v${deps.scalaColliderUGens}"))
+val lScalaColliderUGens = RootProject(uri(s"https://github.com/Sciss/ScalaColliderUGens.git#61b0ec131c4ac9fbb934db4d62bed5ccad8dfc2d")) // unidoc problem fix
 lazy val lScalaOsc            = RootProject(uri(s"git://github.com/Sciss/ScalaOSC.git#v${deps.scalaOsc}"))
 
 lazy val lList = Seq(lAudioFile, lScalaCollider, lScalaColliderUGens, lScalaColliderSwing, lScalaOsc)
 
-scalaVersion in ThisBuild := "2.12.8"
+scalaVersion in ThisBuild := "2.13.2"
 
 lazy val unidocSettings = Seq(
   mappings in packageDoc in Compile := (mappings in (ScalaUnidoc, packageDoc)).value,
+  libraryDependencies ++= Seq(
+    "org.scala-lang" % "scala-reflect" % scalaVersion.value // % "provided" // this is needed for sbt-unidoc to work with macros used by Mellite!
+  ),
   scalacOptions in (Compile, doc) ++= Seq(
     "-skip-packages", Seq(
       "de.sciss.osc.impl", 
@@ -36,20 +40,22 @@ lazy val unidocSettings = Seq(
 ////////////////////////// site
 
 val site = project.withId(s"$baseNameL-site").in(file("."))
-  .enablePlugins(ParadoxSitePlugin, GhpagesPlugin, ScalaUnidocPlugin, SiteScaladocPlugin)
+  .enablePlugins(ParadoxSitePlugin, /* GhpagesPlugin, */ ScalaUnidocPlugin, SiteScaladocPlugin)
   .settings(unidocSettings)
   .settings(
     name                 := baseName, // IMPORTANT: `name` is used by GhpagesPlugin, must base base, not s"$baseName-Site"!
     version              := PROJECT_VERSION,
     siteSubdirName in SiteScaladoc    := "latest/api",
-    git.remoteRepo       := s"git@github.com:Sciss/$baseName.git",
-    git.gitCurrentBranch := "master",
+//    git.remoteRepo       := s"git@github.com:Sciss/$baseName.git",
+//    git.gitCurrentBranch := "master",
     paradoxTheme         := Some(builtinParadoxTheme("generic")),
-    paradoxProperties in Paradox ++= Map(
+    paradoxProperties /* in Paradox */ ++= Map(
       "snippet.base_dir"        -> s"${baseDirectory.value}/snippets/src/main",
+      "image.base_url"          -> "assets/images",
       "swingversion"            -> deps.scalaColliderSwing,
       "extref.swingdl.base_url" -> s"https://github.com/Sciss/ScalaColliderSwing/releases/download/v${deps.scalaColliderSwing}/ScalaColliderSwing_${deps.scalaColliderSwing}%s"
-    )
+    ),
+    paradoxRoots := List("index.html"), // you need that if there is no TOC
   )
   .aggregate(lList: _*)
 

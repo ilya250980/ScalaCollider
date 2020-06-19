@@ -1,7 +1,7 @@
 # ScalaCollider
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sciss/ScalaCollider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/Sciss/ScalaCollider.svg?branch=master)](https://travis-ci.org/Sciss/ScalaCollider)
+[![Build Status](https://travis-ci.org/Sciss/ScalaCollider.svg?branch=main)](https://travis-ci.org/Sciss/ScalaCollider)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.12)
 <a href="https://liberapay.com/sciss/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="24"></a>
 
@@ -9,7 +9,7 @@
 
 ScalaCollider is a [SuperCollider](https://supercollider.github.io/) client for the Scala programming language. 
 It is (C)opyright 2008&ndash;2019 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
-the [GNU Lesser General Public License](https://git.iem.at/sciss/ScalaCollider/raw/master/LICENSE) v2.1+ and comes
+the [GNU Lesser General Public License](https://git.iem.at/sciss/ScalaCollider/raw/main/LICENSE) v2.1+ and comes
 with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language
@@ -48,7 +48,7 @@ The early architectural design of ScalaCollider is documented in the SuperCollid
 [H.H.Rutz, Rethinking the SuperCollider Client...](http://cmr.soc.plymouth.ac.uk/publications/Rutz_SuperCollider2010.pdf).
 However, many design decisions have been revised or refined in the meantime.
 
-The file [ExampleCmd.sc](https://git.iem.at/sciss/ScalaCollider/blob/master/ExampleCmd.sc) is a good
+The file [ExampleCmd.sc](https://git.iem.at/sciss/ScalaCollider/blob/main/ExampleCmd.sc) is a good
 starting point for understanding how UGen graphs are written in ScalaCollider. You can directly copy and paste these
 examples into the ScalaCollider-Swing application's interpreter window.
 

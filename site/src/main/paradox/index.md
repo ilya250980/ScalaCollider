@@ -50,7 +50,7 @@ The best way to ask questions, no matter if newbie or expert, is to use one of t
   subscribe, simply send a mail to `ScalaCollider+subscribe@googlegroups.com` (you will receive a mail asking for
   confirmation).
 
-The file [ExampleCmd.sc](https://raw.githubusercontent.com/Sciss/ScalaCollider/master/ExampleCmd.sc) is a good
+The file [ExampleCmd.sc](https://raw.githubusercontent.com/Sciss/ScalaCollider/main/ExampleCmd.sc) is a good
 starting point for understanding how UGen graphs are written in ScalaCollider. You can directly copy and paste
 these examples into the ScalaCollider-Swing prototyping environment. If you start it for the first time, you may
 have to adjust the location of the `scsynth` or `scsynth.exe` program in the preferences. Press the boot button to

@@ -46,8 +46,6 @@ val site = project.withId(s"$baseNameL-site").in(file("."))
     name                 := baseName, // IMPORTANT: `name` is used by GhpagesPlugin, must base base, not s"$baseName-Site"!
     version              := PROJECT_VERSION,
     siteSubdirName in SiteScaladoc    := "latest/api",
-//    git.remoteRepo       := s"git@github.com:Sciss/$baseName.git",
-//    git.gitCurrentBranch := "master",
     paradoxTheme         := Some(builtinParadoxTheme("generic")),
     paradoxProperties /* in Paradox */ ++= Map(
       "snippet.base_dir"        -> s"${baseDirectory.value}/snippets/src/main",

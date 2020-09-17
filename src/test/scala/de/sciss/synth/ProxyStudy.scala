@@ -20,7 +20,7 @@ object ProxyStudy2 extends App {
     def newBuilder: ControlBuilder[Proxy] = new Factory
 
     private final class Factory extends ControlBuilder[Proxy] {
-      var result = List.empty[Proxy]
+      var result: List[Proxy] = Nil
 
       def +=(p: Proxy): Unit = result ::= p
     }
@@ -92,7 +92,7 @@ object ProxyStudy {
     def newFactory: ControlFactory[Proxy] = new Factory
 
     private final class Factory extends ControlFactory[Proxy] {
-      var result = List.empty[Proxy]
+      var result: List[Proxy] = Nil
 
       def make(): Proxy = {
         val res = Proxy(util.Random.shuffle("hallo_welt".toList).mkString(""))

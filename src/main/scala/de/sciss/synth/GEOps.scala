@@ -962,7 +962,7 @@ final class GEOps(private val g: GE) extends AnyVal {
   def firstArg(b: GE): GE = binOp(Firstarg, b)
 
   /** Outputs random values evenly distributed between the two signals. */
- def rangeRand(b: GE): GE = binOp(Rrand   , b)
+  def rangeRand(b: GE): GE = binOp(Rrand   , b)
 
   /** Outputs random values exponentially distributed between the two signals. */
   def expRand  (b: GE): GE = binOp(Exprand , b)

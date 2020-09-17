@@ -1,13 +1,13 @@
 package de.sciss.synth
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 /* To run only this test:
 
   test-only de.sciss.synth.RichNumberSuite
 
   */
-class SynthDefSuite extends FunSpec {
+class SynthDefSuite extends AnyFunSpec {
   describe("Synth definitions") {
     it("should compile various standard examples") {
       import ugen._

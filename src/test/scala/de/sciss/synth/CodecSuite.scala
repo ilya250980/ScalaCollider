@@ -1,16 +1,17 @@
 package de.sciss.synth
 
-import org.scalatest.FunSpec
 import de.sciss.synth.message.ServerCodec
 import java.nio.ByteBuffer
+
 import de.sciss.osc
+import org.scalatest.funspec.AnyFunSpec
 
 /* To run only this test:
 
   test-only de.sciss.synth.CodecSuite
 
   */
-class CodecSuite extends FunSpec {
+class CodecSuite extends AnyFunSpec {
   describe("ServerCodec") {
     it("should encode and decode standard messages") {
       val b     = ByteBuffer.allocate(8192)

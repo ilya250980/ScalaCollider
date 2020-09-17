@@ -87,10 +87,10 @@ object Env extends EnvFactory[Env] {
   object Segment {
     implicit def fromTuple3[D, L, S](tup: (D, L, S))
                                     (implicit durView: D => GE, levelView: L => GE, curveView: S => Curve): Segment =
-      Segment(tup._1, tup._2, tup._3)
+      Segment(durView(tup._1), levelView(tup._2), curveView(tup._3))
 
     implicit def fromTuple2[D, L](tup: (D, L))(implicit durView: D => GE, levelView: L => GE): Segment =
-      Segment(tup._1, tup._2, linear)
+      Segment(durView(tup._1), levelView(tup._2), linear)
   }
   final case class Segment(dur: GE, targetLevel: GE, curve: Curve = linear) {
     override def productPrefix = s"Env$$Segment"

@@ -1,13 +1,13 @@
 package de.sciss.synth
 
 import de.sciss.synth.ugen.{BinaryOpUGen, Constant}
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 /** To run only this test:
   *
   * test-only de.sciss.synth.RichNumberSuite
   */
-class RichNumberSuite extends FunSpec {
+class RichNumberSuite extends AnyFunSpec {
   describe("Rich number operators") {
     it("should properly expand to primitives and GE") {
       val intInt1 = 6.roundTo(4)

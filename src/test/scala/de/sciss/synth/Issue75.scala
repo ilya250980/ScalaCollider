@@ -1,10 +1,11 @@
 package de.sciss.synth
 
 import de.sciss.serial.impl.{ByteArrayInputStream, ByteArrayOutputStream}
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 /** Could not reproduce */
-class Issue75 extends FlatSpec with Matchers {
+class Issue75 extends AnyFlatSpec with Matchers {
   "SynthDef g1_51_4456" should "be serializable" in {
     testGraph {
       SynthDef("g1_51_4456") {

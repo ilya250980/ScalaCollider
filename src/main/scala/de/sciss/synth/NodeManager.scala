@@ -98,7 +98,7 @@ final class NodeManager(val server: Server) extends ModelImpl[NodeManager.Update
         }
 
       case _ =>
-	}
+    }
 
   private def dispatchBoth(change: NodeChange): Unit = {
     dispatch(change)

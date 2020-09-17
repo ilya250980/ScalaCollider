@@ -335,48 +335,48 @@ object Server {
       // not assume any longer defaults.
 
       // if (o.controlBusChannels != 4096) {
-        b += "-c"
-        b += o.controlBusChannels.toString
+      b += "-c"
+      b += o.controlBusChannels.toString
       // }
       // if (o.audioBusChannels != 128) {
-        b += "-a"
-        b += o.audioBusChannels.toString
+      b += "-a"
+      b += o.audioBusChannels.toString
       // }
       // if (o.inputBusChannels != 8) {
-        b += "-i"
-        b += o.inputBusChannels.toString
+      b += "-i"
+      b += o.inputBusChannels.toString
       // }
       // if (o.outputBusChannels != 8) {
-        b += "-o"
-        b += o.outputBusChannels.toString
+      b += "-o"
+      b += o.outputBusChannels.toString
       // }
       // if (o.blockSize != 64) {
-        b += "-z"
-        b += o.blockSize.toString
+      b += "-z"
+      b += o.blockSize.toString
       // }
       // if (o.audioBuffers != 1024) {
-        b += "-b"
-        b += o.audioBuffers.toString
+      b += "-b"
+      b += o.audioBuffers.toString
       // }
       // if (o.maxNodes != 1024) {
-        b += "-n"
-        b += o.maxNodes.toString
+      b += "-n"
+      b += o.maxNodes.toString
       // }
       // if (o.maxSynthDefs != 1024) {
-        b += "-d"
-        b += o.maxSynthDefs.toString
+      b += "-d"
+      b += o.maxSynthDefs.toString
       // }
       // if (o.memorySize != 8192) {
-        b += "-m"
-        b += o.memorySize.toString
+      b += "-m"
+      b += o.memorySize.toString
       // }
       // if (o.wireBuffers != 64) {
-        b += "-w"
-        b += o.wireBuffers.toString
+      b += "-w"
+      b += o.wireBuffers.toString
       // }
       // if (o.randomSeeds != 64) {
-        b += "-r"
-        b += o.randomSeeds.toString
+      b += "-r"
+      b += o.randomSeeds.toString
       // }
       if (!o.loadSynthDefs) {
         b += "-D"

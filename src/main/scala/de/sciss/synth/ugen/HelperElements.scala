@@ -633,13 +633,13 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
     _indices.dropRight(1).zip(_in).foreach {
       case (index, sig) =>
         val ok = index + NumChannels(sig) <= numOut
-//        Out.ar(index, sig)
-      XOut.ar(index, in = sig, xfade = ok)
+        // Out.ar(index, sig)
+        XOut.ar(index, in = sig, xfade = ok)
     }
     (_indices.lastOption, _in.drop(_indices.size - 1)) match {
       case (Some(index), sig) if sig.nonEmpty =>
         val ok = index + NumChannels(sig) <= numOut
-//        Out.ar(index, sig)
+        // Out.ar(index, sig)
         XOut.ar(index, in = sig, xfade = ok)
       case _ =>
     }

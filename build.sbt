@@ -1,6 +1,6 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.28.6-SNAPSHOT"
+lazy val projectVersion = "1.28.6"
 lazy val mimaVersion    = "1.28.0"   // for compatibility testing
 
 lazy val deps = new {
@@ -9,7 +9,7 @@ lazy val deps = new {
     val osc       = "1.2.2"
     val optional  = "1.0.1"
     val processor = "0.4.3"
-    val ugens     = "1.19.8-SNAPSHOT"
+    val ugens     = "1.19.8"
   }
   val test = new {
     val scalaTest = "3.2.2"
@@ -22,7 +22,7 @@ lazy val root = project.withId(baseNameL).in(file("."))
     name                 := baseName,
     version              := projectVersion,
     organization         := "de.sciss",
-    scalaVersion         := "2.13.3",
+    scalaVersion         := "0.27.0-RC1", // "2.13.3",
     crossScalaVersions   := Seq("0.27.0-RC1", "2.13.3", "2.12.12"),
     description          := "A sound synthesis library for the SuperCollider server",
     homepage             := Some(url(s"https://git.iem.at/sciss/${name.value}")),
@@ -41,7 +41,11 @@ lazy val root = project.withId(baseNameL).in(file("."))
     },
     scalacOptions in (Compile, compile) ++= {
       val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xlint:-stars-align,_", "-Xsource:2.13")
-      if (isSnapshot.value) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+      val elide = !isSnapshot.value && !isDotty.value
+      if (!elide) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+    },
+    sources in (Compile, doc) := {
+      if (isDotty.value) Nil else (sources in (Compile, doc)).value // dottydoc is hopelessly broken
     },
     // ---- console ----
     initialCommands in console :=

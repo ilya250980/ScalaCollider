@@ -1,6 +1,6 @@
 package de.sciss.synth
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 /*
   To run only this test:
@@ -8,7 +8,7 @@ import org.scalatest.FunSpec
   test-only de.sciss.synth.LocalBufSuite
 
  */
-class LocalBufSuite extends FunSpec {
+class LocalBufSuite extends AnyFunSpec {
   describe("LocalBuf and MaxLocalBufs UGens") {
     it("should properly expand") {
       val df = SynthDef("test") {

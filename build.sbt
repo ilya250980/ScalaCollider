@@ -1,14 +1,15 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "1.28.6"
-lazy val mimaVersion    = "1.28.0"   // for compatibility testing
+lazy val projectVersion = "2.0.0-SNAPSHOT"
+lazy val mimaVersion    = "2.0.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
-    val audioFile = "1.5.5"
+    val audioFile = "2.0.0-SNAPSHOT"
     val osc       = "1.2.2"
     val optional  = "1.0.1"
     val processor = "0.4.3"
+    val serial    = "2.0.0-SNAPSHOT"
     val ugens     = "1.19.8"
   }
   val test = new {
@@ -22,18 +23,19 @@ lazy val root = project.withId(baseNameL).in(file("."))
     name                 := baseName,
     version              := projectVersion,
     organization         := "de.sciss",
-    scalaVersion         := "0.27.0-RC1", // "2.13.3",
+    scalaVersion         := "2.13.3",
     crossScalaVersions   := Seq("0.27.0-RC1", "2.13.3", "2.12.12"),
     description          := "A sound synthesis library for the SuperCollider server",
     homepage             := Some(url(s"https://git.iem.at/sciss/${name.value}")),
     licenses             := Seq("LGPL v2.1+" -> url("http://www.gnu.org/licenses/lgpl-2.1.txt")),
     mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion),
     libraryDependencies ++= Seq(
-      "de.sciss"      %% "scalaosc"                % deps.main.osc,
       "de.sciss"      %% "audiofile"               % deps.main.audioFile,
-      "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
+      "de.sciss"      %% "optional"                % deps.main.optional,
       "de.sciss"      %% "processor"               % deps.main.processor,
-      "de.sciss"      %% "optional"                % deps.main.optional
+      "de.sciss"      %% "scalacolliderugens-core" % deps.main.ugens,
+      "de.sciss"      %% "scalaosc"                % deps.main.osc,
+      "de.sciss"      %% "serial"                  % deps.main.serial,
     ),
     libraryDependencies += {
       val v = deps.test.scalaTest

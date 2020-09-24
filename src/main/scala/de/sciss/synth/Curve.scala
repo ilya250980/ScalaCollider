@@ -13,7 +13,7 @@
 
 package de.sciss.synth
 
-import de.sciss.serial.{DataInput, DataOutput, ImmutableSerializer}
+import de.sciss.serial.{DataInput, DataOutput, ConstFormat}
 
 import scala.annotation.switch
 import scala.language.implicitConversions
@@ -127,7 +127,7 @@ object Curve {
     }
   }
 
-  implicit object serializer extends ImmutableSerializer[Curve] {
+  implicit object format extends ConstFormat[Curve] {
     def write(shape: Curve, out: DataOutput): Unit = {
       out.writeInt(shape.id)
       shape match {

@@ -7,3 +7,4 @@ project/boot/
 dependency-graph.sbt
 wiki/
 *.swp
+_site/

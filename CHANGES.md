@@ -2,6 +2,10 @@
 
 This document only highlights major changes which probably require some adjustments when upgrading.
 
+## changes in v2.0.0
+
+- uses new serialization library version
+
 ## changes in v1.27.0
 
 - adopts camel-case for operators, e.g. `ampDb` instead of `ampdb`, `linLin` instead of `linlin`

@@ -817,7 +817,7 @@ final case class ChannelIndices(in: GE) extends UGenSource.SingleOut with Scalar
 final case class NumChannels(in: GE) extends UGenSource.SingleOut with ScalarRated {
   protected def makeUGens: UGenInLike = unwrap(this, in.expand.outputs)
 
-  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size)
+  protected def makeUGen(args: Vec[UGenIn]): UGenInLike = Constant(args.size.toFloat)
 }
 
 /** A graph element that controls the multi-channel expansion of

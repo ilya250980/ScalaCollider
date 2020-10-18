@@ -8,7 +8,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 /* To run only this test:
 
-  test-only de.sciss.synth.CodecSuite
+  testOnly de.sciss.synth.CodecSuite
 
   */
 class CodecSuite extends AnyFunSpec {

@@ -13,9 +13,9 @@
 
 package de.sciss.synth
 
-import java.io.{BufferedInputStream, BufferedOutputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream, InputStream, OutputStream}
+import java.io.File.{separator => sep}
+import java.io.{ByteArrayOutputStream, DataInputStream, DataOutputStream, File, FileInputStream, FileOutputStream, InputStream, OutputStream}
 import java.nio.ByteBuffer
-import File.{separator => sep}
 
 import de.sciss.optional.Optional
 import de.sciss.osc.Packet
@@ -67,7 +67,7 @@ object SynthDef {
   def write(os: OutputStream, defs: Seq[SynthDef], version: Int): Unit = {
     if (version != 1 && version != 2) throw new IllegalArgumentException(s"Illegal SynthDef version $version")
 
-    val dos = new DataOutputStream(new BufferedOutputStream(os))
+    val dos = new DataOutputStream(os) // new BufferedOutputStream(os))
 
     dos.writeInt(COOKIE)        // magic cookie
     dos.writeInt(version)       // version
@@ -91,7 +91,7 @@ object SynthDef {
 
   /** Reads all synth-definitions from an input stream with standard binary format. */
   def read(is: InputStream): List[SynthDef] = {
-    val dis = new DataInputStream(new BufferedInputStream(is))
+    val dis = new DataInputStream(is) // new BufferedInputStream(is))
     val cookie  = dis.readInt()
     require (cookie == COOKIE, s"SynthDef must begin with cookie word 0x${COOKIE.toHexString}")
     val version = dis.readInt()

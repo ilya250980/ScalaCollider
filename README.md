@@ -10,7 +10,7 @@
 ScalaCollider is a [SuperCollider](https://supercollider.github.io/) client for the Scala programming language. 
 It is (C)opyright 2008&ndash;2020 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
 the [GNU Lesser General Public License](https://git.iem.at/sciss/ScalaCollider/raw/main/LICENSE) v2.1+ and comes
-with absolutely no warranties. To contact the author, send an e-mail to `contact at sciss.de`
+with absolutely no warranties. To contact the author, send an e-mail to `contact at sciss.de`.
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language
 'SCLang' that controls the sound synthesis processes on a server, 'scsynth'. ScalaCollider is an alternative to
@@ -57,8 +57,11 @@ from your own application code).
 
 ## building
 
-ScalaCollider builds with [sbt](http://scala-sbt.org/) against Scala 2.13, 2.12. The last version to support
-Scala 2.11 was 1.28.4.
+ScalaCollider builds with [sbt](http://scala-sbt.org/) against Scala 2.13, 2.12, Dotty (JVM) and Scala 2.13 (JS).
+The last version to support Scala 2.11 was 1.28.4.
+Note that because of an incompatibility between ScalaOSC and Scala.js, support for Scala.js is currently incomplete,
+and consequently some OSC related tests are not run under Scala.js.
+
 ScalaCollider requires SuperCollider server to be installed and/or running. The recommended version as of
 this writing is 3.10. Note that the UGens are provided by the
 separate [ScalaColliderUGens](https://git.iem.at/sciss/ScalaColliderUGens) project. A simple Swing front end is
@@ -78,7 +81,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"2.0.0"`
+The current version `v` is `"2.1.0"`
 
 ## contributing
 
@@ -166,9 +169,10 @@ libraries are dependencies and therefore always available in ScalaCollider:
 
 Here are some examples for libraries not included:
 
-- Patterns functionality is becoming available through the [Patterns](https://git.iem.at/sciss/Patterns) library.
-  This is currently in experimental phase, with focus clearly on support in
-  [SoundProcesses](https://git.iem.at/sciss/SoundProcesses) rather than vanilla ScalaCollider.
+- Patterns functionality is  available through the [Patterns](https://git.iem.at/sciss/Patterns) library, which
+  is supported through
+  [SoundProcesses](https://git.iem.at/sciss/SoundProcesses) rather than vanilla ScalaCollider. SoundProcesses also
+  takes the role of more high-level abstractions similar to `NodeProxy`, for example.
 - MIDI functionality can be added with the [ScalaMIDI](https://git.iem.at/sciss/ScalaMIDI) library.
 - Plotting is most easily achieved through [Scala-Chart](https://git.iem.at/sciss/scala-chart), which is 
   conveniently included in ScalaCollider-Swing.

@@ -1,9 +1,9 @@
 package de.sciss.synth
 
-import de.sciss.synth.message.ServerCodec
 import java.nio.ByteBuffer
 
 import de.sciss.osc
+import de.sciss.synth.message.ServerCodec
 import org.scalatest.funspec.AnyFunSpec
 
 /* To run only this test:

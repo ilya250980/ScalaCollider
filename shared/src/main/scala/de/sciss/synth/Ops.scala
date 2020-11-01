@@ -13,6 +13,7 @@
 
 package de.sciss.synth
 
+import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.optional.Optional
 import de.sciss.osc
 import de.sciss.osc.Packet
@@ -459,8 +460,8 @@ object Ops {
 
     def zero(completion: Optional[Packet] = None): Future[Unit] = sendAsync(zeroMsg(_), completion)
 
-    def write(path: String, fileType: io.AudioFileType = io.AudioFileType.AIFF,
-              sampleFormat: io.SampleFormat = io.SampleFormat.Float, numFrames: Int = -1, startFrame: Int = 0,
+    def write(path: String, fileType: AudioFileType = AudioFileType.AIFF,
+              sampleFormat: SampleFormat = SampleFormat.Float, numFrames: Int = -1, startFrame: Int = 0,
               leaveOpen: Boolean = false, completion: Optional[Packet] = None): Future[Unit] =
       sendAsync(writeMsg(path, fileType, sampleFormat, numFrames, startFrame, leaveOpen, _), completion)
 

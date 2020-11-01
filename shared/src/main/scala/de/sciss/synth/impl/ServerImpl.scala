@@ -237,24 +237,27 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     private val sync = new AnyRef
     @volatile private var handlers = Set.empty[message.Handler]
 
-    def !(p: osc.Packet): Unit = Future {
-      blocking {
-        p match {
-          case nodeMsg        : message.NodeChange  =>
-            // println(s"---- NodeChange: $nodeMsg")
-            nodeManager.nodeChange(nodeMsg)
-          case bufInfoMsg     : message.BufferInfo  => bufManager.bufferInfo(bufInfoMsg)
-          case statusReplyMsg : message.StatusReply => aliveThread.foreach(_.statusReply(statusReplyMsg))
-          case _ =>
-        }
-        p match {
-          case m: osc.Message =>
-            handlers.foreach { h =>
-              if (h.handle(m)) sync.synchronized(handlers -= h)
-            }
-          case _ => // ignore bundles send from scsynth
+    def ! (p: osc.Packet): Unit = {
+      Future {
+        blocking {
+          p match {
+            case nodeMsg        : message.NodeChange  =>
+              // println(s"---- NodeChange: $nodeMsg")
+              nodeManager.nodeChange(nodeMsg)
+            case bufInfoMsg     : message.BufferInfo  => bufManager.bufferInfo(bufInfoMsg)
+            case statusReplyMsg : message.StatusReply => aliveThread.foreach(_.statusReply(statusReplyMsg))
+            case _ =>
+          }
+          p match {
+            case m: osc.Message =>
+              handlers.foreach { h =>
+                if (h.handle(m)) sync.synchronized(handlers -= h)
+              }
+            case _ => // ignore bundles send from scsynth
+          }
         }
       }
+      ()
     }
 
     def clear(): Unit = {

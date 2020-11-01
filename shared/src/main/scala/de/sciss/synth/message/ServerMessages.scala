@@ -16,6 +16,7 @@ package message
 
 import java.nio.ByteBuffer
 
+import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.osc
 import de.sciss.osc.{Message, Packet}
 
@@ -442,7 +443,7 @@ final case class BufferZero(id: Int, completion: Option[Packet])
   * @see [[Buffer#writeMsg]]
   * @see [[BufferRead]]
   */
-final case class BufferWrite(id: Int, path: String, fileType: io.AudioFileType, sampleFormat: io.SampleFormat,
+final case class BufferWrite(id: Int, path: String, fileType: AudioFileType, sampleFormat: SampleFormat,
                              numFrames: Int, startFrame: Int, leaveOpen: Boolean,
                              completion: Option[Packet])
   extends Message("/b_write",

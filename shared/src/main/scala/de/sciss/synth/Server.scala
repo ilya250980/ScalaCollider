@@ -16,12 +16,12 @@ package de.sciss.synth
 import java.io.File
 import java.net.{DatagramSocket, InetAddress, InetSocketAddress, ServerSocket}
 
+import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.model.Model
 import de.sciss.osc
 import de.sciss.osc.{TCP, UDP}
 import de.sciss.processor.Processor
 import de.sciss.synth.impl.ServerImpl
-import de.sciss.synth.io.{AudioFileType, SampleFormat}
 
 import scala.collection.mutable
 import scala.concurrent.Future

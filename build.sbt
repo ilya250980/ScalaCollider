@@ -1,11 +1,11 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "2.1.0"
+lazy val projectVersion = "2.2.0-SNAPSHOT"
 lazy val mimaVersion    = "2.1.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
-    val audioFile = "2.1.0"
+    val audioFile = "2.2.0-SNAPSHOT"
     val osc       = "1.2.2"
     val optional  = "1.0.1"
     val processor = "0.4.3"
@@ -45,7 +45,9 @@ lazy val root = crossProject(JVMPlatform, JSPlatform).in(file("."))
     scalacOptions in (Compile, compile) ++= {
       val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xlint:-stars-align,_", "-Xsource:2.13")
       val elide = !isSnapshot.value && !isDotty.value
-      if (!elide) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+      val ys = if (!elide) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+      val sv = scalaVersion.value
+      if (sv.startsWith("2.13.")) ys :+ "-Wvalue-discard" else ys
     },
     sources in (Compile, doc) := {
       if (isDotty.value) Nil else (sources in (Compile, doc)).value // dottydoc is hopelessly broken

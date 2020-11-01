@@ -363,6 +363,7 @@ final case class WrapOut(in: GE, fadeTime: Double = 0.02) extends UGenSource.Zer
       }
       val cOut = "out".kr(0f)
       Out.ar(cOut, ins3)
+      ()
     }
   }
 }
@@ -641,6 +642,7 @@ final case class PhysicalOut(indices: GE, in: GE) extends UGenSource.ZeroOut wit
         val ok = index + NumChannels(sig) <= numOut
         // Out.ar(index, sig)
         XOut.ar(index, in = sig, xfade = ok)
+        ()
       case _ =>
     }
   }

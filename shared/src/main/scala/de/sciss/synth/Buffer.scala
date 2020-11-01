@@ -13,6 +13,7 @@
 
 package de.sciss.synth
 
+import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.model.Model
 import de.sciss.model.impl.ModelImpl
 import de.sciss.optional.Optional
@@ -169,8 +170,8 @@ final case class Buffer(server: Server, id: Int) extends ModelImpl[BufferManager
 
   def zeroMsg(completion: Optional[Packet]) = message.BufferZero(id, completion)
 
-  def writeMsg(path: String, fileType: io.AudioFileType = io.AudioFileType.AIFF,
-               sampleFormat: io.SampleFormat = io.SampleFormat.Float, numFrames: Int = -1, startFrame: Int = 0,
+  def writeMsg(path: String, fileType: AudioFileType = AudioFileType.AIFF,
+               sampleFormat: SampleFormat = SampleFormat.Float, numFrames: Int = -1, startFrame: Int = 0,
                leaveOpen: Boolean = false, completion: Optional[Packet] = None) =
     message.BufferWrite(id, path, fileType, sampleFormat, numFrames, startFrame, leaveOpen, completion)
 

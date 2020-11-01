@@ -43,6 +43,7 @@ abstract class Node extends ModelImpl[NodeManager.NodeChange] {
         thunk
     }
     addListener(l)
+    ()
   }
 
   final def onEnd(thunk: => Unit): Unit = {
@@ -53,6 +54,7 @@ abstract class Node extends ModelImpl[NodeManager.NodeChange] {
         thunk
     }
     addListener(l)
+    ()
   }
 
   final protected[synth] def updated(change: NodeManager.NodeChange): Unit =

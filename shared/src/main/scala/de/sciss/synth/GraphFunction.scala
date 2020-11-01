@@ -35,7 +35,10 @@ object GraphFunction {
       def close(in: scala.Unit, fadeTime: Double): Unit = ()
     }
     final case class In[A](view: A => GE) extends Result[A] {
-      def close(in: A, fadeTime: Double): Unit = WrapOut(view(in), fadeTime)
+      def close(in: A, fadeTime: Double): Unit = {
+        WrapOut(view(in), fadeTime)
+        ()
+      }
     }
   }
   sealed trait Result[-A] {

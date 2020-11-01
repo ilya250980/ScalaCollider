@@ -65,11 +65,13 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
     def begin(): Unit = {
       log("begin")
       beginCond.trySuccess(())
+      ()
     }
 
     override def notifyAborted(): Unit = {
       log("notifyAborted")
       beginCond.tryFailure(Processor.Aborted())
+      ()
     }
 
     def body(): OnlineServerImpl = {
@@ -91,7 +93,10 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
     private def ping[A](message: Message)(reply: PartialFunction[osc.Packet, A]): A = {
       val phase = Promise[A]()
       c.action = { p =>
-        if (reply.isDefinedAt(p)) phase.trySuccess(reply(p))
+        if (reply.isDefinedAt(p)) {
+          phase.trySuccess(reply(p))
+          ()
+        }
       }
       val result = phase.future
 

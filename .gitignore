@@ -8,3 +8,4 @@ dependency-graph.sbt
 wiki/
 *.swp
 _site/
+/.bsp/

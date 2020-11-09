@@ -1,24 +1,24 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
 lazy val projectVersion = "2.2.0-SNAPSHOT"
-lazy val mimaVersion    = "2.1.0"   // for compatibility testing
+lazy val mimaVersion    = "2.2.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
     val audioFile = "2.2.0-SNAPSHOT"
-    val osc       = "1.2.2"
+    val osc       = "1.2.3"
     val optional  = "1.0.1"
-    val processor = "0.4.3"
+    val processor = "0.5.0"
     val serial    = "2.0.0"
     val ugens     = "1.20.0"
   }
   val test = new {
-    val scalaTest = "3.2.2"
+    val scalaTest = "3.2.3"
   }
 }
 
 lazy val commonJvmSettings = Seq(
-  crossScalaVersions   := Seq("0.27.0-RC1", "2.13.3", "2.12.12"),
+  crossScalaVersions   := Seq("3.0.0-M1", "2.13.3", "2.12.12"),
 )
 
 lazy val root = crossProject(JVMPlatform, JSPlatform).in(file("."))

@@ -9,7 +9,7 @@
 
 ScalaCollider is a [SuperCollider](https://supercollider.github.io/) client for the Scala programming language. 
 It is (C)opyright 2008&ndash;2020 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
-the [GNU Lesser General Public License](https://git.iem.at/sciss/ScalaCollider/raw/main/LICENSE) v2.1+ and comes
+the [GNU Affero General Public License](https://git.iem.at/sciss/ScalaCollider/raw/main/LICENSE) v3+ and comes
 with absolutely no warranties. To contact the author, send an e-mail to `contact at sciss.de`.
 
 SuperCollider is one of the most elaborate open source sound synthesis frameworks. It comes with its own language

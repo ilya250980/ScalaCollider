@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
  *
- *  This software is published under the GNU Lesser General Public License v2.1+
+ *  This software is published under the GNU Affero General Public License v3+
  *
  *
  *  For further information, please contact Hanns Holger Rutz at
@@ -42,7 +42,7 @@ package object synth {
   implicit def floatNumberWrapper (f: Float ): numbers.RichFloat  = new numbers.RichFloat (f)
   implicit def doubleNumberWrapper(d: Double): numbers.RichDouble = new numbers.RichDouble(d)
 
-  /** Provides operators for graph elements, such as `.abs`, `.linlin` or `.poll`. */
+  /** Provides operators for graph elements, such as `.abs`, `.linLin` or `.poll`. */
   implicit def geOps(g: GE): GEOps = new GEOps(g)
 
   implicit class rangeOps(private val r: Range) extends AnyVal {

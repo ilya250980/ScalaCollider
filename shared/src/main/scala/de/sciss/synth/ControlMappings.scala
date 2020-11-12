@@ -17,9 +17,24 @@ import scala.collection.immutable.{IndexedSeq => Vec}
 import scala.collection.{IndexedSeq => SIndexedSeq, Seq => SSeq}
 import scala.language.implicitConversions
 
-object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicits {
+object ControlSet {
+  implicit def intFloatControlSet    (tup: (Int   , Float )): ControlSet.Value = ControlSet.Value(tup._1, tup._2)
+  implicit def intIntControlSet      (tup: (Int   , Int   )): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
+  implicit def intDoubleControlSet   (tup: (Int   , Double)): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
+  implicit def stringFloatControlSet (tup: (String, Float )): ControlSet.Value = ControlSet.Value(tup._1, tup._2)
+  implicit def stringIntControlSet   (tup: (String, Int   )): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
+  implicit def stringDoubleControlSet(tup: (String, Double)): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
 
-  object Value extends ControlSetValueImplicits {
+  // leaves stuff like ArrayWrapper untouched
+  private[this] def carefulIndexed(xs: SSeq[Float]): SIndexedSeq[Float] = xs match {
+    case indexed: SIndexedSeq[Float]  => indexed
+    case _                            => xs.toIndexedSeq
+  }
+
+  implicit def intFloatsControlSet   (tup: (Int   , SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
+  implicit def stringFloatsControlSet(tup: (String, SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
+
+  object Value {
     def apply(key: String, value: Float): Value = new Value(key, value)
     def apply(key: Int   , value: Float): Value = new Value(key, value)
   }
@@ -32,7 +47,7 @@ object ControlSet extends ControlSetValueImplicits with ControlSetVectorImplicit
     def numChannels: Int = 1
   }
 
-  object Vector extends ControlSetVectorImplicits {
+  object Vector {
     def apply(key: String, values: SIndexedSeq[Float]): Vector = new Vector(key, values)
     def apply(key: Int   , values: SIndexedSeq[Float]): Vector = new Vector(key, values)
   }
@@ -53,26 +68,6 @@ sealed trait ControlSet {
   private[sciss] def toSetnSeq: SIndexedSeq[Any]
 
   def numChannels: Int
-}
-
-private[synth] sealed trait ControlSetValueImplicits {
-  implicit def intFloatControlSet    (tup: (Int   , Float )): ControlSet.Value = ControlSet.Value(tup._1, tup._2)
-  implicit def intIntControlSet      (tup: (Int   , Int   )): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
-  implicit def intDoubleControlSet   (tup: (Int   , Double)): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
-  implicit def stringFloatControlSet (tup: (String, Float )): ControlSet.Value = ControlSet.Value(tup._1, tup._2)
-  implicit def stringIntControlSet   (tup: (String, Int   )): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
-  implicit def stringDoubleControlSet(tup: (String, Double)): ControlSet.Value = ControlSet.Value(tup._1, tup._2.toFloat)
-}
-
-private[synth] sealed trait ControlSetVectorImplicits {
-  // leaves stuff like ArrayWrapper untouched
-  private[this] def carefulIndexed(xs: SSeq[Float]): SIndexedSeq[Float] = xs match {
-    case indexed: SIndexedSeq[Float]  => indexed
-    case _                            => xs.toIndexedSeq
-  }
-
-  implicit def intFloatsControlSet   (tup: (Int   , SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
-  implicit def stringFloatsControlSet(tup: (String, SSeq[Float])): ControlSet.Vector = ControlSet.Vector(tup._1, carefulIndexed(tup._2))
 }
 
 object ControlKBusMap {

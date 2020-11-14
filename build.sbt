@@ -1,11 +1,11 @@
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "2.3.0"
-lazy val mimaVersion    = "2.3.0"   // for compatibility testing
+lazy val projectVersion = "2.4.0"
+lazy val mimaVersion    = "2.4.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
-    val audioFile = "2.2.0"
+    val audioFile = "2.3.0"
     val osc       = "1.2.3"
     val optional  = "1.0.1"
     val processor = "0.5.0"

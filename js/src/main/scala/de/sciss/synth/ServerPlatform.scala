@@ -1,5 +1,5 @@
 /*
- *  AllocatorExhausted.scala
+ *  ServerPlatform.scala
  *  (ScalaCollider)
  *
  *  Copyright (c) 2008-2021 Hanns Holger Rutz. All rights reserved.
@@ -13,4 +13,12 @@
 
 package de.sciss.synth
 
-final case class AllocatorExhausted(reason: String) extends RuntimeException(reason)
+import de.sciss.osc
+import de.sciss.osc.Browser
+
+import java.net.SocketAddress
+
+trait ServerPlatform {
+  protected def createBrowserClient(target: SocketAddress, cfg: Browser.Config): osc.Client =
+    Browser.Client(target, cfg)
+}

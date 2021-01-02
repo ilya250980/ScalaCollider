@@ -8,7 +8,7 @@
 ## statement
 
 ScalaCollider is a [SuperCollider](https://supercollider.github.io/) client for the Scala programming language. 
-It is (C)opyright 2008&ndash;2020 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
+It is (C)opyright 2008&ndash;2021 by Hanns Holger Rutz. All rights reserved. ScalaCollider is released under
 the [GNU Affero General Public License](https://git.iem.at/sciss/ScalaCollider/raw/main/LICENSE) v3+ and comes
 with absolutely no warranties. To contact the author, send an e-mail to `contact at sciss.de`.
 
@@ -81,7 +81,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"2.4.1"`
+The current version `v` is `"2.4.2"`
 
 ## contributing
 

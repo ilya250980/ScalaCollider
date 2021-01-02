@@ -2,7 +2,7 @@
  *  Connection.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2021 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Affero General Public License v3+
  *
@@ -14,20 +14,20 @@
 package de.sciss.synth
 package impl
 
-import java.io.{InputStreamReader, BufferedReader, File}
-import java.net.InetSocketAddress
-import de.sciss.osc.{Message, Client => OSCClient}
-import de.sciss.processor.impl.ProcessorImpl
-import concurrent.{Await, Promise}
-import concurrent.duration._
-import de.sciss.processor.Processor
-import java.util.concurrent.TimeoutException
-import message.{Status, StatusReply}
-import de.sciss.osc
-import annotation.elidable
 import de.sciss.model.impl.ModelImpl
-import util.{Failure, Success}
-import util.control.NonFatal
+import de.sciss.osc
+import de.sciss.osc.{Message, Client => OSCClient}
+import de.sciss.processor.Processor
+import de.sciss.processor.impl.ProcessorBase
+import de.sciss.synth.message.{Status, StatusReply}
+
+import java.io.{BufferedReader, File, InputStreamReader}
+import java.net.InetSocketAddress
+import java.util.TimerTask
+import scala.annotation.elidable
+import scala.concurrent.{Future, Promise}
+import scala.util.control.NonFatal
+import scala.util.{Failure, Success}
 
 object ConnectionLike {
   private[synth] case object Ready
@@ -42,7 +42,7 @@ object ConnectionLike {
   @elidable(elidable.CONFIG) private[synth] def log(what: => String): Unit =
     if (showLog) println(s"ScalaCollider <connect> $what")
 }
-import ConnectionLike.log
+import de.sciss.synth.impl.ConnectionLike.log
 
 private[synth] sealed trait ConnectionLike extends ServerConnection with ModelImpl[ServerConnection.Condition] {
   conn =>
@@ -59,8 +59,10 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
     }
   }
 
-  object Handshake extends ProcessorImpl[OnlineServerImpl, Any] {
+  object Handshake extends ProcessorBase[OnlineServerImpl, Any] {
     private val beginCond = Promise[Unit]()
+
+    private val timeOutTimer = new java.util.Timer(true)
 
     def begin(): Unit = {
       log("begin")
@@ -74,53 +76,48 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
       ()
     }
 
-    def body(): OnlineServerImpl = {
+    override protected def runBody(): Future[OnlineServerImpl] = {
       log("body")
-      Await.result(beginCond.future, Duration.Inf)
-
-      if (!connectionAlive) throw new IllegalStateException("Connection closed")
-      if (!c.isConnected) c.connect()
-      ping(message.ServerNotify(on = true)) {
-        // Note: SC 3.6 sends two args, 3.7 sends a third arg, appending a senseless zero!
-        case Message("/done", "/notify", _ @ _*) =>
+      for {
+        _ <- beginCond.future
+        _ <- {
+          if (!connectionAlive) throw new IllegalStateException("Connection closed")
+          if (!c.isConnected) c.connect()
+          ping(message.ServerNotify(on = true)) {
+            // Note: SC 3.6 sends two args, 3.7 and later send a third arg
+            case Message("/done", "/notify", _ @ _*) =>
+          }
+        }
+        cnt <- ping(Status) {
+          case m: StatusReply => m
+        }
+      } yield {
+        new OnlineServerImpl(name, c, addr, config, clientConfig, cnt, timeOutTimer)
       }
-      val cnt = ping(Status) {
-        case m: StatusReply => m
-      }
-      new OnlineServerImpl(name, c, addr, config, clientConfig, cnt)
     }
 
-    private def ping[A](message: Message)(reply: PartialFunction[osc.Packet, A]): A = {
+    private def ping[A](message: Message)(reply: PartialFunction[osc.Packet, A]): Future[A] = {
       val phase = Promise[A]()
       c.action = { p =>
         if (reply.isDefinedAt(p)) {
+          timeOutTimer.cancel()
           phase.trySuccess(reply(p))
           ()
         }
       }
-      val result = phase.future
 
-      //      // @tailrec broken in 2.10.0, works in 2.10.1
-      //      @tailrec def loop(): A = try {
-      //        checkAborted()
-      //        c ! message
-      //        Await.result(result, 500.milliseconds)
-      //      } catch {
-      //        case _: TimeoutException => loop()
-      //      }
-      //
-      //      loop()
-
-      while (true) try {
-        checkAborted()
-        c ! message
-        val res = Await.result(result, 500.milliseconds)
-        return res
-
-      } catch {
-        case _: TimeoutException => // loop()
+      val tt = new TimerTask {
+        override def run(): Unit = if (!phase.isCompleted) {
+          if (aborted) {
+            timeOutTimer.cancel()
+            phase.tryFailure(Processor.Aborted())
+          } else {
+            c ! message
+          }
+        }
       }
-      sys.error("Never here")
+      timeOutTimer.scheduleAtFixedRate(tt, 0L, 500L)
+      phase.future
     }
   }
 

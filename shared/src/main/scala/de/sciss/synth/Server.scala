@@ -2,7 +2,7 @@
  *  Server.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2021 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Affero General Public License v3+
  *
@@ -15,11 +15,10 @@ package de.sciss.synth
 
 import java.io.File
 import java.net.{DatagramSocket, InetAddress, InetSocketAddress, ServerSocket}
-
 import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.model.Model
 import de.sciss.osc
-import de.sciss.osc.{TCP, UDP}
+import de.sciss.osc.{Browser, TCP, UDP}
 import de.sciss.processor.Processor
 import de.sciss.synth.impl.ServerImpl
 
@@ -29,7 +28,7 @@ import scala.concurrent.duration._
 import scala.language.implicitConversions
 import scala.util.Try
 
-object Server {
+object Server extends ServerPlatform {
   def default: Server = ServerImpl.default
 
   /** The default file path to `scsynth`. If the runtime (system) property `"SC_HOME"` is provided,
@@ -272,7 +271,7 @@ object Server {
         case TCP =>
           b += "-t"
           b += o.port.toString
-        case UDP =>
+        case UDP | Browser =>
           b += "-u"
           b += o.port.toString
       }
@@ -676,6 +675,8 @@ object Server {
           val tmp = new ServerSocket(0)
           port = tmp.getLocalPort
           tmp.close()
+        case Browser =>
+          port = 57120 // default for now -- we could look into BrowserDriver free keys
       }
     }
 
@@ -901,8 +902,10 @@ object Server {
   def renderNRT(dur: Double, config: Server.Config): Processor[Int] with Processor.Prepared =
     new impl.NRTImpl(dur, config)
 
-  private def createClient(transport: osc.Transport.Net, serverAddr: InetSocketAddress,
-                           clientAddr: InetSocketAddress): osc.Client = {
+  private def createClient(transport  : osc.Transport.Net,
+                           serverAddr : InetSocketAddress,
+                           clientAddr : InetSocketAddress
+                          ): osc.Client = {
     val client: osc.Client = transport match {
       case UDP =>
         val cfg = UDP.Config()
@@ -916,6 +919,12 @@ object Server {
         cfg.localSocketAddress  = clientAddr
         cfg.bufferSize          = 0x10000
         TCP.Client(serverAddr, cfg)
+      case Browser =>
+        val cfg = Browser.Config()
+        cfg.localPort           = clientAddr.getPort
+        cfg.codec               = message.ServerCodec
+        cfg.bufferSize          = 0x10000
+        createBrowserClient(serverAddr, cfg)
     }
     client
   }

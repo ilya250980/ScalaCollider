@@ -2,7 +2,7 @@
  *  ServerImpl.scala
  *  (ScalaCollider)
  *
- *  Copyright (c) 2008-2019 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2008-2021 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU Affero General Public License v3+
  *
@@ -14,18 +14,17 @@
 package de.sciss.synth
 package impl
 
-import java.io.{File, IOException}
-import java.net.InetSocketAddress
-import java.util.{Timer, TimerTask}
-
 import de.sciss.model.impl.ModelImpl
 import de.sciss.osc
 import de.sciss.processor.Processor
 import de.sciss.processor.impl.ProcessorImpl
 import de.sciss.synth.message.StatusReply
 
+import java.io.{File, IOException}
+import java.net.InetSocketAddress
+import java.util.{Timer, TimerTask}
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future, Promise, TimeoutException}
+import scala.concurrent.{Future, Promise}
 import scala.sys.process.{Process, ProcessLogger}
 import scala.util.control.NonFatal
 
@@ -84,16 +83,20 @@ private[synth] final class NRTImpl(dur: Double, sCfg: Server.Config)
 
 private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val addr: InetSocketAddress,
                                             val config: Server.Config, val clientConfig: Client.Config,
-                                            var countsVar: message.StatusReply)
+                                            var countsVar: message.StatusReply, timeOutTimer: java.util.Timer)
   extends ServerImpl { server =>
+
+  def this(name: String, c: osc.Client, addr: InetSocketAddress, config: Server.Config, clientConfig: Client.Config,
+           countsVar: message.StatusReply) =
+    this(name, c, addr, config, clientConfig, countsVar, new java.util.Timer(true))
 
   import clientConfig.executionContext
 
   private[this] val condSync = new AnyRef
 
   @volatile
-  private[this] var _condition      : Server.Condition = Server.Running
-  private[this] var pendingCondition: Server.Condition = Server.NoPending
+  private[this] var _condition      : Server.Condition      = Server.Running
+  private[this] var pendingCondition: Server.Condition      = Server.NoPending
   private[this] var aliveThread     : Option[StatusWatcher] = None
 
   // ---- constructor ----
@@ -113,14 +116,18 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     val oh       = new OSCTimeOutHandler(handler, promise)
     OSCReceiverActor.addHandler(oh)
     server ! p // only after addHandler!
-    Future {
-      try {
-        Await.ready(res, timeout)
-      } catch {
-        case _: TimeoutException => promise.tryFailure(message.Timeout())
-      }
+    val tt = new TimerTask {
+      override def run(): Unit =
+        promise.tryFailure(message.Timeout())
     }
-    res
+    if (timeout.isFinite) {
+      timeOutTimer.schedule(tt, timeout.toMillis)
+      res.andThen {
+        case _ => tt.cancel()
+      }
+    } else {
+      res
+    }
   }
 
   def serverOffline(): Unit =
@@ -221,18 +228,8 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
     }
 
 
-  private object OSCReceiverActor /* extends DaemonActor */ {
+  private object OSCReceiverActor {
     import scala.concurrent._
-
-    //    private case object Clear
-    //
-    //    private case object Dispose
-    //
-    //    private case class AddHandler(h: message.Handler)
-    //
-    //    private case class RemoveHandler(h: message.Handler)
-
-    //      private case class  TimeOutHandler( h: OSCTimeOutHandler )
 
     private val sync = new AnyRef
     @volatile private var handlers = Set.empty[message.Handler]

@@ -422,11 +422,6 @@ private[synth] abstract class ServerImpl
 
   final def sampleRate: Double = counts.sampleRate
 
-  final def dumpTree(controls: Boolean = false): Unit = {
-    import de.sciss.synth.Ops._
-    rootNode.dumpTree(controls)
-  }
-
   final def queryCounts(): Unit = this ! message.Status
 
   final def dumpOSC(mode: osc.Dump, filter: osc.Packet => Boolean): Unit = {

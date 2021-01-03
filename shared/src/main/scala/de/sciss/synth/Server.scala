@@ -136,7 +136,7 @@ object Server extends ServerPlatform {
     def port: Int
 
     /** (Realtime) Open Sound Control transport used by scsynth. (Either of `UDP` and `TCP`). */
-    def transport: osc.Transport.Net
+    def transport: osc.Transport
 
     /** (Realtime) An option to enable particular input 'streams' or 'bundles' of a sound card.
       * This is a 'binary' String made of `'0'` and `'1'` characters.
@@ -410,7 +410,7 @@ object Server extends ServerPlatform {
                                      /* val memoryLocking: Boolean, */
                                      val host: String,
                                      val port: Int,
-                                     val transport: osc.Transport.Net,
+                                     val transport: osc.Transport,
                                      val inputStreamsEnabled: Option[String],
                                      val outputStreamsEnabled: Option[String],
                                      val deviceNames: Option[(String, String)],
@@ -574,7 +574,7 @@ object Server extends ServerPlatform {
     var port: Int = 57110
 
     /** (Realtime) The default transport is `UDP`. */
-    var transport: osc.Transport.Net = UDP
+    var transport: osc.Transport = UDP
 
     /** (Realtime) The default settings for enabled input streams is `None` */
     var inputStreamsEnabled: Option[String] = None

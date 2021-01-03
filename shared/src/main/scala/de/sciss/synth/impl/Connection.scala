@@ -97,18 +97,11 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
 
     private def ping[A](message: Message)(reply: PartialFunction[osc.Packet, A]): Future[A] = {
       val phase = Promise[A]()
-      c.action = { p =>
-        if (reply.isDefinedAt(p)) {
-          timeOutTimer.cancel()
-          phase.trySuccess(reply(p))
-          ()
-        }
-      }
 
       val tt = new TimerTask {
         override def run(): Unit = if (!phase.isCompleted) {
           if (aborted) {
-            timeOutTimer.cancel()
+            /*timeOutTimer.*/cancel()
             phase.tryFailure(Processor.Aborted())
             ()
           } else {
@@ -116,6 +109,15 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
           }
         }
       }
+
+      c.action = { p =>
+        if (reply.isDefinedAt(p)) {
+          tt /*timeOutTimer*/.cancel()
+          phase.trySuccess(reply(p))
+          ()
+        }
+      }
+
       timeOutTimer.scheduleAtFixedRate(tt, 0L, 500L)
       phase.future
     }

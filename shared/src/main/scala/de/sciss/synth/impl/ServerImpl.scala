@@ -85,10 +85,6 @@ private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val
                                             var countsVar: message.StatusReply, timeOutTimer: java.util.Timer)
   extends ServerImpl { server =>
 
-  def this(name: String, c: osc.Client, addr: Server.Address, config: Server.Config, clientConfig: Client.Config,
-           countsVar: message.StatusReply) =
-    this(name, c, addr, config, clientConfig, countsVar, new java.util.Timer(true))
-
   import clientConfig.executionContext
 
   private[this] val condSync = new AnyRef

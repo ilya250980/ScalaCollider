@@ -913,6 +913,10 @@ trait ServerConnection extends ServerLike with Model[ServerConnection.Condition]
   def abort(): Unit
 }
 
+/** The client-side representation of the SuperCollider server.
+  *
+  * Additional operations are available by importing `Ops._`.
+  */
 trait Server extends ServerLike with Model[Server.Update] {
   server =>
 
@@ -942,6 +946,7 @@ trait Server extends ServerLike with Model[Server.Update] {
   def allocBuffer(numChannels: Int): Int
   def freeBuffer (index      : Int): Unit
 
+  /** Sends out an OSC packet without waiting for any replies. */
   def ! (p: osc.Packet): Unit
 
   /** Sends out an OSC packet that generates some kind of reply, and
@@ -962,30 +967,41 @@ trait Server extends ServerLike with Model[Server.Update] {
     */
   def !! [A](packet: osc.Packet, timeout: Duration = 6.seconds)(handler: PartialFunction[osc.Message, A]): Future[A]
 
+  /** The last reported server data, such as number of synths and groups, sample rate. */
   def counts: message.StatusReply
 
+  /** Shortcut to `counts.sampleRate`. */
   def sampleRate: Double
-
-  def dumpTree(controls: Boolean = false): Unit
 
   def condition: Condition
 
+  /** Starts a repeatedly running status watcher that updates the `condition` and `counts`
+    * information.
+    */
   def startAliveThread(delay: Float = 0.25f, period: Float = 0.25f, deathBounces: Int = 25): Unit
 
   def stopAliveThread(): Unit
 
+  /** Shortcut to `this ! message.Status`. If the 'alive thread' is running,
+    * it will take care of querying the counts frequently.
+    */
   def queryCounts(): Unit
 
+  /** Allocates a new unique synchronization identifier,
+    * and returns the corresponding `/sync` message.
+    */
   def syncMsg(): message.Sync
 
   def dumpOSC   (mode: osc.Dump = osc.Dump.Text, filter: osc.Packet => Boolean = _ => true): Unit
   def dumpInOSC (mode: osc.Dump = osc.Dump.Text, filter: osc.Packet => Boolean = _ => true): Unit
   def dumpOutOSC(mode: osc.Dump = osc.Dump.Text, filter: osc.Packet => Boolean = _ => true): Unit
 
+  /** Sends a `quitMsg` and then invokes `dispose()`. */
   def quit(): Unit
 
   def quitMsg: message.ServerQuit.type
 
+  /** Disconnects the client, and frees any resources on the client-side. */
   def dispose(): Unit
 
   private[synth] def addResponder   (resp: message.Responder): Unit

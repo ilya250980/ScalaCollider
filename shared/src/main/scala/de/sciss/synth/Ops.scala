@@ -317,6 +317,19 @@ object Ops {
       createAsync(server, b => b.allocReadChannel(path, startFrame, numFrames, channels, _), completion)
   }
 
+  implicit final class ServerOps(private val s: Server) extends AnyVal {
+    def sync(): Future[Unit] = {
+      val syncMsg = s.syncMsg()
+      val syncId  = syncMsg.id
+      s.!!(syncMsg) {
+        case message.Synced(`syncId`) => ()
+      }
+    }
+
+    def dumpTree(controls: Boolean = false): Unit =
+      s.rootNode.dumpTree(controls)
+  }
+
   // ---- the following have to be outside the value class due to a Scala 2.10 ----
   // ---- restriction that seems to extend to function arguments. After we     ----
   // ---- drop Scala 2.10 support, we can move these back into the classes     ----

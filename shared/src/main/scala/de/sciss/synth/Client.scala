@@ -13,8 +13,6 @@
 
 package de.sciss.synth
 
-import java.net.InetSocketAddress
-
 import scala.concurrent.ExecutionContext
 import scala.language.implicitConversions
 
@@ -22,7 +20,7 @@ object Client {
   sealed trait ConfigLike {
     def clientId        : Int
     def nodeIdOffset    : Int
-    def addr            : Option[InetSocketAddress]
+    def addr            : Option[Address]
     def executionContext: ExecutionContext
 
     /** Nominal expected latency in seconds.
@@ -42,7 +40,9 @@ object Client {
     implicit def build(cb: ConfigBuilder): Config = cb.build
   }
 
-  final class Config private[Client](val clientId: Int, val nodeIdOffset: Int, val addr: Option[InetSocketAddress],
+  type Address = Server.Address
+
+  final class Config private[Client](val clientId: Int, val nodeIdOffset: Int, val addr: Option[Address],
                                      val latency: Double)
                                     (implicit val executionContext: ExecutionContext)
     extends ConfigLike {
@@ -57,11 +57,11 @@ object Client {
     }
   }
   final class ConfigBuilder private[Client]() extends ConfigLike {
-    var clientId        : Int                       = 0
-    var nodeIdOffset    : Int                       = 1000
-    var addr            : Option[InetSocketAddress] = None
-    var executionContext: ExecutionContext          = ExecutionContext.global
-    var latency         : Double                    = 0.2
+    var clientId        : Int                 = 0
+    var nodeIdOffset    : Int                 = 1000
+    var addr            : Option[Address]     = None
+    var executionContext: ExecutionContext    = ExecutionContext.global
+    var latency         : Double              = 0.2
 
     def read(config: Config): Unit = {
       clientId          = config.clientId

@@ -1,3 +1,5 @@
+import com.typesafe.tools.mima.core.{Problem, ProblemFilters}
+
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
 lazy val projectVersion = "2.4.2-SNAPSHOT"
@@ -37,6 +39,9 @@ lazy val root = crossProject(JVMPlatform, JSPlatform).in(file("."))
     homepage             := Some(url(s"https://git.iem.at/sciss/${name.value}")),
     licenses             := Seq("AGPL v3+" -> url("http://www.gnu.org/licenses/agpl-3.0.txt")),
     mimaPreviousArtifacts := Set("de.sciss" %% baseNameL % mimaVersion),
+    mimaBinaryIssueFilters ++= Seq(
+      ProblemFilters.exclude[Problem]("de.sciss.synth.impl.*"),
+    ),
     libraryDependencies ++= Seq(
       "de.sciss"      %%% "audiofile"               % deps.main.audioFile,
       "de.sciss"      %%% "optional"                % deps.main.optional,

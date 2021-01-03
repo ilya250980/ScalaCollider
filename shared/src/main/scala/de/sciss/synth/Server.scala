@@ -13,8 +13,6 @@
 
 package de.sciss.synth
 
-import java.io.File
-import java.net.{DatagramSocket, InetAddress, InetSocketAddress, ServerSocket}
 import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.model.Model
 import de.sciss.osc
@@ -22,6 +20,7 @@ import de.sciss.osc.{Browser, TCP, UDP}
 import de.sciss.processor.Processor
 import de.sciss.synth.impl.ServerImpl
 
+import java.net.{DatagramSocket, InetAddress, ServerSocket}
 import scala.collection.mutable
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -30,16 +29,6 @@ import scala.util.Try
 
 object Server extends ServerPlatform {
   def default: Server = ServerImpl.default
-
-  /** The default file path to `scsynth`. If the runtime (system) property `"SC_HOME"` is provided,
-    * this specifies the directory of `scsynth`. Otherwise, an environment (shell) variable named
-    * `"SC_HOME"` is checked. If neither exists, this returns `scsynth` in the current working directory.
-    */
-  def defaultProgram: String = sys.props.get("SC_HOME").orElse(sys.env.get("SC_HOME")).fold {
-    "scsynth"
-  } {
-    home => new File(home, "scsynth").getPath
-  }
 
   /** The base trait for `Config` and `ConfigBuilder` describes the settings used to boot scsynth in
     * realtime or non-realtime mode, as well as its server address and port.
@@ -831,24 +820,10 @@ object Server extends ServerPlatform {
     */
   def dummy(name: String = "dummy", config: Config = Config().build,
             clientConfig: Client.Config = Client.Config().build): Server = {
-    // val (addr, c) = prepareConnection(config, clientConfig)
     val sr        = config.sampleRate
     val status    = message.StatusReply(numUGens = 0, numSynths = 0, numGroups = 0, numDefs = 0,
       avgCPU = 0f, peakCPU = 0f, sampleRate = sr, actualSampleRate = sr)
     new impl.OfflineServerImpl(name, /* c, addr, */ config, clientConfig, status)
-  }
-
-  private def prepareConnection(config: Config, clientConfig: Client.Config): (InetSocketAddress, osc.Client) = {
-    val sa = new InetSocketAddress(config.host, config.port)
-    val clientAddr = clientConfig.addr getOrElse {
-      val a = sa.getAddress
-      if (a.isLoopbackAddress || a.isAnyLocalAddress)
-        new InetSocketAddress("127.0.0.1", 0)
-      else
-        new InetSocketAddress(InetAddress.getLocalHost, 0)
-    }
-    val c = createClient(config.transport, sa, clientAddr)
-    (sa, c)
   }
 
   def allocPort(transport: osc.Transport): Int = {
@@ -902,33 +877,6 @@ object Server extends ServerPlatform {
   def renderNRT(dur: Double, config: Server.Config): Processor[Int] with Processor.Prepared =
     new impl.NRTImpl(dur, config)
 
-  private def createClient(transport  : osc.Transport.Net,
-                           serverAddr : InetSocketAddress,
-                           clientAddr : InetSocketAddress
-                          ): osc.Client = {
-    val client: osc.Client = transport match {
-      case UDP =>
-        val cfg = UDP.Config()
-        cfg.localSocketAddress  = clientAddr
-        cfg.codec               = message.ServerCodec
-        cfg.bufferSize          = 0x10000
-        UDP.Client(serverAddr, cfg)
-      case TCP =>
-        val cfg                 = TCP.Config()
-        cfg.codec               = message.ServerCodec
-        cfg.localSocketAddress  = clientAddr
-        cfg.bufferSize          = 0x10000
-        TCP.Client(serverAddr, cfg)
-      case Browser =>
-        val cfg = Browser.Config()
-        cfg.localPort           = clientAddr.getPort
-        cfg.codec               = message.ServerCodec
-        cfg.bufferSize          = 0x10000
-        createBrowserClient(serverAddr, cfg)
-    }
-    client
-  }
-
   def version: Try[(String, String)] = version()
 
   def version(config: Config = Config().build): Try[(String, String)] = Try {
@@ -949,7 +897,7 @@ object Server extends ServerPlatform {
 sealed trait ServerLike {
   def name  : String
   def config: Server.Config
-  def addr  : InetSocketAddress
+  def addr  : Server.Address // InetSocketAddress
 }
 
 object ServerConnection {

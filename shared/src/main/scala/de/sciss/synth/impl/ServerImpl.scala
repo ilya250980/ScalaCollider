@@ -21,7 +21,6 @@ import de.sciss.processor.impl.ProcessorImpl
 import de.sciss.synth.message.StatusReply
 
 import java.io.{File, IOException}
-import java.net.InetSocketAddress
 import java.util.{Timer, TimerTask}
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Future, Promise}
@@ -81,12 +80,12 @@ private[synth] final class NRTImpl(dur: Double, sCfg: Server.Config)
   }
 }
 
-private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val addr: InetSocketAddress,
+private[synth] final class OnlineServerImpl(val name: String, c: osc.Client, val addr: Server.Address,
                                             val config: Server.Config, val clientConfig: Client.Config,
                                             var countsVar: message.StatusReply, timeOutTimer: java.util.Timer)
   extends ServerImpl { server =>
 
-  def this(name: String, c: osc.Client, addr: InetSocketAddress, config: Server.Config, clientConfig: Client.Config,
+  def this(name: String, c: osc.Client, addr: Server.Address, config: Server.Config, clientConfig: Client.Config,
            countsVar: message.StatusReply) =
     this(name, c, addr, config, clientConfig, countsVar, new java.util.Timer(true))
 
@@ -389,7 +388,7 @@ private[synth] final class OfflineServerImpl(val name: String, val config: Serve
   def dispose(): Unit = ()
   def quit   (): Unit = ()
 
-  def addr: InetSocketAddress = new InetSocketAddress(config.host, config.port)
+  def addr: Server.Address = Server.mkAddress(config)
 }
 
 private[synth] abstract class ServerImpl
@@ -409,10 +408,7 @@ private[synth] abstract class ServerImpl
   private[this] var uniqueId             = 0
   private[this] val uniqueSync           = new AnyRef
 
-  final def isLocal: Boolean = {
-    val host = addr.getAddress
-    host.isLoopbackAddress || host.isSiteLocalAddress
-  }
+  final def isLocal: Boolean = Server.isLocal(addr)
 
   final def nextNodeId(): Int = nodeAllocator.alloc()
 

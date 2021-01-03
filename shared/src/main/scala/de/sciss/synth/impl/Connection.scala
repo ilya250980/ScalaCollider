@@ -22,7 +22,6 @@ import de.sciss.processor.impl.ProcessorBase
 import de.sciss.synth.message.{Status, StatusReply}
 
 import java.io.{BufferedReader, File, InputStreamReader}
-import java.net.InetSocketAddress
 import java.util.TimerTask
 import scala.annotation.elidable
 import scala.concurrent.{Future, Promise}
@@ -111,6 +110,7 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
           if (aborted) {
             timeOutTimer.cancel()
             phase.tryFailure(Processor.Aborted())
+            ()
           } else {
             c ! message
           }
@@ -128,13 +128,14 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
       s.initTree()
       dispatch(SCRunning(s))
       createAliveThread(s)
-    case Processor.Result(_, Failure(e)) =>
-      e match {
-        case Processor.Aborted() =>
-          log("failure: aborted")
-        case NonFatal(n) =>
-          n.printStackTrace()
-      }
+
+    case Processor.Result(_, Failure(Processor.Aborted())) =>
+      log("failure: aborted")
+      handleAbort()
+      dispatch(Aborted)
+
+    case Processor.Result(_, Failure(NonFatal(e))) =>
+      e.printStackTrace()
       handleAbort()
       dispatch(Aborted)
   }
@@ -146,7 +147,8 @@ private[synth] sealed trait ConnectionLike extends ServerConnection with ModelIm
   def createAliveThread(s: Server): Unit
 }
 
-private[synth] final class Connection(val name: String, val c: OSCClient, val addr: InetSocketAddress, val config: Server.Config,
+private[synth] final class Connection(val name: String, val c: OSCClient, val addr: Server.Address,
+                                      val config: Server.Config,
                                       val clientConfig: Client.Config, aliveThread: Boolean)
   extends ConnectionLike {
 
@@ -168,7 +170,7 @@ private[synth] final class Connection(val name: String, val c: OSCClient, val ad
     if (aliveThread) s.startAliveThread(1.0f, 0.25f, 40) // allow for a luxury 10 seconds absence
 }
 
-private[synth] final class Booting(val name: String, val c: OSCClient, val addr: InetSocketAddress,
+private[synth] final class Booting(val name: String, val c: OSCClient, val addr: Server.Address,
                                    val config: Server.Config, val clientConfig: Client.Config, aliveThread: Boolean)
   extends ConnectionLike {
 

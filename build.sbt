@@ -73,7 +73,7 @@ lazy val root = crossProject(JVMPlatform, JSPlatform).in(file("."))
         |""".stripMargin,
     // ---- build info ----
     buildInfoKeys := Seq(name, organization, version, scalaVersion, description,
-      BuildInfoKey.map(homepage) { case (k, opt) => k -> opt.get },
+      BuildInfoKey.map(homepage) { case (k, opt) => k -> opt.get.toURI }, // Scala.js does not support URL
       BuildInfoKey.map(licenses) { case (_, Seq( (lic, _) )) => "license" -> lic }
     ),
     buildInfoPackage := "de.sciss.synth"

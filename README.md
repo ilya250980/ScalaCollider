@@ -18,7 +18,7 @@ SuperCollider is one of the most elaborate open source sound synthesis framework
 you hook up any other Scala, Java or JVM-based libraries. ScalaCollider's function is more reduced than 'SCLang',
 focusing on UGen graphs and server-side resources such as buses and buffers. Other functionality is part of the 
 standard Scala library, e.g. collections and GUI. Other functionality, such as plotting, MIDI, client-side 
-sequencing (Pdefs, Routines, etc.) must be added through dedicated libraries (see section 'packages' below).
+sequencing (`Pdef`, `Routine`, etc.) must be added through dedicated libraries (see section 'packages' below).
 
 While ScalaCollider itself is in the form of a _library_ (although you can use it from the REPL with `sbt console`),
 you may want to have a look at the [ScalaCollider-Swing](https://git.iem.at/sciss/ScalaColliderSwing) project that 
@@ -69,11 +69,11 @@ provided by the [ScalaColliderSwing](https://git.iem.at/sciss/ScalaColliderSwing
 
 Targets for sbt:
 
-* `clean` &ndash; removes previous build artefacts
-* `compile` &ndash; compiles classes into target/scala-version/classes
-* `doc` &ndash; generates api in target/scala-version/api/index.html
-* `package` &ndash; packages jar in target/scala-version
-* `console` &ndash; opens a Scala REPL with ScalaCollider on the classpath
+- `clean` &ndash; removes previous build artefacts
+- `compile` &ndash; compiles classes into target/scala-version/classes
+- `doc` &ndash; generates api in target/scala-version/api/index.html
+- `package` &ndash; packages jar in target/scala-version
+- `console` &ndash; opens a Scala REPL with ScalaCollider on the classpath
 
 ## linking
 
@@ -81,7 +81,7 @@ To use this project as a library, use the following artifact:
 
     libraryDependencies += "de.sciss" %% "scalacollider" % v
 
-The current version `v` is `"2.4.2"`
+The current version `v` is `"2.6.0"`
 
 ## contributing
 

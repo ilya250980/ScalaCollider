@@ -2,8 +2,8 @@ import com.typesafe.tools.mima.core.{Problem, ProblemFilters}
 
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "2.5.0"
-lazy val mimaVersion    = "2.5.0"   // for compatibility testing
+lazy val projectVersion = "2.6.0-SNAPSHOT"
+lazy val mimaVersion    = "2.6.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
@@ -12,7 +12,7 @@ lazy val deps = new {
     val optional  = "1.0.1"
     val processor = "0.5.0"
     val serial    = "2.0.0"
-    val ugens     = "1.20.1"
+    val ugens     = "1.21.0-SNAPSHOT"
   }
   val test = new {
     val scalaTest = "3.2.3"

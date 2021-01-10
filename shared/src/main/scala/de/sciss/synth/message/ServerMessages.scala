@@ -14,12 +14,11 @@
 package de.sciss.synth
 package message
 
-import java.nio.ByteBuffer
-
 import de.sciss.audiofile.{AudioFileType, SampleFormat}
 import de.sciss.osc
 import de.sciss.osc.{Message, Packet}
 
+import java.nio.ByteBuffer
 import scala.collection.{IndexedSeq => SIndexedSeq}
 import scala.language.implicitConversions
 
@@ -65,7 +64,7 @@ final case class Synced(id: Int) extends Message("/synced", id) with Receive
   *                `/sync` message sent out.
   */
 final case class Sync(id: Int) extends Message("/sync", id) with AsyncSend {
-  def reply = Synced(id)
+  def reply: Synced = Synced(id)
 }
 
 final case class StatusReply(numUGens: Int, numSynths: Int, numGroups: Int, numDefs: Int, avgCPU: Float,
@@ -517,9 +516,12 @@ final case class BufferFill(id: Int, ranges: FillRange*)
 }
 
 object BufferGen {
-  trait Command {
-    def name: String
-    def args: Seq[Any]
+  trait Command extends Product {
+    def name      : String
+    def args      : Seq[Any]
+    def readerKey : String
+
+    override final def productPrefix: String = readerKey
   }
 
   sealed trait WaveFill extends Command {
@@ -530,6 +532,9 @@ object BufferGen {
     protected final def flags: Int = (if (normalize) 1 else 0) | (if (wavetable) 2 else 0) | (if (clear) 4 else 0)
   }
 
+  object Sine1 {
+    final val readerKey = s"BufferGen$$Sine1"
+  }
   /** OSC message for filling a buffer with a series of sine wave harmonics using specified amplitudes.
     *
     * @param partials   amplitudes for the harmonics. The first value specifies the amplitude of the first
@@ -543,12 +548,15 @@ object BufferGen {
   final case class Sine1(partials: Seq[Float], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
 
-    override def productPrefix = s"BufferGen$$Sine1"
+    override def readerKey: String = Sine1.readerKey
 
     def name = "sine1"
     def args: Seq[Any] = flags +: partials
   }
 
+  object Sine2 {
+    final val readerKey = s"BufferGen$$Sine2"
+  }
   /** OSC message for filling a buffer with a series of sine waves using specified frequencies and amplitudes.
     *
     * @param partials   pairs of frequencies and amplitudes for the partials.
@@ -562,7 +570,7 @@ object BufferGen {
   final case class Sine2(partials: Seq[(Float, Float)], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
 
-      override def productPrefix = s"BufferGen$$Sine2"
+      override def readerKey: String = Sine2.readerKey
 
       def name = "sine2"
       def args: Seq[Any] = flags +: partials.flatMap(tup => tup._1 :: tup._2 :: Nil)
@@ -571,6 +579,8 @@ object BufferGen {
   object Sine3 {
     final case class Data(freq: Float, amp: Float, phase: Float)
     implicit def data(tup: (Float,  Float, Float)): Data = Data(tup._1, tup._2, tup._3)
+
+    final val readerKey = s"BufferGen$$Sine3"
   }
 
   /** OSC message for filling a buffer with a series of sine waves using specified frequencies, amplitudes,
@@ -587,16 +597,19 @@ object BufferGen {
   final case class Sine3(partials: Seq[(Float, Float, Float)], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
 
-    override def productPrefix = s"BufferGen$$Sine3"
+    override def readerKey: String = Sine3.readerKey
 
     def name = "sine3"
     def args: Seq[Any] = flags +: partials.flatMap(d => d._1 :: d._2 :: d._3 :: Nil)
   }
 
+  object Cheby {
+    final val readerKey = s"BufferGen$$Cheby"
+  }
   /** OSC message for filling a buffer with a series of Chebyshev polynomials.
     * The formula of these polynomials is
     * {{{
-    * cheby(n) = amplitude  * cos(n * acos(x))
+    * cheby(n) = amplitude * cos(n * acos(x))
     * }}}
     * To eliminate a DC offset when used as a wave-shaper, the wavetable is offset so that the center value is zero.
     *
@@ -612,19 +625,22 @@ object BufferGen {
   final case class Cheby(amps: Seq[Float], normalize: Boolean, wavetable: Boolean, clear: Boolean)
     extends WaveFill {
 
-    override def productPrefix = s"BufferGen$$Cheby"
+    override def readerKey: String = Cheby.readerKey
 
     def name = "cheby"
     def args: Seq[Any] = flags +: amps
   }
 
+  object Copy {
+    final val readerKey = s"BufferGen$$Copy"
+  }
   /** Copies samples from the source buffer to the destination buffer specified in the `b_gen` message.
     * If the number of samples to copy is negative, the maximum number of samples possible is copied.
     */
   final case class Copy(targetOffset: Int, source: Int, sourceOffset: Int, num: Int)
     extends Command {
 
-    override def productPrefix = s"BufferGen$$Copy"
+    override def readerKey: String = Copy.readerKey
 
     def name = "copy"
     def args: Seq[Any] = List(targetOffset, source, sourceOffset, num)

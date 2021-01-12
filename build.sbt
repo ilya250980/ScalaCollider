@@ -52,10 +52,11 @@ lazy val root = crossProject(JVMPlatform, JSPlatform).in(file("."))
       "org.scalatest" %%% "scalatest"               % deps.test.scalaTest % Test,
     ),
     scalacOptions in (Compile, compile) ++= {
-      val xs = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xlint:-stars-align,_", "-Xsource:2.13")
+      val xs0   = Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8")
+      val xs    = if (isDotty.value) xs0 else xs0 ++ Seq("-Xlint:-stars-align,_", "-Xsource:2.13")
       val elide = !isSnapshot.value && !isDotty.value
-      val ys = if (!elide) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
-      val sv = scalaVersion.value
+      val ys    = if (!elide) xs else xs ++ Seq("-Xelide-below", "INFO")  // elide logging in stable versions
+      val sv    = scalaVersion.value
       if (sv.startsWith("2.13.")) ys :+ "-Wvalue-discard" else ys
     },
     sources in (Compile, doc) := {

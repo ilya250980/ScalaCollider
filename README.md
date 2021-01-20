@@ -1,7 +1,7 @@
 # ScalaCollider
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sciss/ScalaCollider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/Sciss/ScalaCollider.svg?branch=main)](https://travis-ci.org/Sciss/ScalaCollider)
+[![Build Status](https://github.com/Sciss/ScalaCollider/workflows/Scala%20CI/badge.svg?branch=main)](https://github.com/Sciss/ScalaCollider/actions?query=workflow%3A%22Scala+CI%22)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/scalacollider_2.13)
 <a href="https://liberapay.com/sciss/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="24"></a>
 

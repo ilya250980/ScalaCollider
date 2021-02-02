@@ -2,16 +2,16 @@ import com.typesafe.tools.mima.core.{Problem, ProblemFilters}
 
 lazy val baseName       = "ScalaCollider"
 lazy val baseNameL      = baseName.toLowerCase
-lazy val projectVersion = "2.6.0"
+lazy val projectVersion = "2.6.1"
 lazy val mimaVersion    = "2.6.0"   // for compatibility testing
 
 lazy val deps = new {
   val main = new {
-    val audioFile = "2.3.2"
+    val audioFile = "2.3.3"
     val osc       = "1.3.0"
     val optional  = "1.0.1"
     val processor = "0.5.0"
-    val serial    = "2.0.0"
+    val serial    = "2.0.1"
     val ugens     = "1.21.0"
   }
   val test = new {
@@ -20,7 +20,7 @@ lazy val deps = new {
 }
 
 lazy val commonJvmSettings = Seq(
-  crossScalaVersions   := Seq("3.0.0-M2", "2.13.4", "2.12.12"),
+  crossScalaVersions   := Seq("3.0.0-M3", "2.13.4", "2.12.12"),
 )
 
 // sonatype plugin requires that these are in global
